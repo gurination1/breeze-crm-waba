@@ -423,52 +423,52 @@
       {
         "role": "user",
         "content": "Sat Sri Akal ji, main tuhanu YouTube te dekheya si",
-        "timestamp": 1792604658099
+        "timestamp": 1792605649609
       },
       {
         "role": "model",
         "content": "Haanji veer ji, keda plant ya setup dekh rahe ho ji?",
-        "timestamp": 1792604658105
+        "timestamp": 1792605649614
       },
       {
         "role": "user",
         "content": "Mera naam Harpreet Singh hai, Bathinda de pind vich camper plant lagwana si. Kharcha kinna aunda?",
-        "timestamp": 1792604658403
+        "timestamp": 1792605649917
       },
       {
         "role": "model",
         "content": "Veer ji pind ch 1000 LPH camper plant (RO + SS Tank + Chiller) da poora setup lagbhag 3,70,000 da painda a ji. [[SPLIT]] Paani da TDS kinna a ji, ya camper water supply layi setup karna a?",
-        "timestamp": 1792604658412
+        "timestamp": 1792605649927
       },
       {
         "role": "user",
         "content": "Paise thode ghat ne bhaji, koi EMI ya loan di scheme hai?",
-        "timestamp": 1792604658577
+        "timestamp": 1792605650081
       },
       {
         "role": "model",
         "content": "Haanji veer ji, PMEGP sarkari subsidy loan scheme raahi 10 lakh tak da loan ho janda a, jis vich 25% subsidy (2.5 lakh) maaf hundi a ji. [[SPLIT]] Loan tussi apne naam te karwana a ya family ch kise de naam te ji?",
-        "timestamp": 1792604658583
+        "timestamp": 1792605650086
       },
       {
         "role": "user",
         "content": "Par veere, Ludhiana wali ek company 20% sasta de rahi hai",
-        "timestamp": 1792604658709
+        "timestamp": 1792605650231
       },
       {
         "role": "model",
         "content": "Veer ji, saste setup vich halka material te duplicate membrane hundi a jo 6 mahine ch kharab ho jandi a. [[SPLIT]] CP System heavy SS 304 frame, branded pump te guarantee dinda a taan jo plant saalan saal bina dikkat chale.",
-        "timestamp": 1792604658713
+        "timestamp": 1792605650251
       },
       {
         "role": "user",
         "content": "Bilkul sahi gal hai veere, tussi sahi keha. Jagah tayar hai, booking final karo",
-        "timestamp": 1792604660891
+        "timestamp": 1792605652665
       },
       {
         "role": "model",
         "content": "Bilkul theek a veer ji! Setup final karn layi thodi sai (booking advance) paani hundi a, baki samaan site te dispatch ho jauga. [[SPLIT]] Karan Singh ji (+91 99157 30338) official invoice te account detail abhi share kar dinde ne ji.",
-        "timestamp": 1792604660901
+        "timestamp": 1792605652679
       }
     ],
     "mode": "cp_system",
@@ -1273,22 +1273,22 @@
       {
         "role": "user",
         "content": "Sat Sri Akal ji, main Bathinda to Jaswant Singh bol reha haan. 1000 LPH RO plant lagwana hai.",
-        "timestamp": 1792604666529
+        "timestamp": 1792605654908
       },
       {
         "role": "model",
         "content": "Dhanwad Bathinda to veer ji! Tuhadi poori detail note kar layi a. [[SPLIT]] Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji.",
-        "timestamp": 1792604666533
+        "timestamp": 1792605654916
       },
       {
         "role": "user",
         "content": "Canal da paani hai veere, TDS lagbhag 500 hai te 3-phase bijli connection hai. 20 litre camper bottles bharne ne. Site visit schedule karo.",
-        "timestamp": 1792604667264
+        "timestamp": 1792605655652
       },
       {
         "role": "model",
-        "content": "Theek a veer ji, 500 TDS te 3-phase bijli naal 1000 LPH plant bilkul fit a. [[SPLIT]] Tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.",
-        "timestamp": 1792604667270
+        "content": "Theek a veer ji, 500 TDS te 3-phase bijli naal 1000 LPH plant bilkul perfect chalda a. [[SPLIT]] Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.",
+        "timestamp": 1792605655663
       }
     ],
     "mode": "cp_system",
@@ -1299,8 +1299,12 @@
       "city": "Bathinda",
       "status": "QUALIFIED",
       "capacity": "1000 LPH",
-      "category": "RO",
-      "was_qualified": true
+      "category": "RO (Camper)",
+      "was_qualified": true,
+      "water_source": "Canal Water",
+      "power_supply": "3-Phase Available",
+      "containers": "20L Campers",
+      "tds_or_app": "Canal da paani hai veere, TDS lagbhag 500 hai te 3-phase bijli connection hai. 20 litre camper bottl"
     }
   },
   "919876543202_cpsystem": {
@@ -1308,22 +1312,22 @@
       {
         "role": "user",
         "content": "Pichle saal 5 Ton chiller lagwaya si Muktsar to, ohda compressor trip kar reha te cooling nahi kar reha. Bahut doodh kharab ho reha hai, turant complaint note karo!",
-        "timestamp": 1792604667721
+        "timestamp": 1792605656073
       },
       {
         "role": "model",
         "content": "Haanji veer ji, tension na lo. [[SPLIT]] Gurjant Singh ji (+91 94635 83277) ya Karan Singh ji (+91 99157 30338) nu complaint note karwa dinde a, technician jald call kar ke service check karuga ji.",
-        "timestamp": 1792604667725
+        "timestamp": 1792605656083
       },
       {
         "role": "user",
         "content": "Main call kar raha tha, phone nahi uthaya kisine. Jaldi batao kab tak aayega technician?",
-        "timestamp": 1792604669623
+        "timestamp": 1792605658201
       },
       {
         "role": "model",
         "content": "Haanji veer ji, Gurjant Singh ji (+91 94635 83277) te Karan Singh ji (+91 99157 30338) nu tuhada message share kar ditta a, oh jald update kar rahe ne ji.",
-        "timestamp": 1792604669626
+        "timestamp": 1792605658206
       }
     ],
     "mode": "cp_system",
@@ -1344,12 +1348,12 @@
       {
         "role": "user",
         "content": "Hamare RO plant ki 4040 membrane aur high pressure pump ka seal leak kar raha hai. Patiala mein technician bhej kar service repair karwana hai.",
-        "timestamp": 1792604668211
+        "timestamp": 1792605656706
       },
       {
         "role": "model",
         "content": "Theek a veer ji, repair te service request note kar layi a. [[SPLIT]] Senior Technician Gurjant Singh ji (+91 94635 83277) ya Karan Singh ji (+91 99157 30338) rabta kar ke service schedule karange ji.",
-        "timestamp": 1792604668219
+        "timestamp": 1792605656719
       }
     ],
     "mode": "cp_system",
@@ -1358,7 +1362,8 @@
       "city": "Patiala",
       "repair_alert_dispatched": true,
       "complaint_alert_dispatched": true,
-      "status": "REPAIR"
+      "status": "REPAIR",
+      "name": "Sukhdev Singh"
     }
   },
   "919876543204_cpsystem": {
@@ -1366,12 +1371,12 @@
       {
         "role": "user",
         "content": "Sat Sri Akal ji, main Amritsar aur Gurdaspur area vich CP System di dealership aur distributorship lena chahunda haan. Ki process hai?",
-        "timestamp": 1792604668645
+        "timestamp": 1792605657136
       },
       {
         "role": "model",
         "content": "Haanji veer ji, dealership te distributorship baare poori policy te details layi Karan Singh ji (+91 99157 30338) naal gal karwa dinde a, tussi apna area te contact detail share kar do ji.",
-        "timestamp": 1792604668651
+        "timestamp": 1792605657153
       }
     ],
     "mode": "cp_system",
@@ -1388,12 +1393,12 @@
       {
         "role": "user",
         "content": "Sir maine ITI refrigeration and air conditioning kiya hua hai, kya Muktsar factory mein AC technician ya plant assembly ki koi job vacancy hai?",
-        "timestamp": 1792604669090
+        "timestamp": 1792605657521
       },
       {
         "role": "model",
         "content": "Haanji veer ji, Muktsar factory vich technical te assembly staff layi CV WhatsApp te share kar do. [[SPLIT]] Karan Singh ji (+91 99157 30338) check kar ke call karange ji.",
-        "timestamp": 1792604669097
+        "timestamp": 1792605657531
       }
     ],
     "mode": "cp_system",
@@ -1401,7 +1406,8 @@
     "leadInfo": {
       "city": "Muktsar",
       "general_alert_dispatched": true,
-      "status": "GENERAL"
+      "status": "GENERAL",
+      "name": "Manpreet Sharma"
     }
   },
   "919876543206_cpsystem": {
@@ -1409,19 +1415,20 @@
       {
         "role": "user",
         "content": "Hamara chiller dispatch hua tha pichle hafte, uska GST tax invoice aur transport bilti bill share kar dijiye.",
-        "timestamp": 1792604669470
+        "timestamp": 1792605658055
       },
       {
         "role": "model",
         "content": "Haanji veer ji, invoice te transport bilti dispatch record check karke Karan Singh ji (+91 99157 30338) WhatsApp te share kar dinde ne ji.",
-        "timestamp": 1792604669475
+        "timestamp": 1792605658065
       }
     ],
     "mode": "cp_system",
     "leadClosed": false,
     "leadInfo": {
       "general_alert_dispatched": true,
-      "status": "GENERAL"
+      "status": "GENERAL",
+      "name": "Sharma Industries"
     }
   },
   "919876543208_cpsystem": {
@@ -1429,17 +1436,19 @@
       {
         "role": "user",
         "content": "Sat Sri Akal ji, machine baare dasso",
-        "timestamp": 1792604670484
+        "timestamp": 1792605658836
       },
       {
         "role": "model",
-        "content": "Aman ji! Haanji, kinne LPH da plant chahida a?",
-        "timestamp": 1792604670489
+        "content": "Aman ji! Haanji, dasso kinne LPH da plant chahida a?",
+        "timestamp": 1792605658847
       }
     ],
     "mode": "cp_system",
     "leadClosed": false,
-    "leadInfo": {}
+    "leadInfo": {
+      "name": "Aman"
+    }
   },
   "919876500001_cpsystem": {
     "history": [
@@ -3991,6 +4000,388 @@
       "milk_volume": "2000 Litre Milk",
       "power_supply": "Single Phase",
       "was_qualified": true
+    }
+  },
+  "919811111001_cpsystem": {
+    "history": [
+      {
+        "role": "user",
+        "content": "RO plant bare puchna c",
+        "timestamp": 1792605619971
+      },
+      {
+        "role": "model",
+        "content": "Haanji veer ji, kinne LPH da plant chahida a?",
+        "timestamp": 1792605619980
+      },
+      {
+        "role": "user",
+        "content": "1000 LPH da lagwana",
+        "timestamp": 1792605620164
+      },
+      {
+        "role": "model",
+        "content": "1000 LPH bilkul mil jauga veer ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar ch lagwana a ji?",
+        "timestamp": 1792605620170
+      },
+      {
+        "role": "user",
+        "content": "Kotkapura de pind ch lagwana",
+        "timestamp": 1792605620524
+      },
+      {
+        "role": "model",
+        "content": "Theek a veer ji. [[SPLIT]] Paani da TDS kinna a ji, ya camper water supply layi setup karna a?",
+        "timestamp": 1792605620535
+      },
+      {
+        "role": "user",
+        "content": "TDS 1200 aunda bore da",
+        "timestamp": 1792605620925
+      },
+      {
+        "role": "model",
+        "content": "Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.",
+        "timestamp": 1792605620936
+      },
+      {
+        "role": "user",
+        "content": "Kuldeep Singh",
+        "timestamp": 1792605622951
+      },
+      {
+        "role": "model",
+        "content": "Dhanwad Kuldeep Singh veer ji! Tuhadi poori detail note kar layi a. [[SPLIT]] Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji.",
+        "timestamp": 1792605622971
+      }
+    ],
+    "mode": "cp_system",
+    "leadClosed": true,
+    "leadInfo": {
+      "name": "Kuldeep Singh",
+      "requirement": "RO",
+      "city": "Kotkapura",
+      "status": "QUALIFIED",
+      "category": "RO",
+      "water_tds": "1200 PPM",
+      "tds_or_app": "TDS 1200 aunda bore da",
+      "was_qualified": true
+    }
+  },
+  "919811111002_cpsystem": {
+    "history": [
+      {
+        "role": "user",
+        "content": "chiller da rate dasso dairy waste",
+        "timestamp": 1792605623517
+      },
+      {
+        "role": "model",
+        "content": "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?",
+        "timestamp": 1792605623531
+      },
+      {
+        "role": "user",
+        "content": "daily 1500 litre doodh hunda morning evening",
+        "timestamp": 1792605623732
+      },
+      {
+        "role": "model",
+        "content": "1500L Milk Setup bilkul mil jauga veer ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar ch lagwana a ji?",
+        "timestamp": 1792605623744
+      },
+      {
+        "role": "user",
+        "content": "single phase bijli hai te location Sri Muktsar Sahib",
+        "timestamp": 1792605624203
+      },
+      {
+        "role": "model",
+        "content": "Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.",
+        "timestamp": 1792605624215
+      },
+      {
+        "role": "user",
+        "content": "Mandeep Brar",
+        "timestamp": 1792605625565
+      },
+      {
+        "role": "model",
+        "content": "Dhanwad Mandeep Brar veer ji! Tuhadi poori detail note kar layi a. [[SPLIT]] Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji.",
+        "timestamp": 1792605625596
+      }
+    ],
+    "mode": "cp_system",
+    "leadClosed": true,
+    "leadInfo": {
+      "name": "Mandeep Brar",
+      "requirement": "Commercial Setup",
+      "city": "Muktsar",
+      "status": "QUALIFIED",
+      "category": "Chiller",
+      "tds_or_app": "Mandeep Brar",
+      "power_supply": "Single Phase",
+      "was_qualified": true
+    }
+  },
+  "919811111003_cpsystem": {
+    "history": [
+      {
+        "role": "user",
+        "content": "asi pind ch 20 litre camper da pani supply da kam start karna, kinna kharcha aunda?",
+        "timestamp": 1792605626112
+      },
+      {
+        "role": "model",
+        "content": "Veer ji pind ch 1000 LPH camper plant (RO + SS Tank + Chiller) da poora setup lagbhag 3,70,000 da painda a ji. [[SPLIT]] Paani da TDS kinna a ji, ya camper water supply layi setup karna a?",
+        "timestamp": 1792605626124
+      },
+      {
+        "role": "user",
+        "content": "koi sarkari loan ya subsidy mildi hai ispe?",
+        "timestamp": 1792605626315
+      },
+      {
+        "role": "model",
+        "content": "Haanji veer ji, PMEGP sarkari subsidy loan scheme raahi 10 lakh tak da loan ho janda a, jis vich 25% subsidy (2.5 lakh) maaf hundi a ji. [[SPLIT]] Loan tussi apne naam te karwana a ya family ch kise de naam te ji?",
+        "timestamp": 1792605626326
+      },
+      {
+        "role": "user",
+        "content": "Moga kol pind hai, apne naam te loan lena",
+        "timestamp": 1792605626674
+      },
+      {
+        "role": "model",
+        "content": "Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.",
+        "timestamp": 1792605626689
+      },
+      {
+        "role": "user",
+        "content": "Avtar Singh",
+        "timestamp": 1792605628083
+      },
+      {
+        "role": "model",
+        "content": "Dhanwad Avtar Singh veer ji! Tuhadi poori detail note kar layi a. [[SPLIT]] Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji.",
+        "timestamp": 1792605628095
+      }
+    ],
+    "mode": "cp_system",
+    "leadClosed": true,
+    "leadInfo": {
+      "name": "Avtar Singh",
+      "requirement": "RO (1000 LPH Camper Setup)",
+      "city": "Moga",
+      "status": "QUALIFIED",
+      "category": "RO (Camper)",
+      "containers": "20L Campers",
+      "tds_or_app": "Avtar Singh",
+      "was_qualified": true
+    }
+  },
+  "919811111004_cpsystem": {
+    "history": [
+      {
+        "role": "user",
+        "content": "cold room banwana c",
+        "timestamp": 1792605628653
+      },
+      {
+        "role": "model",
+        "content": "Haanji veer ji, commercial cold room bilkul banwaunde a. [[SPLIT]] Cold room ch ki item store karni a (dairy, fruits ya vegetables), te room da size kinna plan kita a ji?",
+        "timestamp": 1792605628661
+      },
+      {
+        "role": "user",
+        "content": "dairy te paneer store karn waste 10x10 da",
+        "timestamp": 1792605628821
+      },
+      {
+        "role": "model",
+        "content": "dairy cold room bilkul mil jauga veer ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar ch lagwana a ji?",
+        "timestamp": 1792605628830
+      },
+      {
+        "role": "user",
+        "content": "Fazilka",
+        "timestamp": 1792605629149
+      },
+      {
+        "role": "model",
+        "content": "Theek a veer ji. [[SPLIT]] Site te bijli single phase a ya three phase ji?",
+        "timestamp": 1792605629156
+      },
+      {
+        "role": "user",
+        "content": "single phase bijli hai",
+        "timestamp": 1792605629509
+      },
+      {
+        "role": "model",
+        "content": "Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.",
+        "timestamp": 1792605629524
+      },
+      {
+        "role": "user",
+        "content": "Gurpreet",
+        "timestamp": 1792605630947
+      },
+      {
+        "role": "model",
+        "content": "Dhanwad Gurpreet veer ji! Tuhadi poori detail note kar layi a. [[SPLIT]] Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji.",
+        "timestamp": 1792605630959
+      }
+    ],
+    "mode": "cp_system",
+    "leadClosed": true,
+    "leadInfo": {
+      "name": "Gurpreet",
+      "requirement": "ColdRoom",
+      "city": "Fazilka",
+      "status": "QUALIFIED",
+      "category": "ColdRoom",
+      "tds_or_app": "Gurpreet",
+      "power_supply": "Single Phase",
+      "cold_room_size": "dairy",
+      "was_qualified": true
+    }
+  },
+  "919811111005_cpsystem": {
+    "history": [
+      {
+        "role": "user",
+        "content": "heat pump da ki rate hai?",
+        "timestamp": 1792605631291
+      },
+      {
+        "role": "model",
+        "content": "Heat pump da rate daily garam paani de volume te capacity te depend karda a veer ji. [[SPLIT]] Tussi daily kinne litre garam paani layi setup dekh rahe ho ji?",
+        "timestamp": 1792605631305
+      },
+      {
+        "role": "user",
+        "content": "hotel waste chahida roz 5000 litre garam paani layi",
+        "timestamp": 1792605631471
+      },
+      {
+        "role": "model",
+        "content": "hotel heat pump bilkul mil jauga veer ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar ch lagwana a ji?",
+        "timestamp": 1792605631483
+      },
+      {
+        "role": "user",
+        "content": "Jalandhar",
+        "timestamp": 1792605632019
+      },
+      {
+        "role": "model",
+        "content": "Theek a veer ji. [[SPLIT]] Site te three phase bijli connection available a ji?",
+        "timestamp": 1792605632034
+      },
+      {
+        "role": "user",
+        "content": "three phase connection hai",
+        "timestamp": 1792605632387
+      },
+      {
+        "role": "model",
+        "content": "Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.",
+        "timestamp": 1792605632399
+      },
+      {
+        "role": "user",
+        "content": "Rohit Kumar",
+        "timestamp": 1792605633895
+      },
+      {
+        "role": "model",
+        "content": "Dhanwad Rohit Kumar veer ji! Tuhadi poori detail note kar layi a. [[SPLIT]] Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji.",
+        "timestamp": 1792605633911
+      }
+    ],
+    "mode": "cp_system",
+    "leadClosed": true,
+    "leadInfo": {
+      "name": "Rohit Kumar",
+      "requirement": "HeatPump",
+      "city": "Jalandhar",
+      "status": "QUALIFIED",
+      "category": "HeatPump",
+      "tds_or_app": "Rohit Kumar",
+      "power_supply": "3-Phase Available",
+      "heat_pump_volume": "hotel",
+      "was_qualified": true
+    }
+  },
+  "919811111006_cpsystem": {
+    "history": [
+      {
+        "role": "user",
+        "content": "ghar layi kitchen ch chhota RO lagwana, kinne da miluga?",
+        "timestamp": 1792605634254
+      },
+      {
+        "role": "model",
+        "content": "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji.",
+        "timestamp": 1792605634266
+      },
+      {
+        "role": "user",
+        "content": "tussi domestic nahi karde?",
+        "timestamp": 1792605634434
+      },
+      {
+        "role": "model",
+        "content": "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji.",
+        "timestamp": 1792605634446
+      }
+    ],
+    "mode": "cp_system",
+    "leadClosed": false,
+    "leadInfo": {}
+  },
+  "919811111007_cpsystem": {
+    "history": [
+      {
+        "role": "user",
+        "content": "rate list bhejo",
+        "timestamp": 1792605634798
+      },
+      {
+        "role": "model",
+        "content": "Haanji veer ji, kedi machine ya setup di requirement a ji - Commercial RO plant ya Water Chiller?",
+        "timestamp": 1792605634812
+      },
+      {
+        "role": "user",
+        "content": "plant di",
+        "timestamp": 1792605635157
+      },
+      {
+        "role": "model",
+        "content": "Haanji veer ji, kinne LPH da plant chahida a?",
+        "timestamp": 1792605635171
+      },
+      {
+        "role": "user",
+        "content": "commercial ro",
+        "timestamp": 1792605635504
+      },
+      {
+        "role": "model",
+        "content": "Haanji veer ji, kinne LPH da plant chahida a?",
+        "timestamp": 1792605635518
+      }
+    ],
+    "mode": "cp_system",
+    "leadClosed": false,
+    "leadInfo": {
+      "name": "Lead",
+      "requirement": "RO",
+      "city": null,
+      "status": "IN_PROGRESS",
+      "category": "RO"
     }
   }
 }
