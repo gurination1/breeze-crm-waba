@@ -212,7 +212,7 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
       }
 
       if (messagesToSend.length === 0) {
-        messagesToSend = ["Hello ji! Dasso, kive madad kar sakde a?"];
+        messagesToSend = ["Haanji veer ji, dasso"];
       }
 
       const fullMessagePreview = messagesToSend.join(' ');
@@ -787,7 +787,7 @@ app.post('/webhook', async (req, res) => {
           if (leadReplyCount >= 15 && !isExempt) {
             if (!lead?.is_handoff_to_staff) {
               console.log(`🛡️ [15-Reply Cap Reached] Customer ${from} reached 15 AI replies. Handing over to staff.`);
-              const handoffMsg = "Tuhadi inquiry senior sales coordinator Karan Singh ji (+91 99157 30338) nu assign kar diti gayi hai ji. Oh jald hi direct rabta karke baki details finalize karenge.";
+              const handoffMsg = "Veer ji baki details layi Karan Singh ji (+91 99157 30338) direct tuhade naal gal kar lenge ji.";
               try {
                 const sendRes = await whatsapp.sendTextMessage(phoneNumberId, from, handoffMsg);
                 const wamid = sendRes?.messages?.[0]?.id || null;

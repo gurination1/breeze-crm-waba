@@ -75,7 +75,7 @@ TONE & STYLE:
 - Speak in natural, respectful Malwai Punjabi: "veer ji", "bhaji", "bai ji", "a" (not "hai"), "te" (not "aur"), "ch" (not "mein"), "dasso", "mil jauga".
 - You ARE the owner. Never speak in third person (never say "CP System ch" or "CP System kol" — say "apne kol" or speak directly).
 - Keep replies short (1 to 2 sentences max). Never dump long essays or robotic bullet lists.
-- Pure greeting ("hi", "hello"): Reply ONLY: "Hello ji! Dasso, kive madad kar sakde a?"
+- Pure greeting ("hi", "hello"): Reply ONLY: "Haanji veer ji, dasso"
 - DOUBLE MESSAGE: When separating thought 1 and thought 2/question, use "[[SPLIT]]" to send 2 natural WhatsApp bubbles.
 
 CORE PRODUCT RULES:
@@ -86,7 +86,7 @@ CORE PRODUCT RULES:
    - If commercial confirmed: "Haanji veer ji, commercial plants ch 500 LPH, 1000 LPH te 2000 LPH available ne. [[SPLIT]] Kinne capacity di lod a ji?"
 
 2. Water Chillers:
-   - General price without tonnage: "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?"
+   - General price without tonnage: "Chiller da rate capacity te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?"
    - Specific Tonnage Prices:
      * 1 Ton Online: ₹60,000 + 18% GST (Total ₹70,800)
      * 1.5 Ton Online: ₹70,000 + 18% GST (Total ₹82,600)
@@ -96,7 +96,7 @@ CORE PRODUCT RULES:
      * 5 Ton / 5.5 Ton: ₹2,45,000 + 18% GST (Total ₹2,89,100)
 
 3. Non-Chiller Pricing (RO, Camper, Cold Room, Heat Pump):
-   - Never quote prices. Say: "Commercial RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karange ji."
+   - Never quote prices. Say: "RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact rate layi Karan Singh ji (+91 99157 30338) detail share kar denge ji."
 
 4. Camper Business:
    - "Camper" means 20L chilled drinking water cans. Setup uses 1000 LPH / 2000 LPH commercial plant.
@@ -539,13 +539,13 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Handle degenerate inputs (single punctuation)
   if (/^[?.!,\s]+$/.test(text)) {
-    return 'Hello!';
+    return 'Haanji veer ji';
   }
 
-  // Pure standalone greeting: Fast response, strictly simple & neutral, no exaggerated welcome
+  // Pure standalone greeting: Fast response, strictly simple & natural Punjabi
   const isPureGreeting = /^\s*(hi|hello|hey|hlo|helo|hy|haanji|hanji|sat\s*sri\s*akal|namaste|ssakal|ram\s*ram|radhe\s*radhe|good\s*morning|good\s*evening|good\s*afternoon|pranam|salam)\s*(ji|sir|veere|bro)?\s*[!.?]*\s*$/i.test(text);
   if (isPureGreeting) {
-    return 'Hello ji! Dasso, kive madad kar sakde a?';
+    return 'Haanji veer ji, dasso';
   }
 
   // FAST-PATH DETERMINISTIC ROUTER (Instant response, zero tokens wasted, zero LLM confusion/hallucination)
@@ -563,10 +563,30 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   let fastReply = null;
   let fastCategory = null;
 
-  // 1. General Chiller Price Query (without specific tonnage) - Highest Priority when Chiller is mentioned
-  if (isChillerExplicit && isPriceQueryEarly && !isSpecificTonnage) {
-    fastReply = "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
-    fastCategory = "Chiller";
+  // 1. Chiller Price Query (Specific Tonnage & General) - Highest Priority when Chiller is mentioned
+  if (isChillerExplicit && isPriceQueryEarly) {
+    if (/\b1(?:\.0)?\s*(?:ton|tr)\b/i.test(incomingText) && !/1\.5/i.test(incomingText)) {
+      fastReply = "1 Ton online chiller ₹60,000 + 18% GST a ji (Total ₹70,800). [[SPLIT]] Single phase 240V te chalda a, ready in stock a veer ji.";
+      fastCategory = "Chiller";
+    } else if (/\b1\.5\s*(?:ton|tr)\b/i.test(incomingText)) {
+      fastReply = "1.5 Ton online chiller ₹70,000 + 18% GST a ji (Total ₹82,600). [[SPLIT]] Single phase 240V te chalda a, ready in stock a veer ji.";
+      fastCategory = "Chiller";
+    } else if (/\b2(?:\.0)?\s*(?:ton|tr)\b/i.test(incomingText) && !/2\.5/i.test(incomingText)) {
+      fastReply = "2 Ton online chiller ₹80,000 + 18% GST a ji (Total ₹94,400). [[SPLIT]] Heavy cooling capacity setup a, ready in stock a veer ji.";
+      fastCategory = "Chiller";
+    } else if (/\b2\.5\s*(?:ton|tr)\b/i.test(incomingText)) {
+      fastReply = "2.5 Ton online chiller ₹95,000 + 18% GST a ji (Total ₹1,12,100). [[SPLIT]] Ready in stock a veer ji.";
+      fastCategory = "Chiller";
+    } else if (/\b3(?:\.5)?\s*(?:ton|tr)\b/i.test(incomingText)) {
+      fastReply = "3.5 Ton circulation chiller ₹1,35,000 + 18% GST a ji (Total ₹1,59,300). [[SPLIT]] Heavy duty industrial model a veer ji.";
+      fastCategory = "Chiller";
+    } else if (/\b5(?:\.0|\.5)?\s*(?:ton|tr)\b/i.test(incomingText)) {
+      fastReply = "5 Ton water chiller ₹2,45,000 + 18% GST a ji (Total ₹2,89,100). [[SPLIT]] Commercial dairy te industrial machines layi ready a veer ji.";
+      fastCategory = "Chiller";
+    } else if (!isSpecificTonnage) {
+      fastReply = "Chiller da rate capacity te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
+      fastCategory = "Chiller";
+    }
   }
 
   // 2. Camper Models Query ("kede kede camper aa?")
@@ -589,7 +609,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // 4. Non-Chiller Pricing (RO, Camper, Cold Room, Heat Pump)
   else if (/(?:ro|camper|heat\s*pump|cold\s*room|softener|bmc)/i.test(incomingText) && isPriceQueryEarly) {
-    fastReply = "Commercial RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karange ji.";
+    fastReply = "RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact rate layi Karan Singh ji (+91 99157 30338) detail share kar denge ji.";
   }
 
   if (fastReply) {
@@ -659,7 +679,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   }
 
   if (!rawReply || !rawReply.trim()) {
-    rawReply = `Hello! Batayein ji, kis machine ya setup baare jankari chahidi hai? Coordinator Karan Singh (+91 99157 30338) vi available han.`;
+    rawReply = `Haanji veer ji, dasso keda setup dekh rahe ho?`;
   }
 
   // 3. PARSE [[LEAD_UPDATE: ...]] METADATA
@@ -750,7 +770,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
 
   if ((isNonChillerProduct && (isPriceQuery || mentionsPriceInReply)) || (mentionsPriceInReply && !hasSpecificTonnage && !/chiller|chillar/i.test(incomingText))) {
-    cleanReply = "Commercial RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karange ji.";
+    cleanReply = "RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact rate layi Karan Singh ji (+91 99157 30338) detail share kar denge ji.";
   }
 
   // Mandatory Client Rule 3C: RO Qualification (Home vs Commercial)
@@ -841,7 +861,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   if (cleanReply.length < 12 || isGruntReply) {
     console.log(`🛡️ [Degenerate Reply Intercepted]: "${cleanReply}" for input "${incomingText}". Regenerating helpful response.`);
     if (isPureGreeting) {
-      cleanReply = "Hello ji! Dasso, kive madad kar sakde a?";
+      cleanReply = "Haanji veer ji, dasso";
     } else if (/(?:kede|kehde)\s*camper/i.test(incomingText)) {
       cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
     } else if (/camper/i.test(incomingText) || /camper/i.test(category)) {
@@ -853,7 +873,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     } else if (/ro|plant/i.test(incomingText) || /ro/i.test(category)) {
       cleanReply = "Haanji veer ji, commercial plant layi dekh rahe ho ya ghar (home) layi?";
     } else {
-      cleanReply = "Hello ji! Batayein, kis machine ya setup baare jankari chahidi a?";
+      cleanReply = "Haanji veer ji, dasso keda setup dekh rahe ho?";
     }
   }
 
@@ -1146,10 +1166,11 @@ async function generateFollowUpMessage(lead, tenantId = 'cpsystem') {
   const isUtility = /\b(chiller|chillers|cooling|dairy|milk|bmc|machine|molding|laser|bakery|glycol|cold\s*room)\b/i.test(req);
 
   if (tenantId === 'cpsystem' || tenantId === 'cp_system') {
+    const naturalSalutation = name ? `Haanji ${name} veer ji,` : 'Haanji veer ji,';
     if (isUtility) {
-      return `${salutation} CP SYSTEM Muktsar se.\n\nDairies te factory machine cooling batch shuru ho chuka hai. Technical specification chart ya quotation share karwa dawan ji? Coordinator Karan Singh (+91 99157 30338) ready han.`;
+      return `${naturalSalutation} Chiller setup baare koi update? Quotation ya detail chahidi hove taan dasso ji.`;
     } else {
-      return `${salutation} CP SYSTEM Muktsar se.\n\nTuhade project baare jankari chahidi hove taan Coordinator Karan Singh (+91 99157 30338) naal gal karwa sakde haan ji.`;
+      return `${naturalSalutation} Project setup baare koi detail chahidi hove taan dasso ji, Karan Singh ji (+91 99157 30338) naal gal karwa dinde a.`;
     }
   }
 
