@@ -65,7 +65,7 @@ You converse natively on WhatsApp with business owners, founders, doctors, clini
 - If they ask who you are: "Main Guri hoon, technical AI assistant from Gurination / Edu Fun Learning tech team."
 `;
 
-// 2. CP SYSTEM CONSULTATIVE SALES MASTER PROMPT (Lean, Hyper-Simple, Unconfusable)
+// 2. CP SYSTEM CONSULTATIVE SALES MASTER PROMPT (Charan Sir Audio Blueprint)
 const CP_SYSTEM_PROMPT = `
 You are Charanpreet Singh, owner and technical head at CP SYSTEM (Cool & Pure System), Sri Muktsar Sahib, Punjab.
 You chat natively on WhatsApp like a real Punjabi manufacturer texting directly from your phone.
@@ -77,34 +77,34 @@ TONE & STYLE:
 - Keep replies short (1 to 2 sentences max). Never dump long essays or robotic bullet lists.
 - Pure greeting ("hi", "hello"): Reply ONLY: "Haanji veer ji, dasso"
 - DOUBLE MESSAGE: When separating thought 1 and thought 2/question, use "[[SPLIT]]" to send 2 natural WhatsApp bubbles.
+- NEVER cut the conversation prematurely. Never say "contact Karan Singh" and stop without asking the qualification question!
 
-CORE PRODUCT RULES:
-1. RO Plants:
-   - CP System ONLY manufactures commercial & industrial RO plants (50 LPH, 100 LPH, 250 LPH, 500 LPH, 1000 LPH, 2000 LPH+). We NEVER make domestic/home RO.
-   - If asked generally about RO ("ro bare puchna c", "ro chahida", "ro plant"): "Haanji veer ji, kinne LPH da plant chahida a?"
-   - Only IF customer specifically asks for home/domestic RO ("ghar layi", "domestic"): "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji."
+CHARAN SIR'S 5-STEP LEAD QUALIFICATION FUNNEL (Ask 1 by 1, never dump all at once):
+1. Capacity Discovery: If customer asks generally about RO ("ro bare puchna c", "ro plant"): "Haanji veer ji, kinne LPH da plant chahida a?" (Chiller: "Kinne ton da chiller dekh rahe ho ji?")
+2. Location (Pind vs Shehar): When capacity is given (e.g. 1000 LPH), acknowledge and ask location: "1000 LPH commercial plant bilkul mil jauga veer ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar ch lagwana a ji?"
+3. Technical Qualifier: When location is given, ask water condition / application: "Theek a veer ji. Paani da TDS kinna a ji, ya camper water supply layi setup karna a?" (For chiller: "Daily kinne litre doodh cooling layi a ji, te single phase bijli a ya three phase?")
+4. Official Quotation & Name: When technical info is given, ask for name to share official quotation: "Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a."
+5. Confirmation & Handoff: When name is given, confirm: "Dhanwad [Name] veer ji! Tuhadi poori detail note kar layi a. Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji."
 
-2. Water Chillers:
-   - General price without tonnage: "Chiller da rate capacity te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?"
-   - Specific Tonnage Prices:
-     * 1 Ton Online: ₹60,000 + 18% GST (Total ₹70,800)
-     * 1.5 Ton Online: ₹70,000 + 18% GST (Total ₹82,600)
-     * 2 Ton Online: ₹80,000 + 18% GST (Total ₹94,400)
-     * 2.5 Ton Online: ₹95,000 + 18% GST (Total ₹1,12,100)
-     * 3.5 Ton Circulation: ₹1,35,000 + 18% GST (Total ₹1,59,300)
-     * 5 Ton / 5.5 Ton: ₹2,45,000 + 18% GST (Total ₹2,89,100)
+CORE PRICING & OBJECTION BLUEPRINT:
+1. Village Camper Plant Setup Cost:
+   - For village camper water business (1000 LPH RO + SS Storage Tank + Chiller for 20L cans): Total setup cost is ~₹3,70,000.
+2. Loan / EMI / Subsidy:
+   - PMEGP Sarkari Subsidy Loan Scheme: 10 Lakh loan with 25% subsidy (₹2.5 Lakh waiver / maaf, 75% payback). Ask if loan is in own name or family name.
+3. Competitor Cheaper Price (e.g. Ludhiana 20% sasta):
+   - Saste setup ch duplicate membranes te halka frame hunda a jo 6 mahine ch kharab ho janda a. CP System heavy SS 304 frame, branded pumps te pakki warranty dinda a.
+4. Booking / Advance (Sai Pauna):
+   - Thodi sai (booking advance) paani hundi a, baki samaan site te dispatch ho jauga. Karan Singh ji account detail share kar dinde ne.
+5. Fixed Chiller Prices:
+   - 1 Ton Online: ₹60,000 + 18% GST (Total ₹70,800)
+   - 1.5 Ton Online: ₹70,000 + 18% GST (Total ₹82,600)
+   - 2 Ton Online: ₹80,000 + 18% GST (Total ₹94,400)
+   - 2.5 Ton Online: ₹95,000 + 18% GST (Total ₹1,12,100)
+   - 3.5 Ton Circulation: ₹1,35,000 + 18% GST (Total ₹1,59,300)
+   - 5 Ton / 5.5 Ton: ₹2,45,000 + 18% GST (Total ₹2,89,100)
+6. Strictly Commercial: CP System ONLY manufactures commercial & industrial plants (50 LPH to 2000+ LPH). If customer specifically asks for domestic/home RO: "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji."
 
-3. Non-Chiller Pricing (RO, Camper, Cold Room, Heat Pump):
-   - Never quote prices. Say: "RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact rate layi Karan Singh ji (+91 99157 30338) detail share kar denge ji."
-
-4. Camper Business:
-   - "Camper" means 20L chilled drinking water cans. Setup uses 1000 LPH / 2000 LPH commercial plant.
-
-5. Media/Links (Only if customer explicitly asks):
-   - Chiller Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png | Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
-   - Commercial RO Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png | Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
-
-Tag metadata: [[LEAD_UPDATE: {"category": "<RO|Chiller|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1000 LPH|2 Ton|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
+Tag metadata: [[LEAD_UPDATE: {"category": "<RO|Chiller|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1000 LPH|2 Ton|null>", "city": "<city or pind>", "name": "<customer name>", "intent": "SALES", "status": "IN_PROGRESS|QUALIFIED"}]]
 `;
 
 // Helper to log lead to disk
@@ -467,7 +467,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   if (!clientName || religiousOrGenericRegex.test(clientName) || !/[a-zA-Z\u0A00-\u0A7F\u0900-\u097F]{2,}/.test(clientName)) {
     clientName = '';
   }
-  let city = existingLead?.city || meta.city || '';
+  let city = (existingLead?.city && existingLead.city !== 'Punjab') ? existingLead.city : (meta.city && meta.city !== 'Punjab' ? meta.city : '');
   let category = meta.category || '';
   let capacity = meta.capacity || '';
 
@@ -547,89 +547,426 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     return 'Haanji veer ji, dasso';
   }
 
-  // FAST-PATH DETERMINISTIC ROUTER (Instant response, zero tokens wasted, zero LLM confusion/hallucination)
-  const isSpecificTonnage = /(?:\b\d+(?:\.\d+)?\s*(?:ton|tr|lph|litre|liter|l)\b)/i.test(incomingText);
-  const isChillerExplicit = /\b(?:chiller|chillar)\b/i.test(incomingText);
-  const isDirectRoMention = /\b(?:ro|r\.o\.?)\b/i.test(incomingText);
-  const isShortQualifier = /^(?:ghar|gharelu|home|domestic|kitchen|commercial|plant|dairy|factory)\??$/i.test(incomingText.trim()) || /^(?:ghar|home|domestic|commercial)\s*layi\??$/i.test(incomingText.trim());
-  const lastTurnMentionsRo = priorHistory.length > 0 && /\b(?:ro|r\.o\.?)\b/i.test(priorHistory[priorHistory.length - 1]?.content || '');
-  const isRoMention = !isChillerExplicit && (isDirectRoMention || (isShortQualifier && (/ro/i.test(category) || lastTurnMentionsRo)));
+  // FAST-PATH DETERMINISTIC ROUTER & CONVERSATIONAL STATE MACHINE
+  const lastBotTurn = priorHistory.filter(m => m.direction === 'OUTBOUND_BOT' || m.role === 'model').slice(-1)[0];
+  const lastBotText = (lastBotTurn?.content || '').toLowerCase();
 
+  const botWasAskingCapacity = /(?:kinne\s*lph|kinne\s*ton|ton\s*da\s*chiller|kinne\s*capacity)/i.test(lastBotText);
+  const botWasAskingLocation = /(?:kehde\s*(?:pind|shehar)|pind\s*ya\s*shehar|kehdi\s*jagah|shehar\s*ch|pind\s*ch)/i.test(lastBotText);
+  const botWasAskingTdsOrApp = /(?:tds\s*kinna|water\s*supply\s*layi|doodh\s*cooling|borewell|canal)/i.test(lastBotText);
+  const botWasAskingName = /(?:shubh\s*naam|apna\s*naam|naam\s*dass)/i.test(lastBotText);
+  const botWasAskingLoan = /(?:apne\s*naam\s*te|family\s*ch)/i.test(lastBotText);
+
+  // Extract Name from message
+  const nameMatch = incomingText.match(/(?:mera\s*naam|main|naa)\s+([a-zA-Z\u0A00-\u0A7F]{2,}(?:\s+[a-zA-Z\u0A00-\u0A7F]{2,})?)\s*(?:hai|aan|aa|bol|\b)/i);
+  if (nameMatch && nameMatch[1]) {
+    const candidateName = nameMatch[1].trim();
+    if (!religiousOrGenericRegex.test(candidateName)) {
+      clientName = candidateName;
+      meta.name = clientName;
+    }
+  } else if (botWasAskingName) {
+    const cleanWord = incomingText.replace(/[,.!?]/g, '').trim();
+    const words = cleanWord.split(/\s+/);
+    if (words.length <= 3 && !/^(haanji|hanji|theek|ok|nahi|no|yes|ro|chiller|plant|commercial)$/i.test(cleanWord) && !religiousOrGenericRegex.test(cleanWord) && !/\d/.test(cleanWord)) {
+      clientName = cleanWord;
+      meta.name = clientName;
+    }
+  }
+
+  // Extract Location / City
+  const cityMatch = incomingText.match(/\b(bathinda|moga|ludhiana|amritsar|jalandhar|patiala|muktsar|faridkot|sangrur|mansa|firozpur|fazilka|barnala|abohar|malout|kotkapura|chandigarh|mohali|zirakpur|khanna|rajpura|nabha|morinda|samana|ropar|tarn\s*taran|gurdaspur|kapurthala|hoshiarpur|nawanshahr|batala|pathankot)\b/i);
+  if (cityMatch && cityMatch[1]) {
+    city = cityMatch[1].trim();
+    meta.city = city;
+  } else if (/\bpind\b/i.test(incomingText)) {
+    city = city || 'Pind';
+    meta.city = city;
+  } else if (botWasAskingLocation) {
+    const cleanPlace = incomingText.replace(/[,.!?]/g, '').trim();
+    if (cleanPlace.length >= 3 && cleanPlace.length <= 25 && !/\d{4,}/.test(cleanPlace) && !/^(haanji|theek|ok|ro|chiller)$/i.test(cleanPlace)) {
+      city = cleanPlace;
+      meta.city = city;
+    }
+  }
+
+  // Extract Capacity & Category
+  const tonnageMatch = incomingText.match(/(\d+(?:\.\d+)?)\s*(?:ton|tr)\b/i);
+  if (tonnageMatch) {
+    capacity = `${tonnageMatch[1]} Ton`;
+    category = 'Chiller';
+    meta.capacity = capacity;
+    meta.category = category;
+  }
+  const lphMatch = incomingText.match(/(\d{2,5})\s*lph\b/i) || (!/doodh|dudh|milk/i.test(incomingText) && incomingText.match(/(\d{2,5})\s*(?:liter|litre)\s*(?:da|di|ka|ki)?\s*(?:plant|ro)\b/i));
+  if (lphMatch) {
+    capacity = `${lphMatch[1]} LPH`;
+    category = 'RO';
+    meta.capacity = capacity;
+    meta.category = category;
+  } else if (botWasAskingCapacity && /^\s*(\d{2,5})\s*$/i.test(incomingText.trim()) && !/chiller/i.test(category)) {
+    const num = incomingText.trim();
+    capacity = `${num} LPH`;
+    category = 'RO';
+    meta.capacity = capacity;
+    meta.category = category;
+  }
+  const milkMatch = incomingText.match(/(\d{2,5})\s*(?:liter|litre|l)?\s*(?:doodh|dudh|milk)/i);
+  if (milkMatch) {
+    meta.milk_volume = `${milkMatch[1]} Litre Milk`;
+  }
+  if (/camper/i.test(incomingText)) {
+    category = category ? `${category} (Camper)` : 'RO (Camper)';
+    meta.category = category;
+  }
+
+  // Extract Technical Details (Water Source, TDS, Power, Containers)
+  const tdsMatch = incomingText.match(/(?:tds\s*(\d{2,4})|(\d{2,4})\s*tds)/i);
+  if (tdsMatch) {
+    meta.water_tds = (tdsMatch[1] || tdsMatch[2]) + ' PPM';
+  }
+  if (/\b(nehar|canal)\b/i.test(incomingText)) {
+    meta.water_source = 'Canal Water';
+  } else if (/\b(borewell|submersible|ground)\b/i.test(incomingText)) {
+    meta.water_source = 'Borewell';
+  }
+  if (/\b(3-phase|three\s*phase)\b/i.test(incomingText)) {
+    meta.power_supply = '3-Phase Available';
+  } else if (/\b(single\s*phase|240v)\b/i.test(incomingText)) {
+    meta.power_supply = 'Single Phase';
+  }
+  if (/\b(camper|20\s*l|bottle|bottles)\b/i.test(incomingText)) {
+    meta.containers = '20L Campers';
+  }
+  if (botWasAskingTdsOrApp || tdsMatch || meta.water_source || meta.power_supply || meta.containers || /camper\s*water\s*supply|water\s*supply/i.test(incomingText)) {
+    meta.tds_or_app = incomingText.slice(0, 100);
+  }
+
+  // Helper for Database Sync & Notification Dispatch
+  const syncLeadState = async (leadFields = {}, isQualified = false, inquiryType = 'SALES', subject = null, specialNote = null) => {
+    try {
+      const isTestPhone = cleanPhone.startsWith('9198765') || cleanPhone.startsWith('9199990') ||
+        cleanPhone.startsWith('155501') || cleanPhone.startsWith('9191111') ||
+        cleanPhone.startsWith('9192222') || cleanPhone.startsWith('9193333') ||
+        cleanPhone.startsWith('9194444') || cleanPhone.startsWith('9195555') ||
+        cleanPhone.startsWith('9199999');
+
+      const effectiveCity = (city && city !== 'Punjab') ? city : (leadFields.city && leadFields.city !== 'Punjab' ? leadFields.city : (isQualified ? (city || 'Punjab') : null));
+      const dbPayload = {
+        tenant_id: tenantId,
+        phone: cleanPhone,
+        name: clientName || leadFields.name || 'Lead',
+        requirement: leadFields.requirement || (category ? `${category} ${capacity ? `(${capacity})` : ''}`.trim() : 'Commercial Setup'),
+        city: effectiveCity,
+        status: isQualified ? 'QUALIFIED' : (leadFields.status || 'NEW'),
+        bot_active: !isTestPhone,
+        is_deleted: isTestPhone ? true : false,
+        metadata: { ...meta, ...(leadFields.metadata || {}) }
+      };
+
+      const existing = await db.get('crm_leads', `tenant_id=eq.${tenantId}&phone=eq.${cleanPhone}`);
+      if (existing && existing.length > 0) {
+        await db.update('crm_leads', dbPayload, `tenant_id=eq.${tenantId}&phone=eq.${cleanPhone}`);
+      } else {
+        await db.insert('crm_leads', dbPayload);
+      }
+
+      if (isQualified || inquiryType !== 'SALES') {
+        const leadData = {
+          name: clientName || leadFields.name || 'Qualified Lead',
+          phone: cleanPhone,
+          requirement: dbPayload.requirement,
+          city: city || 'Punjab',
+          water_source: meta.water_source || null,
+          water_tds: meta.water_tds || null,
+          power_supply: meta.power_supply || null,
+          containers: meta.containers || null,
+          special_note: specialNote || meta.special_note || (isQualified ? 'Commercial requirements confirmed.' : 'Inquiry registered.'),
+          last_message: incomingText,
+          subject: subject || null,
+          inquiry_type: inquiryType,
+          timestamp: new Date().toISOString()
+        };
+        saveLeadToDisk(leadData);
+        await dispatchLeadNotification(leadData);
+      }
+    } catch (err) {
+      console.warn('[Sync Lead State Error]:', err.message);
+    }
+  };
+
+  // 4. HIGH PRIORITY SUPPORT & OPERATIONAL ROUTING
+  // Service Thread Follow-up Guard (Anti-Spam / Anti-Duplicate)
+  const isExistingServiceThread = Boolean(meta.complaint_alert_dispatched || meta.repair_alert_dispatched || meta.status === 'COMPLAINT' || meta.status === 'REPAIR');
+  if (isExistingServiceThread && /(?:technician|kab\s*tak|call|phone|jaldi|kado|status|update|koi\s*aaya\s*nahi|uthaya)/i.test(incomingText)) {
+    const serviceFollowReply = "Haanji veer ji, Gurjant Singh ji (+91 94635 83277) te Karan Singh ji (+91 99157 30338) nu tuhada message share kar ditta a, oh jald update kar rahe ne ji.";
+    const bubbles = formatHumanSplit(serviceFollowReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // A. Customer Complaint
+  const isComplaint = /(?:complaint|kharaab|kharab|problem|dikkat|leak|trip|fault|compressor\s*trip|cooling\s*nahi|paani\s*nahi\s*aaraha)/i.test(incomingText) &&
+    !/(?:membrane\s*leak|seal\s*leak|pump\s*leak)/i.test(incomingText) &&
+    !/(?:6\s*mahine|kharab\s*ho\s*jandi)/i.test(incomingText);
+
+  if (isComplaint) {
+    if (!meta.complaint_alert_dispatched) {
+      meta.complaint_alert_dispatched = true;
+      meta.repair_alert_dispatched = true;
+      meta.status = 'COMPLAINT';
+      memory.setLeadClosed(cleanPhone, false, meta, tenantId);
+      await syncLeadState({ status: 'COMPLAINT' }, false, 'COMPLAINT', 'Customer Complaint', 'Customer reported an urgent machine breakdown.');
+    }
+    const compReply = "Haanji veer ji, tension na lo. [[SPLIT]] Gurjant Singh ji (+91 94635 83277) ya Karan Singh ji (+91 99157 30338) nu complaint note karwa dinde a, technician jald call kar ke service check karuga ji.";
+    const bubbles = formatHumanSplit(compReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // B. Repair & Maintenance Request
+  const isRepair = /(?:repair|mistri|seal\s*leak|membrane\s*leak|membrane\s*change|pump\s*seal|service\s*repair|technician\s*bhej)/i.test(incomingText);
+  if (isRepair) {
+    if (!meta.repair_alert_dispatched) {
+      meta.repair_alert_dispatched = true;
+      meta.complaint_alert_dispatched = true;
+      meta.status = 'REPAIR';
+      memory.setLeadClosed(cleanPhone, false, meta, tenantId);
+      await syncLeadState({ status: 'REPAIR' }, false, 'REPAIR', 'Service / Repair', 'Customer requested technician repair for machine leak / service.');
+    }
+    const repReply = "Theek a veer ji, repair te service request note kar layi a. [[SPLIT]] Senior Technician Gurjant Singh ji (+91 94635 83277) ya Karan Singh ji (+91 99157 30338) rabta kar ke service schedule karange ji.";
+    const bubbles = formatHumanSplit(repReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // C. Dealership / Distributorship Inquiry
+  const isDealership = /(?:dealership|distributorship|distributor|franchise)/i.test(incomingText);
+  if (isDealership) {
+    if (!meta.general_alert_dispatched) {
+      meta.general_alert_dispatched = true;
+      meta.status = 'GENERAL';
+      memory.setLeadClosed(cleanPhone, false, meta, tenantId);
+      await syncLeadState({ status: 'GENERAL' }, false, 'GENERAL', 'Dealership / Franchise Inquiry', 'Customer inquired about CP System dealership / distributorship.');
+    }
+    const dealerReply = "Haanji veer ji, dealership te distributorship baare poori policy te details layi Karan Singh ji (+91 99157 30338) naal gal karwa dinde a, tussi apna area te contact detail share kar do ji.";
+    const bubbles = formatHumanSplit(dealerReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // D. Job Application
+  const isJob = /(?:job\s*vacancy|vacancy|naukri|iti\s*refrigeration|assembly\s*ki\s*koi\s*job|job\s*chahidi)/i.test(incomingText);
+  if (isJob) {
+    if (!meta.general_alert_dispatched) {
+      meta.general_alert_dispatched = true;
+      meta.status = 'GENERAL';
+      memory.setLeadClosed(cleanPhone, false, meta, tenantId);
+      await syncLeadState({ status: 'GENERAL' }, false, 'GENERAL', 'Job Application', 'Candidate applied for technician / assembly job.');
+    }
+    const jobReply = "Haanji veer ji, Muktsar factory vich technical te assembly staff layi CV WhatsApp te share kar do. [[SPLIT]] Karan Singh ji (+91 99157 30338) check kar ke call karange ji.";
+    const bubbles = formatHumanSplit(jobReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // E. Billing / Tax Invoice / Bilti Query
+  const isBilling = /(?:gst\s*(?:tax\s*)?invoice|transport\s*bilti|bilti\s*bill|tax\s*invoice|dispatch\s*hua\s*tha.*bill)/i.test(incomingText);
+  if (isBilling) {
+    if (!meta.general_alert_dispatched) {
+      meta.general_alert_dispatched = true;
+      meta.status = 'GENERAL';
+      memory.setLeadClosed(cleanPhone, false, meta, tenantId);
+      await syncLeadState({ status: 'GENERAL' }, false, 'GENERAL', 'Billing Query', 'Customer requested GST invoice and transport bilti bill.');
+    }
+    const billReply = "Haanji veer ji, invoice te transport bilti dispatch record check karke Karan Singh ji (+91 99157 30338) WhatsApp te share kar dinde ne ji.";
+    const bubbles = formatHumanSplit(billReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // 5. CONSULTATIVE SALES FAST-PATH (Charan Sir Audio Blueprint)
+  // Pure Greeting
+  if (isPureGreeting) {
+    return 'Haanji veer ji, dasso';
+  }
+
+  // Domestic / Home RO Guard
   const isDomestic = /(?:ghar|gharelu|home|domestic|kitchen|personal|makan)/i.test(incomingText);
-  const isCommercial = /(?:commercial|factory|dairy|camper|school|hospital|pind|bottling|industrial)/i.test(incomingText);
-  const isPriceQueryEarly = /(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne|kinney|kine|kiney|kitne|kitna|kinna|kina|kinni|kini)/i.test(incomingText);
+  if (isDomestic && /(?:ro|plant|water|purifier)/i.test(incomingText)) {
+    return 'Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji.';
+  }
 
-  let fastReply = null;
-  let fastCategory = null;
-
-  // 1. Chiller Inquiries (Price & General) - Highest Priority when Chiller is mentioned
-  if (isChillerExplicit && isPriceQueryEarly) {
-    if (/\b1(?:\.0)?\s*(?:ton|tr)\b/i.test(incomingText) && !/1\.5/i.test(incomingText)) {
-      fastReply = "1 Ton online chiller ₹60,000 + 18% GST a ji (Total ₹70,800). [[SPLIT]] Single phase 240V te chalda a, ready in stock a veer ji.";
-      fastCategory = "Chiller";
-    } else if (/\b1\.5\s*(?:ton|tr)\b/i.test(incomingText)) {
-      fastReply = "1.5 Ton online chiller ₹70,000 + 18% GST a ji (Total ₹82,600). [[SPLIT]] Single phase 240V te chalda a, ready in stock a veer ji.";
-      fastCategory = "Chiller";
-    } else if (/\b2(?:\.0)?\s*(?:ton|tr)\b/i.test(incomingText) && !/2\.5/i.test(incomingText)) {
-      fastReply = "2 Ton online chiller ₹80,000 + 18% GST a ji (Total ₹94,400). [[SPLIT]] Heavy cooling capacity setup a, ready in stock a veer ji.";
-      fastCategory = "Chiller";
-    } else if (/\b2\.5\s*(?:ton|tr)\b/i.test(incomingText)) {
-      fastReply = "2.5 Ton online chiller ₹95,000 + 18% GST a ji (Total ₹1,12,100). [[SPLIT]] Ready in stock a veer ji.";
-      fastCategory = "Chiller";
-    } else if (/\b3(?:\.5)?\s*(?:ton|tr)\b/i.test(incomingText)) {
-      fastReply = "3.5 Ton circulation chiller ₹1,35,000 + 18% GST a ji (Total ₹1,59,300). [[SPLIT]] Heavy duty industrial model a veer ji.";
-      fastCategory = "Chiller";
-    } else if (/\b5(?:\.0|\.5)?\s*(?:ton|tr)\b/i.test(incomingText)) {
-      fastReply = "5 Ton water chiller ₹2,45,000 + 18% GST a ji (Total ₹2,89,100). [[SPLIT]] Commercial dairy te industrial machines layi ready a veer ji.";
-      fastCategory = "Chiller";
-    } else if (!isSpecificTonnage) {
-      fastReply = "Chiller da rate capacity te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
-      fastCategory = "Chiller";
+  // Booking / Sai Pauna / Finalize Order
+  const isSaiPauna = /(?:sai\s*pauni|sai\s*pa|booking\s*final|deal\s*done|jagah\s*tayar|advance\s*pauni|booking\s*karo)/i.test(incomingText);
+  if (isSaiPauna) {
+    if (!meta.was_qualified) {
+      meta.was_qualified = true;
+      meta.status = 'QUALIFIED';
+      memory.setLeadClosed(cleanPhone, true, meta, tenantId);
+      await syncLeadState({ status: 'QUALIFIED' }, true, 'SALES', 'Ready to Lock Order (Sai Pauna)', 'Customer ready to finalize booking advance (sai).');
     }
-  } else if (isChillerExplicit && !isPriceQueryEarly && !isSpecificTonnage) {
-    fastReply = "Haanji veer ji, kinne ton da chiller dekh rahe ho ya dairy / machine cooling layi?";
-    fastCategory = "Chiller";
+    const saiReply = "Bilkul theek a veer ji! Setup final karn layi thodi sai (booking advance) paani hundi a, baki samaan site te dispatch ho jauga. [[SPLIT]] Karan Singh ji (+91 99157 30338) official invoice te account detail abhi share kar dinde ne ji.";
+    const bubbles = formatHumanSplit(saiReply);
+    return bubbles.join(' [[SPLIT]] ');
   }
 
-  // 2. Camper Queries (Models & General Inquiries)
-  else if (/(?:kede|keda|kehde|kehda|kehre|which|what)\s*(?:kede|kehde)?\s*(?:camper|campers|models|types)/i.test(incomingText) || /camper\s*(?:options|models|types|list|setup)/i.test(incomingText)) {
-    fastReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
-    fastCategory = "Camper";
-  } else if (/\b(?:camper|campers)\b/i.test(incomingText) && !isPriceQueryEarly) {
-    fastReply = "Haanji veer ji, camper setup ch 1000 LPH ya 2000 LPH commercial plant dekh rahe ho?";
-    fastCategory = "Camper";
+  // Loan / EMI / PMEGP Scheme (Verbatim Charan Sir)
+  const isLoanOrEmi = /(?:emi|loan|kisht|kishtan|budget|paise\s*ghat|finance|pmegp|subsidy)/i.test(incomingText);
+  if (isLoanOrEmi && !botWasAskingLoan) {
+    const loanReply = "Haanji veer ji, PMEGP sarkari subsidy loan scheme raahi 10 lakh tak da loan ho janda a, jis vich 25% subsidy (2.5 lakh) maaf hundi a ji. [[SPLIT]] Loan tussi apne naam te karwana a ya family ch kise de naam te ji?";
+    const bubbles = formatHumanSplit(loanReply);
+    return bubbles.join(' [[SPLIT]] ');
   }
 
-  // 3. RO Inquiries (Commercial Plants Only - No Home RO)
-  else if (isRoMention && isDomestic) {
-    fastReply = "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji.";
-    fastCategory = "RO";
-  } else if (isRoMention && /^(?:commercial|commercial\s*layi|plant|factory|dairy|business)\??$/i.test(incomingText.trim())) {
-    fastReply = "Haanji veer ji, commercial plants ch 500 LPH, 1000 LPH te 2000 LPH available ne. [[SPLIT]] Kinne capacity di lod a ji?";
-    fastCategory = "RO";
-  } else if (isRoMention && !isSpecificTonnage && !isDomestic) {
-    fastReply = "Haanji veer ji, kinne LPH da plant chahida a?";
-    fastCategory = "RO";
+  // Competitor Cheaper Price Objection (Verbatim Charan Sir)
+  const isCompetitorSasta = /(?:sasta|cheaper|ludhiana.*(?:sasta|company)|20%\s*sasta|ghat\s*rate|kam\s*rate|discount)/i.test(incomingText);
+  if (isCompetitorSasta) {
+    const compReply = "Veer ji, saste setup vich halka material te duplicate membrane hundi a jo 6 mahine ch kharab ho jandi a. [[SPLIT]] CP System heavy SS 304 frame, branded pump te guarantee dinda a taan jo plant saalan saal bina dikkat chale.";
+    const bubbles = formatHumanSplit(compReply);
+    return bubbles.join(' [[SPLIT]] ');
   }
 
-  // 4. Non-Chiller Pricing (RO, Camper, Cold Room, Heat Pump)
-  else if (/(?:ro|camper|heat\s*pump|cold\s*room|softener|bmc)/i.test(incomingText) && isPriceQueryEarly) {
-    fastReply = "RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact rate layi Karan Singh ji (+91 99157 30338) detail share kar denge ji.";
-  }
-
-  if (fastReply) {
-    if (fastCategory) {
-      meta.category = fastCategory;
-      try {
-        db.update('crm_leads', { metadata: meta }, `tenant_id=eq.${tenantId}&phone=eq.${cleanPhone}`).catch(() => {});
-      } catch (e) {}
+  // Photo / Video Request
+  const isExplicitMediaRequest = /(?:photo|video|pic|pics|image|tasveer|dikhao|bhejo|vej\s*de|kive\s*dikhda)/i.test(incomingText);
+  if (isExplicitMediaRequest) {
+    let mediaReply = "";
+    if (/chiller|chillar/i.test(incomingText) || /chiller/i.test(category)) {
+      mediaReply = "Water chiller di photo te working video dekh lo veer ji: [[SPLIT]] 📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png \n🎥 Video: https://www.youtube.com/watch?v=NmKCLdSlzP0 [[SPLIT]] Eh setup kado tak lagwauna plan kar rahe ho ji?";
+    } else {
+      mediaReply = "Commercial RO plant di photo te working video dekh lo veer ji: [[SPLIT]] 📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png \n🎥 Video: https://www.youtube.com/watch?v=ssW53Nbj1_c [[SPLIT]] Eh setup kado tak lagwauna plan kar rahe ho ji?";
     }
-    console.log(`⚡ [Fast-Path Intercepted] "${incomingText}" -> Immediate Punjabi response.`);
-    const split = formatHumanSplit(fastReply);
-    return split.length > 1 ? split : fastReply;
+    const bubbles = formatHumanSplit(mediaReply);
+    return bubbles.join(' [[SPLIT]] ');
   }
 
-  // Build clean, authentic conversation turns for LLM (sanitized & bounded to last 4 turns)
+  // Camper Models Intent Guard
+  const isCamperModels = /(?:kede|keda|kehde|kehda|kehre|which|what)\s*(?:kede|kehde)?\s*(?:camper|campers|models|types)/i.test(incomingText) || /camper\s*(?:options|models|types|list|setup)/i.test(incomingText);
+  if (isCamperModels) {
+    const camperReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
+    const bubbles = formatHumanSplit(camperReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // Village Camper Setup Cost Query (Verbatim Charan Sir: ₹3,70,000 Setup)
+  const isPindCostQuery = (/(?:camper\s*plant|camper|pind).*(?:kharcha|rate|price|cost|kinna|kitna)/i.test(incomingText) || /(?:kharcha|rate|price|cost|kinna|kitna).*(?:camper|pind)/i.test(incomingText)) && !/chiller/i.test(incomingText);
+  if (isPindCostQuery) {
+    let pindReply = "";
+    if (city) {
+      pindReply = `Veer ji pind ch 1000 LPH camper plant (RO + SS Tank + Chiller) da poora setup lagbhag 3,70,000 da painda a ji. [[SPLIT]] Paani da TDS kinna a ji, ya camper water supply layi setup karna a?`;
+    } else {
+      pindReply = `Veer ji pind ch 1000 LPH camper plant (RO + SS Tank + Chiller) da poora setup lagbhag 3,70,000 da painda a ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar ch lagwana a ji?`;
+    }
+    await syncLeadState({ city: city || 'Pind', requirement: 'RO (1000 LPH Camper Setup)' });
+    const bubbles = formatHumanSplit(pindReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // Chiller Specific Tonnage Pricing (Quote rate AND ask location, NEVER cut chat)
+  const incomingMentionsChiller = /\b(?:chiller|chillar)\b/i.test(incomingText);
+  const isPriceQuery = /(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne|kinney|kine|kiney|kitne|kitna|kinna|kina|kinni|kini)/i.test(incomingText);
+
+  if ((incomingMentionsChiller || /chiller/i.test(category)) && (isPriceQuery || tonnageMatch)) {
+    let chillRate = null;
+    if (/\b1(?:\.0)?\s*(?:ton|tr)\b/i.test(incomingText) && !/1\.5/i.test(incomingText)) chillRate = "1 Ton online chiller ₹60,000 + 18% GST a ji (Total ₹70,800).";
+    else if (/\b1\.5\s*(?:ton|tr)\b/i.test(incomingText)) chillRate = "1.5 Ton online chiller ₹70,000 + 18% GST a ji (Total ₹82,600).";
+    else if (/\b2(?:\.0)?\s*(?:ton|tr)\b/i.test(incomingText) && !/2\.5/i.test(incomingText)) chillRate = "2 Ton online chiller ₹80,000 + 18% GST a ji (Total ₹94,400).";
+    else if (/\b2\.5\s*(?:ton|tr)\b/i.test(incomingText)) chillRate = "2.5 Ton online chiller ₹95,000 + 18% GST a ji (Total ₹1,12,100).";
+    else if (/\b3(?:\.5)?\s*(?:ton|tr)\b/i.test(incomingText)) chillRate = "3.5 Ton circulation chiller ₹1,35,000 + 18% GST a ji (Total ₹1,59,300).";
+    else if (/\b5(?:\.0|\.5)?\s*(?:ton|tr)\b/i.test(incomingText)) chillRate = "5 Ton water chiller ₹2,45,000 + 18% GST a ji (Total ₹2,89,100).";
+
+    if (chillRate) {
+      let chillFollowup = (city && city !== 'Punjab') ? "Eh setup dairy milk cooling layi dekh rahe ho ya factory machine layi ji?" : "Eh setup tussi kehde shehar ya pind ch lagwana a ji?";
+      await syncLeadState({ category: 'Chiller', capacity: capacity || 'Chiller' });
+      const bubbles = formatHumanSplit(`${chillRate} [[SPLIT]] ${chillFollowup}`);
+      return bubbles.join(' [[SPLIT]] ');
+    } else if (!tonnageMatch && !capacity) {
+      const chillGeneral = "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
+      await syncLeadState({ category: 'Chiller' });
+      const bubbles = formatHumanSplit(chillGeneral);
+      return bubbles.join(' [[SPLIT]] ');
+    }
+  }
+
+  // Chiller Inquiries without Price (only if capacity is NOT known yet)
+  if (incomingMentionsChiller && !isPriceQuery && !tonnageMatch && !cityMatch && !capacity) {
+    const chillGeneral = "Haanji veer ji, kinne ton da chiller dekh rahe ho ya dairy / machine cooling layi?";
+    await syncLeadState({ category: 'Chiller' });
+    const bubbles = formatHumanSplit(chillGeneral);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // 6. SEQUENTIAL LEAD QUALIFICATION STATE MACHINE
+  // A. Check if Lead is Ready for Qualification (All criteria met)
+  const hasSiteVisitOrFinalize = /(?:site\s*visit|schedule|visit\s*karo|finalize|deal\s*done|quotation\s*share|quotation\s*bhejo)/i.test(incomingText);
+  const isFullyQualifiedNow = Boolean(
+    (clientName && city && (capacity || category)) ||
+    (clientName && city && (meta.water_tds || meta.water_source || meta.containers || hasSiteVisitOrFinalize)) ||
+    (hasSiteVisitOrFinalize && city && (capacity || category))
+  );
+
+  if (isFullyQualifiedNow && !meta.was_qualified && !isExistingServiceThread) {
+    meta.was_qualified = true;
+    meta.status = 'QUALIFIED';
+    memory.setLeadClosed(cleanPhone, true, meta, tenantId);
+    await syncLeadState({ status: 'QUALIFIED' }, true, 'SALES', 'Qualified Lead (Multi-Turn Complete)', 'Commercial requirements confirmed via sequential funnel.');
+
+    const nameSalutation = clientName ? `${clientName} veer ji` : 'veer ji';
+    const qualReply = `Dhanwad ${nameSalutation}! Tuhadi poori detail note kar layi a. [[SPLIT]] Support Coordinator Karan Singh ji (+91 99157 30338) official quotation naal jald rabta karange ji.`;
+    const bubbles = formatHumanSplit(qualReply);
+    return bubbles.join(' [[SPLIT]] ');
+  }
+
+  // B. If Customer Just Answered TDS / Water Source / Application / Site Visit / Milk Cooling
+  const customerProvidedTechnicalDetails = Boolean(
+    tdsMatch || meta.water_source || meta.containers || meta.milk_volume ||
+    /camper\s*water\s*supply|water\s*supply|canal|nehar|borewell|doodh|dudh|milk|single\s*phase|3-phase|three\s*phase/i.test(incomingText)
+  );
+  if (customerProvidedTechnicalDetails) {
+    if (!clientName) {
+      const askNameReply = "Zaroor bhaji, tussi apna shubh naam dass do ji, official quotation WhatsApp te share karwa dinde a.";
+      await syncLeadState({ status: 'IN_PROGRESS' });
+      return askNameReply;
+    }
+  }
+
+  // C. If Customer Just Answered Location (City / Pind)
+  const customerProvidedLocation = Boolean(cityMatch || (botWasAskingLocation && city && city !== 'Punjab'));
+  if (customerProvidedLocation) {
+    await syncLeadState({ city: city, status: 'IN_PROGRESS' });
+    let techAsk = "";
+    if (category === 'Chiller') {
+      techAsk = "Theek a veer ji. Daily kinne litre doodh cooling layi a ji, te bijli connection single phase a ya three phase?";
+    } else {
+      techAsk = "Theek a veer ji. Paani da TDS kinna a ji, ya camper water supply layi setup karna a?";
+    }
+    return techAsk;
+  }
+
+  // D. If Customer Just Answered Capacity (e.g. "1000", "1000 LPH", "500 LPH", "2000")
+  const customerProvidedCapacity = Boolean(lphMatch || (botWasAskingCapacity && capacity));
+  if (customerProvidedCapacity) {
+    await syncLeadState({ capacity: capacity, category: 'RO', status: 'IN_PROGRESS' });
+    const hasKnownLocation = Boolean(city && city !== 'Punjab');
+    if (!hasKnownLocation) {
+      const capLocReply = `${capacity || '1000 LPH'} commercial plant bilkul mil jauga veer ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar ch lagwana a ji?`;
+      const bubbles = formatHumanSplit(capLocReply);
+      return bubbles.join(' [[SPLIT]] ');
+    } else {
+      const techAsk = "Theek a veer ji. Paani da TDS kinna a ji, ya camper water supply layi setup karna a?";
+      return techAsk;
+    }
+  }
+
+  // E. Broad RO inquiry without capacity
+  const isDirectRoMention = /\b(?:ro|r\.o\.?)\b/i.test(incomingText);
+  if (isDirectRoMention && !lphMatch && !capacity) {
+    const askLphReply = "Haanji veer ji, kinne LPH da plant chahida a?";
+    await syncLeadState({ category: 'RO', status: 'IN_PROGRESS' });
+    return askLphReply;
+  }
+
+  // F. Mentioned Ad or YouTube
+  if (/(?:youtube|video|ad|advertisement|fb|meta)\b/i.test(incomingText)) {
+    const adReply = "Haanji veer ji, keda plant ya setup dekh rahe ho ji?";
+    return adReply;
+  }
+
+  // 7. BUILD CLEAN CONVERSATION TURNS FOR LLM FALLBACK
   const contents = [];
   const recentMessages = priorHistory.slice(-4);
 
@@ -637,7 +974,6 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     const isCustomer = m.direction ? m.direction === 'INBOUND' : m.role === 'user';
     const role = isCustomer ? 'user' : 'model';
     let text = (m.content || '').trim();
-    // Sanitize past assistant messages: remove URLs, markdown links, prices to prevent context bloat and few-shot mimicry
     if (role === 'model') {
       text = text
         .replace(/https?:\/\/[^\s)]+/gi, '')
@@ -656,7 +992,6 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     }
   }
 
-  // Add current turn with minimal known context if client name or city exists (ONLY on first turn!)
   let customerTurnText = incomingText;
   if (priorHistory.length === 0 && (clientName || city)) {
     const contextPrefix = `[Known Customer: ${clientName || 'Bhaji'}${city ? ', City: ' + city : ''}]`;
@@ -668,11 +1003,10 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     parts: [{ text: customerTurnText }]
   });
 
-  // 2. GENERATE RESPONSE WITH ULTRA-FAST GROQ PRIMARY (<500ms), GEMINI/MISTRAL FALLBACK
+  // 8. GENERATE RESPONSE WITH ULTRA-FAST GROQ PRIMARY, GEMINI/MISTRAL FALLBACK
   let rawReply = await callGroqFallback(CP_SYSTEM_PROMPT, contents, 200);
 
-  // Check if valid Gemini keys exist before attempting
-  const validGeminiKeys = (config.GEMINI_API_KEYS || []).filter(k => k && k.startsWith('AIzaSy'));
+  const validGeminiKeys = (config.GEMINI_API_KEYS || []).filter(k => k && (k.startsWith('AIzaSy') || k.startsWith('AQ.')));
   if ((!rawReply || !rawReply.trim()) && validGeminiKeys.length > 0) {
     console.log(`⚡ [Groq Exhausted] Attempting Gemini fallback for ${cleanPhone}...`);
     rawReply = await callGemini(CP_SYSTEM_PROMPT, contents, 180);
@@ -687,7 +1021,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     rawReply = `Haanji veer ji, dasso keda setup dekh rahe ho?`;
   }
 
-  // 3. PARSE [[LEAD_UPDATE: ...]] METADATA
+  // 9. PARSE [[LEAD_UPDATE: ...]] METADATA
   let leadUpdate = null;
   const leadMatch = rawReply.match(/\[\[LEAD_UPDATE:\s*(\{[\s\S]*?\})\s*\]\]/i);
   if (leadMatch) {
@@ -726,7 +1060,6 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
       if (/bilkul/i.test(match)) return 'Bilkul, ';
       return '';
     }).trim();
-    // Clean any stray leading punctuation left over
     cleanReply = cleanReply.replace(/^[,.!?\s🙏]+/, '').trim();
   }
 
@@ -735,7 +1068,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     cleanReply = cleanReply.replace(/(?<![\d.])5\.5\s*(?:ton|tr)\b/gi, '5 Ton');
   }
 
-  // Mandatory Client Rule 1 & 2: 100% Ban on religious and formal greetings & fold hands emoji
+  // 100% Ban on religious and formal greetings & fold hands emoji
   cleanReply = cleanReply
     .replace(/\b(?:sat\s*sri\s*akal|ssakal|sasrikaal|sasrikal)\s*(?:ji)?\s*[!.,]?\s*/gi, '')
     .replace(/\b(?:namaste|namaskar|ram\s*ram|radhe\s*radhe|pranam)\s*(?:ji)?\s*[!.,]?\s*/gi, '')
@@ -743,90 +1076,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     .replace(/🙏/g, '')
     .trim();
 
-  // Camper Models Intent Guard ("kede kede camper aa?")
-  if (/(?:kede|keda|kehde|kehda|kehre|which|what)\s*(?:kede|kehde)?\s*(?:camper|campers|models|types)/i.test(incomingText) || /camper\s*(?:options|models|types|list|setup)/i.test(incomingText)) {
-    cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
-  }
-
-  // Mandatory Client Rule: Ban unasked interrogation unless customer explicitly says "lagwana hai", "order", "theek hai", "site visit"
-  const hasInstallIntent = /(?:lagwana|lagwauna|order|fitment|fitting|site\s*visit|visit\s*karo|theek\s*hai|kharidna|lena\s*hai)/i.test(incomingText);
-  if (!hasInstallIntent) {
-    cleanReply = cleanReply
-      .replace(/(?:eh\s*setup\s*)?(?:tussi|tusse|aap)\s*kehde\s*(?:pind|shehar|city|jagah)\s*(?:vich|ch|mein)\s*(?:lagwana|lagwauna|shuru\s*karna)?\s*(?:chahte\s*ho|chahunde\s*ho)?\s*(?:ji)?\??/gi, '')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
-  }
-
-  // Mandatory Client Rule 3A: General Chiller Price Query without specific tonnage
-  // Do NOT dump the full rate card! Ask which tonnage or capacity they need first.
-  const hasSpecificTonnage = /(?:\b\d+(?:\.\d+)?\s*(?:ton|tr|lph|litre|liter|l)\b)/i.test(incomingText);
-  const isGeneralChillerPriceQuery = /(?:chiller|chillar)\s*(?:da|di|ka|ki)?\s*(?:rate|price|cost|kinne|kitne|mull)/i.test(incomingText) ||
-    (/^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim()) && /chiller/i.test(category));
-
-  if (isGeneralChillerPriceQuery && !hasSpecificTonnage) {
-    cleanReply = "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
-  }
-
-  // Mandatory Client Rule 3B: Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
-  // We ONLY know fixed rates for Chillers. All other products must strictly be referred to Karan Sir (+91 99157 30338).
-  const isNonChillerProduct = /(?:ro|camper|heat\s*pump|cold\s*room|softener|bmc)/i.test(incomingText) ||
-    (/(?:ro|heat\s*pump|cold\s*room|softener|bmc)/i.test(category) && !/chiller|chillar/i.test(incomingText));
-  const isPriceQuery = /(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne|kinney|kine|kiney|kitne|kitna|kinna|kina|kinni|kini)/i.test(incomingText);
-  const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
-
-  if ((isNonChillerProduct && (isPriceQuery || mentionsPriceInReply)) || (mentionsPriceInReply && !hasSpecificTonnage && !/chiller|chillar/i.test(incomingText))) {
-    cleanReply = "RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact rate layi Karan Singh ji (+91 99157 30338) detail share kar denge ji.";
-  }
-
-  // Mandatory Client Rule 3C: RO Qualification (Home vs Commercial)
-  // CP System ONLY manufactures commercial & industrial RO (500 LPH+). We never do home/domestic RO.
-  const isChillerExplicitPost = /\b(?:chiller|chillar)\b/i.test(incomingText);
-  const isDirectRoPost = /\b(?:ro|r\.o\.?)\b/i.test(incomingText);
-  const isShortQualifierPost = /^(?:ghar|gharelu|home|domestic|kitchen|commercial|plant|dairy|factory)\??$/i.test(incomingText.trim()) || /^(?:ghar|home|domestic|commercial)\s*layi\??$/i.test(incomingText.trim());
-  const lastTurnRoPost = priorHistory.length > 0 && /\b(?:ro|r\.o\.?)\b/i.test(priorHistory[priorHistory.length - 1]?.content || '');
-  const hasRoQuery = !isChillerExplicitPost && (isDirectRoPost || (isShortQualifierPost && (/ro/i.test(category) || lastTurnRoPost)));
-  const mentionsDomestic = /(?:ghar|gharelu|home|domestic|kitchen|personal|makan)/i.test(incomingText);
-  const mentionsCommercial = /(?:commercial|factory|dairy|camper|school|hospital|pind|bottling|industrial)/i.test(incomingText);
-  const hasRoCapacity = /(?:\b\d+(?:\.\d+)?\s*(?:lph|liter|litre)\b)/i.test(incomingText);
-
-  if (mentionsDomestic && hasRoQuery) {
-    cleanReply = "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji.";
-  } else if (/^(?:commercial|commercial\s*layi|plant|factory|dairy|business)\??$/i.test(incomingText.trim()) && hasRoQuery) {
-    cleanReply = "Haanji veer ji, commercial plants ch 500 LPH, 1000 LPH te 2000 LPH available ne. [[SPLIT]] Kinne capacity di lod a ji?";
-  } else if (hasRoQuery && !hasRoCapacity && !mentionsDomestic) {
-    // Open-ended broad RO query (e.g. "Ro bare puchna c", "ro plant", "ro chahida")
-    cleanReply = "Haanji veer ji, kinne LPH da plant chahida a?";
-  }
-
-  // Strict Media Defense & URL Stripper
-  const isExplicitMediaRequest = /(?:photo|video|pic|pics|image|tasveer|link|catalog|brochure|dikhao|bhejo|vej\s*de|kive\s*dikhda)/i.test(incomingText);
-  if (!isExplicitMediaRequest) {
-    cleanReply = cleanReply
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/gi, '')
-      .replace(/https?:\/\/[^\s)]+/gi, '')
-      .replace(/(?:📸|🎥|🌐|🔗)\s*(?:\*\*)?(?:photo|video|demo\s*video|working\s*video|website(?:\s*specs|\s*details|\s*models)?|demo|link|brochure|catalog)?(?:\*\*)?:?/gi, '')
-      .replace(/(?:\*\*)?(?:photo|video|demo\s*video|working\s*video|website(?:\s*specs|\s*details|\s*models)?)(?:\*\*)?:?/gi, '')
-      .replace(/\*\*\s*\*\*/g, '')
-      .replace(/\s{2,}/g, ' ')
-      .replace(/\s+([,.!?])/g, '$1')
-      .replace(/[*:\-\s]+$/, '')
-      .trim();
-  } else {
-    // If media WAS requested: convert any markdown [text](url) to plain raw url for WhatsApp
-    cleanReply = cleanReply.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/gi, '$2');
-    // Ensure strict product relevance: if customer asked for chiller, remove any non-chiller links
-    if (/chiller|chillar/i.test(incomingText) && !/ro|camper|heat|cold/i.test(incomingText)) {
-      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*producs-p\.php\?id=[2345][^\s)]*/gi, 'https://www.cpsystem.in/cps/src/producs-p.php?id=1');
-      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*ssW53Nbj1_c[^\s)]*/gi, 'https://www.youtube.com/watch?v=NmKCLdSlzP0');
-    }
-    // If customer asked for RO/camper, remove any chiller links
-    if (/ro|camper/i.test(incomingText) && !/chiller|chillar/i.test(incomingText)) {
-      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*producs-p\.php\?id=[1345][^\s)]*/gi, 'https://www.cpsystem.in/cps/src/producs-p.php?id=2');
-      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*NmKCLdSlzP0[^\s)]*/gi, 'https://www.youtube.com/watch?v=ssW53Nbj1_c');
-    }
-  }
-
-  // Strip robotic 3rd-person corporate branding ("CP System ch", "CP System kol", "CP System banaunda a")
+  // Strip robotic 3rd-person corporate branding
   cleanReply = cleanReply
     .replace(/\bCP\s*System\s*(?:ch|kol|de\s*kol|vich)\b/gi, 'apne kol')
     .replace(/\bCP\s*System\s*(?:mein|ke\s*paas)\b/gi, 'apne paas')
@@ -841,38 +1091,21 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     .replace(/\s{2,}/g, ' ')
     .trim();
 
-  // If user asked about business, ensure response is strictly concise
-  if (/(?:business|kaam|model)/i.test(incomingText) && cleanReply.length > 180) {
-    cleanReply = "Camper water business ch 1000 LPH commercial RO plant lagda a ji. [[SPLIT]] Is naal 20L camper cans pack karke shops, events te functions ch chilled water supply kita janda a.";
-  }
-
   // Strip accidental leading greeting if customer did not greet
   if (!isPureGreeting) {
     cleanReply = cleanReply.replace(/^(?:hello!?|hi!?)\s*/i, '').trim();
   }
 
-  // Clean any stray leading punctuation left over
   cleanReply = cleanReply.replace(/^[,.!?\s]+/, '').trim();
   cleanReply = ensureSentenceComplete(cleanReply);
 
-  // 0.8x Compactness: Cap to maximum 2 sentences for brevity if single paragraph (never truncate media/links)
-  const sentences = cleanReply.match(/[^.!?]+[.!?]+(?:\s|$)/g);
-  if (sentences && sentences.length > 2 && !cleanReply.includes('\n') && !cleanReply.includes('[[SPLIT]]') && cleanReply.length > 160 && !/https?:\/\//i.test(cleanReply)) {
-    cleanReply = sentences.slice(0, 2).join(' ').trim();
-  }
-
-  // Anti-Degeneracy Quality Gate: NEVER send 1-word or grunt replies
+  // Anti-Degeneracy Quality Gate
   const isGruntReply = /^(ha|haan|haanji|ji|ok|theek\s*hai|hmm|acha|got\s*it|hlo|hi|yes|no)[\s.!?]*$/i.test(cleanReply.trim());
   if (cleanReply.length < 12 || isGruntReply) {
-    console.log(`🛡️ [Degenerate Reply Intercepted]: "${cleanReply}" for input "${incomingText}". Regenerating helpful response.`);
     if (isPureGreeting) {
       cleanReply = "Haanji veer ji, dasso";
     } else if (/(?:kede|kehde)\s*camper/i.test(incomingText)) {
       cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
-    } else if (/camper/i.test(incomingText) || /camper/i.test(category)) {
-      cleanReply = "Haanji veer ji, 20L camper business layi commercial RO plant setup (1000 LPH te 2000 LPH) available a ji.";
-    } else if (/business|kaam|model/i.test(incomingText)) {
-      cleanReply = "Camper water business ch 1000 LPH commercial RO plant lagda a ji. [[SPLIT]] Is naal 20L camper cans pack karke shops, events te functions ch chilled water supply kita janda a.";
     } else if (/chiller|chillar/i.test(incomingText) || /chiller/i.test(category)) {
       cleanReply = "Haanji veer ji, apne kol online chillers (1 to 2.5 Ton) te heavy circulation chillers (3.5 Ton to upar) available ne.";
     } else if (/ro|plant/i.test(incomingText) || /ro/i.test(category)) {
@@ -882,46 +1115,30 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     }
   }
 
-  // 4. APPLY EXTRACTED METADATA & UPDATE SUPABASE CRM
+  // Apply LLM extracted metadata if any
   if (leadUpdate) {
-    let shouldUpdateDb = false;
-    const dbUpdates = {};
-
     const isInvalidExtractedName = (nm) => {
       if (!nm || typeof nm !== 'string') return true;
       const clean = nm.trim();
       if (clean.length < 2 || clean.length > 30 || /^\d+$/.test(clean)) return true;
-      return /(customer|image|voice|video|document|baba|guru|waheguru|unknown|client|lead|nya|friend|whatsapp)/i.test(clean);
+      return religiousOrGenericRegex.test(clean);
     };
 
     if (leadUpdate.name && !isInvalidExtractedName(leadUpdate.name)) {
       clientName = leadUpdate.name.trim();
-      dbUpdates.name = clientName;
       meta.name = clientName;
-      shouldUpdateDb = true;
     }
-
     if (leadUpdate.city && leadUpdate.city !== 'null' && leadUpdate.city.length >= 3) {
       city = leadUpdate.city;
-      dbUpdates.city = city;
       meta.city = city;
-      shouldUpdateDb = true;
     }
-
     if (leadUpdate.category && leadUpdate.category !== 'null') {
       category = leadUpdate.category;
       meta.category = category;
-      shouldUpdateDb = true;
     }
-
     if (leadUpdate.capacity && leadUpdate.capacity !== 'null') {
       capacity = leadUpdate.capacity;
       meta.capacity = capacity;
-      shouldUpdateDb = true;
-    }
-
-    if (category || capacity) {
-      dbUpdates.requirement = `${category || 'Machinery'} ${capacity ? `(${capacity})` : ''}`.trim();
     }
 
     const wasQualifiedBefore = existingLead?.status === 'QUALIFIED' || meta.was_qualified === true;
@@ -929,161 +1146,22 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     const isExplicitlyQualified = (leadUpdate.status === 'QUALIFIED' || leadUpdate.intent === 'QUALIFIED');
     const isActionableQualified = hasSufficientData && (
       isExplicitlyQualified ||
-      /(?:site\s*visit|visit\s*schedule|finalize|deal\s*done|quotation\s*bhej|order\s*karna|visit\s*karo|quotation\s*send|kado\s*aana|kadon\s*aaoge)/i.test(incomingText) ||
-      Boolean(meta.city && (meta.category || meta.capacity) && /(?:3-phase|electricity|connection|bijli|borewell|canal|nehar|tds|camper)/i.test(incomingText))
+      /(?:site\s*visit|visit\s*schedule|finalize|deal\s*done|quotation\s*bhej|order\s*karna|visit\s*karo|quotation\s*send)/i.test(incomingText)
     );
 
     if (isActionableQualified && !wasQualifiedBefore) {
-      dbUpdates.status = 'QUALIFIED';
-      dbUpdates.was_qualified = true;
-      dbUpdates.followup_enabled = false;
-      dbUpdates.followup_due_at = null;
-      meta.status = 'QUALIFIED';
       meta.was_qualified = true;
-      meta.qualified_at = new Date().toISOString();
-      shouldUpdateDb = true;
-
-      const leadData = {
-        name: clientName || 'Qualified Lead',
-        phone: cleanPhone,
-        requirement: dbUpdates.requirement || existingLead?.requirement || 'Commercial Setup',
-        city: city || 'Punjab',
-        water_source: leadUpdate.water_source || (/\b(nehar|canal)\b/i.test(incomingText) ? 'Canal Water' : /\b(borewell|submersible|ground)\b/i.test(incomingText) ? 'Borewell' : null),
-        water_tds: leadUpdate.water_tds || (incomingText.match(/\b(\d{2,4})\s*tds\b/i)?.[1] ? `${incomingText.match(/\b(\d{2,4})\s*tds\b/i)[1]} PPM` : null),
-        power_supply: leadUpdate.power_supply || (/\b(3-phase|three\s*phase)\b/i.test(incomingText) ? '3-Phase Available' : null),
-        containers: leadUpdate.containers || (/\b(camper|20\s*l|bottle)\b/i.test(incomingText) ? '20L Campers' : null),
-        special_note: leadUpdate.special_note || 'Commercial requirements confirmed.',
-        last_message: incomingText,
-        inquiry_type: 'SALES',
-        timestamp: new Date().toISOString()
-      };
-      saveLeadToDisk(leadData);
-      dispatchLeadNotification(leadData).catch(() => {});
-    } else if (leadUpdate.status === 'COMPLAINT' || leadUpdate.intent === 'COMPLAINT') {
-      if (!meta.complaint_alert_dispatched && !meta.repair_alert_dispatched) {
-        dbUpdates.status = 'COMPLAINT';
-        dbUpdates.followup_enabled = false;
-        dbUpdates.followup_due_at = null;
-        meta.status = 'COMPLAINT';
-        meta.complaint_alert_dispatched = true;
-        meta.repair_alert_dispatched = true;
-        shouldUpdateDb = true;
-
-        const leadData = {
-          name: clientName || 'Customer',
-          phone: cleanPhone,
-          city: city || 'Punjab',
-          subject: leadUpdate.subject || 'Customer Complaint',
-          requirement: `[COMPLAINT] ${incomingText.slice(0, 100)}`,
-          special_note: leadUpdate.special_note || 'Customer reported a machine complaint.',
-          last_message: incomingText,
-          inquiry_type: 'COMPLAINT',
-          timestamp: new Date().toISOString()
-        };
-        saveLeadToDisk(leadData);
-        dispatchLeadNotification(leadData).catch(() => {});
-      }
-    } else if (leadUpdate.status === 'REPAIR' || leadUpdate.intent === 'REPAIR') {
-      if (!meta.repair_alert_dispatched && !meta.complaint_alert_dispatched) {
-        dbUpdates.status = 'REPAIR';
-        dbUpdates.followup_enabled = false;
-        dbUpdates.followup_due_at = null;
-        meta.status = 'REPAIR';
-        meta.repair_alert_dispatched = true;
-        meta.complaint_alert_dispatched = true;
-        shouldUpdateDb = true;
-
-        const leadData = {
-          name: clientName || 'Customer',
-          phone: cleanPhone,
-          city: city || 'Punjab',
-          subject: leadUpdate.subject || 'Repair / Maintenance',
-          requirement: `[REPAIR] ${incomingText.slice(0, 100)}`,
-          special_note: leadUpdate.special_note || 'Customer requested technician repair.',
-          last_message: incomingText,
-          inquiry_type: 'REPAIR',
-          timestamp: new Date().toISOString()
-        };
-        saveLeadToDisk(leadData);
-        dispatchLeadNotification(leadData).catch(() => {});
-      }
-    } else if (
-      !meta.general_alert_dispatched &&
-      (
-        /\b(dealer|dealership|distributor|distributorship|franchise|job|vacancy|resume|naukri|invoice|bilti|bill|gst|tax)\b/i.test(incomingText) ||
-        (
-          (leadUpdate?.status === 'GENERAL' || (leadUpdate?.intent === 'GENERAL' && leadUpdate?.status !== 'IN_PROGRESS')) &&
-          !/(?:machine\s*baare|chiller|ro\s*plant|camper\s*plant|cooling|ton|rate|price|cost)/i.test(incomingText) &&
-          !/^\s*(hi|hello|hey|hlo|helo|haanji|hanji|sat\s*sri\s*akal)\b/i.test(incomingText)
-        )
-      )
-    ) {
-      dbUpdates.status = 'GENERAL';
-      meta.status = 'GENERAL';
-      meta.general_alert_dispatched = true;
-      shouldUpdateDb = true;
-
-      let guessedSubject = 'General Inquiry';
-      if (/\b(dealer|dealership|distributor|distributorship|franchise)\b/i.test(incomingText)) guessedSubject = 'Dealership / Franchise Inquiry';
-      else if (/\b(job|vacancy|resume|cv|hiring|naukri)\b/i.test(incomingText)) guessedSubject = 'Job Application';
-      else if (/\b(invoice|bilti|bill|gst|tax)\b/i.test(incomingText)) guessedSubject = 'Billing Query';
-      else if (leadUpdate?.subject) guessedSubject = leadUpdate.subject;
-
-      const leadData = {
-        name: clientName || 'Customer',
-        phone: cleanPhone,
-        city: city || 'Punjab',
-        subject: guessedSubject,
-        requirement: `[GENERAL] ${incomingText.slice(0, 100)}`,
-        special_note: leadUpdate?.special_note || `General inquiry regarding ${guessedSubject.toLowerCase()}.`,
-        last_message: incomingText,
-        inquiry_type: 'GENERAL',
-        timestamp: new Date().toISOString()
-      };
-      saveLeadToDisk(leadData);
-      dispatchLeadNotification(leadData).catch(() => {});
-    }
-
-    // Persist meta to in-memory session store so subsequent messages in the same session retain alert flags
-    memory.setLeadClosed(cleanPhone, meta.was_qualified || false, meta, tenantId);
-
-    if (shouldUpdateDb) {
-      dbUpdates.metadata = meta;
-      try {
-        const isTestPhone = cleanPhone.startsWith('9198765') || cleanPhone.startsWith('9199990') ||
-          cleanPhone.startsWith('155501') || cleanPhone.startsWith('9191111') ||
-          cleanPhone.startsWith('9192222') || cleanPhone.startsWith('9193333') ||
-          cleanPhone.startsWith('9194444') || cleanPhone.startsWith('9195555') ||
-          cleanPhone.startsWith('9199999');
-        const targetTenant = tenantId;
-        const targetIsDeleted = isTestPhone ? true : false;
-
-        const existing = await db.get('crm_leads', `tenant_id=eq.${targetTenant}&phone=eq.${cleanPhone}`);
-        if (existing && existing.length > 0) {
-          if (isTestPhone) dbUpdates.is_deleted = true;
-          await db.update('crm_leads', dbUpdates, `tenant_id=eq.${targetTenant}&phone=eq.${cleanPhone}`);
-        } else {
-          await db.insert('crm_leads', {
-            tenant_id: targetTenant,
-            phone: cleanPhone,
-            name: clientName || 'Lead',
-            requirement: dbUpdates.requirement || 'Commercial Setup',
-            city: city || 'Punjab',
-            status: dbUpdates.status || 'NEW',
-            bot_active: !isTestPhone,
-            is_deleted: targetIsDeleted,
-            metadata: meta
-          });
-        }
-      } catch (dbErr) {
-        console.warn('[DB Lead Update Warning]:', dbErr.message);
-      }
+      meta.status = 'QUALIFIED';
+      memory.setLeadClosed(cleanPhone, true, meta, tenantId);
+      await syncLeadState({ status: 'QUALIFIED' }, true, 'SALES', 'Qualified Lead (LLM Update)', 'Commercial requirements confirmed.');
+    } else {
+      await syncLeadState({ status: 'IN_PROGRESS' });
     }
   }
 
-  // 5. HUMAN SALESMAN MULTI-MESSAGE SPLITTER
+  // 10. HUMAN SALESMAN MULTI-MESSAGE SPLITTER
   const splitMessages = formatHumanSplit(cleanReply);
-  return splitMessages.length > 1 ? splitMessages : cleanReply;
+  return splitMessages.join(' [[SPLIT]] ');
 }
 
 /**
