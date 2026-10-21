@@ -591,6 +591,7 @@ app.post('/webhook', async (req, res) => {
           } catch (scErr) {}
 
           const finalDisplayName = savedName || resolvedContactName || 'WhatsApp Contact';
+          const isExempt = /9041172159|7009091075/.test(from) || from === config.ADMIN_PHONE;
 
           // 5. Upsert Lead in Supabase crm_leads
           try {
@@ -712,7 +713,6 @@ app.post('/webhook', async (req, res) => {
           }
 
           // 6. Check Human Takeover & Tenant Bot Toggle
-          const isExempt = /9041172159|7009091075/.test(from) || from === config.ADMIN_PHONE;
           const isBotActiveForLead = isExempt
             ? true
             : (typeof lead?.bot_active === 'boolean' ? lead.bot_active : !isSavedContact);
