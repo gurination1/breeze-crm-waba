@@ -8,66 +8,6 @@
   "919041172159_cpsystem": {
     "history": [
       {
-        "role": "user",
-        "content": "Kini",
-        "timestamp": 1792328573879
-      },
-      {
-        "role": "model",
-        "content": "Veere single phase connection te maximum 1.5 to 2 Ton (500-700L milk) chiller hi chal sakda hai. Vadde chiller layi 3-phase bijli zaroori hai bhaji.",
-        "timestamp": 1792328578374
-      },
-      {
-        "role": "user",
-        "content": "okokok",
-        "timestamp": 1792328594701
-      },
-      {
-        "role": "model",
-        "content": "Haanji bhaji, fer ki sochiye, 1.5 to 2 Ton single phase chiller final kariye ji?",
-        "timestamp": 1792328598565
-      },
-      {
-        "role": "user",
-        "content": "done",
-        "timestamp": 1792328606258
-      },
-      {
-        "role": "model",
-        "content": "Bahut wadiya decision hai bhaji! Booking te price lock karan layi tussi Head Coordinator Karan Singh ji (+91 99157 30338) naal gal kar lo ji.",
-        "timestamp": 1792328612167
-      },
-      {
-        "role": "model",
-        "content": "rate?",
-        "timestamp": 1792328635000
-      },
-      {
-        "role": "user",
-        "content": "rate?",
-        "timestamp": 1792328649611
-      },
-      {
-        "role": "model",
-        "content": "1.5 to 2 Ton single-phase dairy chiller da rate lagbhag ₹1.35L to ₹1.60L hunda hai bhaji. Isko finalize karan layi Karan Singh ji (+91 99157 30338) naal gal kar lavo ji.",
-        "timestamp": 1792328653448
-      },
-      {
-        "role": "user",
-        "content": "jyada yrr delhi aley 50hazaar laundey aa",
-        "timestamp": 1792328679777
-      },
-      {
-        "role": "model",
-        "content": "Bilkul fikar na karo bhaji, quality te heavy-duty copper coils da farak hunda hai. Tussi price baare sidha Head Coordinator Karan Singh ji (+91 99157 30338) naal gal kar lo ji.",
-        "timestamp": 1792328684405
-      },
-      {
-        "role": "user",
-        "content": "tu ethey dss",
-        "timestamp": 1792328701434
-      },
-      {
         "role": "model",
         "content": "Veere Delhi wale local parts te aluminium coils use karde ne, par asi pure SS 304 food-grade material te Emerson compressor dinde haan. Rate baare Karan Singh ji (+91 99157 30338) hi best discount denge ji.",
         "timestamp": 1792328706443
@@ -506,6 +446,66 @@
         "role": "model",
         "content": "Haanji, CP System water chiller di live photo te working video link eh han ji:\n📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png\n🎥 Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0\n🌐 Website Models: https://www.cpsystem.in/cps/src/producs-p.php?id=1",
         "timestamp": 1792594111900
+      },
+      {
+        "role": "user",
+        "content": "hii",
+        "timestamp": 1792594153311
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792594153318
+      },
+      {
+        "role": "user",
+        "content": "Chiller bare dso",
+        "timestamp": 1792594183140
+      },
+      {
+        "role": "model",
+        "content": "Haanji, CP System vich online chillers (1 Ton se 2.5 Ton tak) te circulation chillers (3.5 Ton, 5 Ton, 5.5 Ton) available han ji. Eh dairy milk cooling, BMC, te factory processing layi use hunde han.",
+        "timestamp": 1792594183153
+      },
+      {
+        "role": "user",
+        "content": "water colling layi?",
+        "timestamp": 1792594283705
+      },
+      {
+        "role": "model",
+        "content": "Haanji, eh chillers specifically water cooling layi design kiti gayi han ji.",
+        "timestamp": 1792594283712
+      },
+      {
+        "role": "user",
+        "content": "rate?",
+        "timestamp": 1792594302243
+      },
+      {
+        "role": "model",
+        "content": "Water chiller da rate tonnage nu depend karda hai ji. Please exact tonnage (e.g., 1 Ton, 2 Ton, 5 Ton) batao ji taaki main accurate official rate share kar sakoon.",
+        "timestamp": 1792594302258
+      },
+      {
+        "role": "user",
+        "content": "2.5",
+        "timestamp": 1792594317168
+      },
+      {
+        "role": "model",
+        "content": "2.5 Ton online chiller da hai ji.",
+        "timestamp": 1792594317181
+      },
+      {
+        "role": "user",
+        "content": "hanji ok",
+        "timestamp": 1792594335425
+      },
+      {
+        "role": "model",
+        "content": "Eh setup tussi kehde pind ya shehar vich lagwana hai ji?",
+        "timestamp": 1792594335440
       }
     ],
     "mode": "cp_system",
@@ -515,7 +515,7 @@
       "requirement": "RO (3000 LPH)",
       "city": "Shehar",
       "status": "QUALIFIED",
-      "capacity": "1 Ton",
+      "capacity": "2.5 Ton",
       "category": "Chiller",
       "qualified_at": "2026-10-18T13:03:30.765Z",
       "was_qualified": true,
@@ -1150,20 +1150,132 @@
         "role": "model",
         "content": "Haanji, main Coordinator Karan Singh ji (+91 99157 30338) nu alert kar dita hai, oh jald hi aap nu 1000 LPH RO plant di photos aur video share karenge ji.",
         "timestamp": 1792592854753
+      },
+      {
+        "role": "user",
+        "content": "Ro Diya photo video vejde",
+        "timestamp": 1792594219115
+      },
+      {
+        "role": "model",
+        "content": "Haanji, commercial RO plant di photo te demo video link eh han ji:\n📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png\n🎥 Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c\n🌐 Website Specs: https://www.cpsystem.in/cps/src/producs-p.php?id=2",
+        "timestamp": 1792594219130
+      },
+      {
+        "role": "user",
+        "content": "Hli",
+        "timestamp": 1792594375439
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792594375446
+      },
+      {
+        "role": "user",
+        "content": "Ro bare puchna c",
+        "timestamp": 1792594388749
+      },
+      {
+        "role": "model",
+        "content": "Haanji, commercial aur industrial RO plants available han ji. Kis setup baare jankari chahidi hai?",
+        "timestamp": 1792594388751
+      },
+      {
+        "role": "user",
+        "content": "Camper",
+        "timestamp": 1792594415801
+      },
+      {
+        "role": "model",
+        "content": "Ha.",
+        "timestamp": 1792594415814
+      },
+      {
+        "role": "user",
+        "content": "Eh business bare dsi mnu",
+        "timestamp": 1792594452324
+      },
+      {
+        "role": "model",
+        "content": "Ha.",
+        "timestamp": 1792594452327
+      },
+      {
+        "role": "user",
+        "content": "Business dsi",
+        "timestamp": 1792594466644
+      },
+      {
+        "role": "model",
+        "content": "Ha.",
+        "timestamp": 1792594466652
+      },
+      {
+        "role": "user",
+        "content": "Hlo",
+        "timestamp": 1792594990901
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792594990908
+      },
+      {
+        "role": "user",
+        "content": "Camper",
+        "timestamp": 1792595077938
+      },
+      {
+        "role": "model",
+        "content": "Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration system. Eh setup tussi kehde pind ya shehar vich shuru karna chahte ho ji?",
+        "timestamp": 1792595077948
+      },
+      {
+        "role": "user",
+        "content": "Business dsi",
+        "timestamp": 1792595080293
+      },
+      {
+        "role": "model",
+        "content": "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke market, dukanan aur functions vich chilled water supply kiti jandi hai. Tussi eh setup kehde ilaqe vich start karna chahte ho ji?",
+        "timestamp": 1792595080310
+      },
+      {
+        "role": "user",
+        "content": "Ro Diya photo video vejde",
+        "timestamp": 1792595084910
+      },
+      {
+        "role": "model",
+        "content": "Haanji, **1000 LPH commercial camper RO plant** di photo, demo video aur specs link eh han ji: 📸 **Photo:** [https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png](https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png) 🎥 **Demo Video:** [https://www.youtube.com/watch?v=ssW53Nbj1_c](https://www.youtube.com/watch?v=ssW53Nbj1_c) 🌐 **Website Specs:** [https://www.cpsystem.in/cps/src/producs-p.php?id=2](https://www.cpsystem.in/cps/src/pro",
+        "timestamp": 1792595084918
+      },
+      {
+        "role": "user",
+        "content": "chillar 1 ton kinney da",
+        "timestamp": 1792595089589
+      },
+      {
+        "role": "model",
+        "content": "1 Ton online chiller da official company rate ₹60,000 + 18% GST hai ji (Total ₹70,800).",
+        "timestamp": 1792595089751
       }
     ],
     "mode": "cp_system",
-    "leadClosed": false,
+    "leadClosed": true,
     "leadInfo": {
-      "name": "Harpreet",
+      "name": "<name or null>",
       "requirement": "Chiller (2000L)",
-      "city": "Muktsar",
-      "status": "IN_PROGRESS",
+      "city": "<city or null>",
+      "status": "QUALIFIED",
       "notes": "Customer confused by previous bot message. Clarifying water source for 1000 LPH RO.",
-      "capacity": "1.5-2 Ton (1000 LPH RO)",
+      "capacity": "1 Ton",
       "category": "Chiller",
       "water_tds": "1000",
       "containers": "20L Camper Cans",
+      "qualified_at": "2026-10-21T15:04:37.203Z",
+      "was_qualified": true,
       "subsidy_status": "Wants PMEGP Subsidy (No prior government loan/subsidy)",
       "last_digested_at": "2026-10-16T17:39:18.986Z",
       "conversation_digest": "- **CLIENT & LOCATION**: Name masked (🤑); Location: Muktsar.\n- **SPECS & CAPACITY**: 1000 LPH RO Plant; Camper setup for business use.\n- **COMMERCIALS & PRICING**: Quoted approx. ₹3.70 Lakh for complete camper plant. Mentioned potential PMEGP subsidy range ₹2.5L–₹3.5L.\n- **COMMITMENTS & CONTACTS**: None explicit.\n- **OBJECTIONS & PREFERENCES**: Customer initially asked about rates before details. Staff noted technical issue with QR code on current account hindering payment.\n- **AGREED NEXT STEPS**: Customer asked \"Pohnch gya?\" (Did it arrive/reach?), implying pending confirmation of payment processing or delivery status. Staff to verify QR/payment issue.",

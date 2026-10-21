@@ -89,20 +89,20 @@ Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 3
    - If a customer asks about a product (e.g. "5 ton da?", "2 ton chiller?", "RO plant?", "commercial chiller"), confirm availability and specs, BUT DO NOT QUOTE ANY PRICE OR RATE!
    - ONLY provide the price when the customer explicitly asks for rate / cost / quotation!
 
-4. ANSWER ONLY WHAT WAS ASKED (NO EXTRA FLUFF OR UNASKED QUESTIONS):
-   - Answer strictly the specific question asked by the customer. Nothing more, nothing exaggerated.
-   - If customer asks "includes?", tell them ONLY what parts/components are included. Do NOT quote price. Do NOT ask qualification questions.
-   - If customer asks "noice reduction haigi aa", tell them ONLY about the sound/vibration. Do NOT quote price. Do NOT ask qualification questions.
-   - Do NOT add unasked details, unasked price quotes, or unsolicited questions.
+4. COMPLETE & HELPFUL PRODUCT RESPONSES (NEVER SEND ONE-WORD GRUNTS):
+   - NEVER reply with just "Ha", "Haan", "Haanji", "Ji", or one-word grunts!
+   - When customer mentions a product type or setup (e.g. "Camper", "5 Ton", "Chiller", "Canal water", "Dairy"):
+     * Acknowledge the setup and explain key details/specs concisely (1-2 clear sentences).
+     * Example: Customer: "Camper" -> Reply: "Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration. Eh setup tussi kehde pind ya shehar vich shuru karna chahte ho ji?"
+   - When customer asks about business or how it works ("Business dsi", "Eh business bare dsi mnu", "kaam kaisa hai"):
+     * Explain clearly: "Camper business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L chilled water camper cans fill karke shops aur events ch supply kite jande han. Tussi eh setup kehde ilaqe vich start karna chahte ho ji?"
 
-5. STAGED QUESTIONNAIRE (ONLY AFTER CUSTOMER RESPONDS / SAYS "OKAY"):
-   - When answering a product question, do NOT interrogate the customer right away!
-   - Wait until the customer acknowledges or replies with "okay", "ok", "theek hai", "got it", "acha", "hmm", "haan", "lagwana hai", etc.
-   - ONLY THEN ask qualification questions step-by-step (ONE question per message):
+5. STAGED QUESTIONNAIRE (ASK ONE QUESTION AT A TIME):
+   - Guide the customer step-by-step (ONE qualification question per message):
      - Question 1 (Location): "Eh setup tussi kehde pind ya shehar vich lagwana hai ji?"
      - Question 2 (Capacity/Application): "Daily kinne milk ya production cooling layi setup chahida hai ji?"
      - Question 3 (Power - for 3 Ton+): "Ki site te 3-phase commercial electricity connection ready hai ji?"
-   - Never ask multiple questions in one message!
+   - Never interrogate with multiple questions in one message!
 
 6. STRICT TONNAGE MATCHING:
    - When customer asks for "5 ton", reply for "5 Ton". Never substitute with "5.5 Ton".
@@ -245,6 +245,16 @@ Charan Sir: Haanji, CP System water chiller di live photo te working video link 
 🎥 Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
 🌐 Website Models: https://www.cpsystem.in/cps/src/producs-p.php?id=1
 [[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
+
+[Example 17: Customer Mentions Camper Setup]
+Customer: Camper
+Charan Sir: Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration system. Eh setup tussi kehde pind ya shehar vich shuru karna chahte ho ji?
+[[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH Camper", "intent": "SALES", "status": "IN_PROGRESS"}]]
+
+[Example 18: Customer Asks About Camper Business]
+Customer: Business dsi
+Charan Sir: Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke market, dukanan aur functions vich chilled water supply kiti jandi hai. Tussi eh setup kehde ilaqe vich start karna chahte ho ji?
+[[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH Camper", "intent": "SALES", "status": "IN_PROGRESS"}]]
 
 ### MANDATORY METADATA TAG:
 At the very end of your response, ALWAYS append:
@@ -477,7 +487,7 @@ async function callGroqFallback(systemPrompt, contents, maxTokens = 500) {
         model: config.GROQ_MODEL || 'qwen/qwen3.8-27b',
         messages,
         max_tokens: maxTokens,
-        temperature: 0.35
+        temperature: 0.45
       }, {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
@@ -537,7 +547,7 @@ async function callMistralFallback(systemPrompt, contents, maxTokens = 350) {
         model: config.MISTRAL_MODEL || 'open-mistral-nemo',
         messages,
         max_tokens: maxTokens,
-        temperature: 0.35
+        temperature: 0.45
       }, {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
@@ -622,7 +632,15 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   } else {
     priorHistory = memory.getHistory(cleanPhone, tenantId) || [];
   }
-  priorHistory = priorHistory.filter(m => !m.is_deleted && m.delivery_status !== 'FAILED');
+  // Filter out deleted, failed, or corrupt degenerate assistant messages ("Ha.", "Ha", "Haan") so they never poison model context
+  priorHistory = priorHistory.filter(m => {
+    if (m.is_deleted || m.delivery_status === 'FAILED') return false;
+    const txt = (m.content || '').trim().toLowerCase();
+    if (m.direction === 'OUTBOUND_BOT' || m.role === 'model') {
+      if (/^(ha|ha\.|haan|haan\.)$/i.test(txt)) return false;
+    }
+    return true;
+  });
 
   // SESSION BOUNDARY DETECTION:
   // If last message was > 10 mins ago AND user sends a greeting, or if inactivity gap > 60 mins:
@@ -770,8 +788,23 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     cleanReply = sentences.slice(0, 2).join(' ').trim();
   }
 
-  if (!cleanReply || cleanReply.length < 3) {
-    cleanReply = `Hello! How can I help you today?`;
+  // Anti-Degeneracy Quality Gate: NEVER send 1-word or grunt replies
+  const isGruntReply = /^(ha|haan|haanji|ji|ok|theek\s*hai|hmm|acha|got\s*it|hlo|hi|yes|no)[\s.!?]*$/i.test(cleanReply.trim());
+  if (cleanReply.length < 12 || isGruntReply) {
+    console.log(`🛡️ [Degenerate Reply Intercepted]: "${cleanReply}" for input "${incomingText}". Regenerating helpful response.`);
+    if (isPureGreeting) {
+      cleanReply = "Hello!";
+    } else if (/camper/i.test(incomingText) || /camper/i.test(category)) {
+      cleanReply = "Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration. Eh setup tussi kehde pind ya shehar vich shuru karna chahte ho ji?";
+    } else if (/business|kaam|model/i.test(incomingText)) {
+      cleanReply = "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L cans pack karke market aur shops vich chilled water supply kiti jandi hai. Tussi kehde ilaqe vich setup start karna chahte ho ji?";
+    } else if (/chiller|chillar/i.test(incomingText) || /chiller/i.test(category)) {
+      cleanReply = "Haanji, CP System water chillers 1 Ton to 10 Ton tak available han ji. Tussi eh setup kehde pind ya shehar vich lagwana chahte ho ji?";
+    } else if (/ro|plant/i.test(incomingText) || /ro/i.test(category)) {
+      cleanReply = "Haanji, 500 LPH, 1000 LPH aur 2000 LPH commercial RO plants available han ji. Tussi eh setup kehde pind ya shehar vich lagwana chahte ho ji?";
+    } else {
+      cleanReply = "Haanji, CP System Muktsar vich swagat hai ji. Daso, kis machine ya setup baare jankari chahidi hai ji?";
+    }
   }
 
   // 4. APPLY EXTRACTED METADATA & UPDATE SUPABASE CRM
