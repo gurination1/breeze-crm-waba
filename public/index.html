@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>CP System | Enterprise WhatsApp CRM</title>
+  <meta name="theme-color" content="#128C7E">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="icon" type="image/png" href="/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace'],
+          },
+          colors: {
+            wa: {
+              teal: '#075E54',
+              tealLight: '#128C7E',
+              green: '#25D366',
+              lightGreen: '#dcf8c6',
+              bubbleOut: '#e7fce3',
+              chatBg: '#efeae2',
+            },
+            softblue: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+    body {
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(224, 242, 254, 0.4) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(220, 248, 198, 0.3) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: #0f172a;
+    }
+    /* macOS frosted glass panels */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+    }
+    .glass-header {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+    }
+    .glass-dock {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.05);
+    }
+    /* WhatsApp chat bubbles */
+    .chat-bubble-in {
+      background-color: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 4px 16px 16px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .chat-bubble-out {
+      background-color: #e7fce3;
+      border: 1px solid rgba(187, 247, 208, 0.7);
+      border-radius: 16px 4px 16px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .chat-bubble-human {
+      background-color: #e0f2fe;
+      border: 1px solid rgba(186, 230, 253, 0.8);
+      border-radius: 16px 4px 16px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    /* Scrollbars */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col text-slate-900 pb-20 md:pb-6 overflow-x-hidden w-full max-w-full">
+
+  <!-- ==================== 1. LOGIN MODAL ==================== -->
+  <div id="loginView" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-md p-4">
+    <div class="w-full max-w-md bg-white/95 backdrop-blur-2xl border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-2xl">
+      <!-- TOP BRAND: GURDHARAM ENTERPRISE OFFICIAL ICON -->
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2">
+          <img src="/gurdharam_logo.svg" alt="Gurdharam Enterprise" class="w-8 h-8 rounded-xl shadow-sm border border-slate-900/10 hover:scale-105 transition" title="Gurdharam Enterprise">
+        </div>
+        <span class="text-[11px] font-mono font-medium text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+          Live CRM Hub
+        </span>
+      </div>
+
+      <!-- HERO: BREEZE (LUXURY MODIFIED WHATSAPP LOGO) -->
+      <div class="flex flex-col items-center text-center mb-6">
+        <div class="w-20 h-20 rounded-3xl bg-white border border-slate-100 shadow-md flex items-center justify-center p-1 overflow-hidden mb-3.5 hover:scale-105 transition-transform duration-200">
+          <img src="/breeze_logo.png" onerror="this.onerror=null; this.src='/breeze_logo.svg'" alt="Breeze Logo" class="w-full h-full object-contain rounded-2xl">
+        </div>
+        <div>
+          <h1 class="text-2xl font-black tracking-tight text-slate-900">Breeze</h1>
+          <p class="text-xs text-slate-500 font-medium mt-1">Smart, gentle WhatsApp CRM & automated companion</p>
+          <p class="text-[11px] text-softblue-700 font-semibold mt-1">Moderated by Gurdharam Enterprise</p>
+        </div>
+      </div>
+
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">Username (UID)</label>
+          <input type="text" id="loginUsername" placeholder="e.g. cpsystem_admin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-wa-tealLight focus:ring-2 focus:ring-wa-tealLight/20 transition">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-wa-tealLight focus:ring-2 focus:ring-wa-tealLight/20 transition">
+        </div>
+        <button type="submit" class="w-full py-3 px-4 bg-gradient-to-r from-wa-tealLight to-wa-green hover:from-wa-teal hover:to-emerald-600 text-white text-sm font-bold rounded-xl shadow-md shadow-emerald-500/20 transition flex items-center justify-center gap-2">
+          <span>Sign In to CRM Portal</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 2. MAIN APPLICATION SHELL ==================== -->
+  <div id="appShell" class="hidden flex-1 flex flex-col w-full max-w-full overflow-x-hidden">
+
+    <!-- DEMO PREVIEW BANNER -->
+    <div id="demoBanner" class="hidden bg-gradient-to-r from-slate-900 to-slate-800 text-white px-3 sm:px-4 py-2 flex items-center justify-between text-xs font-medium shadow-md sticky top-0 z-50 gap-2 border-b border-amber-500/30">
+      <div class="flex items-center gap-2 min-w-0">
+        <span class="px-2 py-0.5 rounded-md bg-amber-400 text-slate-950 text-[10px] font-black tracking-wider uppercase shrink-0">DEMO MODE</span>
+        <span class="text-slate-200 text-xs truncate">Interactive Admin Feature Preview · Live Meta API & Mutating Dispatches Disabled</span>
+      </div>
+      <div class="text-[11px] font-mono text-amber-300 font-semibold shrink-0 hidden sm:block">
+        Read-Only Safe
+      </div>
+    </div>
+
+    <!-- SUPER ADMIN MASQUERADE BANNER -->
+    <div id="masqueradeBanner" class="hidden bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-3 sm:px-4 py-2 flex flex-wrap sm:flex-nowrap items-center justify-between text-xs font-medium shadow-md sticky top-0 z-50 gap-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <i data-lucide="shield-alert" class="w-4 h-4 text-slate-950 shrink-0"></i>
+        <span class="truncate sm:whitespace-normal"><strong>MASQUERADE ACTIVE:</strong> <span id="masqueradeName" class="underline font-bold"></span></span>
+      </div>
+      <button onclick="exitMasquerade()" class="px-2.5 py-1 bg-slate-950 text-white font-bold rounded-lg hover:bg-slate-900 transition text-[11px] flex items-center gap-1 shrink-0 ml-auto sm:ml-0">
+        <span>Exit</span>
+        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+
+    <!-- MACOS FROSTED GLASS TOP HEADER -->
+    <header class="h-14 sm:h-16 glass-header px-3 sm:px-6 flex items-center justify-between sticky top-0 z-40 w-full max-w-full">
+      <div class="flex items-center gap-2 sm:gap-4 min-w-0">
+
+
+        <!-- Official Logo & Organization Badge -->
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-9 h-9 rounded-xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+            <img id="headerTenantLogo" src="/gurdharam_logo.svg" alt="Organization Logo" class="w-full h-full object-contain rounded-lg">
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5">
+              <span id="headerTenantTitle" class="font-bold text-xs sm:text-sm text-slate-900 truncate max-w-[140px] sm:max-w-[200px]">Gurdharam Enterprise</span>
+              <span id="roleBadge" class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-violet-100 text-violet-800 font-bold border border-violet-200 uppercase shrink-0">SUPER ADMIN</span>
+            </div>
+            <p id="headerTenantSubtitle" class="text-[10px] text-slate-400 font-medium truncate hidden sm:block">Master Organization Hub</p>
+          </div>
+        </div>
+
+        <!-- Desktop Segmented Navigation Tabs -->
+        <nav id="desktopNavTabs" class="hidden md:flex items-center gap-1 bg-slate-100/90 p-1 rounded-xl border border-slate-200/70 shadow-inner ml-2 overflow-x-auto no-scrollbar">
+          <!-- Populated dynamically via JS -->
+        </nav>
+      </div>
+
+      <!-- Right Header Actions (Clean, Zero Overflow) -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- Moderated By Gurdharam Enterprise Pill -->
+        <div class="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100/80 border border-slate-200 text-slate-600 text-[11px] font-medium">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-softblue-600"></i>
+          <span>Moderated by <strong class="text-slate-800 font-bold">Gurdharam</strong></span>
+        </div>
+
+        <!-- Live WhatsApp Phone Pill (Click to open Coexistence Hub) -->
+        <a href="/coexistence.html" title="WhatsApp Coexistence & Official Mobile App Bridge" class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-[11px] font-mono font-bold transition">
+          <span class="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
+          <span id="headerPhoneDisplay">+91 62803 33252</span>
+          <i data-lucide="link-2" class="w-3 h-3 text-emerald-600 ml-0.5"></i>
+        </a>
+
+        <!-- User Profile Pill -->
+        <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-softblue-50 border border-softblue-200 text-softblue-800 text-xs font-semibold">
+          <i data-lucide="user" class="w-3.5 h-3.5 text-softblue-600"></i>
+          <span id="userNameText" class="truncate max-w-[120px]">Gurdharam</span>
+        </div>
+
+        <!-- Download Android App Button -->
+        <a href="/Breeze.apk" download="Breeze.apk" title="Download Breeze Android App (APK)" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-bold shadow-xs transition">
+          <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600"></i>
+          <span class="hidden md:inline">Breeze App</span>
+        </a>
+
+        <!-- Logout Button -->
+        <button onclick="logout()" title="Logout" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN BODY CONTENT AREA -->
+    <main class="flex-1 p-3 sm:p-6 max-w-7xl w-full mx-auto overflow-x-hidden">
+
+      <!-- ==================== VIEW 1: SUPER ADMIN GLOBAL COMMAND ==================== -->
+      <div id="viewSuperAdmin" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
+              <i data-lucide="shield" class="w-5 h-5 text-violet-600"></i>
+              Gurdharam Enterprise Master Hub
+            </h2>
+            <p class="text-xs text-slate-500 font-medium">Real-time management across all registered client businesses, incoming messages, outbounds, quotas, and security audit logs.</p>
+          </div>
+          <div class="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+            <button onclick="openAddTenantModal()" class="px-3.5 py-1.5 bg-wa-tealLight hover:bg-wa-teal text-white rounded-xl text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i> Register Business
+            </button>
+            <button onclick="openAddUserModal()" class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+              <i data-lucide="user-plus" class="w-3.5 h-3.5"></i> Add User
+            </button>
+            <a href="/coexistence.html" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-xs transition flex items-center gap-1.5" title="Configure WhatsApp Coexistence for Official Client App">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> WhatsApp Coexistence
+            </a>
+            <button onclick="triggerLogCompression()" class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-xl text-xs font-bold shadow-xs transition flex items-center gap-1.5" title="Compress Logs">
+              <i data-lucide="archive" class="w-3.5 h-3.5"></i> Compress Logs
+            </button>
+            <button onclick="loadSuperAdminData()" class="p-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition" title="Refresh">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-softblue-600"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Master Aggregated Overview Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="glass-panel rounded-2xl p-4">
+            <div class="text-[10px] font-mono uppercase text-slate-500 font-bold">Total Businesses</div>
+            <div class="text-2xl font-extrabold font-mono text-slate-900 mt-1" id="superFleetTenantsCount">2</div>
+            <p class="text-[11px] text-slate-500 mt-0.5">Active client accounts</p>
+          </div>
+          <div class="glass-panel rounded-2xl p-4">
+            <div class="text-[10px] font-mono uppercase text-softblue-700 font-bold">Total Inquiries</div>
+            <div class="text-2xl font-extrabold font-mono text-softblue-600 mt-1" id="superFleetLeadsCount">0</div>
+            <p class="text-[11px] text-slate-500 mt-0.5">Across all client numbers</p>
+          </div>
+          <div class="glass-panel rounded-2xl p-4">
+            <div class="text-[10px] font-mono uppercase text-emerald-700 font-bold">Total Outbounds</div>
+            <div class="text-2xl font-extrabold font-mono text-emerald-600 mt-1" id="superFleetOutboundsCount">0</div>
+            <p class="text-[11px] text-slate-500 mt-0.5">AI Bot + Outreach Dispatches</p>
+          </div>
+          <div class="glass-panel rounded-2xl p-4">
+            <div class="text-[10px] font-mono uppercase text-amber-700 font-bold">Meta Free Pool Left</div>
+            <div class="text-2xl font-extrabold font-mono text-amber-600 mt-1" id="superFleetQuotaLeft">5,000</div>
+            <p class="text-[11px] text-slate-500 mt-0.5">Free monthly messages left</p>
+          </div>
+        </div>
+
+        <!-- SECTION 1: Registered Client Organizations & Numbers -->
+        <div id="sectionTenants" class="space-y-2.5">
+          <h3 class="text-xs font-bold font-mono text-slate-500 uppercase tracking-wider">Registered Client Businesses & Numbers</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="tenantsGrid">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <!-- SECTION 2: Global Client Leads & Inquiries -->
+        <div id="sectionGlobalLeads" class="glass-panel rounded-2xl p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <i data-lucide="users" class="w-4 h-4 text-softblue-600"></i>
+              Live Client Leads & Inquiries (All Businesses)
+            </h3>
+            <span class="text-[11px] font-mono text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full font-semibold" id="superLeadsBadge">0 Inquiries</span>
+          </div>
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-2.5 px-3">Client Org</th>
+                  <th class="px-3">Customer</th>
+                  <th class="px-3">Phone</th>
+                  <th class="px-3">Inquiry Requirement</th>
+                  <th class="px-3">City</th>
+                  <th class="px-3">Status</th>
+                  <th class="px-3">Bot State</th>
+                  <th class="px-3 text-right">Quick Action</th>
+                </tr>
+              </thead>
+              <tbody id="superAdminLeadsBody" class="divide-y divide-slate-100 font-mono text-slate-700">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards -->
+          <div id="superAdminLeadsMobile" class="md:hidden space-y-2.5">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- SECTION 3: User Accounts & Security Credentials -->
+        <div id="sectionUserAccounts" class="glass-panel rounded-2xl p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <i data-lucide="key" class="w-4 h-4 text-softblue-600"></i>
+              User Accounts & Security Credentials
+            </h3>
+            <button onclick="openAddUserModal()" class="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-[11px] font-bold transition flex items-center gap-1">
+              <i data-lucide="plus" class="w-3 h-3"></i> Add User
+            </button>
+          </div>
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono border-b border-slate-200 text-[11px] bg-slate-50/80">
+                <tr>
+                  <th class="py-2.5 px-3">Username</th>
+                  <th class="px-3">Role</th>
+                  <th class="px-3">Tenant</th>
+                  <th class="px-3">Status</th>
+                  <th class="px-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="userAccountsBody" class="divide-y divide-slate-100 font-mono">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards for User Accounts -->
+          <div id="userAccountsMobile" class="md:hidden space-y-2.5">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- SECTION 4: Log Retention & Storage Management Engine -->
+        <div id="sectionStorageRetention" class="glass-panel rounded-2xl p-5 shadow-sm space-y-4 border border-slate-200/90">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <i data-lucide="database" class="w-4 h-4 text-emerald-600"></i>
+                Storage & Log Retention Engine (RFC 5424 / Zlib Compression)
+              </h3>
+              <p class="text-[11px] text-slate-500 mt-0.5">Automated rolling buffer: keeps hot logs lightweight, compresses old records into zlib archives, and safely purges beyond 90 days.</p>
+            </div>
+            <button onclick="triggerLogCompression()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-xs shrink-0 self-start sm:self-auto">
+              <i data-lucide="archive" class="w-3.5 h-3.5"></i> Compress & Safe Prune Now
+            </button>
+          </div>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div class="text-[10px] font-mono uppercase text-slate-500 font-bold">Hot Active Logs</div>
+              <div class="text-lg font-bold font-mono text-slate-900 mt-1" id="statActiveLogs">--</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Max safe limit: 500</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div class="text-[10px] font-mono uppercase text-slate-500 font-bold">Compressed Archives</div>
+              <div class="text-lg font-bold font-mono text-emerald-700 mt-1" id="statArchiveBatches">--</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Zlib gzip stored</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div class="text-[10px] font-mono uppercase text-slate-500 font-bold">Space Reduction</div>
+              <div class="text-lg font-bold font-mono text-emerald-600 mt-1" id="statSpaceSaved">--</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">Compression ratio</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+              <div class="text-[10px] font-mono uppercase text-slate-500 font-bold">Retention Policy</div>
+              <div class="text-xs font-bold font-mono text-slate-800 mt-1">90-Day Auto-Prune</div>
+              <div class="text-[10px] text-emerald-600 font-medium mt-0.5">Safe limit active</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 5: Comprehensive Real-Time Audit Trail -->
+        <div id="sectionAuditTrail" class="glass-panel rounded-2xl p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <i data-lucide="file-text" class="w-4 h-4 text-softblue-600"></i>
+              Real-Time Audit Trail (Immutable Action Logs)
+            </h3>
+            <span class="text-[11px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">Live Stream</span>
+          </div>
+          <div class="hidden md:block max-h-64 overflow-y-auto border border-slate-200/80 rounded-xl">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-100 border-b border-slate-200 text-[11px] sticky top-0">
+                <tr>
+                  <th class="py-2 px-3">Time</th>
+                  <th class="px-3">Actor</th>
+                  <th class="px-3">Action</th>
+                  <th class="px-3">Tenant</th>
+                  <th class="px-3">Details</th>
+                </tr>
+              </thead>
+              <tbody id="auditLogsBody" class="divide-y divide-slate-100 font-mono text-slate-700">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Stream for Audit Logs -->
+          <div id="auditLogsMobile" class="md:hidden space-y-2 max-h-64 overflow-y-auto pr-0.5">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 2: CLIENT HOME (LIVE PULSE) ==================== -->
+      <div id="viewHome" class="hidden space-y-6">
+        <!-- 4 PUNCHY CORE COUNTERS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <!-- Card 1: INQUIRIES -->
+          <div onclick="openHistoryPage('inquiries')" class="glass-panel rounded-2xl p-4 sm:p-5 hover:shadow-lg hover:border-wa-green/60 transition cursor-pointer group ring-1 ring-slate-200/80 hover:ring-wa-green/40">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600 group-hover:text-wa-teal transition">Inquiries</span>
+              <span class="text-[10px] font-bold font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">Free Inbound</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 group-hover:text-wa-teal transition" id="statInquiries">0</div>
+            <div class="flex items-center justify-between mt-1">
+              <p class="text-[11px] sm:text-xs text-slate-500">Customers who messaged first</p>
+              <span class="text-[10px] text-softblue-600 font-bold group-hover:underline flex items-center gap-0.5">History →</span>
+            </div>
+          </div>
+
+          <!-- Card 2: FOLLOW-UPS -->
+          <div onclick="openHistoryPage('followups')" class="glass-panel rounded-2xl p-4 sm:p-5 hover:shadow-lg hover:border-wa-green/60 transition cursor-pointer group ring-1 ring-slate-200/80 hover:ring-wa-green/40">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600 group-hover:text-wa-teal transition">Follow-ups</span>
+              <span class="text-[10px] font-bold font-mono text-softblue-600 bg-softblue-50 px-2 py-0.5 rounded-full border border-softblue-200">@24 Hours</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 group-hover:text-softblue-600 transition" id="statFollowups">0</div>
+            <div class="flex items-center justify-between mt-1">
+              <p class="text-[11px] sm:text-xs text-slate-500">Silent leads re-knocked</p>
+              <span class="text-[10px] text-softblue-600 font-bold group-hover:underline flex items-center gap-0.5">History →</span>
+            </div>
+          </div>
+
+          <!-- Card 3: QUALIFIED -->
+          <div onclick="openHistoryPage('qualified')" class="glass-panel rounded-2xl p-4 sm:p-5 hover:shadow-lg hover:border-wa-green/60 transition cursor-pointer group ring-1 ring-slate-200/80 hover:ring-wa-green/40">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600 group-hover:text-wa-teal transition">Qualified</span>
+              <span class="text-[10px] font-bold font-mono text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">Hot Deals</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 group-hover:text-amber-600 transition" id="statQualified">0</div>
+            <div class="flex items-center justify-between mt-1">
+              <p class="text-[11px] sm:text-xs text-slate-500">Requirement + city verified</p>
+              <span class="text-[10px] text-softblue-600 font-bold group-hover:underline flex items-center gap-0.5">History →</span>
+            </div>
+          </div>
+
+          <!-- Card 4: PAID CLIENTS / BILLABLE REACH (₹5/HEAD) -->
+          <div onclick="switchView('billable')" class="glass-panel rounded-2xl p-4 sm:p-5 hover:shadow-lg hover:border-emerald-500/60 transition cursor-pointer group ring-1 ring-slate-200/80 hover:ring-emerald-500/40 bg-gradient-to-br from-white via-white to-emerald-50/30">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-700 group-hover:text-emerald-700 transition flex items-center gap-1.5">
+                <i data-lucide="receipt" class="w-3.5 h-3.5 text-emerald-600"></i>
+                Paid Clients
+              </span>
+              <span class="text-[10px] font-bold font-mono text-emerald-800 bg-emerald-100/90 px-2 py-0.5 rounded-full border border-emerald-200">₹5 / Head</span>
+            </div>
+            <div class="flex items-baseline gap-2">
+              <div class="text-xl sm:text-2xl font-extrabold font-mono text-slate-900 group-hover:text-emerald-600 transition" id="statBillableHeads">0 Heads</div>
+              <div class="text-xs font-bold font-mono text-emerald-700" id="statBillableAmount">₹0.00</div>
+            </div>
+            <div class="flex items-center justify-between mt-1">
+              <p class="text-[11px] sm:text-xs text-slate-500 truncate" id="statBillableSubtext">Broadcasts, Follow-ups & Campaigns</p>
+              <span class="text-[10px] text-emerald-700 font-bold group-hover:underline flex items-center gap-0.5 shrink-0">View Ledger →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOT LEADS FEED & MASTER BOT TOGGLE -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Hot Leads Feed (2 Cols) -->
+          <div class="lg:col-span-2 glass-panel rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <i data-lucide="flame" class="w-4 h-4 text-amber-500"></i>
+                Hot Leads Requiring Call Today
+              </h3>
+              <span class="text-xs text-slate-600 font-mono bg-slate-100 px-2.5 py-1 rounded-full font-semibold" id="hotLeadsCount">0 Qualified</span>
+            </div>
+            <div class="space-y-3" id="hotLeadsFeed">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+
+          <!-- Master Bot Controller (1 Col) -->
+          <div class="glass-panel rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 class="text-sm font-bold text-slate-900 mb-2 flex items-center gap-2">
+                <i data-lucide="bot" class="w-4 h-4 text-wa-tealLight"></i>
+                Master Bot Status
+              </h3>
+              <p class="text-xs text-slate-500 mb-4 font-medium">
+                Controls autonomous AI replies across all incoming WhatsApp messages for this business account.
+              </p>
+              <div id="botStatusPill" class="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-800 text-xs font-mono font-semibold flex items-center gap-2.5 mb-4">
+                <span class="w-2.5 h-2.5 rounded-full bg-wa-green animate-pulse"></span>
+                <span>SYSTEM STATUS: ACTIVE & AUTO-REPLYING</span>
+              </div>
+            </div>
+
+            <div id="botControlActions">
+              <button onclick="toggleBotMaster()" id="btnBotToggle" class="w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 text-xs font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-2">
+                <i data-lucide="pause" class="w-4 h-4"></i>
+                <span>Pause Bot Globally</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 3: CHATS (MOBILE & DESKTOP WITH DIRECT SENDER) ==================== -->
+      <div id="viewChats" class="hidden h-[calc(100dvh-135px)] md:h-[calc(100vh-130px)] flex border border-slate-200/80 rounded-2xl bg-white shadow-sm overflow-hidden w-full max-w-full">
+        <!-- Contacts Sidebar -->
+        <div id="chatSidebarCol" class="w-full md:w-80 border-r border-slate-200/80 flex flex-col bg-white">
+          <div class="p-3 border-b border-slate-200 bg-slate-50/70">
+            <input type="text" id="chatSearchInput" placeholder="Search phone or name..." class="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2 text-xs text-slate-900 focus:outline-none focus:border-wa-tealLight">
+          </div>
+          <div class="flex-1 overflow-y-auto divide-y divide-slate-100" id="chatContactsList">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Active Chat Stage (Hidden on mobile when in list view) -->
+        <div id="chatStageCol" class="hidden md:flex flex-1 flex-col bg-[#efeae2]">
+          <!-- Active Header with Mobile Back Button & Takeover Toggle -->
+          <div class="h-14 border-b border-slate-200 bg-white/95 backdrop-blur-md px-3 sm:px-4 flex items-center justify-between shadow-sm shrink-0 gap-2">
+            <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <!-- Mobile Back Button -->
+              <button onclick="mobileBackToContacts()" class="md:hidden p-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 shrink-0">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              </button>
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#25D366] to-[#128C7E] flex items-center justify-center font-bold text-xs text-white shrink-0" id="activeChatAvatar">
+                ?
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-1.5">
+                  <div class="text-xs font-bold text-slate-900 truncate max-w-[120px] sm:max-w-xs" id="activeChatName">Select a conversation</div>
+                  <button id="btnEditContactName" onclick="promptEditContactName()" class="hidden p-1 text-slate-400 hover:text-indigo-600 hover:bg-slate-100 rounded transition shrink-0" title="Edit Contact Name">
+                    <i data-lucide="edit-3" class="w-3 h-3"></i>
+                  </button>
+                </div>
+                <div class="text-[10px] sm:text-[11px] font-mono text-slate-500 truncate" id="activeChatPhone">---</div>
+              </div>
+            </div>
+
+            <!-- Actions: Takeover & Delete Chat -->
+            <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              <button onclick="takeoverChat()" id="btnTakeover" class="hidden px-2.5 sm:px-3 py-1.5 rounded-lg border text-[11px] sm:text-xs font-mono font-bold transition flex items-center gap-1 sm:gap-1.5 shadow-sm">
+                <!-- Injected via JS -->
+              </button>
+              <button onclick="promptDeleteCurrentChat()" id="btnDeleteChat" class="hidden px-2.5 sm:px-3 py-1.5 rounded-lg border text-[11px] sm:text-xs font-mono font-bold transition flex items-center gap-1 sm:gap-1.5 shadow-sm bg-rose-50 hover:bg-rose-100 border-rose-200 text-rose-700 hover:text-rose-900" title="Delete conversation and wipe contact">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5 text-rose-600"></i>
+                <span class="hidden sm:inline">Delete Chat</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Takeover Alert Banner -->
+          <div id="takeoverStatusBanner" class="hidden px-3 sm:px-4 py-2 bg-amber-50 border-b border-amber-200 text-amber-900 text-[11px] sm:text-xs flex items-center justify-between font-mono shrink-0">
+            <div class="flex items-center gap-1.5 truncate mr-2">
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse shrink-0"></span>
+              <span class="truncate"><strong>TAKEOVER ACTIVE:</strong> Bot silenced.</span>
+            </div>
+            <button onclick="takeoverChat()" class="text-[11px] font-bold text-amber-800 underline hover:text-amber-950 shrink-0">Resume Bot</button>
+          </div>
+
+          <!-- Messages Timeline Stream -->
+          <div class="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3" id="messagesStream">
+            <div class="h-full flex items-center justify-center text-xs text-slate-500 font-mono">
+              Tap a conversation to view chat timeline and live transcripts.
+            </div>
+          </div>
+
+          <!-- Sticky Bottom Message Input Bar (Direct Manual WhatsApp Dispatch) -->
+          <div id="chatInputBar" class="p-2.5 sm:p-3 bg-white border-t border-slate-200 shadow-sm shrink-0">
+            <!-- 24-Hour WhatsApp Service Window Banner -->
+            <div id="window24hBanner" class="hidden mb-2 px-3 py-1.5 rounded-xl text-[11px] font-mono flex items-center justify-between gap-2 border transition">
+              <div class="flex items-center gap-1.5" id="window24hText">
+                <i data-lucide="info" class="w-3.5 h-3.5 shrink-0"></i>
+                <span id="window24hStatusMsg">Checking 24h Customer Window...</span>
+              </div>
+              <span id="window24hBadge" class="text-[10px] px-2 py-0.5 rounded-full font-bold shrink-0"></span>
+            </div>
+            <form id="chatSendForm" onsubmit="handleSendManualMessage(event)" class="flex items-center gap-2">
+              <input type="text" id="chatMessageInput" placeholder="Type a WhatsApp message to client..." autocomplete="off" class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-wa-green focus:ring-2 focus:ring-wa-green/20 transition">
+              <button type="submit" id="btnSendManual" class="px-3.5 sm:px-4 py-2 sm:py-2.5 bg-[#25D366] hover:bg-emerald-600 text-white font-bold rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 shadow shrink-0">
+                <span>Send</span>
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              </button>
+            </form>
+            <div class="flex items-center justify-between mt-1 text-[10px] text-slate-400 font-mono">
+              <span class="truncate">Direct Meta Cloud API</span>
+              <span class="text-emerald-600 font-semibold flex items-center gap-1 shrink-0">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live Meta Connection
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 4: FOLLOW-UPS RADAR ==================== -->
+      <div id="viewFollowups" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+              <i data-lucide="clock" class="w-5 h-5 text-softblue-600"></i>
+              Automated 24-Hour Follow-Up Radar
+            </h2>
+            <p class="text-xs text-slate-500 font-medium">Silent leads in 24h default countdown. Toggle follow-up on/off per contact or adjust cadence (24h / 36h / 48h).</p>
+          </div>
+          <div class="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+            <span class="px-2.5 py-1 rounded-full text-[11px] font-mono font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              Default: 24h Cadence
+            </span>
+            <button onclick="loadFollowups()" class="p-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition" title="Refresh">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-softblue-600"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Contact</th>
+                  <th class="px-4">Requirement</th>
+                  <th class="px-4">City</th>
+                  <th class="px-4">Cadence (Interval)</th>
+                  <th class="px-4">Follow-Up State</th>
+                  <th class="px-4 text-right">Instant Action</th>
+                </tr>
+              </thead>
+              <tbody id="followupTableBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards (Zero Horizontal Scroll) -->
+          <div id="followupCardsMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 5: BROADCAST OUTREACH & GEMINI AI POLISH ==================== -->
+      <div id="viewBroadcast" class="hidden space-y-6">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+            <i data-lucide="send" class="w-5 h-5 text-wa-tealLight"></i>
+            Targeted WhatsApp Outreach & Broadcast
+          </h2>
+          <p class="text-xs text-slate-500 font-medium">Add a list of customer phone numbers and broadcast custom messages or follow-ups with Gemini AI Polish.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left: Phone Numbers Input -->
+          <div class="glass-panel rounded-2xl p-5 shadow-sm space-y-4">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-bold text-slate-800">1. Target Phone Numbers (One per line or comma):</label>
+                <span class="text-[11px] font-mono text-slate-500 font-bold" id="broadcastCountBadge">0 Recipients</span>
+              </div>
+              <textarea id="broadcastNumbers" rows="5" placeholder="919041172159&#10;919779220581" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs font-mono text-slate-900 focus:outline-none focus:border-wa-tealLight focus:ring-2 focus:ring-wa-tealLight/20"></textarea>
+            </div>
+
+            <!-- Quick Add Presets -->
+            <div>
+              <span class="text-[11px] font-mono text-slate-500 uppercase tracking-wider block mb-2 font-bold">1-Click Presets:</span>
+              <div class="flex flex-wrap gap-2 text-xs font-mono">
+                <button onclick="addPresetNumber('919041172159')" class="px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-lg transition font-semibold">
+                  + Gurdharam (919041172159)
+                </button>
+                <button onclick="addPresetNumber('919779220581')" class="px-2.5 py-1.5 bg-softblue-50 hover:bg-softblue-100 text-softblue-800 border border-softblue-200 rounded-lg transition font-semibold">
+                  + CP System Official (919779220581)
+                </button>
+                <button onclick="addAllQualifiedToBroadcast()" class="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 rounded-lg transition font-semibold">
+                  + All Qualified Leads
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Message Draft with Gemini AI Polish -->
+          <div class="glass-panel rounded-2xl p-5 shadow-sm space-y-4 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-bold text-slate-800">2. Message Body & Offer:</label>
+                <!-- Tone selector -->
+                <select id="polishTone" class="text-xs bg-slate-100 border border-slate-300 rounded-lg px-2 py-1 font-medium text-slate-700">
+                  <option value="friendly">Tone: Friendly & Respectful</option>
+                  <option value="sales">Tone: High-Converting Sales</option>
+                  <option value="followup">Tone: Quick Follow-up Check-in</option>
+                </select>
+              </div>
+              <textarea id="broadcastMessage" rows="5" placeholder="e.g. Sat Sri Akal! We have 5 ton chillers ready for immediate delivery in Bathinda and Muktsar. Special discount available this week. Please reply if you need quote." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs text-slate-900 focus:outline-none focus:border-wa-tealLight focus:ring-2 focus:ring-wa-tealLight/20"></textarea>
+
+              <!-- Gemini Polish Button -->
+              <div class="mt-2.5 flex items-center justify-between">
+                <button onclick="polishWithGemini()" id="btnPolish" class="px-3.5 py-2 bg-softblue-50 hover:bg-softblue-100 text-softblue-700 border border-softblue-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-softblue-600"></i>
+                  <span>Polish with Gemini AI ✨</span>
+                </button>
+                <span id="polishStatusText" class="text-xs text-softblue-700 font-mono"></span>
+              </div>
+            </div>
+
+            <!-- Launch Broadcast CTA -->
+            <div class="pt-3 border-t border-slate-200">
+              <button onclick="launchBroadcast()" id="btnLaunchBroadcast" class="w-full py-3 px-4 bg-gradient-to-r from-wa-tealLight to-wa-green hover:from-wa-teal hover:to-emerald-600 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                <i data-lucide="send" class="w-4 h-4"></i>
+                <span>Dispatch Broadcast Now</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Broadcast Results Log Area -->
+        <div id="broadcastStatusArea" class="hidden glass-panel rounded-2xl p-5 shadow-sm space-y-3">
+          <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+            Broadcast Dispatch Report
+          </h3>
+          <div id="broadcastResultsList" class="space-y-1.5 max-h-48 overflow-y-auto text-xs font-mono"></div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 6: BOT BRAIN RULES ==================== -->
+      <div id="viewBotBrain" class="hidden space-y-6">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+            <i data-lucide="cpu" class="w-5 h-5 text-wa-tealLight"></i>
+            Autonomous Bot Brain Guidelines
+          </h2>
+          <p class="text-xs text-slate-500 font-medium">Add plain English/Punjabi business instructions. Gemini AI injects these rules dynamically into its conversation prompt.</p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-5 shadow-sm space-y-4">
+          <form id="addRuleForm" onsubmit="handleAddRule(event)" class="flex flex-col sm:flex-row gap-2">
+            <input type="text" id="newRuleInput" placeholder="e.g. Always ask milk plant capacity in liters before quoting price" required class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-wa-tealLight">
+            <button type="submit" class="px-4 py-2.5 bg-wa-tealLight hover:bg-wa-teal text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-1.5">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>Add Brain Rule</span>
+            </button>
+          </form>
+
+          <div class="divide-y divide-slate-100" id="botRulesList">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 7: LEADS SHEET ==================== -->
+      <div id="viewLeads" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+              <i data-lucide="users" class="w-5 h-5 text-softblue-600"></i>
+              Exportable Leads Sheet
+            </h2>
+            <p class="text-xs text-slate-500 font-medium">All registered leads with verified phone numbers, requirements, and locations.</p>
+          </div>
+          <button onclick="exportLeadsCsv()" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition flex items-center gap-2 self-start sm:self-auto">
+            <i data-lucide="download" class="w-4 h-4 text-softblue-600"></i> Export CSV
+          </button>
+        </div>
+
+        <!-- 2 SEPARATE WAYS TO FILTER LEADS -->
+        <div class="glass-panel rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+          <!-- WAY 1: PIPELINE / QUALIFICATION QUICK TABS -->
+          <div>
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i data-lucide="filter" class="w-3.5 h-3.5 text-wa-tealLight"></i>
+              <span>Way 1: Qualification & Deal Stage Filter</span>
+            </div>
+            <div class="flex flex-wrap gap-2" id="leadsStageFilterPills">
+              <button onclick="setLeadStageFilter('ALL')" id="pillStage_ALL" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-slate-900 text-white shadow-xs">
+                <span>All Stages</span>
+                <span id="badgeStage_ALL" class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadStageFilter('QUALIFIED')" id="pillStage_QUALIFIED" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-amber-50 hover:text-amber-800 border border-slate-200">
+                <i data-lucide="flame" class="w-3.5 h-3.5 text-amber-500"></i>
+                <span>🔥 Qualified Hot Deals</span>
+                <span id="badgeStage_QUALIFIED" class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadStageFilter('NEW')" id="pillStage_NEW" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200">
+                <i data-lucide="inbox" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>📥 Inbound Inquiries</span>
+                <span id="badgeStage_NEW" class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadStageFilter('RADAR')" id="pillStage_RADAR" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-softblue-50 hover:text-softblue-800 border border-slate-200">
+                <i data-lucide="clock" class="w-3.5 h-3.5 text-softblue-600"></i>
+                <span>⏰ 36h Radar</span>
+                <span id="badgeStage_RADAR" class="text-[10px] bg-softblue-100 text-softblue-800 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadStageFilter('WON')" id="pillStage_WON" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>🏆 Won Deals</span>
+                <span id="badgeStage_WON" class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="h-[1px] bg-slate-100"></div>
+
+          <!-- TICKET & INQUIRY TYPE FILTER (COMPLAINTS, REPAIRS, SALES, OTHERS) -->
+          <div>
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i data-lucide="tag" class="w-3.5 h-3.5 text-rose-500"></i>
+              <span>Inquiry & Service Type: Complaints vs Repairs vs Sales</span>
+            </div>
+            <div class="flex flex-wrap gap-2" id="leadsTypeFilterPills">
+              <button onclick="setLeadTypeFilter('ALL')" id="pillType_ALL" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-slate-900 text-white shadow-xs">
+                <span>All Types</span>
+                <span id="badgeType_ALL" class="text-[10px] bg-white/20 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadTypeFilter('COMPLAINT')" id="pillType_COMPLAINT" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-rose-50 hover:text-rose-800 border border-slate-200">
+                <i data-lucide="alert-octagon" class="w-3.5 h-3.5 text-rose-500"></i>
+                <span>🚨 Complaints & Issues</span>
+                <span id="badgeType_COMPLAINT" class="text-[10px] bg-rose-100 text-rose-800 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadTypeFilter('REPAIR')" id="pillType_REPAIR" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-sky-50 hover:text-sky-800 border border-slate-200">
+                <i data-lucide="wrench" class="w-3.5 h-3.5 text-sky-500"></i>
+                <span>🔧 Repairs & Service</span>
+                <span id="badgeType_REPAIR" class="text-[10px] bg-sky-100 text-sky-800 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadTypeFilter('SALES')" id="pillType_SALES" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-emerald-500"></i>
+                <span>❄️ Sales Inquiries</span>
+                <span id="badgeType_SALES" class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+              <button onclick="setLeadTypeFilter('OTHER')" id="pillType_OTHER" class="px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-800 border border-slate-200">
+                <i data-lucide="help-circle" class="w-3.5 h-3.5 text-slate-500"></i>
+                <span>📋 Others / General</span>
+                <span id="badgeType_OTHER" class="text-[10px] bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded-full font-mono">0</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="h-[1px] bg-slate-100"></div>
+
+          <!-- WAY 2: MULTI-CRITERIA TOOLBAR (BRAND, BOT MODE, KEYWORD SEARCH) -->
+          <div>
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i data-lucide="sliders" class="w-3.5 h-3.5 text-softblue-600"></i>
+              <span>Way 2: Advanced Search, Machinery & Dropdown Filters</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+              <!-- Search Input -->
+              <div class="relative">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+                <input type="text" id="leadSearchInput" oninput="applyLeadFilters()" placeholder="Search name, phone, city, problem..." class="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-wa-tealLight shadow-xs">
+              </div>
+
+              <!-- Ticket Type Select -->
+              <div>
+                <select id="leadTypeSelect" onchange="applyLeadFilters()" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-wa-tealLight shadow-xs">
+                  <option value="ALL">🏷️ All Ticket Types</option>
+                  <option value="COMPLAINT">🚨 Complaints & Issues</option>
+                  <option value="REPAIR">🔧 Repairs & Maintenance</option>
+                  <option value="SALES">❄️ Sales & Purchase Leads</option>
+                  <option value="OTHER">📋 Others / General</option>
+                </select>
+              </div>
+
+              <!-- Machinery Filter Dropdown -->
+              <div>
+                <select id="leadProductFilter" onchange="applyLeadFilters()" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-wa-tealLight shadow-xs">
+                  <option value="ALL">⚙️ All Machinery</option>
+                  <option value="CHILLER">❄️ Industrial Chillers (1-15T)</option>
+                  <option value="RO">💧 RO Plants (25-100K LPH)</option>
+                  <option value="HEATPUMP">🔥 Water Heat Pumps</option>
+                  <option value="OTHER">📦 Other Equipment</option>
+                </select>
+              </div>
+
+              <!-- Brand Filter Dropdown -->
+              <div>
+                <select id="leadBrandFilter" onchange="applyLeadFilters()" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-wa-tealLight shadow-xs">
+                  <option value="ALL">🏢 All Enterprise Brands</option>
+                  <option value="cpsystem">🥛 CP System (Dairy Machinery)</option>
+                  <option value="mystery_pub">📚 Multi-Channel Publisher</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left" id="leadsTable">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Name</th>
+                  <th class="px-4">Phone</th>
+                  <th class="px-4">Type</th>
+                  <th class="px-4">Requirement / Issue</th>
+                  <th class="px-4">City</th>
+                  <th class="px-4">Status</th>
+                  <th class="px-4">Bot</th>
+                  <th class="px-4 text-right">Direct WhatsApp</th>
+                </tr>
+              </thead>
+              <tbody id="leadsTableBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards (Zero Horizontal Scroll) -->
+          <div id="leadsCardsMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 8: DRILLDOWN - INQUIRIES HISTORY ==================== -->
+      <div id="viewHistoryInquiries" class="hidden space-y-6">
+        <!-- Top navigation breadcrumb / header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <button onclick="switchView('home')" class="px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1.5 transition">
+              <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500"></i>
+              <span>Back to Pulse</span>
+            </button>
+            <div class="h-6 w-[1px] bg-slate-200"></div>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                <i data-lucide="inbox" class="w-5 h-5 text-wa-tealLight"></i>
+                <span>Free Inbound Inquiries History</span>
+                <span id="historyInquiriesCount" class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono font-bold">0 Leads</span>
+              </h2>
+              <p class="text-xs text-slate-500 font-medium">Customer-initiated inbound messages. 100% free under Meta WhatsApp Cloud API tier.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="text" id="historyInquiriesSearch" oninput="filterHistoryInquiries(this.value)" placeholder="Search inquiries..." class="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-wa-tealLight shadow-sm w-44 sm:w-56">
+            <button onclick="loadHistoryData('inquiries')" class="p-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-600 shadow-sm transition" title="Refresh">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inquiries Table / Cards -->
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <!-- Desktop Table -->
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Contact / Name</th>
+                  <th class="px-4">Phone Number</th>
+                  <th class="px-4">Client / Brand</th>
+                  <th class="px-4">Requirement / Capacity</th>
+                  <th class="px-4">City / Region</th>
+                  <th class="px-4">Stage</th>
+                  <th class="px-4">First Inbound</th>
+                  <th class="px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="historyInquiriesBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards -->
+          <div id="historyInquiriesMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 9: DRILLDOWN - FOLLOWUPS HISTORY ==================== -->
+      <div id="viewHistoryFollowups" class="hidden space-y-6">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <button onclick="switchView('home')" class="px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1.5 transition">
+              <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500"></i>
+              <span>Back to Pulse</span>
+            </button>
+            <div class="h-6 w-[1px] bg-slate-200"></div>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                <i data-lucide="clock" class="w-5 h-5 text-softblue-600"></i>
+                <span>36-Hour Follow-up History</span>
+                <span id="historyFollowupsCount" class="text-[11px] px-2.5 py-0.5 rounded-full bg-softblue-50 border border-softblue-200 text-softblue-700 font-mono font-bold">0 Sent</span>
+              </h2>
+              <p class="text-xs text-slate-500 font-medium">Audit trail of automated & staff follow-up messages dispatched to silent leads.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="text" id="historyFollowupsSearch" oninput="filterHistoryFollowups(this.value)" placeholder="Search followups..." class="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-softblue-600 shadow-sm w-44 sm:w-56">
+            <button onclick="loadHistoryData('followups')" class="p-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-600 shadow-sm transition" title="Refresh">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Follow-ups Table / Cards -->
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <div class="px-4 py-3 bg-slate-50/60 border-b border-slate-200/80 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="send" class="w-3.5 h-3.5 text-softblue-600"></i> Dispatched Re-knocks Log
+            </span>
+            <span class="text-[11px] text-slate-500 font-mono">Meta Outbound Delivered</span>
+          </div>
+          <!-- Desktop Table -->
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Dispatched At</th>
+                  <th class="px-4">Lead Contact</th>
+                  <th class="px-4">Client / Brand</th>
+                  <th class="px-4">Requirement</th>
+                  <th class="px-4">Follow-up Message Content</th>
+                  <th class="px-4">Meta WAMID</th>
+                  <th class="px-4 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="historyFollowupsBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards -->
+          <div id="historyFollowupsMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Active Radar Leads Waiting Section -->
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <div class="px-4 py-3 bg-slate-50/60 border-b border-slate-200/80 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="radar" class="w-3.5 h-3.5 text-amber-600"></i> Active 36h Radar Leads (Waiting)
+            </span>
+            <span id="historyFollowupsRadarCount" class="text-[11px] text-amber-700 font-mono font-bold bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">0 Waiting</span>
+          </div>
+          <!-- Desktop Table -->
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Lead Name</th>
+                  <th class="px-4">Phone</th>
+                  <th class="px-4">Brand</th>
+                  <th class="px-4">Requirement</th>
+                  <th class="px-4">Due Target</th>
+                  <th class="px-4 text-right">Trigger Follow-up</th>
+                </tr>
+              </thead>
+              <tbody id="historyFollowupsPendingBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards -->
+          <div id="historyFollowupsPendingMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 10: DRILLDOWN - QUALIFIED HOT DEALS HISTORY ==================== -->
+      <div id="viewHistoryQualified" class="hidden space-y-6">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <button onclick="switchView('home')" class="px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1.5 transition">
+              <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500"></i>
+              <span>Back to Pulse</span>
+            </button>
+            <div class="h-6 w-[1px] bg-slate-200"></div>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                <i data-lucide="flame" class="w-5 h-5 text-amber-600"></i>
+                <span>Qualified Hot Deals & Plant Projects</span>
+                <span id="historyQualifiedCount" class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 font-mono font-bold">0 Deals</span>
+              </h2>
+              <p class="text-xs text-slate-500 font-medium">Verified requirements with plant capacity, location, and commercial intent.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="loadHistoryData('qualified')" class="p-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-600 shadow-sm transition" title="Refresh">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2 SEPARATE FILTER WAYS FOR QUALIFIED DEALS -->
+        <div class="glass-panel rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+          <!-- WAY 1: MACHINERY TYPE / PLANT CAPACITY PILLS -->
+          <div>
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i data-lucide="filter" class="w-3.5 h-3.5 text-amber-500"></i>
+              <span>Way 1: Plant Machinery & Capacity Type</span>
+            </div>
+            <div class="flex flex-wrap gap-2" id="qualifiedCapacityFilterPills">
+              <button onclick="setQualifiedTypeFilter('ALL')" id="pillQual_ALL" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-slate-900 text-white shadow-xs">
+                All Qualified Deals
+              </button>
+              <button onclick="setQualifiedTypeFilter('PASTEURIZER')" id="pillQual_PASTEURIZER" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white text-slate-700 hover:bg-amber-50 hover:text-amber-800 border border-slate-200">
+                🥛 Pasteurizer & Processing (≥5k LPH)
+              </button>
+              <button onclick="setQualifiedTypeFilter('CHILLER')" id="pillQual_CHILLER" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white text-slate-700 hover:bg-amber-50 hover:text-amber-800 border border-slate-200">
+                🧊 Chillers & Bulk Milk Coolers
+              </button>
+              <button onclick="setQualifiedTypeFilter('GHEE')" id="pillQual_GHEE" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white text-slate-700 hover:bg-amber-50 hover:text-amber-800 border border-slate-200">
+                🧈 Ghee, Butter & Khoya Plants
+              </button>
+              <button onclick="setQualifiedTypeFilter('WON')" id="pillQual_WON" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white text-slate-700 hover:bg-emerald-50 hover:text-emerald-800 border border-slate-200">
+                🏆 Won Contracts
+              </button>
+            </div>
+          </div>
+
+          <div class="h-[1px] bg-slate-100"></div>
+
+          <!-- WAY 2: PUNJAB REGION & KEYWORD SEARCH -->
+          <div>
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-red-500"></i>
+              <span>Way 2: Punjab Territory & Client Keyword Search</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div>
+                <select id="qualifiedCityFilter" onchange="applyQualifiedFilters()" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-amber-500 shadow-xs">
+                  <option value="ALL">📍 All Punjab Regions & Districts</option>
+                  <option value="ludhiana">Ludhiana Hub</option>
+                  <option value="moga">Moga (Major Dairy Belt)</option>
+                  <option value="jalandhar">Jalandhar</option>
+                  <option value="amritsar">Amritsar</option>
+                  <option value="bathinda">Bathinda</option>
+                  <option value="patiala">Patiala / Sangrur</option>
+                </select>
+              </div>
+              <div class="relative">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+                <input type="text" id="qualifiedSearchInput" oninput="applyQualifiedFilters()" placeholder="Search client name, phone, machinery..." class="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500 shadow-xs">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Qualified Table / Cards -->
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <!-- Desktop Table -->
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Client / Dairy Plant</th>
+                  <th class="px-4">Phone Number</th>
+                  <th class="px-4">Brand</th>
+                  <th class="px-4">Verified Requirement / Capacity</th>
+                  <th class="px-4">City / Punjab District</th>
+                  <th class="px-4">Deal Status</th>
+                  <th class="px-4">Bot AI Mode</th>
+                  <th class="px-4 text-right">Instant WhatsApp</th>
+                </tr>
+              </thead>
+              <tbody id="historyQualifiedBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards -->
+          <div id="historyQualifiedMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW: BILLABLE / PAID CLIENTS LEDGER (₹5/HEAD) ==================== -->
+      <div id="viewBillable" class="hidden space-y-6">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <button onclick="switchView('home')" class="px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1.5 transition">
+              <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500"></i>
+              <span>Back to Pulse</span>
+            </button>
+            <div class="h-6 w-[1px] bg-slate-200"></div>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                <i data-lucide="receipt" class="w-5 h-5 text-emerald-600"></i>
+                <span>Paid Clients & Reach Ledger</span>
+                <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-800 font-mono font-bold">₹5 / Head / Month</span>
+              </h2>
+              <p class="text-xs text-slate-500 font-medium">Billed on unique client reach across broadcast campaigns, automated 24h follow-ups, and outbound marketing. Tamper-proof & append-only.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="exportBillableCsv()" class="px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-700 shadow-sm transition flex items-center gap-1.5 text-xs font-semibold">
+              <i data-lucide="download" class="w-4 h-4 text-emerald-600"></i>
+              <span>Export CSV</span>
+            </button>
+            <button onclick="loadBillableData()" class="p-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-600 shadow-sm transition flex items-center gap-1.5 text-xs font-semibold" title="Sync Ledger">
+              <i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-600"></i>
+              <span>Sync</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Billing Summary Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <!-- Card 1: Unique Billable Heads -->
+          <div class="glass-panel rounded-2xl p-4 sm:p-5 border-l-4 border-l-emerald-500">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Billed Heads</span>
+              <span class="text-[10px] font-bold font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">This Month</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900" id="billableSummaryHeads">0</div>
+            <p class="text-[11px] sm:text-xs text-slate-500 mt-1">Unique clients reached</p>
+          </div>
+
+          <!-- Card 2: Total Month Bill Amount -->
+          <div class="glass-panel rounded-2xl p-4 sm:p-5 border-l-4 border-l-emerald-600">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Total Billed</span>
+              <span class="text-[10px] font-bold font-mono text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">₹5.00 / Head</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-700" id="billableSummaryAmount">₹0.00</div>
+            <p class="text-[11px] sm:text-xs text-slate-500 mt-1">Flat rate, unlimited messages</p>
+          </div>
+
+          <!-- Card 3: Total Dispatches -->
+          <div class="glass-panel rounded-2xl p-4 sm:p-5 border-l-4 border-l-softblue-500">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Total Dispatches</span>
+              <span class="text-[10px] font-bold font-mono text-softblue-700 bg-softblue-50 px-2 py-0.5 rounded-full border border-softblue-200">Delivered</span>
+            </div>
+            <div class="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900" id="billableSummaryDispatches">0</div>
+            <p class="text-[11px] sm:text-xs text-slate-500 mt-1">Broadcasts + Follow-up msgs</p>
+          </div>
+
+          <!-- Card 4: Immutability & Ledger Protection -->
+          <div class="glass-panel rounded-2xl p-4 sm:p-5 border-l-4 border-l-violet-500">
+            <div class="flex items-center justify-between text-slate-500 mb-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Ledger Integrity</span>
+              <span class="text-[10px] font-bold font-mono text-violet-700 bg-violet-50 px-2 py-0.5 rounded-full border border-violet-200">Append-Only</span>
+            </div>
+            <div class="text-sm font-bold font-mono text-slate-800 mt-1 flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+              <span>Tamper-Proof</span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-slate-500 mt-1.5">Cannot drop on contact delete</p>
+          </div>
+        </div>
+
+        <!-- Filter Toolbar -->
+        <div class="glass-panel rounded-2xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <!-- Month Selector & Channel Filter -->
+          <div class="flex items-center gap-2 flex-wrap">
+            <div class="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1.5 rounded-xl border border-slate-200">
+              <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i>
+              <label for="billableMonthSelect" class="text-[11px] font-bold text-slate-600 uppercase">Month:</label>
+              <select id="billableMonthSelect" onchange="loadBillableData()" class="bg-transparent text-xs font-mono font-bold text-slate-800 focus:outline-none">
+                <!-- Injected via JS -->
+              </select>
+            </div>
+
+            <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
+              <button onclick="setBillableChannelFilter('ALL')" id="btnBillFilterALL" class="px-2.5 py-1 rounded-lg font-bold transition bg-white text-slate-900 shadow-xs">All</button>
+              <button onclick="setBillableChannelFilter('BROADCAST')" id="btnBillFilterBROADCAST" class="px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition">Broadcasts</button>
+              <button onclick="setBillableChannelFilter('FOLLOWUP')" id="btnBillFilterFOLLOWUP" class="px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition">Follow-ups</button>
+              <button onclick="setBillableChannelFilter('OUTBOUND_BOT')" id="btnBillFilterOUTBOUND_BOT" class="px-2.5 py-1 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition">Bot Outbound</button>
+            </div>
+          </div>
+
+          <!-- Search Input -->
+          <div class="relative w-full sm:w-64">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+            <input type="text" id="billableSearchInput" oninput="debounceFilterBillable()" placeholder="Search phone, name, city..." class="w-full bg-slate-50 border border-slate-200/90 rounded-xl pl-9 pr-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <!-- Ledger Table / List -->
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <div class="px-4 py-3 bg-slate-50/70 border-b border-slate-200/80 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="receipt" class="w-3.5 h-3.5 text-emerald-600"></i> Billed Client Engagements
+            </span>
+            <span class="text-[11px] text-slate-500 font-mono" id="billableTableCount">0 Records</span>
+          </div>
+
+          <!-- Desktop Table -->
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Client Contact</th>
+                  <th class="px-4">City / Region</th>
+                  <th class="px-4">Engagement Channels</th>
+                  <th class="px-4 text-center">Dispatches Sent</th>
+                  <th class="px-4 text-right">Monthly Fee</th>
+                  <th class="px-4">First Activity</th>
+                  <th class="px-4">Latest Message Snippet</th>
+                  <th class="px-4 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="billableLedgerBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile Cards -->
+          <div id="billableLedgerMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Pricing Transparency Explainer Banner -->
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border border-emerald-200 flex items-start gap-3 shadow-xs">
+          <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+            <i data-lucide="info" class="w-4 h-4"></i>
+          </div>
+          <div class="text-xs text-emerald-950 space-y-1">
+            <p class="font-bold text-emerald-900">How ₹5 / Head Pricing Works</p>
+            <p class="text-emerald-800 leading-relaxed">
+              You are only charged <strong>₹5 per unique engaged client per calendar month</strong>. Any lead contacted via broadcast marketing, automated 24h+ follow-up, or outbound outreach is billed once per month — subsequent follow-ups or messages to the same client within that month are completely free. Billed heads remain permanently recorded even if a lead is deleted from the contact book to ensure tamper-proof ledger reconciliation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VIEW 11: DRILLDOWN - QUOTA & CONSUMPTION LEDGER ==================== -->
+      <div id="viewHistoryQuota" class="hidden space-y-6">
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <button onclick="switchView('home')" class="px-3 py-1.5 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-xs font-semibold text-slate-700 shadow-sm flex items-center gap-1.5 transition">
+              <i data-lucide="arrow-left" class="w-4 h-4 text-slate-500"></i>
+              <span>Back to Pulse</span>
+            </button>
+            <div class="h-6 w-[1px] bg-slate-200"></div>
+            <div>
+              <h2 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                <i data-lucide="bar-chart-2" class="w-5 h-5 text-softblue-600"></i>
+                <span>Meta Cloud API Free Tier Ledger</span>
+                <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 font-mono font-bold">2,500 Pool</span>
+              </h2>
+              <p class="text-xs text-slate-500 font-medium">Real-time quota monitoring across all client enterprise brands. Zero Meta surcharge within limits.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="loadHistoryData('quota')" class="p-2 bg-white hover:bg-slate-50 border border-slate-200/80 rounded-xl text-slate-600 shadow-sm transition flex items-center gap-1.5 text-xs font-semibold">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              <span>Sync Ledger</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tenant Quota Cards Grid -->
+        <div id="historyQuotaTenantsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Dispatches Ledger Table / Cards -->
+        <div class="glass-panel rounded-2xl overflow-hidden shadow-sm">
+          <div class="px-4 py-3 bg-slate-50/60 border-b border-slate-200/80 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="database" class="w-3.5 h-3.5 text-softblue-600"></i> Outbound Message Dispatches (Last 50)
+            </span>
+            <span class="text-[11px] text-slate-500 font-mono">Real-time Meta WAMID Audit</span>
+          </div>
+          <!-- Desktop Table -->
+          <div class="hidden md:block overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead class="text-slate-600 font-mono bg-slate-50/80 border-b border-slate-200 text-[11px]">
+                <tr>
+                  <th class="py-3 px-4">Timestamp</th>
+                  <th class="px-4">Client / Brand</th>
+                  <th class="px-4">Recipient Phone</th>
+                  <th class="px-4">Direction / Type</th>
+                  <th class="px-4">Message Snippet</th>
+                  <th class="px-4 text-right">Meta WAMID</th>
+                </tr>
+              </thead>
+              <tbody id="historyQuotaLedgerBody" class="divide-y divide-slate-100 font-mono text-slate-800">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Mobile Touch Cards -->
+          <div id="historyQuotaLedgerMobile" class="md:hidden p-3 space-y-3">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ==================== 3. MOBILE BOTTOM NAVIGATION DOCK ==================== -->
+    <nav id="mobileBottomNav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 glass-dock z-50 flex items-center justify-around px-2">
+      <!-- Populated dynamically via JS -->
+    </nav>
+
+    <!-- MODAL: ADD CLIENT TENANT -->
+    <div id="modalAddTenant" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="glass-panel bg-white/95 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="building" class="w-4 h-4 text-wa-tealLight"></i> Register Client Business / WABA Phone
+          </h3>
+          <button onclick="closeModal('modalAddTenant')" class="text-slate-400 hover:text-slate-700 text-lg">&times;</button>
+        </div>
+        <form id="formAddTenant" onsubmit="handleAddTenant(event)" class="space-y-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Business ID (Slug)</label>
+            <input type="text" id="newTenantId" placeholder="e.g. dairy_hub" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-wa-tealLight">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Company / Business Name</label>
+            <input type="text" id="newTenantName" placeholder="e.g. Dairy Hub Automation" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-wa-tealLight">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Meta Phone Number ID</label>
+            <input type="text" id="newTenantPhoneId" placeholder="e.g. 1351625371363106" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-wa-tealLight">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Display Phone Number</label>
+            <input type="text" id="newTenantPhoneDisplay" placeholder="e.g. +91 98765 43210" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-wa-tealLight">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Monthly Message Pool Limit</label>
+            <input type="number" id="newTenantQuotaLimit" value="2500" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-wa-tealLight">
+          </div>
+          <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+            <button type="button" onclick="closeModal('modalAddTenant')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">Cancel</button>
+            <button type="submit" class="px-4 py-2 bg-wa-tealLight hover:bg-wa-teal text-white text-xs font-bold rounded-xl shadow-xs transition">Register Business Account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: ADD USER ACCOUNT -->
+    <div id="modalAddUser" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="glass-panel bg-white/95 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="user-plus" class="w-4 h-4 text-softblue-600"></i> Create User Account
+          </h3>
+          <button onclick="closeModal('modalAddUser')" class="text-slate-400 hover:text-slate-700 text-lg">&times;</button>
+        </div>
+        <form id="formAddUser" onsubmit="handleAddUser(event)" class="space-y-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Username</label>
+            <input type="text" id="newUsername" placeholder="e.g. cp_sales" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-softblue-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Password</label>
+            <input type="text" id="newUserPassword" placeholder="e.g. pass123" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-softblue-600">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Display Name</label>
+            <input type="text" id="newUserDisplayName" placeholder="e.g. Sales Executive" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-softblue-600">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Role</label>
+              <select id="newUserRole" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-softblue-600">
+                <option value="staff">Sales Staff</option>
+                <option value="admin">Client Admin</option>
+                <option value="super_admin">Super Admin</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Tenant ID</label>
+              <select id="newUserTenant" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-softblue-600">
+                <option value="cpsystem">CP System</option>
+                <option value="mystery">Mystery DeMysters</option>
+                <option value="system">System (Super)</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+            <button type="button" onclick="closeModal('modalAddUser')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">Cancel</button>
+            <button type="submit" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl shadow-xs transition">Create Account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: ADJUST TENANT QUOTA -->
+    <div id="modalEditQuota" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="glass-panel bg-white/95 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="sliders" class="w-4 h-4 text-amber-500"></i> Adjust Tenant Quota
+          </h3>
+          <button onclick="closeModal('modalEditQuota')" class="text-slate-400 hover:text-slate-700 text-lg">&times;</button>
+        </div>
+        <form id="formEditQuota" onsubmit="handleEditQuota(event)" class="space-y-3">
+          <input type="hidden" id="editQuotaTenantId">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Client Brand</label>
+            <div id="editQuotaTenantName" class="text-xs font-bold text-slate-900 p-2.5 bg-slate-50 rounded-xl border border-slate-200"></div>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Subscription Plan Tier</label>
+            <select id="editQuotaPlanTier" onchange="onPlanTierSelectChange(this.value)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-800 focus:outline-none focus:border-amber-500">
+              <option value="plan_3_5">Basic AI Copilot (₹3.50/head · 0 Outbound)</option>
+              <option value="plan_5">Starter Nudge (₹5/head · 1 Campaign/mo)</option>
+              <option value="plan_11">Active Growth (₹11/head · 2 Campaigns/mo)</option>
+              <option value="plan_28">Dominance / Omnipresence (₹28/head · 4 Campaigns/mo)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 uppercase mb-1">Monthly Message Quota Limit</label>
+            <input type="number" id="editQuotaLimitVal" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-mono text-slate-800 focus:outline-none focus:border-amber-500">
+          </div>
+          <div class="flex items-center gap-2 pt-1">
+            <input type="checkbox" id="editQuotaResetUsed" class="rounded text-wa-teal">
+            <label for="editQuotaResetUsed" class="text-xs text-slate-700">Reset used counter to 0</label>
+          </div>
+          <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+            <button type="button" onclick="closeModal('modalEditQuota')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">Cancel</button>
+            <button type="submit" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-xl shadow-xs transition">Save Plan & Quota</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: UPGRADE SUBSCRIPTION PLAN -->
+    <div id="modalUpgradePlan" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="glass-panel bg-white/95 rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+            <i data-lucide="zap" class="w-4 h-4 text-emerald-500"></i> Upgrade Growth Plan
+          </h3>
+          <button onclick="closeModal('modalUpgradePlan')" class="text-slate-400 hover:text-slate-700 text-lg">&times;</button>
+        </div>
+        <p class="text-xs text-slate-600">Select an upgraded tier to unlock additional monthly outbound campaigns and advanced lead retargeting.</p>
+        <div class="space-y-2.5">
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold text-slate-900">Plan 2: Starter Nudge</div>
+              <div class="text-[11px] text-slate-500">₹5.00 / head / mo · 1 Campaign / month</div>
+            </div>
+            <button onclick="requestPlanUpgrade('plan_5')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold rounded-lg transition">Choose</button>
+          </div>
+          <div class="p-3 bg-emerald-50/50 border border-emerald-300 rounded-xl flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
+                <span>Plan 3: Active Growth</span>
+                <span class="text-[9px] bg-emerald-200 text-emerald-800 px-1.5 py-0.2 rounded-full font-bold">POPULAR</span>
+              </div>
+              <div class="text-[11px] text-emerald-700">₹11.00 / head / mo · 2 Campaigns / month (24h + 72h)</div>
+            </div>
+            <button onclick="requestPlanUpgrade('plan_11')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold rounded-lg transition">Choose</button>
+          </div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold text-slate-900">Plan 4: Dominance / Omnipresence</div>
+              <div class="text-[11px] text-slate-500">₹28.00 / head / mo · 4 Campaigns / month (1 every week)</div>
+            </div>
+            <button onclick="requestPlanUpgrade('plan_28')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold rounded-lg transition">Choose</button>
+          </div>
+        </div>
+        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-[11px] text-amber-800">
+          💡 For instant plan activations or custom enterprise quotas, reach out to Super Admin at <strong>+91 90411 72159</strong>.
+        </div>
+        <div class="flex justify-end pt-2">
+          <button type="button" onclick="closeModal('modalUpgradePlan')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL: CONFIRM DELETE CHAT & CONTACT -->
+    <div id="modalConfirmDeleteChat" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="glass-panel bg-white/95 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto shadow-inner">
+          <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+        </div>
+        <div class="text-center space-y-2">
+          <h3 class="text-sm sm:text-base font-bold text-slate-900">Delete Chat & Contact?</h3>
+          <p class="text-xs text-slate-600 leading-relaxed" id="deleteChatModalText">
+            Do you really want to delete this chat? All messages and client records will be permanently wiped from the database.
+          </p>
+          <div class="p-2.5 bg-rose-50 border border-rose-200 rounded-xl text-[11px] font-mono text-rose-800 font-semibold text-center">
+            ⚠️ This action cannot be undone.
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+          <button type="button" onclick="closeModal('modalConfirmDeleteChat')" class="flex-1 py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition">
+            Cancel
+          </button>
+          <button type="button" id="btnConfirmDeleteChatAction" onclick="executeDeleteChat()" class="flex-1 py-2 px-3 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow-sm transition flex items-center justify-center gap-1.5">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span>Yes, Delete</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/app.js?v=1792056000"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Expose globally so user can trigger from profile/settings or button
+      window.installAndroidApp = async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      };
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "enterprise-waba-ai",
+  "version": "1.0.0",
+  "description": "Enterprise WhatsApp Cloud API AI Agent for Guri Enterprise Services",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test_simulate.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^18.0.6",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0"
+  }
+}

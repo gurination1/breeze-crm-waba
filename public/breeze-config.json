@@ -1,0 +1,14 @@
+{
+  "app_name": "Breeze CRM",
+  "app_url": "https://breeze-production-0f70.up.railway.app",
+  "fallback_urls": [
+    "https://breeze-production-0f70.up.railway.app"
+  ],
+  "version": "2.0.0",
+  "version_code": 3,
+  "min_version_code": 1,
+  "maintenance_mode": false,
+  "maintenance_message": "Breeze CRM is undergoing routine maintenance. Please check back shortly.",
+  "apk_download_url": "https://breeze-production-0f70.up.railway.app/breeze.apk",
+  "updated_at": "2026-10-15T19:00:00Z"
+}

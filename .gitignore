@@ -1,0 +1,6 @@
+node_modules/
+auth_info_guri/
+.env
+*.log
+data/audio/
+android_app/
