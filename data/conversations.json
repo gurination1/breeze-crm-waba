@@ -9,46 +9,6 @@
     "history": [
       {
         "role": "model",
-        "content": "Veere Delhi wale local parts te aluminium coils use karde ne, par asi pure SS 304 food-grade material te Emerson compressor dinde haan. Rate baare Karan Singh ji (+91 99157 30338) hi best discount denge ji.",
-        "timestamp": 1792328706443
-      },
-      {
-        "role": "user",
-        "content": "mai ni krni gal haley",
-        "timestamp": 1792328733313
-      },
-      {
-        "role": "model",
-        "content": "Koi gal nahi veere, bilkul fikar na karo! Jadon ji kare, tussi aaram naal soch ke das dena ji.",
-        "timestamp": 1792328739744
-      },
-      {
-        "role": "user",
-        "content": "loan?",
-        "timestamp": 1792328755477
-      },
-      {
-        "role": "model",
-        "content": "Haanji bhaji, PMEGP scheme te rural area vich 35% te urban vich 25% subsidy mil sakdi hai, aur loan di suvidha bhi ho jandi hai. Tussi eh dairy unit kehde pind ya shehar vich lagwana hai?",
-        "timestamp": 1792328760559
-      },
-      {
-        "role": "user",
-        "content": "pind",
-        "timestamp": 1792328773181
-      },
-      {
-        "role": "model",
-        "content": "Pind vich PMEGP scheme tahat 35% tak di subsidy mil sakdi hai bhaji.",
-        "timestamp": 1792328777273
-      },
-      {
-        "role": "user",
-        "content": "hi",
-        "timestamp": 1792330218835
-      },
-      {
-        "role": "model",
         "content": "Sat Sri Akal Gurdharam ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792330223432
       },
@@ -506,6 +466,46 @@
         "role": "model",
         "content": "Eh setup tussi kehde pind ya shehar vich lagwana hai ji?",
         "timestamp": 1792594335440
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1792595223290
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792595223304
+      },
+      {
+        "role": "user",
+        "content": "Ro bare puchna c",
+        "timestamp": 1792595235161
+      },
+      {
+        "role": "model",
+        "content": "Haanji, commercial aur industrial RO plants available han ji. Kis setup baare jankari chahidi hai?",
+        "timestamp": 1792595235172
+      },
+      {
+        "role": "user",
+        "content": "camper",
+        "timestamp": 1792595261852
+      },
+      {
+        "role": "model",
+        "content": "Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration system. Eh setup tussi kehde pind ya shehar vich shuru karna chahte ho ji?",
+        "timestamp": 1792595261868
+      },
+      {
+        "role": "user",
+        "content": "Eh business bare dsi mnu",
+        "timestamp": 1792595276901
+      },
+      {
+        "role": "model",
+        "content": "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke market, dukanan aur functions vich chilled water supply kiti jandi hai. Tussi eh setup kehde ilaqe vich start karna chahte ho ji?",
+        "timestamp": 1792595276909
       }
     ],
     "mode": "cp_system",
@@ -1260,18 +1260,48 @@
         "role": "model",
         "content": "1 Ton online chiller da official company rate ₹60,000 + 18% GST hai ji (Total ₹70,800).",
         "timestamp": 1792595089751
+      },
+      {
+        "role": "user",
+        "content": "Camper",
+        "timestamp": 1792595526008
+      },
+      {
+        "role": "model",
+        "content": "Haanji, camper business layi complete 1000 LPH commercial RO plant setup available hai ji, with SS storage tank aur complete filtration system.",
+        "timestamp": 1792595526012
+      },
+      {
+        "role": "user",
+        "content": "Business dsi",
+        "timestamp": 1792595528157
+      },
+      {
+        "role": "model",
+        "content": "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke market, dukanan aur functions vich chilled water supply kiti jandi hai.",
+        "timestamp": 1792595528171
+      },
+      {
+        "role": "user",
+        "content": "Theek hai, lagwana hai ji",
+        "timestamp": 1792595541632
+      },
+      {
+        "role": "model",
+        "content": "Haanji, eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?",
+        "timestamp": 1792595541635
       }
     ],
     "mode": "cp_system",
     "leadClosed": true,
     "leadInfo": {
-      "name": "<name or null>",
+      "name": "<null>",
       "requirement": "Chiller (2000L)",
-      "city": "<city or null>",
+      "city": "<null>",
       "status": "QUALIFIED",
       "notes": "Customer confused by previous bot message. Clarifying water source for 1000 LPH RO.",
-      "capacity": "1 Ton",
-      "category": "Chiller",
+      "capacity": "1000 LPH Camper",
+      "category": "RO",
       "water_tds": "1000",
       "containers": "20L Camper Cans",
       "qualified_at": "2026-10-21T15:04:37.203Z",
