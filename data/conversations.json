@@ -19,7 +19,7 @@
       },
       {
         "role": "model",
-        "content": "1000 LPH complete camper plant da official company rate \u20b93,70,000 + 18% GST hai ji.",
+        "content": "1000 LPH complete camper plant da official company rate ₹3,70,000 + 18% GST hai ji.",
         "timestamp": 1792595746307
       },
       {
@@ -29,7 +29,7 @@
       },
       {
         "role": "model",
-        "content": "Haanji, 1000 LPH commercial RO plant di complete photo te demo video link eh han ji:\n\ud83d\udcf8 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png\n\ud83c\udfa5 Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c\n\ud83c\udf10 Website Specs: https://www.cpsystem.in/cps/src/producs-p.php?id=2",
+        "content": "Haanji, 1000 LPH commercial RO plant di complete photo te demo video link eh han ji:\n📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png\n🎥 Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c\n🌐 Website Specs: https://www.cpsystem.in/cps/src/producs-p.php?id=2",
         "timestamp": 1792595925516
       },
       {
@@ -39,7 +39,7 @@
       },
       {
         "role": "model",
-        "content": "Chiller di rates capacity vich alag-alag han ji: * **1 Ton Online Chiller:** \u20b960,000 + 18% GST (Total \u20b970,800)\n* **1.5 Ton Online Chiller:** \u20b970,000 + 18% GST (Total \u20b982,600)\n* **2 Ton Online Chiller:** \u20b980,000 + 18% GST (Total \u20b994,400)\n* **2.5 Ton Online Chiller:** \u20b995,000 + 18% GST (Total \u20b91,12,100)\n* **3.5 Ton Circulation Chiller:** \u20b91,35,000 + 18% GST (Total \u20b91,59,300)\n* **5 Ton Water Chiller:** \u20b92,45,000 + 18% GST (Total \u20b92,89,100)",
+        "content": "Chiller di rates capacity vich alag-alag han ji: * **1 Ton Online Chiller:** ₹60,000 + 18% GST (Total ₹70,800)\n* **1.5 Ton Online Chiller:** ₹70,000 + 18% GST (Total ₹82,600)\n* **2 Ton Online Chiller:** ₹80,000 + 18% GST (Total ₹94,400)\n* **2.5 Ton Online Chiller:** ₹95,000 + 18% GST (Total ₹1,12,100)\n* **3.5 Ton Circulation Chiller:** ₹1,35,000 + 18% GST (Total ₹1,59,300)\n* **5 Ton Water Chiller:** ₹2,45,000 + 18% GST (Total ₹2,89,100)",
         "timestamp": 1792595988043
       },
       {
@@ -59,7 +59,7 @@
       },
       {
         "role": "model",
-        "content": "1 Ton online chiller da official company rate \u20b960,000 + 18% GST hai, total \u20b970,800.",
+        "content": "1 Ton online chiller da official company rate ₹60,000 + 18% GST hai, total ₹70,800.",
         "timestamp": 1792596337195
       },
       {
@@ -81,6 +81,136 @@
         "role": "model",
         "content": "Commercial **1000 LPH RO plant** da rate paani de TDS (Total Dissolved Solids) aur setup requirements te depend karda hai ji. Exact customized quotation layi **Support Coordinator Karan Singh ji (+91 99157 30338)** direct rabta karenge ji.",
         "timestamp": 1792596348346
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1792596474118
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792596474120
+      },
+      {
+        "role": "user",
+        "content": "Ro bare puchna c",
+        "timestamp": 1792596484568
+      },
+      {
+        "role": "model",
+        "content": "Haanji, commercial aur industrial RO plants available han ji. Kis setup baare jankari chahidi hai?",
+        "timestamp": 1792596484572
+      },
+      {
+        "role": "user",
+        "content": "camper",
+        "timestamp": 1792596497129
+      },
+      {
+        "role": "model",
+        "content": "Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration system.",
+        "timestamp": 1792596497143
+      },
+      {
+        "role": "user",
+        "content": "Eh business bare dsi mnu",
+        "timestamp": 1792596510914
+      },
+      {
+        "role": "model",
+        "content": "Camper water business vich **1000 LPH commercial RO plant** lagda hai ji, jide naal **20L chilled water camper cans** pack karke **markets, dukanan, functions, aur events** vich supply kiti jandi hai. **Profit margin** bohot zyada ho sakdi hai ji. 📸 **Photo:** [1000 LPH RO Plant](https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png)\n🎥 **Demo Video:** [Camper RO Setup](https://www.youtube.com/watch?v=ssW53Nbj1_c)\n🌐 **Website:** [RO Plant Details](https://www.cpsystem.in/cps/src/producs-p.php?id=2)",
+        "timestamp": 1792596510921
+      },
+      {
+        "role": "user",
+        "content": "camper ki rate tnu",
+        "timestamp": 1792596523989
+      },
+      {
+        "role": "model",
+        "content": "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji.",
+        "timestamp": 1792596524002
+      },
+      {
+        "role": "user",
+        "content": "kede kede camper aa?",
+        "timestamp": 1792596564314
+      },
+      {
+        "role": "model",
+        "content": "CP System Sri Muktsar Sahib, Punjab vich hai ji, aur hum Punjab ke mukhya shaharan (Bathinda, Ludhiana, Amritsar, etc.) te service aur installation provide karda haan ji.",
+        "timestamp": 1792596564326
+      },
+      {
+        "role": "user",
+        "content": "Eh business bare dsi mnu",
+        "timestamp": 1792596833423
+      },
+      {
+        "role": "model",
+        "content": "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L chilled water camper cans pack karke market, dukanan aur functions vich chilled water supply kiti jandi hai.",
+        "timestamp": 1792596833427
+      },
+      {
+        "role": "user",
+        "content": "Ehdi photo dikhao",
+        "timestamp": 1792596842973
+      },
+      {
+        "role": "model",
+        "content": "Haanji, 1000 LPH commercial RO plant di complete photo te demo video link eh han ji:\n📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png\n🎥 Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c\n🌐 Website Specs: https://www.cpsystem.in/cps/src/producs-p.php?id=2",
+        "timestamp": 1792596842985
+      },
+      {
+        "role": "user",
+        "content": "Eh business bare dsi mnu",
+        "timestamp": 1792596955480
+      },
+      {
+        "role": "model",
+        "content": "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L chilled water camper cans pack karke market, dukanan aur functions vich chilled water supply kiti jandi hai.",
+        "timestamp": 1792596955484
+      },
+      {
+        "role": "user",
+        "content": "chiller da rate dss",
+        "timestamp": 1792596956395
+      },
+      {
+        "role": "model",
+        "content": "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling setup layi dekh rahe ho ji?",
+        "timestamp": 1792596956404
+      },
+      {
+        "role": "user",
+        "content": "camper ki rate tnu",
+        "timestamp": 1792596962061
+      },
+      {
+        "role": "model",
+        "content": "Haanji, **camper business layi complete setup** (1000 LPH commercial RO plant + 200L SS tank + chilled water supply system) **customized rate** te available hai ji. **Rate depend karda hai:** ✔ Paani de **TDS** (Total Dissolved Solids) ✔ Setup ki **location** (pind ya shehar) ✔ **Power connection** (single-phase ya 3-phase) ✔ **Transport cost** (site se mukabala) **Exact quotation layi turant Support Coordinator Karan Singh ji (+91 99157 30338) aapse connect kar denge ji.",
+        "timestamp": 1792596962070
+      },
+      {
+        "role": "user",
+        "content": "1 ton chiller kinne da",
+        "timestamp": 1792596967547
+      },
+      {
+        "role": "model",
+        "content": "1 Ton **online chiller** da official company rate **₹60,000 + 18% GST** hai ji (Total ₹70,800).",
+        "timestamp": 1792596967559
+      },
+      {
+        "role": "user",
+        "content": "chillar di photo dikhao",
+        "timestamp": 1792596972736
+      },
+      {
+        "role": "model",
+        "content": "Haanji, **CP System water chiller** di photo te working video link eh han ji: 📸 **Photo:** https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png\n🎥 **Working Video:** https://www.youtube.com/watch?v=NmKCLdSlzP0\n🌐 **Website Models:** https://www.cpsystem.in/cps/src/producs-p.php?id=1",
+        "timestamp": 1792596972746
       }
     ],
     "mode": "cp_system",
@@ -90,8 +220,8 @@
       "requirement": "RO (3000 LPH)",
       "city": "<null>",
       "status": "QUALIFIED",
-      "capacity": "1000 LPH",
-      "category": "RO",
+      "capacity": "<null>",
+      "category": "Chiller",
       "qualified_at": "2026-10-18T13:03:30.765Z",
       "was_qualified": true,
       "general_alert_dispatched": true
@@ -106,7 +236,7 @@
       },
       {
         "role": "model",
-        "content": "Namaste! \ud83d\ude4f *CP SYSTEM* (Muktsar) mein swagat hai.\n\nWhatsApp par aapka naam *Rohit Sharma* dikh raha hai \u2014 kya yeh sahi hai?\n\n1\ufe0f\u20e3 Haan, sahi hai\n2\ufe0f\u20e3 Nahi, doosra naam hai\n\n_(1 ya 2 reply karein, ya apna shubh naam likhein)_",
+        "content": "Namaste! 🙏 *CP SYSTEM* (Muktsar) mein swagat hai.\n\nWhatsApp par aapka naam *Rohit Sharma* dikh raha hai — kya yeh sahi hai?\n\n1️⃣ Haan, sahi hai\n2️⃣ Nahi, doosra naam hai\n\n_(1 ya 2 reply karein, ya apna shubh naam likhein)_",
         "timestamp": 1792052613730
       }
     ],
@@ -123,7 +253,7 @@
       },
       {
         "role": "model",
-        "content": "Namaste Harpreet ji! \ud83d\ude4f *CP SYSTEM Support*.\n\nAapki complaint priority par note kar li gayi hai.\nMachine mein exactly kya problem aa rahi hai aur aapka plant kis city mein hai?\n\nHamare Head Coordinator *Karan Singh* ji (+91 97792 20581) aur technical team aapse turant connect karegi.",
+        "content": "Namaste Harpreet ji! 🙏 *CP SYSTEM Support*.\n\nAapki complaint priority par note kar li gayi hai.\nMachine mein exactly kya problem aa rahi hai aur aapka plant kis city mein hai?\n\nHamare Head Coordinator *Karan Singh* ji (+91 97792 20581) aur technical team aapse turant connect karegi.",
         "timestamp": 1792052614202
       }
     ],
@@ -140,7 +270,7 @@
       },
       {
         "role": "model",
-        "content": "Namaste Sukhwinder ji! \ud83d\ude4f *CP SYSTEM Service Team*.\n\nAapko Chiller ya RO Plant ki service / repair karwani hai? Aur machine kis city mein installed hai?\n\nHead Coordinator *Karan Singh* ji (+91 97792 20581) aapse connect karke technical visit schedule karenge.",
+        "content": "Namaste Sukhwinder ji! 🙏 *CP SYSTEM Service Team*.\n\nAapko Chiller ya RO Plant ki service / repair karwani hai? Aur machine kis city mein installed hai?\n\nHead Coordinator *Karan Singh* ji (+91 97792 20581) aapse connect karke technical visit schedule karenge.",
         "timestamp": 1792052614516
       }
     ],
@@ -157,7 +287,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet Singh ji! \ud83d\ude4f CP SYSTEM Muktsar vich tuhada swagat hai. Daso bhaji, RO plant ya milk chiller, kis project baare jankari chahidi hai?",
+        "content": "Sat Sri Akal Harpreet Singh ji! 🙏 CP SYSTEM Muktsar vich tuhada swagat hai. Daso bhaji, RO plant ya milk chiller, kis project baare jankari chahidi hai?",
         "timestamp": 1792326054257
       },
       {
@@ -167,7 +297,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet Singh ji! 1000 LPH camper plant da kharcha lagbhag \u20b93.70 lakh tak aunda hai. Tuhade pind vich paani borewell da hai ya nehar da ji?",
+        "content": "Sat Sri Akal Harpreet Singh ji! 1000 LPH camper plant da kharcha lagbhag ₹3.70 lakh tak aunda hai. Tuhade pind vich paani borewell da hai ya nehar da ji?",
         "timestamp": 1792326057801
       },
       {
@@ -197,7 +327,7 @@
       },
       {
         "role": "model",
-        "content": "Bahut vadiya Harpreet Singh ji! Booking final karan layi tussi \u20b95,000-\u20b910,000 da token amount Head Coordinator Karan Singh ji (+91 99157 30338) nu bhej ke apna slot book karwa lo.",
+        "content": "Bahut vadiya Harpreet Singh ji! Booking final karan layi tussi ₹5,000-₹10,000 da token amount Head Coordinator Karan Singh ji (+91 99157 30338) nu bhej ke apna slot book karwa lo.",
         "timestamp": 1792326064065
       }
     ],
@@ -236,7 +366,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Kuldeep Singh ji! \ud83d\ude4f\n\n2000 liter dudh de layi, 3.5 ton ton 5 ton tak da chiller lag sakda hai.\n\nTuhada dudh kinne time vich chill karna hunda hai ji, te kithon da temperature kithe tak le ke jaana hunda hai?",
+        "content": "Sat Sri Akal Kuldeep Singh ji! 🙏\n\n2000 liter dudh de layi, 3.5 ton ton 5 ton tak da chiller lag sakda hai.\n\nTuhada dudh kinne time vich chill karna hunda hai ji, te kithon da temperature kithe tak le ke jaana hunda hai?",
         "timestamp": 1792086314489
       }
     ],
@@ -253,7 +383,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Rajesh Bhaji! \ud83d\ude4f Ludhiana toh call karke bohot vadiya kita. Garmi vich plastic molding machines da overheat hona common problem hai, te chiller hi isda best solution hai.\n\nCP SYSTEM de chillers specially North Indian summers layi bane ne, Emerson Copeland compressor naal 50 degree garmi vich vi bina ruke chalde ne. Is naal tuhadi production vi vadhegi.\n\nBhaji, tuhadi molding machine kitne KW di hai, ya kitne load te chaldi hai? Us hisaab naal main exact tonnage confirm karwa dinda haan.",
+        "content": "Sat Sri Akal Rajesh Bhaji! 🙏 Ludhiana toh call karke bohot vadiya kita. Garmi vich plastic molding machines da overheat hona common problem hai, te chiller hi isda best solution hai.\n\nCP SYSTEM de chillers specially North Indian summers layi bane ne, Emerson Copeland compressor naal 50 degree garmi vich vi bina ruke chalde ne. Is naal tuhadi production vi vadhegi.\n\nBhaji, tuhadi molding machine kitne KW di hai, ya kitne load te chaldi hai? Us hisaab naal main exact tonnage confirm karwa dinda haan.",
         "timestamp": 1792086320502
       }
     ],
@@ -310,7 +440,7 @@
       },
       {
         "role": "model",
-        "content": "Haanji bhaji, Sat Sri Akal! Village RO camper plant ka complete setup lagbhag \u20b93.70 Lakh mein ready ho jata hai. Aapko kitne LPH wala plant chahiye?",
+        "content": "Haanji bhaji, Sat Sri Akal! Village RO camper plant ka complete setup lagbhag ₹3.70 Lakh mein ready ho jata hai. Aapko kitne LPH wala plant chahiye?",
         "timestamp": 1792087226563
       }
     ],
@@ -463,7 +593,7 @@
       },
       {
         "role": "model",
-        "content": "\u0939\u093e\u0901\u091c\u0940 \u092d\u093e\u0908, RO \u092a\u094d\u0932\u093e\u0902\u091f \u0915\u0940 \u0915\u0940\u092e\u0924 \u0909\u0938\u0915\u0940 \u0915\u094d\u0937\u092e\u0924\u093e \u092a\u0930 \u0928\u093f\u0930\u094d\u092d\u0930 \u0915\u0930\u0924\u0940 \u0939\u0948\u0964 \u0906\u092a\u0915\u094b \u0915\u093f\u0924\u0928\u0947 LPH \u0915\u093e \u092a\u094d\u0932\u093e\u0902\u091f \u091a\u093e\u0939\u093f\u090f?",
+        "content": "हाँजी भाई, RO प्लांट की कीमत उसकी क्षमता पर निर्भर करती है। आपको कितने LPH का प्लांट चाहिए?",
         "timestamp": 1792088541228
       }
     ],
@@ -480,7 +610,7 @@
       },
       {
         "role": "model",
-        "content": "\u0928\u092e\u0938\u094d\u0924\u0947 \u092d\u093e\u0908, \u0921\u0947\u092f\u0930\u0940 \u0915\u0947 \u0932\u093f\u090f \u091a\u093f\u0932\u094d\u0932\u0930 \u091a\u093e\u0939\u093f\u090f? \u0915\u093f\u0924\u0928\u0947 \u0932\u0940\u091f\u0930 \u0926\u0942\u0927 \u0920\u0902\u0921\u093e \u0915\u0930\u0928\u093e \u0939\u094b\u0924\u093e \u0939\u0948 \u0930\u094b\u091c\u093c?",
+        "content": "नमस्ते भाई, डेयरी के लिए चिल्लर चाहिए? कितने लीटर दूध ठंडा करना होता है रोज़?",
         "timestamp": 1792088543322
       }
     ],
@@ -507,7 +637,7 @@
       },
       {
         "role": "model",
-        "content": "Haanji Harpreet bhaji, gaon mein camper supply ke liye 1000 LPH ka complete plant lagbhag \u20b93.70 Lakh mein ready ho jata hai. Setup kis pind mein lagana hai?",
+        "content": "Haanji Harpreet bhaji, gaon mein camper supply ke liye 1000 LPH ka complete plant lagbhag ₹3.70 Lakh mein ready ho jata hai. Setup kis pind mein lagana hai?",
         "timestamp": 1792088608905
       }
     ],
@@ -532,7 +662,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal bhaji! \ud83d\ude4f Batayein, RO plant ya chiller setup baare jaankari leni hai?",
+        "content": "Sat Sri Akal bhaji! 🙏 Batayein, RO plant ya chiller setup baare jaankari leni hai?",
         "timestamp": 1792120762142
       }
     ],
@@ -608,7 +738,7 @@
       },
       {
         "role": "model",
-        "content": "Haanji, **1000 LPH commercial camper RO plant** di photo, demo video aur specs link eh han ji: \ud83d\udcf8 **Photo:** [https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png](https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png) \ud83c\udfa5 **Demo Video:** [https://www.youtube.com/watch?v=ssW53Nbj1_c](https://www.youtube.com/watch?v=ssW53Nbj1_c) \ud83c\udf10 **Website Specs:** [https://www.cpsystem.in/cps/src/producs-p.php?id=2](https://www.cpsystem.in/cps/src/pro",
+        "content": "Haanji, **1000 LPH commercial camper RO plant** di photo, demo video aur specs link eh han ji: 📸 **Photo:** [https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png](https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png) 🎥 **Demo Video:** [https://www.youtube.com/watch?v=ssW53Nbj1_c](https://www.youtube.com/watch?v=ssW53Nbj1_c) 🌐 **Website Specs:** [https://www.cpsystem.in/cps/src/producs-p.php?id=2](https://www.cpsystem.in/cps/src/pro",
         "timestamp": 1792595084918
       },
       {
@@ -618,7 +748,7 @@
       },
       {
         "role": "model",
-        "content": "1 Ton online chiller da official company rate \u20b960,000 + 18% GST hai ji (Total \u20b970,800).",
+        "content": "1 Ton online chiller da official company rate ₹60,000 + 18% GST hai ji (Total ₹70,800).",
         "timestamp": 1792595089751
       },
       {
@@ -668,7 +798,7 @@
       "was_qualified": true,
       "subsidy_status": "Wants PMEGP Subsidy (No prior government loan/subsidy)",
       "last_digested_at": "2026-10-16T17:39:18.986Z",
-      "conversation_digest": "- **CLIENT & LOCATION**: Name masked (\ud83e\udd11); Location: Muktsar.\n- **SPECS & CAPACITY**: 1000 LPH RO Plant; Camper setup for business use.\n- **COMMERCIALS & PRICING**: Quoted approx. \u20b93.70 Lakh for complete camper plant. Mentioned potential PMEGP subsidy range \u20b92.5L\u2013\u20b93.5L.\n- **COMMITMENTS & CONTACTS**: None explicit.\n- **OBJECTIONS & PREFERENCES**: Customer initially asked about rates before details. Staff noted technical issue with QR code on current account hindering payment.\n- **AGREED NEXT STEPS**: Customer asked \"Pohnch gya?\" (Did it arrive/reach?), implying pending confirmation of payment processing or delivery status. Staff to verify QR/payment issue.",
+      "conversation_digest": "- **CLIENT & LOCATION**: Name masked (🤑); Location: Muktsar.\n- **SPECS & CAPACITY**: 1000 LPH RO Plant; Camper setup for business use.\n- **COMMERCIALS & PRICING**: Quoted approx. ₹3.70 Lakh for complete camper plant. Mentioned potential PMEGP subsidy range ₹2.5L–₹3.5L.\n- **COMMITMENTS & CONTACTS**: None explicit.\n- **OBJECTIONS & PREFERENCES**: Customer initially asked about rates before details. Staff noted technical issue with QR code on current account hindering payment.\n- **AGREED NEXT STEPS**: Customer asked \"Pohnch gya?\" (Did it arrive/reach?), implying pending confirmation of payment processing or delivery status. Staff to verify QR/payment issue.",
       "digested_message_count": 25
     }
   },
@@ -715,7 +845,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Gurpreet bhaji! \ud83d\ude4f Main Karan Singh ji di technical team chon haan. Tussi daso, RO plant ya chiller setup baare jaankari leni hai?",
+        "content": "Sat Sri Akal Gurpreet bhaji! 🙏 Main Karan Singh ji di technical team chon haan. Tussi daso, RO plant ya chiller setup baare jaankari leni hai?",
         "timestamp": 1792166730708
       }
     ],
@@ -766,7 +896,7 @@
       },
       {
         "role": "model",
-        "content": "Veere, pure SS304 te original Copeland compressor lagda hai. PMEGP sarkari subsidy ch \u20b92.5L-\u20b93.5L bach jande ne, ki subsidy details share karan?",
+        "content": "Veere, pure SS304 te original Copeland compressor lagda hai. PMEGP sarkari subsidy ch ₹2.5L-₹3.5L bach jande ne, ki subsidy details share karan?",
         "timestamp": 1792166794982
       }
     ],
@@ -813,7 +943,7 @@
       },
       {
         "role": "model",
-        "content": "Ji bhaji, 2000 LPH factory RO plant rough estimate \u20b95-6 Lakh ke aas paas hoga. Exact structure aur rate Karan Singh ji (+91 97792 20581) se confirm karwa loon?",
+        "content": "Ji bhaji, 2000 LPH factory RO plant rough estimate ₹5-6 Lakh ke aas paas hoga. Exact structure aur rate Karan Singh ji (+91 97792 20581) se confirm karwa loon?",
         "timestamp": 1792168582601
       },
       {
@@ -823,7 +953,7 @@
       },
       {
         "role": "model",
-        "content": "Ji bhaji, tension mat lo. PMEGP sarkari subsidy mein \u20b92.5L-\u20b93.5L tak bachat ho jati hai. Kya subsidy details share karu?",
+        "content": "Ji bhaji, tension mat lo. PMEGP sarkari subsidy mein ₹2.5L-₹3.5L tak bachat ho jati hai. Kya subsidy details share karu?",
         "timestamp": 1792168621279
       },
       {
@@ -843,7 +973,7 @@
       },
       {
         "role": "model",
-        "content": "Haanji bhaji, 2000 LPH factory RO setup pure SS304 frame te heavy pumps de naal lagbhag \u20b94.5L-\u20b95.2L vich ready hunda hai. Tuhade wahan water TDS kinna hai?",
+        "content": "Haanji bhaji, 2000 LPH factory RO setup pure SS304 frame te heavy pumps de naal lagbhag ₹4.5L-₹5.2L vich ready hunda hai. Tuhade wahan water TDS kinna hai?",
         "timestamp": 1792205596172
       },
       {
@@ -853,7 +983,7 @@
       },
       {
         "role": "model",
-        "content": "Haanji bhaji, 2000 LPH factory RO plant da structure pure SS304 frame naal heavy pumps te membranes de naal lagbhag \u20b94.5L-\u20b95.2L tak ready hunda hai. Tuhade wahan paani da TDS kinna hai?",
+        "content": "Haanji bhaji, 2000 LPH factory RO plant da structure pure SS304 frame naal heavy pumps te membranes de naal lagbhag ₹4.5L-₹5.2L tak ready hunda hai. Tuhade wahan paani da TDS kinna hai?",
         "timestamp": 1792207834003
       }
     ],
@@ -881,7 +1011,7 @@
       },
       {
         "role": "model",
-        "content": "[Customer Name: [object Object],[object Object],[object Object], Phone: 917009091075]: Hello! Main Guri hoon, technical AI assistant from Gurination tech team.\n\nAapko meri kaun si baat samajh nahi aa rahi, please bataiye? Main dobara explain karta hoon. \ud83d\ude0a",
+        "content": "[Customer Name: [object Object],[object Object],[object Object], Phone: 917009091075]: Hello! Main Guri hoon, technical AI assistant from Gurination tech team.\n\nAapko meri kaun si baat samajh nahi aa rahi, please bataiye? Main dobara explain karta hoon. 😊",
         "timestamp": 1792205239077
       }
     ],
@@ -928,7 +1058,7 @@
       },
       {
         "role": "model",
-        "content": "Haanji Gold Prince ji, shehar mein PMEGP subsidy 25% tak mil jaandi hai, jismein \u20b91.5L-\u20b92L tak maaf ho jande ne. Tussi pehla koi subsidy layi hai?",
+        "content": "Haanji Gold Prince ji, shehar mein PMEGP subsidy 25% tak mil jaandi hai, jismein ₹1.5L-₹2L tak maaf ho jande ne. Tussi pehla koi subsidy layi hai?",
         "timestamp": 1792233263555
       },
       {
@@ -989,7 +1119,7 @@
       "water_source": "Canal Water (Nehar)",
       "subsidy_status": "Wants PMEGP Subsidy (No prior government loan/subsidy)",
       "last_digested_at": "2026-10-17T10:34:59.916Z",
-      "conversation_digest": "- CLIENT & LOCATION: Gold Prince, City. Business type: Bisleri-type water purification factory.\n- SPECS & CAPACITY: 1000 LPH RO plant for 20L campers and potentially small bottles (250ml/500ml). Raw water source: Canal. Raw water TDS: 500.\n- COMMERCIALS & PRICING: 1000 LPH RO camper plant quoted at approx. \u20b93.70 Lakh (complete ready).\n- COMMITMENTS & CONTACTS: None yet.\n- OBJECTIONS & PREFERENCES: Wants to open a Bisleri-type purification factory.\n- AGREED NEXT STEPS: Clarify if small bottles (250ml/500ml) are also required in addition to 20L campers.",
+      "conversation_digest": "- CLIENT & LOCATION: Gold Prince, City. Business type: Bisleri-type water purification factory.\n- SPECS & CAPACITY: 1000 LPH RO plant for 20L campers and potentially small bottles (250ml/500ml). Raw water source: Canal. Raw water TDS: 500.\n- COMMERCIALS & PRICING: 1000 LPH RO camper plant quoted at approx. ₹3.70 Lakh (complete ready).\n- COMMITMENTS & CONTACTS: None yet.\n- OBJECTIONS & PREFERENCES: Wants to open a Bisleri-type purification factory.\n- AGREED NEXT STEPS: Clarify if small bottles (250ml/500ml) are also required in addition to 20L campers.",
       "digested_message_count": 16
     }
   },
@@ -1185,7 +1315,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Tuhada shubh naam ki hai ji, te tuhanu kis machine ya project vich help chahidi hai?",
+        "content": "Sat Sri Akal ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Tuhada shubh naam ki hai ji, te tuhanu kis machine ya project vich help chahidi hai?",
         "timestamp": 1792241821007
       },
       {
@@ -1195,7 +1325,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Jaswant ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Muktsar vich paani da source borewell hai ya canal (nehar) water?",
+        "content": "Sat Sri Akal Jaswant ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Muktsar vich paani da source borewell hai ya canal (nehar) water?",
         "timestamp": 1792241824263
       }
     ],
@@ -1278,7 +1408,7 @@
       },
       {
         "role": "model",
-        "content": "Ji bhaji, 1200 LPH double RO plant layi lagbhag \u20b94.5L to \u20b95.2L da kharcha aayega. Tuhade wahan single phase supply hai ya three phase?",
+        "content": "Ji bhaji, 1200 LPH double RO plant layi lagbhag ₹4.5L to ₹5.2L da kharcha aayega. Tuhade wahan single phase supply hai ya three phase?",
         "timestamp": 1792240150777
       },
       {
@@ -1288,7 +1418,7 @@
       },
       {
         "role": "model",
-        "content": "Ji bhaji, tension na lo. Pind setup te PMEGP sarkari scheme vich 35% subsidy (lagbhag \u20b91.5L-\u20b92L maaf) ho jandi hai. Tuhade wahan shed ready hai ya banwana hai?",
+        "content": "Ji bhaji, tension na lo. Pind setup te PMEGP sarkari scheme vich 35% subsidy (lagbhag ₹1.5L-₹2L maaf) ho jandi hai. Tuhade wahan shed ready hai ya banwana hai?",
         "timestamp": 1792240179878
       },
       {
@@ -1348,7 +1478,7 @@
       },
       {
         "role": "model",
-        "content": "Ji bhaji, 1200 LPH double RO plant da complete setup lagbhag \u20b94.5L to \u20b95.2L da aayega. Tuhadi timeline ki hai?",
+        "content": "Ji bhaji, 1200 LPH double RO plant da complete setup lagbhag ₹4.5L to ₹5.2L da aayega. Tuhadi timeline ki hai?",
         "timestamp": 1792240365056
       },
       {
@@ -1528,7 +1658,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Suman ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Tuhada shubh naam ki hai ji, te tuhanu kis machine ya project vich help chahidi hai?",
+        "content": "Sat Sri Akal Suman ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Tuhada shubh naam ki hai ji, te tuhanu kis machine ya project vich help chahidi hai?",
         "timestamp": 1792293904428
       },
       {
@@ -1718,7 +1848,7 @@
       },
       {
         "role": "model",
-        "content": "Suman ji, Lubi di winding CRI de \u092e\u0941\u0915\u093e\u092c\u0932\u0947 thodi halki hundi hai, jis karke high TDS te load te performance ghat sakdi hai.",
+        "content": "Suman ji, Lubi di winding CRI de मुकाबले thodi halki hundi hai, jis karke high TDS te load te performance ghat sakdi hai.",
         "timestamp": 1792295472636
       },
       {
@@ -1790,7 +1920,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Gurdharam ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Batayein bhaji, aaj kis machine ya setup baare gal karni hai?",
+        "content": "Sat Sri Akal Gurdharam ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Batayein bhaji, aaj kis machine ya setup baare gal karni hai?",
         "timestamp": 1792316866476
       },
       {
@@ -1847,7 +1977,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Daso bhaji, installation kis gaon ya sheher vich karni hai?",
+        "content": "Sat Sri Akal ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Daso bhaji, installation kis gaon ya sheher vich karni hai?",
         "timestamp": 1792316884295
       }
     ],
@@ -2363,7 +2493,7 @@
       },
       {
         "role": "model",
-        "content": "PMEGP (Prime Minister's Employment Generation Programme) scheme tahat manufacturing/service unit lagan te general category nu 15% to 25% (rural area vich 35%) te reserved/special category (SC, ST, OBC, women, etc.) nu 25% to 35% tak di subsidy mildi hai. Isda process online KVIC portal (kvponline.gov.in) thoo a \u0986\u09ac\u09c7\u09a6\u09a8 karne da hunda hai ji.",
+        "content": "PMEGP (Prime Minister's Employment Generation Programme) scheme tahat manufacturing/service unit lagan te general category nu 15% to 25% (rural area vich 35%) te reserved/special category (SC, ST, OBC, women, etc.) nu 25% to 35% tak di subsidy mildi hai. Isda process online KVIC portal (kvponline.gov.in) thoo a আবেদন karne da hunda hai ji.",
         "timestamp": 1792590267358
       }
     ],
@@ -2470,7 +2600,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Raman ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Bhaji daily kina milk cool karna hunda hai?",
+        "content": "Sat Sri Akal Raman ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Bhaji daily kina milk cool karna hunda hai?",
         "timestamp": 1792492154119
       },
       {
@@ -2480,7 +2610,7 @@
       },
       {
         "role": "model",
-        "content": "CP System online chillers \u20b960,000 (1 Ton) to \u20b92,45,000 (5.5 Ton SS) tak aunde ne bhaji. Tuhada daily kina milk cool karna hunda hai?",
+        "content": "CP System online chillers ₹60,000 (1 Ton) to ₹2,45,000 (5.5 Ton SS) tak aunde ne bhaji. Tuhada daily kina milk cool karna hunda hai?",
         "timestamp": 1792492155691
       },
       {
@@ -2490,7 +2620,7 @@
       },
       {
         "role": "model",
-        "content": "2 Ton online chiller da official company rate \u20b980,000 + 18% GST hai bhaji. Ki setup te single phase bijli hai ya 3-phase?",
+        "content": "2 Ton online chiller da official company rate ₹80,000 + 18% GST hai bhaji. Ki setup te single phase bijli hai ya 3-phase?",
         "timestamp": 1792492158744
       },
       {
@@ -2500,7 +2630,7 @@
       },
       {
         "role": "model",
-        "content": "5.5 Ton heavy SS body chiller da rate \u20b92,45,000 + 18% GST hai bhaji. Eh setup dairy milk cooling layi chahida hai?",
+        "content": "5.5 Ton heavy SS body chiller da rate ₹2,45,000 + 18% GST hai bhaji. Eh setup dairy milk cooling layi chahida hai?",
         "timestamp": 1792492160835
       },
       {
@@ -2510,7 +2640,7 @@
       },
       {
         "role": "model",
-        "content": "1.5 Ton online chiller da official company rate \u20b970,000 + 18% GST hai bhaji. Eh unit single phase bijli te chalana hai ji?",
+        "content": "1.5 Ton online chiller da official company rate ₹70,000 + 18% GST hai bhaji. Eh unit single phase bijli te chalana hai ji?",
         "timestamp": 1792492162449
       }
     ],
@@ -2534,7 +2664,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792319599904
       }
     ],
@@ -2551,7 +2681,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Jaswant ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Jaswant ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792319600542
       }
     ],
@@ -2722,7 +2852,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Harpreet ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792320280814
       }
     ],
@@ -2739,7 +2869,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Harpreet ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792320281768
       }
     ],
@@ -2756,7 +2886,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Harpreet ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792320282825
       }
     ],
@@ -2773,7 +2903,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Harpreet ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792320283610
       }
     ],
@@ -2790,7 +2920,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Harpreet ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792320284238
       }
     ],
@@ -2807,7 +2937,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Harpreet ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792320285034
       }
     ],
@@ -2824,7 +2954,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal Harpreet ji! \ud83d\ude4f Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal Harpreet ji! 🙏 Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792320285982
       }
     ],
@@ -2861,7 +2991,7 @@
       },
       {
         "role": "model",
-        "content": "No problem ji! \n\nTusi apne business bare thoda dasso \u2014 ki tusi koi website, WhatsApp automation, ya smart booking system setup karvana chaunde ho?",
+        "content": "No problem ji! \n\nTusi apne business bare thoda dasso — ki tusi koi website, WhatsApp automation, ya smart booking system setup karvana chaunde ho?",
         "timestamp": 1792321700505
       },
       {
@@ -2871,7 +3001,7 @@
       },
       {
         "role": "model",
-        "content": "Sada base WhatsApp Automation te AI Setup package \u20b915,000 ton start hunda hai ji (one-time setup). \n\nIs vich official Meta API, 24/7 automated lead reply, te smart booking system sab include hunda hai. \n\nKi tusi apne business lai WhatsApp Automation setup karna chaunde ho?",
+        "content": "Sada base WhatsApp Automation te AI Setup package ₹15,000 ton start hunda hai ji (one-time setup). \n\nIs vich official Meta API, 24/7 automated lead reply, te smart booking system sab include hunda hai. \n\nKi tusi apne business lai WhatsApp Automation setup karna chaunde ho?",
         "timestamp": 1792321702534
       }
     ],
@@ -2932,7 +3062,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Daso bhaji, daily kitne litre paani ya kinne camper filling di requirement hai?",
+        "content": "Sat Sri Akal ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Daso bhaji, daily kitne litre paani ya kinne camper filling di requirement hai?",
         "timestamp": 1792324259180
       },
       {
@@ -2962,7 +3092,7 @@
       },
       {
         "role": "model",
-        "content": "1 Ton online chiller da official company rate \u20b960,000 + 18% GST hai bhaji. Ki eh unit dairy milk cooling layi chahidi hai?",
+        "content": "1 Ton online chiller da official company rate ₹60,000 + 18% GST hai bhaji. Ki eh unit dairy milk cooling layi chahidi hai?",
         "timestamp": 1792493438155
       },
       {
@@ -2982,7 +3112,7 @@
       },
       {
         "role": "model",
-        "content": "5 Ton water chiller (steel body) da official company rate \u20b92,45,000 + 18% GST hai bhaji. Ki eh chiller dairy milk cooling layi chahidi hai?",
+        "content": "5 Ton water chiller (steel body) da official company rate ₹2,45,000 + 18% GST hai bhaji. Ki eh chiller dairy milk cooling layi chahidi hai?",
         "timestamp": 1792493441488
       },
       {
@@ -2992,7 +3122,7 @@
       },
       {
         "role": "model",
-        "content": "5.5 Ton SS body heavy chiller da rate \u20b92,45,000 + 18% GST hai bhaji. Ki eh unit dairy milk cooling layi chahidi hai?",
+        "content": "5.5 Ton SS body heavy chiller da rate ₹2,45,000 + 18% GST hai bhaji. Ki eh unit dairy milk cooling layi chahidi hai?",
         "timestamp": 1792493443288
       },
       {
@@ -3022,7 +3152,7 @@
       },
       {
         "role": "model",
-        "content": "2 Ton online chiller (Emerson compressor, SS PHE plate, Kirloskar pump) da base rate \u20b980,000 + 18% GST (Total \u20b994,400) hai bhaji. Ki Head Coordinator Karan Singh ji se PDF share karwaiye?",
+        "content": "2 Ton online chiller (Emerson compressor, SS PHE plate, Kirloskar pump) da base rate ₹80,000 + 18% GST (Total ₹94,400) hai bhaji. Ki Head Coordinator Karan Singh ji se PDF share karwaiye?",
         "timestamp": 1792493448474
       },
       {
@@ -3032,7 +3162,7 @@
       },
       {
         "role": "model",
-        "content": "Online chiller SS PHE plate naal instant in-line chilling karda hai, jadki circulation chiller tank paani recirculate karke 5\u00b0C tak le janda hai bhaji. Tuhadi requirement kehri hai ji?",
+        "content": "Online chiller SS PHE plate naal instant in-line chilling karda hai, jadki circulation chiller tank paani recirculate karke 5°C tak le janda hai bhaji. Tuhadi requirement kehri hai ji?",
         "timestamp": 1792493450510
       }
     ],
@@ -3057,7 +3187,7 @@
       },
       {
         "role": "model",
-        "content": "2 Ton online chiller da official company rate \u20b980,000 + 18% GST hai bhaji. Ki eh unit dairy milk cooling layi chahidi hai?",
+        "content": "2 Ton online chiller da official company rate ₹80,000 + 18% GST hai bhaji. Ki eh unit dairy milk cooling layi chahidi hai?",
         "timestamp": 1792493383593
       }
     ],
@@ -3116,7 +3246,7 @@
       },
       {
         "role": "model",
-        "content": "Sat Sri Akal ji! \ud83d\ude4f CP SYSTEM Muktsar vich swagat hai. Daso bhaji, kive madad kar sakde haan?",
+        "content": "Sat Sri Akal ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Daso bhaji, kive madad kar sakde haan?",
         "timestamp": 1792587089642
       },
       {
@@ -3126,7 +3256,7 @@
       },
       {
         "role": "model",
-        "content": "5 Ton water chiller (steel body) da official company rate \u20b92,45,000 + 18% GST hai bhaji. Ki eh chiller dairy milk cooling layi chahida hai?",
+        "content": "5 Ton water chiller (steel body) da official company rate ₹2,45,000 + 18% GST hai bhaji. Ki eh chiller dairy milk cooling layi chahida hai?",
         "timestamp": 1792587093952
       },
       {
@@ -3160,7 +3290,7 @@
       },
       {
         "role": "model",
-        "content": "Hey there! \ud83d\udc4b Main Guri hoon, technical AI consultant from Gurination Enterprises. \n\nBataiye, aaj aapke business ke liye kis tarah ki tech ya automation mein help kar sakta hoon?",
+        "content": "Hey there! 👋 Main Guri hoon, technical AI consultant from Gurination Enterprises. \n\nBataiye, aaj aapke business ke liye kis tarah ki tech ya automation mein help kar sakta hoon?",
         "timestamp": 1792587316655
       }
     ],
@@ -3177,7 +3307,7 @@
       },
       {
         "role": "model",
-        "content": "Arre, lagta hai aap ghalat number par aa gaye hain! \ud83d\ude4f \n\nMain Guri hoon, technical AI assistant from Gurination. Hum log websites, WhatsApp AI automation aur custom business software banate hain. \n\nKya aapko apne business ke liye kisi tech service ya automation ke baare mein baat karni hai?",
+        "content": "Arre, lagta hai aap ghalat number par aa gaye hain! 🙏 \n\nMain Guri hoon, technical AI assistant from Gurination. Hum log websites, WhatsApp AI automation aur custom business software banate hain. \n\nKya aapko apne business ke liye kisi tech service ya automation ke baare mein baat karni hai?",
         "timestamp": 1792587319268
       }
     ],
@@ -3194,7 +3324,7 @@
       },
       {
         "role": "model",
-        "content": "Hey cpsystem! \n\nJo bhi aap business automate ya build karna chahte ho \u2014 chahe wo WhatsApp AI agent ho, high-speed website, ya appointment booking system \u2014 sabhi packages mein end-to-end setup, testing aur support included hota hai. \ud83d\ude80\n\nAap kis specific service ke inclusions ke baare mein janna chahte ho?",
+        "content": "Hey cpsystem! \n\nJo bhi aap business automate ya build karna chahte ho — chahe wo WhatsApp AI agent ho, high-speed website, ya appointment booking system — sabhi packages mein end-to-end setup, testing aur support included hota hai. 🚀\n\nAap kis specific service ke inclusions ke baare mein janna chahte ho?",
         "timestamp": 1792587322061
       }
     ],
@@ -3211,7 +3341,7 @@
       },
       {
         "role": "model",
-        "content": "Hey cpsystem! Rates depend thoda sa ispe ki aapko exactly kya requirement hai\u2014jaise website chahiye, WhatsApp automation, ya local SEO? \n\nBataiye, aap kis business ya project ke liye check kar rahe hain?",
+        "content": "Hey cpsystem! Rates depend thoda sa ispe ki aapko exactly kya requirement hai—jaise website chahiye, WhatsApp automation, ya local SEO? \n\nBataiye, aap kis business ya project ke liye check kar rahe hain?",
         "timestamp": 1792587324947
       }
     ],
@@ -3251,7 +3381,10 @@
     ],
     "mode": "cp_system",
     "leadClosed": false,
-    "leadInfo": {}
+    "leadInfo": {
+      "category": "Other",
+      "capacity": "1000 LPH/2000 LPH"
+    }
   },
   "919999000102_cpsystem": {
     "history": [
@@ -3460,7 +3593,7 @@
       },
       {
         "role": "model",
-        "content": "5 Ton water chiller da official company rate \u20b92,45,000 + 18% GST hai ji.",
+        "content": "5 Ton water chiller da official company rate ₹2,45,000 + 18% GST hai ji.",
         "timestamp": 1792587618841
       },
       {
@@ -3493,6 +3626,15 @@
       "status": "NEW",
       "capacity": "5 Ton",
       "category": "Chiller"
+    }
+  },
+  "919999000888_cpsystem": {
+    "history": [],
+    "mode": "cp_system",
+    "leadClosed": false,
+    "leadInfo": {
+      "category": "Chiller",
+      "capacity": "1 Ton"
     }
   }
 }

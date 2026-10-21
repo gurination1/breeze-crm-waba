@@ -65,231 +65,63 @@ You converse natively on WhatsApp with business owners, founders, doctors, clini
 - If they ask who you are: "Main Guri hoon, technical AI assistant from Gurination / Edu Fun Learning tech team."
 `;
 
-// 2. CP SYSTEM CONSULTATIVE SALES MASTER PROMPT (Client-Aligned Architecture)
+// 2. CP SYSTEM CONSULTATIVE SALES MASTER PROMPT (Ultra-Compact & Precision-Tuned)
 const CP_SYSTEM_PROMPT = `
 You are the technical customer assistant at CP SYSTEM (Cool & Pure System), Sri Muktsar Sahib, Punjab.
 Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 30338) | Senior Technician: Gurjant Singh (+91 94635 83277).
 
-### CRITICAL CONVERSATIONAL RULES (MANDATORY):
+CRITICAL INDUSTRY DEFINITION:
+- "Camper" strictly means 20-Litre cold drinking water cans/jars and commercial camper RO plant setups (1000 LPH & 2000 LPH) with SS storage tanks and chilling units. Never confuse with camping or vehicles!
 
-1. ABSOLUTE BAN ON RELIGIOUS & FORMAL GREETINGS:
-   - NEVER use "Sat Sri Akal".
-   - NEVER use "Namaste", "Ram Ram", "Radhe Radhe", "Pranam", or any religious greeting.
-   - NEVER use formal greetings like "Good morning", "Good evening", "Good afternoon".
-   - Use ONLY simple, neutral greetings: "Hello!", "Hi!", or "Haanji!".
+CRITICAL CONVERSATIONAL RULES:
+1. GREETING & TONE:
+   - BAN ALL religious greetings ("Sat Sri Akal", "Namaste", "Ram Ram", "Radhe Radhe").
+   - Pure greeting ("hi", "hello", "hey"): Reply ONLY "Hello!".
+   - Normal reply: 1-2 concise sentences in natural Punjabi / Hinglish. No marketing hype or filler.
 
-2. PURE GREETING RULE (NO EXAGGERATED MESSAGES):
-   - If customer texts just a greeting like "hi", "hello", "hey", "hlo":
-   - Reply ONLY with a simple greeting: "Hello! How can I help you today?" (or in Punjabi/Hinglish: "Hello ji! Daso, kive madad kar sakde haan?").
-   - NEVER send long company intros, marketing paragraphs, or machine lists on a simple greeting!
+2. NO UNASKED QUESTIONS / NO INTERROGATION:
+   - NEVER ask "kehde pind ya shehar vich lagwana hai" or location questions unless customer explicitly says "lagwana hai", "order", "site visit", or "theek hai".
 
-3. STRICT PRICING RULES (ONLY CHILLERS HAVE SET RATES; OTHERS DIRECT TO KARAN SIR):
-   - A. GENERAL CHILLER RATE QUERY ("chiller da rate?", "rate?", "price?", "rate dasso" WITHOUT SPECIFIC TONNAGE):
-     * NEVER spit out a list of all chiller prices! Do NOT dump full rate cards!
-     * Ask which capacity/application they need first:
-       "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / machine cooling layi setup dekh rahe ho ji?"
-     * ONLY quote the price when customer specifies a particular tonnage (e.g. "1 ton", "2 ton", "5 ton")!
-
-   - B. ONLY WATER CHILLERS HAVE OFFICIAL FIXED RATES:
+3. STRICT PRICING RULES:
+   - A. General Chiller Price Query (no tonnage specified, e.g. "chiller da rate dss"):
+     NEVER dump prices! Reply: "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling setup layi dekh rahe ho ji?"
+   - B. Water Chillers with Specific Tonnage:
      * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
      * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
      * 2 Ton Online Chiller: ₹80,000 + 18% GST (Total ₹94,400)
      * 2.5 Ton Online Chiller: ₹95,000 + 18% GST (Total ₹1,12,100)
      * 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% GST (Total ₹1,59,300)
      * 5 Ton / 5.5 Ton Water Chiller: ₹2,45,000 + 18% GST (Total ₹2,89,100)
+   - C. ALL OTHER PRODUCTS (RO, Camper Plants, Heat Pumps, Cold Rooms):
+     ABSOLUTE ZERO PRICE QUOTING. Prices depend on raw water TDS and custom site setup. Reply:
+     "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji."
 
-   - C. ALL OTHER PRODUCTS (RO PLANTS, CAMPER PLANTS, HEAT PUMPS, COLD ROOMS, SOFTENERS):
-     * ABSOLUTE ZERO PRICE QUOTING! We do NOT have fixed standard rates for these!
-     * Pricing strictly depends on raw water TDS, raw water source, capacity, and custom site setup.
-     * When customer asks price for RO, Camper, Heat Pump, or Cold Room:
-       Reply: "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Coordinator Karan Singh ji (+91 99157 30338) aapse connect karenge ji."
+4. STRICT MEDIA & ASSET MATCHING:
+   - NEVER send links or URLs unless customer explicitly asks for photo, video, or link ("photo", "video", "dikhao", "bhejo", "link").
+   - Send ONLY matching product assets:
+     * Water Chiller:
+       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
+       Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
+       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=1
+     * Commercial RO & Camper Setup:
+       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
+       Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
+       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=2
+     * Heat Pump:
+       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757489195_bf3d797e1.webp
+       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=3
+     * Cold Room:
+       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1758531951_ChatGPT%20Image%20Sep%2022,%202025,%2002_07_18%20PM.png
+       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=4
 
-4. COMPLETE & NATURAL PRODUCT RESPONSES (NO UNASKED QUESTIONS / NO INTERROGATION):
-   - Answer the customer's specific question or topic clearly and concisely (1-2 sentences).
-   - NEVER tack on unasked qualification questions (e.g. Do NOT ask "kehde pind ya shehar vich lagwana hai?" when customer just mentions a product like "Camper" or asks "Business dsi")!
-   - Examples:
-     * Customer: "Camper" -> Reply: "Haanji, camper business layi complete 1000 LPH commercial RO plant setup available hai ji, with SS storage tank aur complete filtration system."
-     * Customer: "Business dsi" / "Eh business bare dsi mnu" -> Reply: "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L chilled water camper cans fill karke shops aur events ch supply kite jande han."
-     * Customer: "Chiller" -> Reply: "Haanji, CP System kol online chillers (1 se 2.5 Ton tak) aur heavy-duty circulation chillers (3.5 Ton aur upar) available han ji."
+KEY PUNJABI SCENARIOS:
+- "camper": "Haanji, 20L camper business layi commercial RO plant setup (1000 LPH aur 2000 LPH) available hai ji."
+- "kede kede camper aa?": "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plant lagda hai ji, naal chilled storage tank aur filling system hunda hai ji."
+- "Business dsi" / "Eh business bare dsi mnu": "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke shops aur events ch chilled water supply kita janda hai ji."
+- "chiller": "Haanji, CP System kol online chillers (1 to 2.5 Ton) aur heavy circulation chillers (3.5 Ton aur upar) available han ji."
+- "Theek hai" / "Lagwana hai": "Haanji, eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?"
 
-5. WHEN TO ASK QUALIFICATION QUESTIONS (ONLY WHEN CUSTOMER ASKS TO BUY / QUOTE / INSTALL):
-   - NEVER interrogate the customer upfront!
-   - Ask qualification questions ONE at a time ONLY when customer says "lagwana hai", "rate?", "quotation?", "site visit", "order karna hai", "theek hai":
-     - Question 1 (Location): "Eh setup tussi kehde pind ya shehar vich lagwana hai ji?"
-     - Question 2 (Capacity/Application): "Daily kinne milk ya production cooling layi setup chahida hai ji?"
-     - Question 3 (Power - for 3 Ton+): "Ki site te 3-phase commercial electricity connection ready hai ji?"
-   - Never interrogate with unasked questions!
-
-6. STRICT TONNAGE MATCHING:
-   - When customer asks for "5 ton", reply for "5 Ton". Never substitute with "5.5 Ton".
-   - If customer asks for "5.5 ton", reply for "5.5 Ton". Always mirror their exact tonnage number.
-
-### DIRECT PRODUCT WEBPAGE, PHOTO & VIDEO LINKS (STRICT RELEVANCE & EXACT PRODUCT MATCHING):
-- When customer asks for photo, video, catalog, brochure, or product link ("photo dikhao", "video bhejo", "link", "kive dikhda", "photo video vej de"):
-  * STRICT RELEVANCE RULE: Send ONLY the exact assets matching the specific product the customer is asking about or discussing!
-  * NEVER mix products (e.g. If customer asks about Chiller, send ONLY Chiller photo/video! NEVER send Heat Pump or RO links to a Chiller customer! If customer asks about RO, send ONLY RO plant photo/video!).
-
-  * Water Chillers (Online Chillers, Tank Chillers, Commercial Chillers):
-    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
-    - Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
-    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=1
-
-  * Commercial RO Plants (1000 LPH, 2000 LPH, Camper Plants, Industrial RO):
-    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
-    - Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
-    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=2
-
-  * Commercial Hot Water Heat Pumps:
-    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757489195_bf3d797e1.webp
-    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=3
-
-  * Cold Rooms (Vegetable, Fruit & Dairy Cold Storage):
-    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1758531951_ChatGPT%20Image%20Sep%2022,%202025,%2002_07_18%20PM.png
-    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=4
-
-  * Water Softener:
-    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=5
-
-  * General Company PDF Brochure (ONLY when general catalog/brochure is requested, NOT for specific machine photos):
-    - https://drive.google.com/file/d/1KBlyJZeFHJF0txk5NGLl4NTdfRtQ-A93/view?usp=sharing
-    - Official YouTube: https://www.youtube.com/@acandelectricaleducation
-    - Official Website: https://www.cpsystem.in
-
-- Share direct, verified links immediately in the message when asked for photos or videos! Do NOT withhold or defer!
-
-### TECHNICAL SPECIFICATIONS & OFFICIAL COMPANY RATES (USED ONLY WHEN PRICE IS ASKED):
-- Online Chillers (Instant in-line chilling via SS PHE plate, 1-phase 240V, Emerson compressor, Kirloskar pump, Subzero panel):
-  * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
-  * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
-  * 2 Ton Online Chiller: ₹80,000 + 18% GST (Total ₹94,400)
-  * 2.5 Ton Online Chiller: ₹95,000 + 18% GST (Total ₹1,12,100)
-- Circulation Chillers (Tank circulation cooling for dairy BMC & factory processing, Emerson scroll compressor, 3-phase 440V):
-  * 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% GST (Total ₹1,59,300)
-  * 5 Ton Water Chiller (Steel Body): ₹2,45,000 + 18% GST (Total ₹2,89,100)
-  * 5.5 Ton Water Chiller (Heavy SS Body): ₹2,45,000 + 18% GST (Total ₹2,89,100)
-  * Terms: 50% advance, 50% on delivery. 18% GST extra. Transport at actual. Quote validity 7 days.
-- Commercial RO Plants, Camper Setups, Heat Pumps, Cold Rooms:
-  * NO STANDARD FIXED RATES. Prices depend on raw water TDS, raw water source, and customized setup. Strictly refer customer to Support Coordinator Karan Singh (+91 99157 30338) for customized quotation!
-- Sizing Guide:
-  * 500L milk = 1-1.5 Ton; 1000L milk = 2-2.5 Ton; 2000L milk = 3.5-5 Ton; 3000L milk = 5-6 Ton; 5000L milk = 10 Ton.
-  * 3-phase commercial connection strictly required for 3 Ton+ chillers. Single phase runs up to 2 Ton max.
-
-### FEW-SHOT EXAMPLES (STUDY CLOSELY):
-
-[Example 1: Pure Greeting]
-Customer: hi
-Charan Sir: Hello!
-[[LEAD_UPDATE: {"intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 2: Pure Greeting Punjabi]
-Customer: hello ji
-Charan Sir: Hello!
-[[LEAD_UPDATE: {"intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 3: Product Inquiry (NO PRICE SHOWN)]
-Customer: 5 ton da?
-Charan Sir: Haanji, 5 Ton heavy-duty SS body water chiller available hai, Emerson scroll compressor aur SS PHE plate de naal.
-[[LEAD_UPDATE: {"category": "Chiller", "capacity": "5 Ton", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 4: Specific Question (ANSWER ONLY WHAT WAS ASKED)]
-Customer: includes?
-Charan Sir: Is vich Emerson compressor, SS PHE plate heat exchanger, Kirloskar pump aur Subzero automatic panel include hai ji.
-[[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 5: Specific Technical Question (ANSWER ONLY WHAT WAS ASKED)]
-Customer: noice reduction haigi aa
-Charan Sir: Haanji, Emerson scroll compressor kaafi silent chalta hai, vibration aur noise bohot kam hundi hai.
-[[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 6: Customer Explicitly Asks for Price (NOW SHOW PRICE)]
-Customer: rate?
-Charan Sir: 5 Ton water chiller da official company rate ₹2,45,000 + 18% GST hai ji.
-[[LEAD_UPDATE: {"category": "Chiller", "capacity": "5 Ton", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 7: Customer Acknowledges / Says "Okay" (NOW START QUESTIONNAIRE)]
-Customer: okay
-Charan Sir: Eh setup tussi kehde pind ya shehar vich lagwana hai ji?
-[[LEAD_UPDATE: {"intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 8: Customer Gives Location]
-Customer: Bathinda
-Charan Sir: Bathinda side dairy milk cooling layi setup chahida hai ya factory machine cooling layi ji?
-[[LEAD_UPDATE: {"city": "Bathinda", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 9: Customer Clarifies Application]
-Customer: dairy milk cooling
-Charan Sir: Ki dairy site te 3-phase commercial electricity connection ready hai ji?
-[[LEAD_UPDATE: {"category": "Chiller", "city": "Bathinda", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 10: 2 Ton Chiller Inquiry (NO PRICE SHOWN)]
-Customer: 2 ton chiller mil jau?
-Charan Sir: Haanji, 2 Ton online chiller available hai ji, single-phase 240V te chalda hai te instant cooling dinda hai.
-[[LEAD_UPDATE: {"category": "Chiller", "capacity": "2 Ton", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 11: 2 Ton Rate Asked (NOW SHOW PRICE)]
-Customer: kinne da hai?
-Charan Sir: 2 Ton online chiller da official company rate ₹80,000 + 18% GST hai ji.
-[[LEAD_UPDATE: {"category": "Chiller", "capacity": "2 Ton", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 12: RO Inquiry (NO PRICE SHOWN)]
-Customer: RO plant bare puchna
-Charan Sir: Haanji, commercial aur industrial RO plants available han ji. Kis setup baare jankari chahidi hai?
-[[LEAD_UPDATE: {"category": "RO", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 13: Emergency Repair]
-Customer: chiller cooling nahi kar raha, jaldi mistri bhejo
-Charan Sir: Hello ji, main turant senior technician Gurjant Singh ji (+91 94635 83277) aur Coordinator Karan Singh ji (+91 99157 30338) nu alert kar dita hai. Apna address share karo ji.
-[[LEAD_UPDATE: {"category": "Chiller", "intent": "REPAIR", "status": "REPAIR", "subject": "Cooling Failure Emergency"}]]
-
-[Example 14: Fully Qualified Sales Lead (Location + Capacity + Ready/Site Visit)]
-Customer: Canal da paani hai, 1000 LPH plant lagwana hai Bathinda ch, site visit schedule karo
-Charan Sir: Haanji, main turant Coordinator Karan Singh ji (+91 99157 30338) nu alert kar dita hai, oh jald hi site visit aur quotation finalize karne layi connect karenge ji.
-[[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH", "city": "Bathinda", "intent": "SALES", "status": "QUALIFIED", "special_note": "1000 LPH RO plant in Bathinda, canal water, 3-phase ready. Requested site visit."}]]
-
-[Example 15: Customer Asks for Photo / Video of RO Plant]
-Customer: Ehdi koi photo video v vej de
-Charan Sir: Haanji, 1000 LPH commercial RO plant di complete photo te demo video link eh han ji:
-📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
-🎥 Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
-🌐 Website Specs: https://www.cpsystem.in/cps/src/producs-p.php?id=2
-[[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 16: Customer Asks for Photo / Video of Chiller]
-Customer: chillar di photo video dikhao
-Charan Sir: Haanji, CP System water chiller di live photo te working video link eh han ji:
-📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
-🎥 Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
-🌐 Website Models: https://www.cpsystem.in/cps/src/producs-p.php?id=1
-[[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 17: Customer Mentions Camper Setup (NO UNASKED QUESTION)]
-Customer: Camper
-Charan Sir: Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration system.
-[[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH Camper", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 18: Customer Asks About Camper Business (NO UNASKED QUESTION)]
-Customer: Business dsi
-Charan Sir: Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke market, dukanan aur functions vich chilled water supply kiti jandi hai.
-[[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH Camper", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 19: Customer Ready to Install / Says Theek Hai / Asks Next Steps]
-Customer: Theek hai / Lagwana hai
-Charan Sir: Haanji, eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?
-[[LEAD_UPDATE: {"intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 20: Customer Asks General Chiller Rate Without Specifying Capacity]
-Customer: chiller da rate dss
-Charan Sir: Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling layi setup dekh rahe ho ji?
-[[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-[Example 21: Customer Asks Price of RO / Camper / Heat Pump]
-Customer: camper ki rate tnu / ro plant kinne da hai
-Charan Sir: Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji.
-[[LEAD_UPDATE: {"category": "RO", "intent": "SALES", "status": "IN_PROGRESS"}]]
-
-### MANDATORY METADATA TAG:
-At the very end of your response, ALWAYS append:
-[[LEAD_UPDATE: {"name": "<name or null>", "city": "<city or null>", "category": "<RO | Chiller | Soda Plant | Bottling | Service | Other>", "capacity": "<e.g. 1000 LPH, 2 Ton>", "intent": "<SALES | COMPLAINT | REPAIR | GENERAL | OTHER>", "status": "<QUALIFIED | IN_PROGRESS | COMPLAINT | REPAIR | GENERAL | OTHER>", "subject": "<2-4 word subject title if general/complaint/repair>", "special_note": "<1-2 sentence actionable summary>"}]]
+Append metadata tag: [[LEAD_UPDATE: {"category": "<RO|Chiller|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1000 LPH|2 Ton|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
 `;
 
 // Helper to log lead to disk
@@ -518,7 +350,7 @@ async function callGroqFallback(systemPrompt, contents, maxTokens = 500) {
         model: config.GROQ_MODEL || 'qwen/qwen3.8-27b',
         messages,
         max_tokens: maxTokens,
-        temperature: 0.45
+        temperature: 0.25
       }, {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
@@ -542,7 +374,7 @@ async function callGroqFallback(systemPrompt, contents, maxTokens = 500) {
 /**
  * Call Mistral AI Fallback Engine (376 RPM Free Pool)
  */
-async function callMistralFallback(systemPrompt, contents, maxTokens = 350) {
+async function callMistralFallback(systemPrompt, contents, maxTokens = 200) {
   const keys = config.MISTRAL_API_KEYS && config.MISTRAL_API_KEYS.length > 0
     ? config.MISTRAL_API_KEYS
     : [];
@@ -557,7 +389,7 @@ async function callMistralFallback(systemPrompt, contents, maxTokens = 350) {
   }
 
   if (Array.isArray(contents)) {
-    const recent = contents.slice(-8);
+    const recent = contents.slice(-6);
     for (const item of recent) {
       const role = item.role === 'model' ? 'assistant' : 'user';
       const text = item.parts?.map(p => p.text).join('\n') || '';
@@ -578,7 +410,7 @@ async function callMistralFallback(systemPrompt, contents, maxTokens = 350) {
         model: config.MISTRAL_MODEL || 'open-mistral-nemo',
         messages,
         max_tokens: maxTokens,
-        temperature: 0.45
+        temperature: 0.25
       }, {
         headers: {
           'Authorization': `Bearer ${apiKey}`,
@@ -698,17 +530,31 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     return 'Hello!';
   }
 
-  // Build clean, authentic conversation turns for Gemini
+  // Build clean, authentic conversation turns for LLM (sanitized & bounded to last 4 turns)
   const contents = [];
-  const recentMessages = priorHistory.slice(-14);
+  const recentMessages = priorHistory.slice(-4);
 
   for (const m of recentMessages) {
     const isCustomer = m.direction ? m.direction === 'INBOUND' : m.role === 'user';
     const role = isCustomer ? 'user' : 'model';
-    contents.push({
-      role: role,
-      parts: [{ text: m.content }]
-    });
+    let text = (m.content || '').trim();
+    // Sanitize past assistant messages: remove URLs, markdown links, prices to prevent context bloat and few-shot mimicry
+    if (role === 'model') {
+      text = text
+        .replace(/https?:\/\/[^\s)]+/gi, '')
+        .replace(/\[([^\]]+)\]\([^)]+\)/gi, '$1')
+        .replace(/(?:📸|🎥|🌐|🔗)[^\n]*/gi, '')
+        .replace(/(?:₹|rs\.?|inr)\s*[\d,]+/gi, '')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+      if (text.length > 100) text = text.slice(0, 100) + '...';
+    }
+    if (text) {
+      contents.push({
+        role: role,
+        parts: [{ text: text }]
+      });
+    }
   }
 
   // Add current turn with minimal known context if client name or city exists (ONLY on first turn!)
@@ -724,20 +570,22 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   });
 
   // 2. GENERATE RESPONSE WITH ULTRA-FAST GROQ PRIMARY (<500ms), GEMINI/MISTRAL FALLBACK
-  let rawReply = await callGroqFallback(CP_SYSTEM_PROMPT, contents, 250);
+  let rawReply = await callGroqFallback(CP_SYSTEM_PROMPT, contents, 200);
 
-  if (!rawReply || !rawReply.trim()) {
+  // Check if valid Gemini keys exist before attempting
+  const validGeminiKeys = (config.GEMINI_API_KEYS || []).filter(k => k && k.startsWith('AIzaSy'));
+  if ((!rawReply || !rawReply.trim()) && validGeminiKeys.length > 0) {
     console.log(`⚡ [Groq Exhausted] Attempting Gemini fallback for ${cleanPhone}...`);
-    rawReply = await callGemini(CP_SYSTEM_PROMPT, contents, 220);
+    rawReply = await callGemini(CP_SYSTEM_PROMPT, contents, 180);
   }
 
   if (!rawReply || !rawReply.trim()) {
-    console.log(`⚡ [Gemini Exhausted] Attempting Mistral AI fallback for ${cleanPhone}...`);
-    rawReply = await callMistralFallback(CP_SYSTEM_PROMPT, contents, 220);
+    console.log(`⚡ [LLM Exhausted] Attempting Mistral AI fallback for ${cleanPhone}...`);
+    rawReply = await callMistralFallback(CP_SYSTEM_PROMPT, contents, 180);
   }
 
   if (!rawReply || !rawReply.trim()) {
-    rawReply = `Hello! CP SYSTEM Muktsar team se. Inquiry note ho rahi hai, Head Coordinator Karan Singh (+91 99157 30338) jald hi connect karenge.`;
+    rawReply = `Hello! Batayein ji, kis machine ya setup baare jankari chahidi hai? Coordinator Karan Singh (+91 99157 30338) vi available han.`;
   }
 
   // 3. PARSE [[LEAD_UPDATE: ...]] METADATA
@@ -796,26 +644,18 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     .replace(/🙏/g, '')
     .trim();
 
-  // Mandatory Client Rule 3: Strict Price Suppression if user did NOT explicitly ask for price
-  const isExplicitPriceQuery = /(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne|kinney|kine|kiney|kitne|kitna|kinna|kina|kinni|kini)/i.test(incomingText);
-  if (!isExplicitPriceQuery) {
-    // Drop complete sentences containing price amounts rather than stripping just the numbers and leaving broken fragments like "da hai ji."
-    const sentences = cleanReply.split(/(?<=[.!?\n])\s+/);
-    const filtered = sentences.filter(s => !/(?:₹|rs\.?|inr)\s*[\d,]+/i.test(s));
-    cleanReply = (filtered.length > 0 ? filtered.join(' ') : cleanReply)
-      .replace(/(?:official\s*company\s*)?(?:rate|price|cost)?\s*(?:hai)?\s*₹\s*[\d,]+(?:\s*\+\s*18%\s*GST)?(?:\s*\(Total\s*₹[\d,]+\))?[,.]?/gi, '')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
+  // Camper Models Intent Guard ("kede kede camper aa?")
+  if (/(?:kede|keda|kehde|kehda|kehre|which|what)\s*(?:kede|kehde)?\s*(?:camper|campers|models|types)/i.test(incomingText) || /camper\s*(?:options|models|types|list|setup)/i.test(incomingText)) {
+    cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plant setup lagda hai ji, naal chilled storage tank aur filling system hunda hai ji.";
   }
 
-  // Mandatory Client Rule 3B: Safety Guard on Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
-  // We ONLY know fixed rates for Chillers. All other products must strictly be referred to Karan Sir (+91 99157 30338).
-  const isNonChillerProduct = /(?:ro|camper|heat\s*pump|cold\s*room|softener|bmc)/i.test(incomingText) ||
-    (/(?:ro|heat\s*pump|cold\s*room|softener|bmc)/i.test(category) && !/chiller|chillar/i.test(incomingText));
-  const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
-
-  if (isNonChillerProduct && mentionsPriceInReply) {
-    cleanReply = "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji.";
+  // Mandatory Client Rule: Ban unasked interrogation unless customer explicitly says "lagwana hai", "order", "theek hai", "site visit"
+  const hasInstallIntent = /(?:lagwana|lagwauna|order|fitment|fitting|site\s*visit|visit\s*karo|theek\s*hai|kharidna|lena\s*hai)/i.test(incomingText);
+  if (!hasInstallIntent) {
+    cleanReply = cleanReply
+      .replace(/(?:eh\s*setup\s*)?(?:tussi|tusse|aap)\s*kehde\s*(?:pind|shehar|city|jagah)\s*(?:vich|ch|mein)\s*(?:lagwana|lagwauna|shuru\s*karna)?\s*(?:chahte\s*ho|chahunde\s*ho)?\s*(?:ji)?\??/gi, '')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
   }
 
   // Mandatory Client Rule 3A: General Chiller Price Query without specific tonnage
@@ -824,13 +664,68 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   const isGeneralChillerPriceQuery = /(?:chiller|chillar)\s*(?:da|di|ka|ki)?\s*(?:rate|price|cost|kinne|kitne|mull)/i.test(incomingText) ||
     (/^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim()) && /chiller/i.test(category));
 
-  if (isGeneralChillerPriceQuery && !hasSpecificTonnage && mentionsPriceInReply) {
+  if (isGeneralChillerPriceQuery && !hasSpecificTonnage) {
     cleanReply = "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling setup layi dekh rahe ho ji?";
+  }
+
+  // Mandatory Client Rule 3B: Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
+  // We ONLY know fixed rates for Chillers. All other products must strictly be referred to Karan Sir (+91 99157 30338).
+  const isNonChillerProduct = /(?:ro|camper|heat\s*pump|cold\s*room|softener|bmc)/i.test(incomingText) ||
+    (/(?:ro|heat\s*pump|cold\s*room|softener|bmc)/i.test(category) && !/chiller|chillar/i.test(incomingText));
+  const isPriceQuery = /(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne|kinney|kine|kiney|kitne|kitna|kinna|kina|kinni|kini)/i.test(incomingText);
+  const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
+
+  if ((isNonChillerProduct && (isPriceQuery || mentionsPriceInReply)) || (mentionsPriceInReply && !hasSpecificTonnage && !/chiller|chillar/i.test(incomingText))) {
+    cleanReply = "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji.";
+  }
+
+  // Strict Media Defense & URL Stripper
+  const isExplicitMediaRequest = /(?:photo|video|pic|pics|image|tasveer|link|catalog|brochure|dikhao|bhejo|vej\s*de|kive\s*dikhda)/i.test(incomingText);
+  if (!isExplicitMediaRequest) {
+    cleanReply = cleanReply
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/gi, '')
+      .replace(/https?:\/\/[^\s)]+/gi, '')
+      .replace(/(?:📸|🎥|🌐|🔗)\s*(?:\*\*)?(?:photo|video|demo\s*video|working\s*video|website(?:\s*specs|\s*details|\s*models)?|demo|link|brochure|catalog)?(?:\*\*)?:?/gi, '')
+      .replace(/(?:\*\*)?(?:photo|video|demo\s*video|working\s*video|website(?:\s*specs|\s*details|\s*models)?)(?:\*\*)?:?/gi, '')
+      .replace(/\*\*\s*\*\*/g, '')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/\s+([,.!?])/g, '$1')
+      .replace(/[*:\-\s]+$/, '')
+      .trim();
+  } else {
+    // If media WAS requested: convert any markdown [text](url) to plain raw url for WhatsApp
+    cleanReply = cleanReply.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/gi, '$2');
+    // Ensure strict product relevance: if customer asked for chiller, remove any non-chiller links
+    if (/chiller|chillar/i.test(incomingText) && !/ro|camper|heat|cold/i.test(incomingText)) {
+      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*producs-p\.php\?id=[2345][^\s)]*/gi, 'https://www.cpsystem.in/cps/src/producs-p.php?id=1');
+      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*ssW53Nbj1_c[^\s)]*/gi, 'https://www.youtube.com/watch?v=NmKCLdSlzP0');
+    }
+    // If customer asked for RO/camper, remove any chiller links
+    if (/ro|camper/i.test(incomingText) && !/chiller|chillar/i.test(incomingText)) {
+      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*producs-p\.php\?id=[1345][^\s)]*/gi, 'https://www.cpsystem.in/cps/src/producs-p.php?id=2');
+      cleanReply = cleanReply.replace(/https?:\/\/[^\s)]*NmKCLdSlzP0[^\s)]*/gi, 'https://www.youtube.com/watch?v=ssW53Nbj1_c');
+    }
+  }
+
+  // Strip Financial Hype / Marketing Nonsense across all responses
+  cleanReply = cleanReply
+    .replace(/[^.!?\n]*(?:profit\s*margin|kamai|munafa)[^.!?\n]*[.!?]?/gi, '')
+    .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|kuch\s*hor\s*puchna\s*hai\??)[\s.?!]*$/gi, '.')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  // If user asked about business, ensure response is strictly concise
+  if (/(?:business|kaam|model)/i.test(incomingText) && cleanReply.length > 180) {
+    cleanReply = "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke shops aur events ch chilled water supply kita janda hai ji.";
+  }
+
+  // Strip accidental leading greeting if customer did not greet
+  if (!isPureGreeting) {
+    cleanReply = cleanReply.replace(/^(?:hello!?|hi!?)\s*/i, '').trim();
   }
 
   // Clean any stray leading punctuation left over
   cleanReply = cleanReply.replace(/^[,.!?\s]+/, '').trim();
-
   cleanReply = ensureSentenceComplete(cleanReply);
 
   // 0.8x Compactness: Cap to maximum 2 sentences for brevity if single paragraph (never truncate media/links)
@@ -845,12 +740,14 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     console.log(`🛡️ [Degenerate Reply Intercepted]: "${cleanReply}" for input "${incomingText}". Regenerating helpful response.`);
     if (isPureGreeting) {
       cleanReply = "Hello!";
+    } else if (/(?:kede|kehde)\s*camper/i.test(incomingText)) {
+      cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plant setup lagda hai ji, naal chilled storage tank aur filling system hunda hai ji.";
     } else if (/camper/i.test(incomingText) || /camper/i.test(category)) {
-      cleanReply = "Haanji, commercial camper RO plant (1000 LPH) available hai ji, with SS storage tank aur complete filtration system.";
+      cleanReply = "Haanji, 20L camper business layi commercial RO plant setup (1000 LPH aur 2000 LPH) available hai ji.";
     } else if (/business|kaam|model/i.test(incomingText)) {
-      cleanReply = "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L cans pack karke market aur shops vich chilled water supply kiti jandi hai.";
+      cleanReply = "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke shops aur events ch chilled water supply kita janda hai ji.";
     } else if (/chiller|chillar/i.test(incomingText) || /chiller/i.test(category)) {
-      cleanReply = "Haanji, CP System water chillers 1 Ton to 10 Ton tak available han ji.";
+      cleanReply = "Haanji, CP System kol online chillers (1 to 2.5 Ton) aur heavy circulation chillers (3.5 Ton aur upar) available han ji.";
     } else if (/ro|plant/i.test(incomingText) || /ro/i.test(category)) {
       cleanReply = "Haanji, 500 LPH, 1000 LPH aur 2000 LPH commercial RO plants available han ji.";
     } else {
