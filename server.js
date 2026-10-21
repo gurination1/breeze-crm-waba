@@ -134,6 +134,11 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
   if (lead) entry.lead = lead;
   entry.lastMsgId = msgId;
 
+  // Instant typing indicator: show "typing..." to customer as soon as incoming webhook hits server
+  if (phoneNumberId && msgId) {
+    whatsapp.sendTypingIndicator(phoneNumberId, msgId).catch(() => {});
+  }
+
   if (entry.timer) {
     clearTimeout(entry.timer);
   }
@@ -187,47 +192,84 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
     try {
       console.log(`⚡ [Debounce Dispatched] Merged ${entry.texts.length} messages for ${from}: "${mergedText.slice(0, 80)}"`);
 
-      // Fire mark as read in parallel (non-blocking)
-      whatsapp.markMessageAsRead(entry.phoneNumberId, entry.lastMsgId).catch(() => {});
+      // Keep typing indicator active while AI prepares reply
+      await whatsapp.sendTypingIndicator(entry.phoneNumberId, entry.lastMsgId).catch(() => {});
 
       const aiResponse = await ai.generateAIReply(from, mergedText, entry.contactName, entry.tenantId, entry.phoneNumberId, entry.lead);
-      console.log(`🤖 [AI Generated Reply (${entry.tenantId})]: "${aiResponse}"`);
+      console.log(`🤖 [AI Generated Reply (${entry.tenantId})]:`, typeof aiResponse === 'object' ? JSON.stringify(aiResponse) : aiResponse);
 
-      const safeOutboundText = (aiResponse && typeof aiResponse === 'string' && aiResponse.trim().length >= 3)
-        ? aiResponse.trim()
-        : "Hello! Batayein, kis machine ya setup baare gal karni hai?";
-
-      let outboundWamid = null;
-      let sendErrorMsg = null;
-      try {
-        const sendResult = await whatsapp.sendTextMessage(entry.phoneNumberId, from, safeOutboundText);
-        outboundWamid = sendResult?.messages?.[0]?.id || null;
-        lastBotReplyTime.set(from, Date.now());
-        rateData.count++;
-        userDailyBotReplyCount.set(from, rateData);
-        console.log(`🚀 [Dispatched Outbound]: WAMID ${outboundWamid || 'OK'}`);
-      } catch (sendErr) {
-        sendErrorMsg = sendErr.response?.data?.error?.message || sendErr.message;
-        console.error(`❌ [WhatsApp Send Error for ${from}]:`, sendErr.response?.data || sendErr.message);
-      } finally {
-        // Release lock immediately after sending message
-        userInFlight.delete(from);
+      // Support multi-message (double/triple messages) from AI Engine
+      let messagesToSend = [];
+      if (Array.isArray(aiResponse)) {
+        messagesToSend = aiResponse.map(m => String(m || '').trim()).filter(Boolean);
+      } else if (typeof aiResponse === 'string') {
+        const text = aiResponse.trim();
+        if (text.includes('[[SPLIT]]')) {
+          messagesToSend = text.split('[[SPLIT]]').map(s => s.trim()).filter(Boolean);
+        } else {
+          messagesToSend = [text];
+        }
       }
 
-      // Non-blocking async DB logging
+      if (messagesToSend.length === 0) {
+        messagesToSend = ["Hello ji! Dasso, kive madad kar sakde a?"];
+      }
+
+      const fullMessagePreview = messagesToSend.join(' ');
+      let lastOutboundWamid = null;
+      let lastSendErrorMsg = null;
+
+      for (let i = 0; i < messagesToSend.length; i++) {
+        const safeOutboundText = messagesToSend[i];
+        if (!safeOutboundText) continue;
+
+        if (i > 0) {
+          // Re-trigger typing indicator between consecutive messages with human typing pause (1.4s - 2.5s)
+          await whatsapp.sendTypingIndicator(entry.phoneNumberId, entry.lastMsgId).catch(() => {});
+          const pauseMs = Math.min(2500, Math.max(1400, safeOutboundText.length * 28));
+          console.log(`⏳ [Human Multi-Message Delay]: Pausing ${pauseMs}ms with typing indicator before message ${i + 1}/${messagesToSend.length}...`);
+          await new Promise(r => setTimeout(r, pauseMs));
+        }
+
+        let outboundWamid = null;
+        let sendErrorMsg = null;
+        try {
+          const sendResult = await whatsapp.sendTextMessage(entry.phoneNumberId, from, safeOutboundText);
+          outboundWamid = sendResult?.messages?.[0]?.id || null;
+          lastOutboundWamid = outboundWamid;
+          lastBotReplyTime.set(from, Date.now());
+          rateData.count++;
+          userDailyBotReplyCount.set(from, rateData);
+          console.log(`🚀 [Dispatched Outbound ${i + 1}/${messagesToSend.length}]: WAMID ${outboundWamid || 'OK'}`);
+        } catch (sendErr) {
+          sendErrorMsg = sendErr.response?.data?.error?.message || sendErr.message;
+          lastSendErrorMsg = sendErrorMsg;
+          console.error(`❌ [WhatsApp Send Error for ${from}]:`, sendErr.response?.data || sendErr.message);
+        }
+
+        // DB logging for each message
+        (async (curText, curWamid, curErr) => {
+          try {
+            await db.insert('crm_messages', {
+              tenant_id: entry.tenantId,
+              lead_phone: from,
+              direction: 'OUTBOUND_BOT',
+              message_type: 'TEXT',
+              content: curText,
+              wamid: curWamid,
+              delivery_status: curWamid ? 'SENT' : 'FAILED',
+              error_details: curWamid ? null : curErr,
+              created_at: new Date().toISOString()
+            });
+          } catch (dbErr) {
+            console.warn('[DB Message Insert Warning]:', dbErr.message);
+          }
+        })(safeOutboundText, outboundWamid, sendErrorMsg);
+      }
+
+      // Non-blocking async tenant and lead updates
       (async () => {
         try {
-          await db.insert('crm_messages', {
-            tenant_id: entry.tenantId,
-            lead_phone: from,
-            direction: 'OUTBOUND_BOT',
-            message_type: 'TEXT',
-            content: safeOutboundText,
-            wamid: outboundWamid,
-            delivery_status: outboundWamid ? 'SENT' : 'FAILED',
-            error_details: outboundWamid ? null : sendErrorMsg,
-            created_at: new Date().toISOString()
-          });
 
           const tRec = await db.get('crm_tenants', `id=eq.${entry.tenantId}`);
           if (tRec && tRec.length > 0) {
@@ -279,7 +321,7 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
             clientName: null,
             city: null,
             engagementType: 'OUTBOUND_BOT',
-            messagePreview: safeOutboundText
+            messagePreview: fullMessagePreview
           }).catch(bErr => console.error('[Billable Bot Reply Record Err]:', bErr.message));
         } catch (dbOutErr) {
           console.error('❌ [Async DB Outbound Message Error]:', dbOutErr.message);
@@ -287,6 +329,7 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
       })().catch(() => {});
     } catch (procErr) {
       console.error(`❌ [Process Error for ${from}]:`, procErr.message);
+    } finally {
       userInFlight.delete(from);
     }
   }, 600); // 600ms fast typing debounce window (cuts 1.6s delay!)

@@ -65,26 +65,43 @@ You converse natively on WhatsApp with business owners, founders, doctors, clini
 - If they ask who you are: "Main Guri hoon, technical AI assistant from Gurination / Edu Fun Learning tech team."
 `;
 
-// 2. CP SYSTEM CONSULTATIVE SALES MASTER PROMPT (Ultra-Compact & Precision-Tuned)
+// 2. CP SYSTEM CONSULTATIVE SALES MASTER PROMPT (Human Punjabi WhatsApp Salesman)
 const CP_SYSTEM_PROMPT = `
-You are the technical customer assistant at CP SYSTEM (Cool & Pure System), Sri Muktsar Sahib, Punjab.
+You are Charanpreet Singh, owner and technical head at CP SYSTEM (Cool & Pure System), Sri Muktsar Sahib, Punjab.
+You text natively on WhatsApp like a real Punjabi businessman / manufacturer chatting directly from his smartphone.
 Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 30338) | Senior Technician: Gurjant Singh (+91 94635 83277).
 
 CRITICAL INDUSTRY DEFINITION:
-- "Camper" strictly means 20-Litre cold drinking water cans/jars and commercial camper RO plant setups (1000 LPH & 2000 LPH) with SS storage tanks and chilling units. Never confuse with camping or vehicles!
+- "Camper" strictly means 20-Litre cold drinking water cans/jars and commercial camper RO plant setups (1000 LPH & 2000 LPH) with SS storage tanks and chilling units. Never confuse with camping or RVs!
+
+PUNJABI TEXTING STYLE & TONE (SOUND 100% HUMAN, NOT CHATGPT):
+- Speak in natural, respectful Malwai / Punjabi conversational style:
+  * Use "veer ji", "bhaji", "bai ji", "ji" (respectful, friendly).
+  * Use common Punjabi shortcuts: "a" instead of "hai" (e.g., "available a ji", "lagda a", "ready a"), "te" instead of "aur", "ch" instead of "mein", "dasso", "mil jauga", "karange".
+- NEVER sound like ChatGPT or an AI bot:
+  * NEVER use formal textbook Hindi/Punjabi like "provide karda haan", "shamil hai", "hum pradan karte hain".
+  * NEVER use robotic bullet lists.
+  * NEVER write long monolithic essays.
+- DOUBLE MESSAGE PATTERN (NATURAL TWO CHAT BUBBLES):
+  * When answering product or pricing questions, send thought 1 first, then thought 2 or follow-up question.
+  * Separate them with "[[SPLIT]]" so they deliver as two consecutive WhatsApp bubbles!
+  * Example:
+    Customer: 1 ton chiller kinne da
+    Reply: 1 Ton online chiller ₹60,000 + 18% GST a ji (Total ₹70,800). [[SPLIT]] Single phase 240V te chalda a, ready in stock a veer ji.
+  * Pure greeting ("hi", "hello"): NEVER split. Reply ONLY: "Hello ji! Dasso, kive madad kar sakde a?"
 
 CRITICAL CONVERSATIONAL RULES:
 1. GREETING & TONE:
    - BAN ALL religious greetings ("Sat Sri Akal", "Namaste", "Ram Ram", "Radhe Radhe").
-   - Pure greeting ("hi", "hello", "hey"): Reply ONLY "Hello!".
-   - Normal reply: 1-2 concise sentences in natural Punjabi / Hinglish. No marketing hype or filler.
+   - Pure greeting ("hi", "hello", "hey"): Reply ONLY "Hello ji! Dasso, kive madad kar sakde a?"
 
 2. NO UNASKED QUESTIONS / NO INTERROGATION:
    - NEVER ask "kehde pind ya shehar vich lagwana hai" or location questions unless customer explicitly says "lagwana hai", "order", "site visit", or "theek hai".
 
 3. STRICT PRICING RULES:
    - A. General Chiller Price Query (no tonnage specified, e.g. "chiller da rate dss"):
-     NEVER dump prices! Reply: "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling setup layi dekh rahe ho ji?"
+     NEVER dump prices! Reply:
+     Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?
    - B. Water Chillers with Specific Tonnage:
      * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
      * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
@@ -94,32 +111,28 @@ CRITICAL CONVERSATIONAL RULES:
      * 5 Ton / 5.5 Ton Water Chiller: ₹2,45,000 + 18% GST (Total ₹2,89,100)
    - C. ALL OTHER PRODUCTS (RO, Camper Plants, Heat Pumps, Cold Rooms):
      ABSOLUTE ZERO PRICE QUOTING. Prices depend on raw water TDS and custom site setup. Reply:
-     "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji."
+     Commercial RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karange ji.
 
 4. STRICT MEDIA & ASSET MATCHING:
    - NEVER send links or URLs unless customer explicitly asks for photo, video, or link ("photo", "video", "dikhao", "bhejo", "link").
-   - Send ONLY matching product assets:
+   - When asked for media, send Message 1 as natural intro, and Message 2 as the exact matching link:
      * Water Chiller:
        Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
        Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
-       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=1
      * Commercial RO & Camper Setup:
        Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
        Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
-       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=2
      * Heat Pump:
        Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757489195_bf3d797e1.webp
-       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=3
      * Cold Room:
        Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1758531951_ChatGPT%20Image%20Sep%2022,%202025,%2002_07_18%20PM.png
-       Web: https://www.cpsystem.in/cps/src/producs-p.php?id=4
 
-KEY PUNJABI SCENARIOS:
-- "camper": "Haanji, 20L camper business layi commercial RO plant setup (1000 LPH aur 2000 LPH) available hai ji."
-- "kede kede camper aa?": "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plant lagda hai ji, naal chilled storage tank aur filling system hunda hai ji."
-- "Business dsi" / "Eh business bare dsi mnu": "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke shops aur events ch chilled water supply kita janda hai ji."
-- "chiller": "Haanji, CP System kol online chillers (1 to 2.5 Ton) aur heavy circulation chillers (3.5 Ton aur upar) available han ji."
-- "Theek hai" / "Lagwana hai": "Haanji, eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?"
+KEY HUMAN SCENARIOS:
+- "camper": "Haanji veer ji, 20L camper business layi commercial RO plant setup (1000 LPH te 2000 LPH) available a ji."
+- "kede kede camper aa?": "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te chilling system hunda a, 20L cans easily fill hunde ne."
+- "Business dsi" / "Eh business bare dsi mnu": "Camper water business ch 1000 LPH commercial RO plant lagda a ji. [[SPLIT]] Is naal 20L camper cans pack karke shops, events te functions ch chilled water supply kita janda a."
+- "chiller": "Haanji veer ji, CP System kol online chillers (1 to 2.5 Ton) te heavy circulation chillers (3.5 Ton aur upar) available ne."
+- "Theek hai" / "Lagwana hai": "Haanji veer ji, bilkul setup ho jauga. [[SPLIT]] Eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?"
 
 Append metadata tag: [[LEAD_UPDATE: {"category": "<RO|Chiller|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1000 LPH|2 Ton|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
 `;
@@ -646,7 +659,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Camper Models Intent Guard ("kede kede camper aa?")
   if (/(?:kede|keda|kehde|kehda|kehre|which|what)\s*(?:kede|kehde)?\s*(?:camper|campers|models|types)/i.test(incomingText) || /camper\s*(?:options|models|types|list|setup)/i.test(incomingText)) {
-    cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plant setup lagda hai ji, naal chilled storage tank aur filling system hunda hai ji.";
+    cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
   }
 
   // Mandatory Client Rule: Ban unasked interrogation unless customer explicitly says "lagwana hai", "order", "theek hai", "site visit"
@@ -665,7 +678,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     (/^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim()) && /chiller/i.test(category));
 
   if (isGeneralChillerPriceQuery && !hasSpecificTonnage) {
-    cleanReply = "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling setup layi dekh rahe ho ji?";
+    cleanReply = "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
   }
 
   // Mandatory Client Rule 3B: Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
@@ -676,7 +689,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
 
   if ((isNonChillerProduct && (isPriceQuery || mentionsPriceInReply)) || (mentionsPriceInReply && !hasSpecificTonnage && !/chiller|chillar/i.test(incomingText))) {
-    cleanReply = "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji.";
+    cleanReply = "Commercial RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karange ji.";
   }
 
   // Strict Media Defense & URL Stripper
@@ -716,7 +729,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // If user asked about business, ensure response is strictly concise
   if (/(?:business|kaam|model)/i.test(incomingText) && cleanReply.length > 180) {
-    cleanReply = "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke shops aur events ch chilled water supply kita janda hai ji.";
+    cleanReply = "Camper water business ch 1000 LPH commercial RO plant lagda a ji. [[SPLIT]] Is naal 20L camper cans pack karke shops, events te functions ch chilled water supply kita janda a.";
   }
 
   // Strip accidental leading greeting if customer did not greet
@@ -730,7 +743,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // 0.8x Compactness: Cap to maximum 2 sentences for brevity if single paragraph (never truncate media/links)
   const sentences = cleanReply.match(/[^.!?]+[.!?]+(?:\s|$)/g);
-  if (sentences && sentences.length > 2 && !cleanReply.includes('\n') && cleanReply.length > 160 && !/https?:\/\//i.test(cleanReply)) {
+  if (sentences && sentences.length > 2 && !cleanReply.includes('\n') && !cleanReply.includes('[[SPLIT]]') && cleanReply.length > 160 && !/https?:\/\//i.test(cleanReply)) {
     cleanReply = sentences.slice(0, 2).join(' ').trim();
   }
 
@@ -739,19 +752,19 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   if (cleanReply.length < 12 || isGruntReply) {
     console.log(`🛡️ [Degenerate Reply Intercepted]: "${cleanReply}" for input "${incomingText}". Regenerating helpful response.`);
     if (isPureGreeting) {
-      cleanReply = "Hello!";
+      cleanReply = "Hello ji! Dasso, kive madad kar sakde a?";
     } else if (/(?:kede|kehde)\s*camper/i.test(incomingText)) {
-      cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plant setup lagda hai ji, naal chilled storage tank aur filling system hunda hai ji.";
+      cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
     } else if (/camper/i.test(incomingText) || /camper/i.test(category)) {
-      cleanReply = "Haanji, 20L camper business layi commercial RO plant setup (1000 LPH aur 2000 LPH) available hai ji.";
+      cleanReply = "Haanji veer ji, 20L camper business layi commercial RO plant setup (1000 LPH te 2000 LPH) available a ji.";
     } else if (/business|kaam|model/i.test(incomingText)) {
-      cleanReply = "Camper water business vich 1000 LPH commercial RO plant lagda hai ji, jide naal 20L camper cans pack karke shops aur events ch chilled water supply kita janda hai ji.";
+      cleanReply = "Camper water business ch 1000 LPH commercial RO plant lagda a ji. [[SPLIT]] Is naal 20L camper cans pack karke shops, events te functions ch chilled water supply kita janda a.";
     } else if (/chiller|chillar/i.test(incomingText) || /chiller/i.test(category)) {
-      cleanReply = "Haanji, CP System kol online chillers (1 to 2.5 Ton) aur heavy circulation chillers (3.5 Ton aur upar) available han ji.";
+      cleanReply = "Haanji veer ji, CP System kol online chillers (1 to 2.5 Ton) te heavy circulation chillers (3.5 Ton aur upar) available ne.";
     } else if (/ro|plant/i.test(incomingText) || /ro/i.test(category)) {
-      cleanReply = "Haanji, 500 LPH, 1000 LPH aur 2000 LPH commercial RO plants available han ji.";
+      cleanReply = "Haanji veer ji, 500 LPH, 1000 LPH te 2000 LPH commercial RO plants available ne.";
     } else {
-      cleanReply = "Hello! Batayein ji, kis machine ya setup baare jankari chahidi hai?";
+      cleanReply = "Hello ji! Batayein, kis machine ya setup baare jankari chahidi a?";
     }
   }
 
@@ -954,7 +967,40 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     }
   }
 
-  return cleanReply;
+  // 5. HUMAN SALESMAN MULTI-MESSAGE SPLITTER
+  function formatHumanSplit(text) {
+    if (!text) return [];
+
+    const cleanBubble = (str) => {
+      return (str || '')
+        .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|dekha\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|kuch\s*hor\s*puchna\s*hai\??|koi\s*aur\s*madad\s*kiya\??)[\s.?!]*$/gi, '')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    };
+
+    let bubbles = [];
+    if (text.includes('[[SPLIT]]')) {
+      bubbles = text.split('[[SPLIT]]').map(s => s.trim()).filter(Boolean);
+    } else if (/https?:\/\//i.test(text)) {
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      const textParts = lines.filter(l => !/https?:\/\//i.test(l) && !/(?:📸|🎥|🌐|🔗)/i.test(l));
+      const mediaParts = lines.filter(l => /https?:\/\//i.test(l) || /(?:📸|🎥|🌐|🔗)/i.test(l));
+      if (textParts.length > 0 && mediaParts.length > 0) {
+        bubbles = [textParts.join(' '), mediaParts.join('\n')];
+      }
+    } else {
+      const sentences = text.match(/[^.!?]+[.!?]+(?:\s|$)/g);
+      if (sentences && sentences.length === 2 && text.length > 55 && !text.includes('\n')) {
+        bubbles = [sentences[0].trim(), sentences[1].trim()];
+      }
+    }
+
+    if (bubbles.length === 0) bubbles = [text.trim()];
+    return bubbles.map(cleanBubble).filter(Boolean);
+  }
+
+  const splitMessages = formatHumanSplit(cleanReply);
+  return splitMessages.length > 1 ? splitMessages : cleanReply;
 }
 
 /**
@@ -978,8 +1024,9 @@ async function generateAIReply(userPhone, incomingText, userName = '', tenantId 
     memory.setMode(cleanPhone, 'cp_system', effectiveTenant);
     const reply = await handleCpSystemInteraction(cleanPhone, incomingText, displayName, effectiveTenant, activeLead);
 
+    const memReply = Array.isArray(reply) ? reply.join(' ') : reply;
     memory.addMessage(cleanPhone, 'user', incomingText, effectiveTenant);
-    memory.addMessage(cleanPhone, 'model', reply, effectiveTenant);
+    memory.addMessage(cleanPhone, 'model', memReply, effectiveTenant);
     return reply;
   }
 

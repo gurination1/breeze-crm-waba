@@ -134,6 +134,38 @@ async function sendTemplateMessage(phoneNumberId, to, templateName, languageCode
 }
 
 /**
+ * Show typing indicator & mark incoming message as read (blue checkmarks + typing bubble)
+ */
+async function sendTypingIndicator(phoneNumberId, messageId) {
+  try {
+    const url = `${GRAPH_API_URL}/${phoneNumberId}/messages`;
+    const res = await axios.post(
+      url,
+      {
+        messaging_product: 'whatsapp',
+        status: 'read',
+        message_id: messageId,
+        typing_indicator: {
+          type: 'text'
+        }
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${config.META_ACCESS_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        httpsAgent,
+        timeout: 6000
+      }
+    );
+    return res.data;
+  } catch (err) {
+    // If typing_indicator fails on older API version or missing permission, fall back to markMessageAsRead
+    return markMessageAsRead(phoneNumberId, messageId).catch(() => {});
+  }
+}
+
+/**
  * Mark incoming message as read (blue checkmarks)
  */
 async function markMessageAsRead(phoneNumberId, messageId) {
@@ -164,5 +196,6 @@ module.exports = {
   sendTextMessage,
   sendTemplateMessage,
   sendInteractiveButtons,
+  sendTypingIndicator,
   markMessageAsRead
 };
