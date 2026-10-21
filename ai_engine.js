@@ -108,27 +108,38 @@ Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 3
    - When customer asks for "5 ton", reply for "5 Ton". Never substitute with "5.5 Ton".
    - If customer asks for "5.5 ton", reply for "5.5 Ton". Always mirror their exact tonnage number.
 
-### DIRECT PRODUCT WEBPAGE, PHOTO & VIDEO LINKS (SHARE IMMEDIATELY WHEN ASKED):
-- If customer asks for photos, video, catalog, brochure, or product link ("photo dikhao", "video bhejo", "link", "kive dikhda", "photo video vej de"):
-  * Water Chillers:
-    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=1
-    - Photo: https://cpsystem.in/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
+### DIRECT PRODUCT WEBPAGE, PHOTO & VIDEO LINKS (STRICT RELEVANCE & EXACT PRODUCT MATCHING):
+- When customer asks for photo, video, catalog, brochure, or product link ("photo dikhao", "video bhejo", "link", "kive dikhda", "photo video vej de"):
+  * STRICT RELEVANCE RULE: Send ONLY the exact assets matching the specific product the customer is asking about or discussing!
+  * NEVER mix products (e.g. If customer asks about Chiller, send ONLY Chiller photo/video! NEVER send Heat Pump or RO links to a Chiller customer! If customer asks about RO, send ONLY RO plant photo/video!).
+
+  * Water Chillers (Online Chillers, Tank Chillers, Commercial Chillers):
+    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
     - Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
-  * Commercial RO Plants:
+    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=1
+
+  * Commercial RO Plants (1000 LPH, 2000 LPH, Camper Plants, Industrial RO):
+    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
+    - Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
     - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=2
-    - Photo: https://cpsystem.in/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
-    - Camper Plant Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
-  * Heat Pumps:
+
+  * Commercial Hot Water Heat Pumps:
+    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757489195_bf3d797e1.webp
     - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=3
-  * Cold Rooms:
+
+  * Cold Rooms (Vegetable, Fruit & Dairy Cold Storage):
+    - Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1758531951_ChatGPT%20Image%20Sep%2022,%202025,%2002_07_18%20PM.png
     - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=4
-  * Complete Company PDF Brochure:
+
+  * Water Softener:
+    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=5
+
+  * General Company PDF Brochure (ONLY when general catalog/brochure is requested, NOT for specific machine photos):
     - https://drive.google.com/file/d/1KBlyJZeFHJF0txk5NGLl4NTdfRtQ-A93/view?usp=sharing
-  * Official YouTube Channel:
-    - https://www.youtube.com/@acandelectricaleducation
-  * Official Website:
-    - https://www.cpsystem.in
-- Share direct links immediately in the message when asked for photos or videos! Do NOT withhold or defer!
+    - Official YouTube: https://www.youtube.com/@acandelectricaleducation
+    - Official Website: https://www.cpsystem.in
+
+- Share direct, verified links immediately in the message when asked for photos or videos! Do NOT withhold or defer!
 
 ### TECHNICAL SPECIFICATIONS & OFFICIAL COMPANY RATES (USED ONLY WHEN PRICE IS ASKED):
 - Online Chillers (Instant in-line chilling via SS PHE plate, 1-phase 240V, Emerson compressor, Kirloskar pump, Subzero panel):
@@ -222,7 +233,7 @@ Charan Sir: Haanji, main turant Coordinator Karan Singh ji (+91 99157 30338) nu 
 [Example 15: Customer Asks for Photo / Video of RO Plant]
 Customer: Ehdi koi photo video v vej de
 Charan Sir: Haanji, 1000 LPH commercial RO plant di complete photo te demo video link eh han ji:
-📸 Photo: https://cpsystem.in/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
+📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
 🎥 Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
 🌐 Website Specs: https://www.cpsystem.in/cps/src/producs-p.php?id=2
 [[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH", "intent": "SALES", "status": "IN_PROGRESS"}]]
@@ -230,7 +241,7 @@ Charan Sir: Haanji, 1000 LPH commercial RO plant di complete photo te demo video
 [Example 16: Customer Asks for Photo / Video of Chiller]
 Customer: chillar di photo video dikhao
 Charan Sir: Haanji, CP System water chiller di live photo te working video link eh han ji:
-📸 Photo: https://cpsystem.in/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
+📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
 🎥 Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
 🌐 Website Models: https://www.cpsystem.in/cps/src/producs-p.php?id=1
 [[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
@@ -360,17 +371,23 @@ async function dispatchLeadNotification(leadData) {
   }
 }
 
-// Ensures complete sentences
+// Ensures complete sentences without truncating URLs or query parameters
 function ensureSentenceComplete(text) {
   if (!text) return '';
   let cleaned = text.trim();
-  if (/[.?!]$/.test(cleaned)) return cleaned;
+  // If ends with terminal punctuation or ends with a URL, preserve intact
+  if (/[.?!]$/.test(cleaned) || /https?:\/\/[^\s]+$/i.test(cleaned)) return cleaned;
   const lastPunctuation = Math.max(
     cleaned.lastIndexOf('.'),
     cleaned.lastIndexOf('?'),
     cleaned.lastIndexOf('!')
   );
   if (lastPunctuation > 20) {
+    const afterPunc = cleaned.slice(lastPunctuation);
+    // If what follows is part of a URL (e.g. "?id=1", ".png", ".php", query params), do NOT truncate!
+    if (/^[?.!][a-zA-Z0-9_\-=&%/]+/.test(afterPunc)) {
+      return cleaned;
+    }
     return cleaned.slice(0, lastPunctuation + 1).trim();
   }
   return cleaned + '.';
@@ -747,9 +764,9 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   cleanReply = ensureSentenceComplete(cleanReply);
 
-  // 0.8x Compactness: Cap to maximum 2 sentences for brevity if single paragraph
+  // 0.8x Compactness: Cap to maximum 2 sentences for brevity if single paragraph (never truncate media/links)
   const sentences = cleanReply.match(/[^.!?]+[.!?]+(?:\s|$)/g);
-  if (sentences && sentences.length > 2 && !cleanReply.includes('\n') && cleanReply.length > 160) {
+  if (sentences && sentences.length > 2 && !cleanReply.includes('\n') && cleanReply.length > 160 && !/https?:\/\//i.test(cleanReply)) {
     cleanReply = sentences.slice(0, 2).join(' ').trim();
   }
 
