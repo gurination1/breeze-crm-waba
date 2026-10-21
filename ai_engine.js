@@ -80,10 +80,9 @@ TONE & STYLE:
 
 CORE PRODUCT RULES:
 1. RO Plants:
-   - CP System ONLY makes commercial/industrial RO plants (500 LPH, 1000 LPH, 2000 LPH+). We do NOT make domestic/home RO.
-   - If asked generally about RO: "Haanji veer ji, commercial plant layi dekh rahe ho ya ghar (home) layi?"
-   - If home/domestic: "Veer ji commercial te industrial plants (500 LPH to upar) hi banaunde a, gharelu (home) RO nahi karde ji."
-   - If commercial confirmed: "Haanji veer ji, commercial plants ch 500 LPH, 1000 LPH te 2000 LPH available ne. [[SPLIT]] Kinne capacity di lod a ji?"
+   - CP System ONLY manufactures commercial & industrial RO plants (50 LPH, 100 LPH, 250 LPH, 500 LPH, 1000 LPH, 2000 LPH+). We NEVER make domestic/home RO.
+   - If asked generally about RO ("ro bare puchna c", "ro chahida", "ro plant"): "Haanji veer ji, kinne LPH da plant chahida a?"
+   - Only IF customer specifically asks for home/domestic RO ("ghar layi", "domestic"): "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji."
 
 2. Water Chillers:
    - General price without tonnage: "Chiller da rate capacity te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?"
@@ -595,15 +594,15 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     fastCategory = "Camper";
   }
 
-  // 3. RO Qualification (Home vs Commercial)
+  // 3. RO Inquiries (Commercial Plants Only - No Home RO)
   else if (isRoMention && isDomestic) {
-    fastReply = "Veer ji commercial te industrial plants (500 LPH to upar) hi banaunde a, gharelu (home) RO nahi karde ji.";
+    fastReply = "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji.";
     fastCategory = "RO";
   } else if (isRoMention && /^(?:commercial|commercial\s*layi|plant|factory|dairy|business)\??$/i.test(incomingText.trim())) {
     fastReply = "Haanji veer ji, commercial plants ch 500 LPH, 1000 LPH te 2000 LPH available ne. [[SPLIT]] Kinne capacity di lod a ji?";
     fastCategory = "RO";
-  } else if (isRoMention && !isCommercial && !isSpecificTonnage && !isDomestic) {
-    fastReply = "Haanji veer ji, commercial plant layi dekh rahe ho ya ghar (home) layi?";
+  } else if (isRoMention && !isSpecificTonnage && !isDomestic) {
+    fastReply = "Haanji veer ji, kinne LPH da plant chahida a?";
     fastCategory = "RO";
   }
 
@@ -785,12 +784,12 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   const hasRoCapacity = /(?:\b\d+(?:\.\d+)?\s*(?:lph|liter|litre)\b)/i.test(incomingText);
 
   if (mentionsDomestic && hasRoQuery) {
-    cleanReply = "Veer ji commercial te industrial plants (500 LPH to upar) hi banaunde a, gharelu (home) RO nahi karde ji.";
+    cleanReply = "Veer ji gharelu (home) RO nahi karde, commercial plants (50 LPH to upar) hi banaunde a ji.";
   } else if (/^(?:commercial|commercial\s*layi|plant|factory|dairy|business)\??$/i.test(incomingText.trim()) && hasRoQuery) {
     cleanReply = "Haanji veer ji, commercial plants ch 500 LPH, 1000 LPH te 2000 LPH available ne. [[SPLIT]] Kinne capacity di lod a ji?";
-  } else if (hasRoQuery && !mentionsCommercial && !hasRoCapacity && !mentionsDomestic) {
-    // Open-ended broad RO query (e.g. "Ro bare puchna c", "ro da rate", "ro plant", "ro chahida", "ro machine")
-    cleanReply = "Haanji veer ji, commercial plant layi dekh rahe ho ya ghar (home) layi?";
+  } else if (hasRoQuery && !hasRoCapacity && !mentionsDomestic) {
+    // Open-ended broad RO query (e.g. "Ro bare puchna c", "ro plant", "ro chahida")
+    cleanReply = "Haanji veer ji, kinne LPH da plant chahida a?";
   }
 
   // Strict Media Defense & URL Stripper
@@ -871,7 +870,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     } else if (/chiller|chillar/i.test(incomingText) || /chiller/i.test(category)) {
       cleanReply = "Haanji veer ji, apne kol online chillers (1 to 2.5 Ton) te heavy circulation chillers (3.5 Ton to upar) available ne.";
     } else if (/ro|plant/i.test(incomingText) || /ro/i.test(category)) {
-      cleanReply = "Haanji veer ji, commercial plant layi dekh rahe ho ya ghar (home) layi?";
+      cleanReply = "Haanji veer ji, kinne LPH da plant chahida a?";
     } else {
       cleanReply = "Haanji veer ji, dasso keda setup dekh rahe ho?";
     }
