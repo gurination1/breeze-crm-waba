@@ -9,26 +9,6 @@
     "history": [
       {
         "role": "user",
-        "content": "5000",
-        "timestamp": 1792328407222
-      },
-      {
-        "role": "model",
-        "content": "5000 LPH RO plant commercial aur industrial supply layi bahut hi wadiya heavy-duty setup hai bhaji. Eh plant tussi kehde shehar ya pind vich lagwana hai?",
-        "timestamp": 1792328412625
-      },
-      {
-        "role": "user",
-        "content": "ki",
-        "timestamp": 1792328453910
-      },
-      {
-        "role": "model",
-        "content": "Bhaji main keh reha si ki eh 5000 LPH RO plant tussi kehde shehar ya pind vich lagwana hai?",
-        "timestamp": 1792328459394
-      },
-      {
-        "role": "user",
         "content": "Pta ni",
         "timestamp": 1792328466160
       },
@@ -489,23 +469,43 @@
       },
       {
         "role": "user",
-        "content": "Chiller bare dso",
-        "timestamp": 1792592363695
-      },
-      {
-        "role": "model",
-        "content": "Haanji, humare paas online chillers (1 se 2.5 Ton tak, single-phase) aur circulation water chillers (3.5 Ton aur upar, 3-phase) available han ji. Kis capacity ya application layi chahida hai?",
-        "timestamp": 1792592363702
-      },
-      {
-        "role": "user",
-        "content": "hi",
-        "timestamp": 1792592371223
+        "content": "hlo",
+        "timestamp": 1792592363357
       },
       {
         "role": "model",
         "content": "Hello!",
-        "timestamp": 1792592371227
+        "timestamp": 1792592363371
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1792592650939
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792592650943
+      },
+      {
+        "role": "user",
+        "content": "chillar 1 ton kinney da",
+        "timestamp": 1792592897196
+      },
+      {
+        "role": "model",
+        "content": "1 Ton online chiller da hai ji.",
+        "timestamp": 1792592897209
+      },
+      {
+        "role": "user",
+        "content": "hm?",
+        "timestamp": 1792592912608
+      },
+      {
+        "role": "model",
+        "content": "1 Ton online chiller da hai ji.",
+        "timestamp": 1792592912616
       }
     ],
     "mode": "cp_system",
@@ -516,7 +516,7 @@
       "city": "Shehar",
       "status": "QUALIFIED",
       "capacity": "1 Ton",
-      "category": "RO",
+      "category": "Chiller",
       "qualified_at": "2026-10-18T13:03:30.765Z",
       "was_qualified": true,
       "general_alert_dispatched": true
@@ -1080,18 +1080,91 @@
         "role": "model",
         "content": "Maaf karna Harpreet bhaji! Main eh puch reha si ki tuhade wahan paani da source borewell hai ya canal water?",
         "timestamp": 1792207831485
+      },
+      {
+        "role": "user",
+        "content": "+917973917203",
+        "timestamp": 1792592385396
+      },
+      {
+        "role": "model",
+        "content": "Hello ji! Daso, kive madad kar sakde haan?",
+        "timestamp": 1792592385405
+      },
+      {
+        "role": "user",
+        "content": "Mnu ro plant di puri details share kro",
+        "timestamp": 1792592639564
+      },
+      {
+        "role": "model",
+        "content": "1000 LPH commercial RO plant vich high-pressure pump, pre-filter (sand, carbon, cartridge), membrane housing, post-carbon filter, aur automatic control panel include hunde han ji.",
+        "timestamp": 1792592639567
+      },
+      {
+        "role": "user",
+        "content": "Ro plant kine es da",
+        "timestamp": 1792592776414
+      },
+      {
+        "role": "model",
+        "content": "1000 LPH complete camper RO plant da hai ji.",
+        "timestamp": 1792592776419
+      },
+      {
+        "role": "user",
+        "content": "Kine rs da",
+        "timestamp": 1792592798820
+      },
+      {
+        "role": "model",
+        "content": "1000 LPH complete camper RO plant da official company rate ₹3,70,000 + 18% GST hai ji.",
+        "timestamp": 1792592798836
+      },
+      {
+        "role": "user",
+        "content": "Mnu kine da lgo",
+        "timestamp": 1792592822779
+      },
+      {
+        "role": "model",
+        "content": "Haanji, main turant Coordinator Karan Singh ji (+91 99157 30338) nu alert kar dita hai, oh jald hi aap nu call kar ke site visit aur final quotation finalize karenge ji.",
+        "timestamp": 1792592822790
+      },
+      {
+        "role": "user",
+        "content": "Oh ta thik aa",
+        "timestamp": 1792592844599
+      },
+      {
+        "role": "model",
+        "content": "Haanji, theek hai ji.",
+        "timestamp": 1792592844610
+      },
+      {
+        "role": "user",
+        "content": "Ehdi koi photo video v vej de",
+        "timestamp": 1792592854742
+      },
+      {
+        "role": "model",
+        "content": "Haanji, main Coordinator Karan Singh ji (+91 99157 30338) nu alert kar dita hai, oh jald hi aap nu 1000 LPH RO plant di photos aur video share karenge ji.",
+        "timestamp": 1792592854753
       }
     ],
     "mode": "cp_system",
     "leadClosed": false,
     "leadInfo": {
       "name": "Harpreet",
-      "requirement": "RO (1000 LPH)",
+      "requirement": "Chiller (2000L)",
       "city": "Muktsar",
       "status": "IN_PROGRESS",
-      "notes": "Customer corrected, didn't ask for rate yet. Clarifying water source.",
-      "capacity": "1000 LPH",
-      "category": "RO",
+      "notes": "Customer confused by previous bot message. Clarifying water source for 1000 LPH RO.",
+      "capacity": "1.5-2 Ton (1000 LPH RO)",
+      "category": "Chiller",
+      "water_tds": "1000",
+      "containers": "20L Camper Cans",
+      "subsidy_status": "Wants PMEGP Subsidy (No prior government loan/subsidy)",
       "last_digested_at": "2026-10-16T17:39:18.986Z",
       "conversation_digest": "- **CLIENT & LOCATION**: Name masked (🤑); Location: Muktsar.\n- **SPECS & CAPACITY**: 1000 LPH RO Plant; Camper setup for business use.\n- **COMMERCIALS & PRICING**: Quoted approx. ₹3.70 Lakh for complete camper plant. Mentioned potential PMEGP subsidy range ₹2.5L–₹3.5L.\n- **COMMITMENTS & CONTACTS**: None explicit.\n- **OBJECTIONS & PREFERENCES**: Customer initially asked about rates before details. Staff noted technical issue with QR code on current account hindering payment.\n- **AGREED NEXT STEPS**: Customer asked \"Pohnch gya?\" (Did it arrive/reach?), implying pending confirmation of payment processing or delivery status. Staff to verify QR/payment issue.",
       "digested_message_count": 25

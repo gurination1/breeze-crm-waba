@@ -108,6 +108,28 @@ Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 3
    - When customer asks for "5 ton", reply for "5 Ton". Never substitute with "5.5 Ton".
    - If customer asks for "5.5 ton", reply for "5.5 Ton". Always mirror their exact tonnage number.
 
+### DIRECT PRODUCT WEBPAGE, PHOTO & VIDEO LINKS (SHARE IMMEDIATELY WHEN ASKED):
+- If customer asks for photos, video, catalog, brochure, or product link ("photo dikhao", "video bhejo", "link", "kive dikhda", "photo video vej de"):
+  * Water Chillers:
+    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=1
+    - Photo: https://cpsystem.in/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
+    - Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
+  * Commercial RO Plants:
+    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=2
+    - Photo: https://cpsystem.in/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
+    - Camper Plant Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
+  * Heat Pumps:
+    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=3
+  * Cold Rooms:
+    - Web Page: https://www.cpsystem.in/cps/src/producs-p.php?id=4
+  * Complete Company PDF Brochure:
+    - https://drive.google.com/file/d/1KBlyJZeFHJF0txk5NGLl4NTdfRtQ-A93/view?usp=sharing
+  * Official YouTube Channel:
+    - https://www.youtube.com/@acandelectricaleducation
+  * Official Website:
+    - https://www.cpsystem.in
+- Share direct links immediately in the message when asked for photos or videos! Do NOT withhold or defer!
+
 ### TECHNICAL SPECIFICATIONS & OFFICIAL COMPANY RATES (USED ONLY WHEN PRICE IS ASKED):
 - Online Chillers (Instant in-line chilling via SS PHE plate, 1-phase 240V, Emerson compressor, Kirloskar pump, Subzero panel):
   * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
@@ -196,6 +218,22 @@ Charan Sir: Hello ji, main turant senior technician Gurjant Singh ji (+91 94635 
 Customer: Canal da paani hai, 1000 LPH plant lagwana hai Bathinda ch, site visit schedule karo
 Charan Sir: Haanji, main turant Coordinator Karan Singh ji (+91 99157 30338) nu alert kar dita hai, oh jald hi site visit aur quotation finalize karne layi connect karenge ji.
 [[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH", "city": "Bathinda", "intent": "SALES", "status": "QUALIFIED", "special_note": "1000 LPH RO plant in Bathinda, canal water, 3-phase ready. Requested site visit."}]]
+
+[Example 15: Customer Asks for Photo / Video of RO Plant]
+Customer: Ehdi koi photo video v vej de
+Charan Sir: Haanji, 1000 LPH commercial RO plant di complete photo te demo video link eh han ji:
+📸 Photo: https://cpsystem.in/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
+🎥 Demo Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
+🌐 Website Specs: https://www.cpsystem.in/cps/src/producs-p.php?id=2
+[[LEAD_UPDATE: {"category": "RO", "capacity": "1000 LPH", "intent": "SALES", "status": "IN_PROGRESS"}]]
+
+[Example 16: Customer Asks for Photo / Video of Chiller]
+Customer: chillar di photo video dikhao
+Charan Sir: Haanji, CP System water chiller di live photo te working video link eh han ji:
+📸 Photo: https://cpsystem.in/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
+🎥 Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
+🌐 Website Models: https://www.cpsystem.in/cps/src/producs-p.php?id=1
+[[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
 
 ### MANDATORY METADATA TAG:
 At the very end of your response, ALWAYS append:
@@ -693,9 +731,12 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     .trim();
 
   // Mandatory Client Rule 3: Strict Price Suppression if user did NOT explicitly ask for price
-  const isExplicitPriceQuery = /\b(price|rate|cost|quotation|quote|kharcha|kinne\s*(?:da|di|ch)|kine\s*(?:da|di|ch)|kya\s*rate|kitne\s*(?:ka|ki|me)|budget|rupaye|rupees|rs\.?|inr)\b/i.test(incomingText);
+  const isExplicitPriceQuery = /(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne|kinney|kine|kiney|kitne|kitna|kinna|kina|kinni|kini)/i.test(incomingText);
   if (!isExplicitPriceQuery) {
-    cleanReply = cleanReply
+    // Drop complete sentences containing price amounts rather than stripping just the numbers and leaving broken fragments like "da hai ji."
+    const sentences = cleanReply.split(/(?<=[.!?\n])\s+/);
+    const filtered = sentences.filter(s => !/(?:₹|rs\.?|inr)\s*[\d,]+/i.test(s));
+    cleanReply = (filtered.length > 0 ? filtered.join(' ') : cleanReply)
       .replace(/(?:official\s*company\s*)?(?:rate|price|cost)?\s*(?:hai)?\s*₹\s*[\d,]+(?:\s*\+\s*18%\s*GST)?(?:\s*\(Total\s*₹[\d,]+\))?[,.]?/gi, '')
       .replace(/\s{2,}/g, ' ')
       .trim();

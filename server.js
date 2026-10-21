@@ -170,14 +170,15 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
       return;
     }
 
-    // Anti-Loop & Spam Defense: Max 25 bot replies per phone in 24h
+    // Anti-Loop & Spam Defense: Max 25 bot replies per phone in 24h (Admin & Client phones exempt)
+    const isExempt = /9041172159|7009091075/.test(from) || from === config.ADMIN_PHONE;
     const now = Date.now();
     const rateData = userDailyBotReplyCount.get(from) || { count: 0, resetAt: now + 24 * 3600 * 1000 };
     if (now > rateData.resetAt) {
       rateData.count = 0;
       rateData.resetAt = now + 24 * 3600 * 1000;
     }
-    if (rateData.count >= 25) {
+    if (rateData.count >= 25 && !isExempt) {
       console.log(`🛡️ [Rate Limit / Loop Guard] ${from} reached 25 bot replies in 24h. Suppressing auto-reply to prevent token & cost blowout.`);
       return;
     }
@@ -247,10 +248,14 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
             const isClosedOrQualified = ['QUALIFIED', 'WON', 'CLOSED', 'LOST', 'SAVED_CONTACT', 'COMPLAINT', 'REPAIR'].includes(freshStatus) || freshLead.is_saved_contact || freshLead.was_qualified;
 
             const leadUpdates = {
-              ai_reply_count: newCount,
+              ai_reply_count: isExempt ? 0 : newCount,
               reply_count_month: new Date().toISOString().slice(0, 7),
               last_message_at: new Date().toISOString()
             };
+            if (isExempt) {
+              leadUpdates.bot_active = true;
+              leadUpdates.is_handoff_to_staff = false;
+            }
 
             if (isClosedOrQualified) {
               leadUpdates.followup_enabled = false;
@@ -624,7 +629,14 @@ app.post('/webhook', async (req, res) => {
                 lead.name = savedName;
                 updates.is_saved_contact = true;
                 lead.is_saved_contact = true;
-                if (typeof lead.bot_active !== 'boolean') {
+                if (isExempt) {
+                  updates.bot_active = true;
+                  lead.bot_active = true;
+                  updates.is_handoff_to_staff = false;
+                  lead.is_handoff_to_staff = false;
+                  updates.ai_reply_count = 0;
+                  lead.ai_reply_count = 0;
+                } else if (typeof lead.bot_active !== 'boolean') {
                   updates.bot_active = false;
                   lead.bot_active = false;
                 }
@@ -633,7 +645,14 @@ app.post('/webhook', async (req, res) => {
                   updates.name = resolvedContactName || 'WhatsApp Contact';
                   lead.name = updates.name;
                 }
-                if (typeof lead.bot_active !== 'boolean') {
+                if (isExempt) {
+                  updates.bot_active = true;
+                  lead.bot_active = true;
+                  updates.is_handoff_to_staff = false;
+                  lead.is_handoff_to_staff = false;
+                  updates.ai_reply_count = 0;
+                  lead.ai_reply_count = 0;
+                } else if (typeof lead.bot_active !== 'boolean') {
                   updates.bot_active = !isKaranLine;
                   lead.bot_active = updates.bot_active;
                 }
@@ -693,9 +712,10 @@ app.post('/webhook', async (req, res) => {
           }
 
           // 6. Check Human Takeover & Tenant Bot Toggle
-          const isBotActiveForLead = typeof lead?.bot_active === 'boolean'
-            ? lead.bot_active
-            : !isSavedContact;
+          const isExempt = /9041172159|7009091075/.test(from) || from === config.ADMIN_PHONE;
+          const isBotActiveForLead = isExempt
+            ? true
+            : (typeof lead?.bot_active === 'boolean' ? lead.bot_active : !isSavedContact);
 
           // Skip auto-replying to forwarded lead qualification alert cards
           if (incomingText.includes('NEW CP SYSTEM LEAD QUALIFIED') || incomingText.includes('LEAD QUALIFIED')) {
@@ -710,7 +730,7 @@ app.post('/webhook', async (req, res) => {
             continue;
           }
 
-          if (!isBotActiveForLead) {
+          if (!isBotActiveForLead && !isExempt) {
             if (isSavedContact) {
               console.log(`👤 [Saved Contact] ${from} (${finalDisplayName}) bot is silenced/takeover mode. Bot will NOT reply.`);
             } else {
@@ -719,12 +739,12 @@ app.post('/webhook', async (req, res) => {
             continue;
           }
 
-          // 6B. Check 15 AI Replies Cap & Staff Handoff Rule
+          // 6B. Check 15 AI Replies Cap & Staff Handoff Rule (Admin & Client phones exempt)
           const leadReplyCount = Number(lead?.ai_reply_count) || 0;
-          if (leadReplyCount >= 15) {
+          if (leadReplyCount >= 15 && !isExempt) {
             if (!lead?.is_handoff_to_staff) {
               console.log(`🛡️ [15-Reply Cap Reached] Customer ${from} reached 15 AI replies. Handing over to staff.`);
-              const handoffMsg = "Aapka inquiry hamari senior sales team (+91 99157 30338) ko assign ho chuki hai. Hum jaldi hi aapse rabta karenge aur sabhi details finalize karenge! 🙏";
+              const handoffMsg = "Tuhadi inquiry senior sales coordinator Karan Singh ji (+91 99157 30338) nu assign kar diti gayi hai ji. Oh jald hi direct rabta karke baki details finalize karenge.";
               try {
                 const sendRes = await whatsapp.sendTextMessage(phoneNumberId, from, handoffMsg);
                 const wamid = sendRes?.messages?.[0]?.id || null;
