@@ -9,26 +9,6 @@
     "history": [
       {
         "role": "user",
-        "content": "pata ni",
-        "timestamp": 1792326355397
-      },
-      {
-        "role": "model",
-        "content": "Koi gal nahi Gurdharam bhaji, paani da source check karva lavange. Tussi eh RO plant pind vich lagwana hai ya shehar vich?",
-        "timestamp": 1792326363891
-      },
-      {
-        "role": "user",
-        "content": "shehar ch",
-        "timestamp": 1792326375543
-      },
-      {
-        "role": "model",
-        "content": "Shehar vich lagwana vadiya hai bhaji, market access mil jandi hai. Tussi 20L camper cans supply karne ne ya packing botlan?",
-        "timestamp": 1792326384475
-      },
-      {
-        "role": "user",
         "content": "pta ni hle",
         "timestamp": 1792326401732
       },
@@ -506,6 +486,26 @@
         "role": "model",
         "content": "Hello! How can I help you today?",
         "timestamp": 1792590359618
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1792591108409
+      },
+      {
+        "role": "model",
+        "content": "Hello! How can I help you today?",
+        "timestamp": 1792591108413
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1792591344451
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792591344461
       }
     ],
     "mode": "cp_system",

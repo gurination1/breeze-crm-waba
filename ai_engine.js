@@ -129,12 +129,12 @@ Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 3
 
 [Example 1: Pure Greeting]
 Customer: hi
-Charan Sir: Hello! How can I help you today?
+Charan Sir: Hello!
 [[LEAD_UPDATE: {"intent": "SALES", "status": "IN_PROGRESS"}]]
 
 [Example 2: Pure Greeting Punjabi]
 Customer: hello ji
-Charan Sir: Hello ji! Daso, kive madad kar sakde haan?
+Charan Sir: Hello!
 [[LEAD_UPDATE: {"intent": "SALES", "status": "IN_PROGRESS"}]]
 
 [Example 3: Product Inquiry (NO PRICE SHOWN)]
@@ -585,13 +585,13 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Handle degenerate inputs (single punctuation)
   if (/^[?.!,\s]+$/.test(text)) {
-    return 'Hello! How can I help you today?';
+    return 'Hello!';
   }
 
   // Pure standalone greeting: Fast response, strictly simple & neutral, no exaggerated welcome
   const isPureGreeting = /^\s*(hi|hello|hey|hlo|helo|hy|haanji|hanji|sat\s*sri\s*akal|namaste|ssakal|ram\s*ram|radhe\s*radhe|good\s*morning|good\s*evening|good\s*afternoon|pranam|salam)\s*(ji|sir|veere|bro)?\s*[!.?]*\s*$/i.test(text);
   if (isPureGreeting) {
-    return 'Hello! How can I help you today?';
+    return 'Hello!';
   }
 
   // Build clean, authentic conversation turns for Gemini

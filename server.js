@@ -165,7 +165,7 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
     const elapsed = Date.now() - lastSentAt;
     const isTrivialGreeting = /^(hi|hello|hlo|hey|hnji|hanji|ji|ok|theek\s*hai|sat\s*sri\s*akal|ss\s*akal|sri\s*akal)$/i.test(mergedText.trim());
 
-    if (elapsed < 15000 && isTrivialGreeting) {
+    if (elapsed < 3000 && isTrivialGreeting) {
       console.log(`🛡️ [Duplicate Greeting Suppressed] Skipped redundant response for ${from} ("${mergedText}") - bot just replied ${Math.round(elapsed/1000)}s ago.`);
       return;
     }
@@ -194,7 +194,7 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
 
       const safeOutboundText = (aiResponse && typeof aiResponse === 'string' && aiResponse.trim().length >= 3)
         ? aiResponse.trim()
-        : "Hello! CP SYSTEM Muktsar team se. Batayein, kis machine ya setup baare gal karni hai?";
+        : "Hello! Batayein, kis machine ya setup baare gal karni hai?";
 
       let outboundWamid = null;
       let sendErrorMsg = null;
