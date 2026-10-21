@@ -9,56 +9,6 @@
     "history": [
       {
         "role": "user",
-        "content": "Pta ni",
-        "timestamp": 1792328466160
-      },
-      {
-        "role": "model",
-        "content": "Koi gal nahi bhaji, location baad ch bhi decide ho sakdi hai, bilkul fikar na karo. Eh plant 20L camper cans supply layi lagana hai ya botlan di packing karni hai?",
-        "timestamp": 1792328473103
-      },
-      {
-        "role": "user",
-        "content": "Samj ni i",
-        "timestamp": 1792328487257
-      },
-      {
-        "role": "model",
-        "content": "Koi gal ni veere, main aasan shabdan vich puch reha si ki eh RO plant tussi camper supply layi lagana hai ya botlan di packing karni hai?",
-        "timestamp": 1792328492082
-      },
-      {
-        "role": "user",
-        "content": "camper",
-        "timestamp": 1792328502745
-      },
-      {
-        "role": "model",
-        "content": "Camper cans supply layi 5000 LPH RO plant ekdum wadiya business setup hai bhaji. Raw water source borewell da paani hai ya nehar da ji?",
-        "timestamp": 1792328507435
-      },
-      {
-        "role": "user",
-        "content": "Chiller bare dss",
-        "timestamp": 1792328527250
-      },
-      {
-        "role": "model",
-        "content": "5000L milk ya water cooling layi heavy-duty Emerson scroll chiller lagda hai bhaji. Ki dairy ya plant te 3-phase commercial electricity connection hai?",
-        "timestamp": 1792328531885
-      },
-      {
-        "role": "user",
-        "content": "Nhi",
-        "timestamp": 1792328556648
-      },
-      {
-        "role": "model",
-        "content": "Veere single phase connection te maximum 1.5 to 2 Ton chiller hi chal sakda hai. Ki tussi 3-phase commercial meter arrange kar sakde ho ji?",
-        "timestamp": 1792328560299
-      },
-      {
-        "role": "user",
         "content": "Kini",
         "timestamp": 1792328573879
       },
@@ -506,6 +456,56 @@
         "role": "model",
         "content": "1 Ton online chiller da hai ji.",
         "timestamp": 1792592912616
+      },
+      {
+        "role": "user",
+        "content": "chillar 1 ton kinney da",
+        "timestamp": 1792593762174
+      },
+      {
+        "role": "model",
+        "content": "1 Ton online chiller da official company rate ₹60,000 + 18% GST hai ji.",
+        "timestamp": 1792593762176
+      },
+      {
+        "role": "user",
+        "content": "Chiller bare dso",
+        "timestamp": 1792593793228
+      },
+      {
+        "role": "model",
+        "content": "Haanji, CP System vich online chillers (1 Ton se 2.5 Ton tak) aur circulation chillers (3.5 Ton, 5 Ton, 5.5 Ton) available han ji. Online chillers instant in-line cooling layi han (1-phase 240V), aur circulation chillers tank circulation cooling layi han (3-phase 440V).",
+        "timestamp": 1792593793244
+      },
+      {
+        "role": "user",
+        "content": "Ehdi koi photo video v vej de",
+        "timestamp": 1792593816927
+      },
+      {
+        "role": "model",
+        "content": "Haanji, CP System water chiller di live photo te working video link eh han ji:\n📸 Photo: https://cpsystem.in/admin/public/assets/img/product/1757073586_20250905_165838_0004.png\n🎥 Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0\n🌐 Website Models: https://www.cpsystem.in/cps/src/producs-p.php?",
+        "timestamp": 1792593816942
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": 1792593830100
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792593830103
+      },
+      {
+        "role": "user",
+        "content": "chillar di video te photo bhejo",
+        "timestamp": 1792594111897
+      },
+      {
+        "role": "model",
+        "content": "Haanji, CP System water chiller di live photo te working video link eh han ji:\n📸 Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png\n🎥 Working Video: https://www.youtube.com/watch?v=NmKCLdSlzP0\n🌐 Website Models: https://www.cpsystem.in/cps/src/producs-p.php?id=1",
+        "timestamp": 1792594111900
       }
     ],
     "mode": "cp_system",
