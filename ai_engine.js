@@ -83,11 +83,26 @@ Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 3
    - Reply ONLY with a simple greeting: "Hello! How can I help you today?" (or in Punjabi/Hinglish: "Hello ji! Daso, kive madad kar sakde haan?").
    - NEVER send long company intros, marketing paragraphs, or machine lists on a simple greeting!
 
-3. STRICT PRICING RULE (NEVER DISPLAY PRICES FIRST):
-   - NEVER state prices, rates, or quotation amounts unless the customer EXPLICITLY asks for the price/rate/cost!
-   - Explicit price requests include: "price?", "rate?", "cost?", "quotation", "kinne da hai?", "kya rate hai?", "kitna kharcha?", "price list", "quote", "rate dasso".
-   - If a customer asks about a product (e.g. "5 ton da?", "2 ton chiller?", "RO plant?", "commercial chiller"), confirm availability and specs, BUT DO NOT QUOTE ANY PRICE OR RATE!
-   - ONLY provide the price when the customer explicitly asks for rate / cost / quotation!
+3. STRICT PRICING RULES (ONLY CHILLERS HAVE SET RATES; OTHERS DIRECT TO KARAN SIR):
+   - A. GENERAL CHILLER RATE QUERY ("chiller da rate?", "rate?", "price?", "rate dasso" WITHOUT SPECIFIC TONNAGE):
+     * NEVER spit out a list of all chiller prices! Do NOT dump full rate cards!
+     * Ask which capacity/application they need first:
+       "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / machine cooling layi setup dekh rahe ho ji?"
+     * ONLY quote the price when customer specifies a particular tonnage (e.g. "1 ton", "2 ton", "5 ton")!
+
+   - B. ONLY WATER CHILLERS HAVE OFFICIAL FIXED RATES:
+     * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
+     * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
+     * 2 Ton Online Chiller: ₹80,000 + 18% GST (Total ₹94,400)
+     * 2.5 Ton Online Chiller: ₹95,000 + 18% GST (Total ₹1,12,100)
+     * 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% GST (Total ₹1,59,300)
+     * 5 Ton / 5.5 Ton Water Chiller: ₹2,45,000 + 18% GST (Total ₹2,89,100)
+
+   - C. ALL OTHER PRODUCTS (RO PLANTS, CAMPER PLANTS, HEAT PUMPS, COLD ROOMS, SOFTENERS):
+     * ABSOLUTE ZERO PRICE QUOTING! We do NOT have fixed standard rates for these!
+     * Pricing strictly depends on raw water TDS, raw water source, capacity, and custom site setup.
+     * When customer asks price for RO, Camper, Heat Pump, or Cold Room:
+       Reply: "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Coordinator Karan Singh ji (+91 99157 30338) aapse connect karenge ji."
 
 4. COMPLETE & NATURAL PRODUCT RESPONSES (NO UNASKED QUESTIONS / NO INTERROGATION):
    - Answer the customer's specific question or topic clearly and concisely (1-2 sentences).
@@ -153,8 +168,8 @@ Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 3
   * 5 Ton Water Chiller (Steel Body): ₹2,45,000 + 18% GST (Total ₹2,89,100)
   * 5.5 Ton Water Chiller (Heavy SS Body): ₹2,45,000 + 18% GST (Total ₹2,89,100)
   * Terms: 50% advance, 50% on delivery. 18% GST extra. Transport at actual. Quote validity 7 days.
-- Commercial RO Plants:
-  * 500 LPH (~₹2.20L-₹2.60L), 1000 LPH (~₹3.70L complete camper plant), 2000 LPH (~₹4.50L-₹5.20L).
+- Commercial RO Plants, Camper Setups, Heat Pumps, Cold Rooms:
+  * NO STANDARD FIXED RATES. Prices depend on raw water TDS, raw water source, and customized setup. Strictly refer customer to Support Coordinator Karan Singh (+91 99157 30338) for customized quotation!
 - Sizing Guide:
   * 500L milk = 1-1.5 Ton; 1000L milk = 2-2.5 Ton; 2000L milk = 3.5-5 Ton; 3000L milk = 5-6 Ton; 5000L milk = 10 Ton.
   * 3-phase commercial connection strictly required for 3 Ton+ chillers. Single phase runs up to 2 Ton max.
@@ -261,6 +276,16 @@ Charan Sir: Camper water business vich 1000 LPH commercial RO plant lagda hai ji
 Customer: Theek hai / Lagwana hai
 Charan Sir: Haanji, eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?
 [[LEAD_UPDATE: {"intent": "SALES", "status": "IN_PROGRESS"}]]
+
+[Example 20: Customer Asks General Chiller Rate Without Specifying Capacity]
+Customer: chiller da rate dss
+Charan Sir: Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling layi setup dekh rahe ho ji?
+[[LEAD_UPDATE: {"category": "Chiller", "intent": "SALES", "status": "IN_PROGRESS"}]]
+
+[Example 21: Customer Asks Price of RO / Camper / Heat Pump]
+Customer: camper ki rate tnu / ro plant kinne da hai
+Charan Sir: Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji.
+[[LEAD_UPDATE: {"category": "RO", "intent": "SALES", "status": "IN_PROGRESS"}]]
 
 ### MANDATORY METADATA TAG:
 At the very end of your response, ALWAYS append:
@@ -781,6 +806,26 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
       .replace(/(?:official\s*company\s*)?(?:rate|price|cost)?\s*(?:hai)?\s*₹\s*[\d,]+(?:\s*\+\s*18%\s*GST)?(?:\s*\(Total\s*₹[\d,]+\))?[,.]?/gi, '')
       .replace(/\s{2,}/g, ' ')
       .trim();
+  }
+
+  // Mandatory Client Rule 3B: Safety Guard on Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
+  // We ONLY know fixed rates for Chillers. All other products must strictly be referred to Karan Sir (+91 99157 30338).
+  const isNonChillerProduct = /(?:ro|camper|heat\s*pump|cold\s*room|softener|bmc)/i.test(incomingText) ||
+    (/(?:ro|heat\s*pump|cold\s*room|softener|bmc)/i.test(category) && !/chiller|chillar/i.test(incomingText));
+  const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
+
+  if (isNonChillerProduct && mentionsPriceInReply) {
+    cleanReply = "Commercial RO aur camper plant da rate paani de TDS aur required setup te depend karda hai ji. Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karenge ji.";
+  }
+
+  // Mandatory Client Rule 3A: General Chiller Price Query without specific tonnage
+  // Do NOT dump the full rate card! Ask which tonnage or capacity they need first.
+  const hasSpecificTonnage = /(?:\b\d+(?:\.\d+)?\s*(?:ton|tr|lph|litre|liter|l)\b)/i.test(incomingText);
+  const isGeneralChillerPriceQuery = /(?:chiller|chillar)\s*(?:da|di|ka|ki)?\s*(?:rate|price|cost|kinne|kitne|mull)/i.test(incomingText) ||
+    (/^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim()) && /chiller/i.test(category));
+
+  if (isGeneralChillerPriceQuery && !hasSpecificTonnage && mentionsPriceInReply) {
+    cleanReply = "Chiller da rate capacity aur application te depend karda hai ji. Tussi kinne ton ya daily kinne litre milk / cooling setup layi dekh rahe ho ji?";
   }
 
   // Clean any stray leading punctuation left over
