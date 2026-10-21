@@ -562,7 +562,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   let fastReply = null;
   let fastCategory = null;
 
-  // 1. Chiller Price Query (Specific Tonnage & General) - Highest Priority when Chiller is mentioned
+  // 1. Chiller Inquiries (Price & General) - Highest Priority when Chiller is mentioned
   if (isChillerExplicit && isPriceQueryEarly) {
     if (/\b1(?:\.0)?\s*(?:ton|tr)\b/i.test(incomingText) && !/1\.5/i.test(incomingText)) {
       fastReply = "1 Ton online chiller ₹60,000 + 18% GST a ji (Total ₹70,800). [[SPLIT]] Single phase 240V te chalda a, ready in stock a veer ji.";
@@ -586,11 +586,17 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
       fastReply = "Chiller da rate capacity te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
       fastCategory = "Chiller";
     }
+  } else if (isChillerExplicit && !isPriceQueryEarly && !isSpecificTonnage) {
+    fastReply = "Haanji veer ji, kinne ton da chiller dekh rahe ho ya dairy / machine cooling layi?";
+    fastCategory = "Chiller";
   }
 
-  // 2. Camper Models Query ("kede kede camper aa?")
+  // 2. Camper Queries (Models & General Inquiries)
   else if (/(?:kede|keda|kehde|kehda|kehre|which|what)\s*(?:kede|kehde)?\s*(?:camper|campers|models|types)/i.test(incomingText) || /camper\s*(?:options|models|types|list|setup)/i.test(incomingText)) {
     fastReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
+    fastCategory = "Camper";
+  } else if (/\b(?:camper|campers)\b/i.test(incomingText) && !isPriceQueryEarly) {
+    fastReply = "Haanji veer ji, camper setup ch 1000 LPH ya 2000 LPH commercial plant dekh rahe ho?";
     fastCategory = "Camper";
   }
 
