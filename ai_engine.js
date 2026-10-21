@@ -619,16 +619,16 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     parts: [{ text: customerTurnText }]
   });
 
-  // 2. GENERATE RESPONSE WITH GEMINI PRIMARY, GROQ SECONDARY (0.8x compact maxTokens)
-  let rawReply = await callGemini(CP_SYSTEM_PROMPT, contents, 220);
+  // 2. GENERATE RESPONSE WITH ULTRA-FAST GROQ PRIMARY (<500ms), GEMINI/MISTRAL FALLBACK
+  let rawReply = await callGroqFallback(CP_SYSTEM_PROMPT, contents, 250);
 
   if (!rawReply || !rawReply.trim()) {
-    console.log(`⚡ [Gemini Exhausted] Attempting Groq fallback for ${cleanPhone}...`);
-    rawReply = await callGroqFallback(CP_SYSTEM_PROMPT, contents, 250);
+    console.log(`⚡ [Groq Exhausted] Attempting Gemini fallback for ${cleanPhone}...`);
+    rawReply = await callGemini(CP_SYSTEM_PROMPT, contents, 220);
   }
 
   if (!rawReply || !rawReply.trim()) {
-    console.log(`⚡ [Groq Exhausted] Attempting Mistral AI fallback for ${cleanPhone}...`);
+    console.log(`⚡ [Gemini Exhausted] Attempting Mistral AI fallback for ${cleanPhone}...`);
     rawReply = await callMistralFallback(CP_SYSTEM_PROMPT, contents, 220);
   }
 

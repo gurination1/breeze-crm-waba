@@ -9,56 +9,6 @@
     "history": [
       {
         "role": "user",
-        "content": "pta ni hle",
-        "timestamp": 1792326401732
-      },
-      {
-        "role": "model",
-        "content": "Koi gal nahi bhaji, business plan banan vich asi tuhadi poori madad karange. Tussi camper supply da kaam shuru karna hai ya botlan da?",
-        "timestamp": 1792326410994
-      },
-      {
-        "role": "user",
-        "content": "3000l",
-        "timestamp": 1792326443431
-      },
-      {
-        "role": "model",
-        "content": "3000 LPH RO plant commercial business layi bahut vadiya capacity hai bhaji. Eh plant borewell de paani te lagwana hai ya nehar de paani te?",
-        "timestamp": 1792326451805
-      },
-      {
-        "role": "user",
-        "content": "Meh leha si pata ni",
-        "timestamp": 1792326470510
-      },
-      {
-        "role": "model",
-        "content": "Koi gal nahi Gurdharam bhaji, borewell da paani hai taan TDS check karwana zaroori hunda hai. Ki tussi paani da TDS level check karwaya hai ji?",
-        "timestamp": 1792326479150
-      },
-      {
-        "role": "user",
-        "content": "hi",
-        "timestamp": 1792328367585
-      },
-      {
-        "role": "model",
-        "content": "Sat Sri Akal Gurdharam ji! 🙏 CP SYSTEM Muktsar vich swagat hai. Daso bhaji, kive madad kar sakde haan?",
-        "timestamp": 1792328371732
-      },
-      {
-        "role": "user",
-        "content": "ro",
-        "timestamp": 1792328389341
-      },
-      {
-        "role": "model",
-        "content": "Haanji bhaji, commercial RO plant di poori jankari mil javegi. Tussi daily kina paani process karna hai ji?",
-        "timestamp": 1792328395295
-      },
-      {
-        "role": "user",
         "content": "5000",
         "timestamp": 1792328407222
       },
@@ -500,12 +450,62 @@
       {
         "role": "user",
         "content": "hi",
-        "timestamp": 1792591344451
+        "timestamp": 1792591430262
       },
       {
         "role": "model",
         "content": "Hello!",
-        "timestamp": 1792591344461
+        "timestamp": 1792591430265
+      },
+      {
+        "role": "user",
+        "content": "Chiller bare dso",
+        "timestamp": 1792591454807
+      },
+      {
+        "role": "model",
+        "content": "Haanji, humare paas online chillers (1 se 2.5 Ton tak, single-phase) aur circulation water chillers (3.5 Ton aur upar, 3-phase) available han ji. Kis capacity ya application layi chahida hai?",
+        "timestamp": 1792591454815
+      },
+      {
+        "role": "user",
+        "content": "Ro plant lai chiller launa",
+        "timestamp": 1792592309376
+      },
+      {
+        "role": "model",
+        "content": "Haanji, RO plant layi 1 se 2.5 Ton tak de online chillers available han ji, jo single-phase 240V te chalde han te instant cooling dinde han.",
+        "timestamp": 1792592309381
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1792592352541
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792592352555
+      },
+      {
+        "role": "user",
+        "content": "Chiller bare dso",
+        "timestamp": 1792592363695
+      },
+      {
+        "role": "model",
+        "content": "Haanji, humare paas online chillers (1 se 2.5 Ton tak, single-phase) aur circulation water chillers (3.5 Ton aur upar, 3-phase) available han ji. Kis capacity ya application layi chahida hai?",
+        "timestamp": 1792592363702
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1792592371223
+      },
+      {
+        "role": "model",
+        "content": "Hello!",
+        "timestamp": 1792592371227
       }
     ],
     "mode": "cp_system",
