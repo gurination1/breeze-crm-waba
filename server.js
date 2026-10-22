@@ -224,10 +224,10 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
         if (!safeOutboundText) continue;
 
         if (i > 0) {
-          // Re-trigger typing indicator between consecutive messages with human typing pause (1.4s - 2.5s)
+          // Fast typing indicator pause (200ms - 400ms)
           await whatsapp.sendTypingIndicator(entry.phoneNumberId, entry.lastMsgId).catch(() => {});
-          const pauseMs = Math.min(2500, Math.max(1400, safeOutboundText.length * 28));
-          console.log(`⏳ [Human Multi-Message Delay]: Pausing ${pauseMs}ms with typing indicator before message ${i + 1}/${messagesToSend.length}...`);
+          const pauseMs = Math.min(400, Math.max(200, safeOutboundText.length * 5));
+          console.log(`⏳ [Fast Multi-Message Delay]: Pausing ${pauseMs}ms before message ${i + 1}/${messagesToSend.length}...`);
           await new Promise(r => setTimeout(r, pauseMs));
         }
 
@@ -332,7 +332,7 @@ function queueCustomerMessage({ from, incomingText, contactName, tenantId, phone
     } finally {
       userInFlight.delete(from);
     }
-  }, 600); // 600ms fast typing debounce window (cuts 1.6s delay!)
+  }, 250); // 250ms ultra-fast debounce window
 }
 
 /**
@@ -782,9 +782,9 @@ app.post('/webhook', async (req, res) => {
             continue;
           }
 
-          // 6B. Check 15 AI Replies Cap & Staff Handoff Rule (Admin & Client phones exempt)
+          // 6B. Check 20 AI Replies Cap & Staff Handoff Rule (Admin & Client phones exempt)
           const leadReplyCount = Number(lead?.ai_reply_count) || 0;
-          if (leadReplyCount >= 15 && !isExempt) {
+          if (leadReplyCount >= 20 && !isExempt) {
             if (!lead?.is_handoff_to_staff) {
               console.log(`🛡️ [15-Reply Cap Reached] Customer ${from} reached 15 AI replies. Handing over to staff.`);
               const handoffMsg = "Veer ji baki details layi Karan Singh ji (+91 99157 30338) direct tuhade naal gal kar lenge ji.";
