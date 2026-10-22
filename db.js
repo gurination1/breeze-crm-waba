@@ -107,49 +107,34 @@ async function recordBillableEngagement({ tenantId, leadPhone, clientName, city,
       } catch (e) {}
     }
 
-    const sql = `
-      INSERT INTO public.crm_billing_ledger (
-        tenant_id,
-        lead_phone,
-        client_name,
-        city,
-        billing_month,
-        engagement_type,
-        channels,
-        rate_inr,
-        message_count,
-        first_engaged_at,
-        last_engaged_at,
-        last_message_preview
-      )
-      VALUES (
-        '${tenantId.replace(/'/g, "''")}',
-        '${cleanPhone}',
-        ${finalName ? `'${String(finalName).replace(/'/g, "''")}'` : 'NULL'},
-        ${finalCity ? `'${String(finalCity).replace(/'/g, "''")}'` : 'NULL'},
-        '${billingMonth}',
-        '${engType.replace(/'/g, "''")}',
-        '["${engType.replace(/'/g, "''")}"]'::jsonb,
-        5.00,
-        1,
-        NOW(),
-        NOW(),
-        ${safePreview ? `'${safePreview.replace(/'/g, "''")}'` : 'NULL'}
-      )
-      ON CONFLICT (tenant_id, lead_phone, billing_month) DO UPDATE
-      SET
-        message_count = crm_billing_ledger.message_count + 1,
-        last_engaged_at = NOW(),
-        last_message_preview = COALESCE(EXCLUDED.last_message_preview, crm_billing_ledger.last_message_preview),
-        client_name = COALESCE(EXCLUDED.client_name, crm_billing_ledger.client_name),
-        city = COALESCE(EXCLUDED.city, crm_billing_ledger.city),
-        channels = (
-          SELECT jsonb_agg(DISTINCT elem)
-          FROM jsonb_array_elements_text(crm_billing_ledger.channels || EXCLUDED.channels) AS elem
-        );
-    `;
-
-    await querySql(sql);
+    const existing = await get('crm_billing_ledger', `tenant_id=eq.${tenantId}&lead_phone=eq.${cleanPhone}&billing_month=eq.${billingMonth}&limit=1`);
+    if (existing && existing.length > 0) {
+      const row = existing[0];
+      const mergedChannels = Array.from(new Set([...(row.channels || []), engType]));
+      await update('crm_billing_ledger', `id=eq.${row.id}`, {
+        message_count: (row.message_count || 1) + 1,
+        last_engaged_at: new Date().toISOString(),
+        last_message_preview: safePreview || row.last_message_preview,
+        client_name: finalName || row.client_name,
+        city: finalCity || row.city,
+        channels: mergedChannels
+      });
+    } else {
+      await insert('crm_billing_ledger', {
+        tenant_id: tenantId,
+        lead_phone: cleanPhone,
+        client_name: finalName || null,
+        city: finalCity || null,
+        billing_month: billingMonth,
+        engagement_type: engType,
+        channels: [engType],
+        rate_inr: 5.00,
+        message_count: 1,
+        first_engaged_at: new Date().toISOString(),
+        last_engaged_at: new Date().toISOString(),
+        last_message_preview: safePreview || null
+      });
+    }
   } catch (err) {
     console.error('[Billing Ledger Record Error]:', err.message);
   }
