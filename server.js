@@ -64,6 +64,8 @@ app.get('/health', (req, res) => {
   res.json({
     status: 'ONLINE',
     service: 'Enterprise WABA AI Engine',
+    version: '2026-10-22-v2-natural-sales',
+    gitCommit: '4bcff92',
     supabaseKeepAlive: 'ACTIVE',
     timestamp: new Date().toISOString(),
     phoneNumbers: config.PHONE_NUMBERS
