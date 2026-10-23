@@ -20,14 +20,18 @@ async function testPipeline() {
   console.log(reply);
   console.log('----------------------------------------------------');
 
-  // Dispatch live WhatsApp message to verify real delivery
-  console.log(`\nDispatching actual live WhatsApp Cloud API message to ${testPhone}...`);
-  try {
-    const res = await whatsapp.sendTextMessage(config.DEFAULT_PHONE_ID, testPhone, reply);
-    console.log(`✅ Live Message Sent Successfully!`);
-    console.log(`WAMID:`, res.messages?.[0]?.id);
-  } catch (err) {
-    console.error('❌ Live dispatch error:', err.message);
+  // Dispatch live WhatsApp message only if SEND_LIVE=true is passed
+  if (process.env.SEND_LIVE === 'true') {
+    console.log(`\nDispatching actual live WhatsApp Cloud API message to ${testPhone}...`);
+    try {
+      const res = await whatsapp.sendTextMessage(config.DEFAULT_PHONE_ID, testPhone, reply);
+      console.log(`✅ Live Message Sent Successfully!`);
+      console.log(`WAMID:`, res.messages?.[0]?.id);
+    } catch (err) {
+      console.error('❌ Live dispatch error:', err.message);
+    }
+  } else {
+    console.log('\nℹ️ Live WhatsApp dispatch skipped. (Pass SEND_LIVE=true to send to phone).');
   }
 }
 
