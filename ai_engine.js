@@ -82,7 +82,7 @@ MALWAI PUNJABI DIALECT & NATURAL TONE:
 CRITICAL RULES:
 1. GREETING:
    - BAN ALL religious greetings ("Sat Sri Akal", "Namaste", "Ram Ram", "Radhe Radhe").
-   - Pure greeting ("hi", "hello"): Reply ONLY: "Hello ji! Dasso, kive madad kar sakde a?"
+   - Pure greeting ("hi", "hello", "hlo", "sat sri akal"): Reply ONLY: "Hlo"
    - Well-being ("kive ho", "ki haal"): "Main theek haan veer ji! Tussi dasso, sab theek thaak? Dasso kede setup baare puchna chahunde ho?"
 
 2. PRICING RULES:
@@ -244,7 +244,7 @@ async function dispatchLeadNotification(leadData) {
 function ensureSentenceComplete(text) {
   if (!text) return '';
   let cleaned = text.trim();
-  if (/[.?!]$/.test(cleaned) || /https?:\/\/[^\s]+$/i.test(cleaned)) return cleaned;
+  if (/[.?!]$/.test(cleaned) || /https?:\/\/[^\s]+$/i.test(cleaned) || /^(hlo|hello|hi)$/i.test(cleaned)) return cleaned;
 
   // If text contains [[SPLIT]], ensure each segment is individually completed
   if (cleaned.includes('[[SPLIT]]')) {
@@ -537,10 +537,10 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     return 'Hello!';
   }
 
-  // Pure standalone greeting: Fast response, warm & polite Punjabi, strictly neutral
+  // Pure standalone greeting: Fast response, natural WhatsApp "Hlo"
   const isPureGreeting = /^\s*(hi|hello|hey|hlo|helo|hy|haanji|hanji|sat\s*sri\s*akal|namaste|ssakal|ram\s*ram|radhe\s*radhe|good\s*morning|good\s*evening|good\s*afternoon|pranam|salam)\s*(ji|sir|veere|bro)?\s*[!.?]*\s*$/i.test(text);
   if (isPureGreeting) {
-    return 'Hello ji! Dasso, kive madad kar sakde a?';
+    return 'Hlo';
   }
 
   // Pleasantries / Well-being inquiry ("how are you", "kive ho", "ki haal", "kiddan", "haal chaal")
@@ -802,12 +802,12 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   cleanReply = cleanReply.replace(/^[,.!?\s]+/, '').trim();
   cleanReply = ensureSentenceComplete(cleanReply);
 
-  // Anti-Degeneracy Quality Gate: NEVER send 1-word or grunt replies
-  const isGruntReply = /^(ha|haan|haanji|ji|ok|theek\s*hai|hmm|acha|got\s*it|hlo|hi|yes|no)[\s.!?]*$/i.test(cleanReply.trim());
-  if (cleanReply.length < 12 || isGruntReply) {
+  // Anti-Degeneracy Quality Gate: NEVER send 1-word or grunt replies for inquiries
+  const isGruntReply = !isPureGreeting && /^(ha|haan|haanji|ji|ok|theek\s*hai|hmm|acha|got\s*it|hi|yes|no)[\s.!?]*$/i.test(cleanReply.trim());
+  if ((cleanReply.length < 12 && !isPureGreeting) || isGruntReply) {
     console.log(`🛡️ [Degenerate Reply Intercepted]: "${cleanReply}" for input "${incomingText}". Regenerating helpful response.`);
     if (isPureGreeting) {
-      cleanReply = "Hello ji! Dasso, kive madad kar sakde a?";
+      cleanReply = "Hlo";
     } else if (/(?:kede|kehde)\s*camper/i.test(incomingText)) {
       cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
     } else if (/camper/i.test(incomingText) || /camper/i.test(category)) {
