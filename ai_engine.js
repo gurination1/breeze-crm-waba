@@ -86,8 +86,12 @@ CRITICAL RULES:
    - Well-being ("kive ho", "ki haal"): "Main theek haan veer ji! Tussi dasso, sab theek thaak? Dasso kede setup baare puchna chahunde ho?"
 
 2. PRICING RULES:
-   - A. General Chiller / Milk Cooling Query (no specific ton):
-     "Chiller da rate capacity te requirement te depend karda a veer ji. [[SPLIT]] Tussi daily kinne litre doodh cooling layi setup dekh rahe ho ya kinne ton da chahida a ji?"
+   - A. General Chiller Query (no specific ton):
+     NEVER assume milk/dairy unless customer explicitly mentions it!
+     If general chiller query (no milk mentioned):
+     "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi setup dekh rahe ho, te kinne ton da chiller chahida a ji?"
+     If customer explicitly mentions milk/dairy:
+     "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni a ya kinne ton da setup dekh rahe ho ji?"
    - B. Fixed Chiller Rates (Strictly these only):
      * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
      * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
@@ -721,18 +725,24 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
       .trim();
   }
 
-  // Mandatory Client Rule 3A: General Chiller / Milk Cooling Query without specific tonnage
-  // Do NOT dump the full rate card! Ask which tonnage or capacity they need first.
-  const isChillerRelated = /(?:chiller|chillar|doodh|dudh|milk|dairy|bmc|cooling\s*machine|water\s*chilling)/i.test(incomingText) ||
+  // Mandatory Client Rule 3A: General Chiller Query without specific tonnage
+  // Do NOT dump the full rate card! Ask which tonnage or application they need first. NEVER assume milk unless specified.
+  const isMilkSpecific = /(?:doodh|dudh|milk|dairy|bmc)/i.test(incomingText);
+  const isChillerRelated = /(?:chiller|chillar|cooling\s*machine|water\s*chilling)/i.test(incomingText) || isMilkSpecific ||
     (/(?:chiller|chillar)/i.test(category) && !/(?:ro\b|camper)/i.test(incomingText));
   const hasSpecificTonnage = /(?:\b\d+(?:\.\d+)?\s*(?:ton|tr)\b)/i.test(incomingText);
   const isGeneralChillerPriceQuery = isChillerRelated && !hasSpecificTonnage && (
     /(?:rate|price|cost|kinne|kitne|mull|pauga|paugi|aunda|aunde|kharcha|kinna|kitna)/i.test(incomingText) ||
-    /^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim())
+    /^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim()) ||
+    /^(?:chiller|chillar|water\s*chiller)\s*(?:chahida|lena|chahidi|setup)?\??$/i.test(incomingText.trim())
   );
 
   if (isGeneralChillerPriceQuery) {
-    cleanReply = "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi daily kinne litre doodh cooling layi setup dekh rahe ho ya kinne ton da chahida a ji?";
+    if (isMilkSpecific) {
+      cleanReply = "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni a ya kinne ton da setup dekh rahe ho ji?";
+    } else {
+      cleanReply = "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi setup dekh rahe ho, te kinne ton da chiller chahida a ji?";
+    }
   }
 
   // Mandatory Client Rule 3B: Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
