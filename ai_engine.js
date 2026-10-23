@@ -7,6 +7,7 @@ const memory = require('./memory');
 const whatsapp = require('./whatsapp_api');
 const db = require('./db');
 const cpQuotations = require('./data/cp_quotations_catalog');
+const jobsEngine = require('./jobs_engine');
 
 const httpsAgent = new https.Agent({
   keepAlive: true,
@@ -1025,7 +1026,54 @@ async function generateAIReply(userPhone, incomingText, userName = '', tenantId 
   const restoredLead = await memory.syncFromSupabase(cleanPhone, effectiveTenant, db);
   const activeLead = existingLead || restoredLead;
 
-  // 1. DEDICATED CP SYSTEM FLOW
+  // 1. ALL INDIA GOVT & PRIVATE JOBS CHANNEL MODE (Bal Krishan Sir / Multi-Publisher)
+  const jobsTriggerRegex = /\b(jobs?\s*channel|channel\s*jobs?|all\s*india\s*govt\s*jobs?|sarkari\s*result)\b/i;
+  const isJobsExitRegex = /^\s*(exit|stop|band\s*karo|quit|leave|normal|exit\s*jobs?)\s*$/i;
+  const currentMode = memory.getMode(cleanPhone, effectiveTenant);
+
+  // If currently in jobs_channel and user types exit or stop
+  if (currentMode === 'jobs_channel' && isJobsExitRegex.test(lowerText)) {
+    const revertMode = (phoneNumberId === '1345576425313536' || tenantId === 'cpsystem') ? 'cp_system' : 'default';
+    memory.setMode(cleanPhone, revertMode, effectiveTenant);
+    jobsEngine.removeSubscriber(cleanPhone);
+    const exitMsg = "🔄 *Jobs Channel Mode Deactivated.*\n\nReverted back to normal assistant mode. How can I help you today?";
+    memory.addMessage(cleanPhone, 'user', incomingText, effectiveTenant);
+    memory.addMessage(cleanPhone, 'model', exitMsg, effectiveTenant);
+    return exitMsg;
+  }
+
+  // If user triggers Jobs Channel
+  if (jobsTriggerRegex.test(lowerText)) {
+    memory.setMode(cleanPhone, 'jobs_channel', effectiveTenant);
+    jobsEngine.addSubscriber(cleanPhone, phoneNumberId || '1351625371363106', effectiveTenant);
+    const jobs = await jobsEngine.searchJobs(incomingText, 2);
+    const headerMsg = "📢 *All India Govt Jobs / Private Jobs Channel Activated!* 🚀\n\nAb iss number te real-time latest government te private jobs, teaching/non-teaching, PSSSB, DSSSB, University, Railway, Banking updates share honge.\n\nType *'exit'* or *'stop'* to revert back to normal assistant mode anytime.";
+    const jobCards = jobs.map(j => jobsEngine.formatJobPost(j));
+    const response = [headerMsg, ...jobCards];
+    const fullReply = response.join('\n\n');
+    memory.addMessage(cleanPhone, 'user', incomingText, effectiveTenant);
+    memory.addMessage(cleanPhone, 'model', fullReply, effectiveTenant);
+    return response;
+  }
+
+  // If currently in jobs_channel mode, handle job search queries
+  if (currentMode === 'jobs_channel') {
+    const jobs = await jobsEngine.searchJobs(incomingText, 2);
+    if (jobs && jobs.length > 0) {
+      const jobCards = jobs.map(j => jobsEngine.formatJobPost(j));
+      const fullReply = jobCards.join('\n\n');
+      memory.addMessage(cleanPhone, 'user', incomingText, effectiveTenant);
+      memory.addMessage(cleanPhone, 'model', fullReply, effectiveTenant);
+      return jobCards;
+    } else {
+      const noJobsMsg = "🔎 *All India Govt Jobs Channel*\n\nNaveen notifications search kite gaye par iss specific keyword te koi active result nahi milya.\n\nTussi check kar sakde ho:\n• *Railway Jobs / RRB*\n• *PSSSB / Punjab Govt*\n• *Teaching / School*\n• *Banking / IBPS*\n• *Latest Result & Admit Cards*\n\nYa type karo *'exit'* normal bot layi.";
+      memory.addMessage(cleanPhone, 'user', incomingText, effectiveTenant);
+      memory.addMessage(cleanPhone, 'model', noJobsMsg, effectiveTenant);
+      return noJobsMsg;
+    }
+  }
+
+  // 2. DEDICATED CP SYSTEM FLOW
   if (effectiveTenant === 'cpsystem') {
     memory.setMode(cleanPhone, 'cp_system', effectiveTenant);
     const reply = await handleCpSystemInteraction(cleanPhone, incomingText, displayName, effectiveTenant, activeLead);

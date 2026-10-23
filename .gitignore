@@ -4,3 +4,8 @@ auth_info_guri/
 *.log
 data/audio/
 android_app/
+crm_database.sqlite
+data/jobs_subscribers.json
+simulate_*.js
+verify_*.js
+deep_cost_and_margin_audit.js

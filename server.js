@@ -8,6 +8,8 @@ const ai = require('./ai_engine');
 const supabaseKeepAlive = require('./supabase_keepalive');
 const db = require('./db');
 const crmApi = require('./crm_api');
+const memory = require('./memory');
+const jobsEngine = require('./jobs_engine');
 
 const app = express();
 app.disable('x-powered-by');
@@ -734,9 +736,13 @@ app.post('/webhook', async (req, res) => {
             continue;
           }
 
-          // Check opt-out command
-          const isStopCommand = /^\s*(stop|unsubscribe|cancel|band\s*karo|stop\s*bot)\s*$/i.test(incomingText.trim());
-          if (isStopCommand) {
+          // Check Jobs Channel trigger and opt-out command
+          const isJobsChannelActive = memory.getMode(from, tenantId) === 'jobs_channel';
+          const isJobsTrigger = /\b(jobs?\s*channel|channel\s*jobs?|all\s*india\s*govt\s*jobs?)\b/i.test(incomingText);
+          const isStopCommand = /^\s*(stop|unsubscribe|cancel|band\s*karo|stop\s*bot|exit)\s*$/i.test(incomingText.trim());
+
+          // If in jobs channel mode, exit/stop should NOT send CP System stop text, it will be handled by ai_engine to cleanly deactivate jobs channel!
+          if (isStopCommand && !isJobsChannelActive) {
             console.log(`🛑 [Opt-Out Received] Customer ${from} requested STOP.`);
             try {
               await db.update('crm_leads', { bot_active: false }, `tenant_id=eq.${tenantId}&phone=eq.${from}`);
@@ -757,8 +763,13 @@ app.post('/webhook', async (req, res) => {
             continue;
           }
 
+          if (isJobsTrigger && lead) {
+            lead.bot_active = true;
+            await db.update('crm_leads', { bot_active: true }, `id=eq.${lead.id}`).catch(() => {});
+          }
+
           // 6. Check Human Takeover & Tenant Bot Toggle
-          const isBotActiveForLead = isExempt
+          const isBotActiveForLead = (isExempt || isJobsTrigger || isJobsChannelActive)
             ? true
             : (typeof lead?.bot_active === 'boolean' ? lead.bot_active : !isSavedContact);
 
@@ -784,9 +795,9 @@ app.post('/webhook', async (req, res) => {
             continue;
           }
 
-          // 6B. Check 20 AI Replies Cap & Staff Handoff Rule (Admin & Client phones exempt)
+          // 6B. Check 20 AI Replies Cap & Staff Handoff Rule (Admin, Client, and Jobs Channel exempt)
           const leadReplyCount = Number(lead?.ai_reply_count) || 0;
-          if (leadReplyCount >= 20 && !isExempt) {
+          if (leadReplyCount >= 20 && !isExempt && !isJobsTrigger && !isJobsChannelActive) {
             if (!lead?.is_handoff_to_staff) {
               console.log(`🛡️ [15-Reply Cap Reached] Customer ${from} reached 15 AI replies. Handing over to staff.`);
               const handoffMsg = "Veer ji baki details layi Karan Singh ji (+91 99157 30338) direct tuhade naal gal kar lenge ji.";
@@ -1032,4 +1043,7 @@ app.listen(config.PORT, () => {
 
   // Start automated 6-hour follow-up background worker
   startAutomatedFollowUpWorker();
+
+  // Start automated 15-minute Jobs Channel broadcaster
+  jobsEngine.startJobsBroadcaster(whatsapp);
 });

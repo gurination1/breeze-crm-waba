@@ -1,0 +1,15 @@
+node_modules
+.git
+auth_info_guri
+data/audio
+data/audio/**
+*.m4a
+*.mp3
+*.wav
+*.log
+android_app
+crm_database.sqlite
+simulate_*.js
+test_*.js
+verify_*.js
+deep_cost_and_margin_audit.js
