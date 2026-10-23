@@ -49,7 +49,7 @@ function getNextMistralKey() {
 // 1. ORIGINAL DEFAULT GURINATION ENTERPRISE SALES ASSISTANT
 const ENTERPRISE_SYSTEM_PROMPT = `
 You are Guri — Chief AI Consultant and Technical Partner for Gurination Enterprises (operating Edu Fun Learning & Mystery DeMysters).
-You converse natively on WhatsApp with business owners, founders, doctors, clinic managers, gyms, restaurants, and clients across India and internationally.
+You converse natively on WhatsApp with business owners, founders, and clients across India and internationally.
 
 ### OUR CORE ENTERPRISE SERVICES:
 1. 🌐 High-Performance Websites & Web Apps: Next.js/React websites with sub-second loading, mobile-first design.
@@ -63,6 +63,7 @@ You converse natively on WhatsApp with business owners, founders, doctors, clini
 - Speak naturally in warm, confident Hinglish or English (matching customer's tone and language).
 - Be crisp and conversational. WhatsApp messages must be short (2 to 4 sentences max per message).
 - Never send overwhelming walls of text. Ask 1 focused question at a time to keep dialogue flowing.
+- NEVER assume or mention clinics or doctors unless the customer explicitly asks about a clinic, hospital, doctor, or medical setup. For general queries, ask what specific service or project they are looking for.
 - If they ask who you are: "Main Guri hoon, technical AI assistant from Gurination / Edu Fun Learning tech team."
 `;
 
@@ -100,9 +101,24 @@ CRITICAL RULES:
      * 2.5 Ton Online Chiller: ₹95,000 + 18% GST (Total ₹1,12,100)
      * 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% GST (Total ₹1,59,300)
      * 5 Ton / 5.5 Ton Water Chiller: ₹2,45,000 + 18% GST (Total ₹2,89,100)
-   - C. ALL OTHER PRODUCTS (RO, Camper Plants, Heat Pumps, Cold Rooms):
-     ZERO price quoting. Reply:
-     "Commercial RO te camper plant da rate paani de raw TDS te capacity te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) tuhade naal direct rabta karke best setup share kar denge ji."
+   - C. Commercial RO & Camper Plant Pricing (Charan Sir Master Recording Rule):
+     * Standard 1000 LPH Commercial RO + heavy SS chilled water tank complete setup: Lagbhag ₹3,70,000 da complete setup kharcha hunda a.
+     * When customer asks price/kharcha of camper plant or RO:
+       If location not mentioned:
+       "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Eh setup tussi pind vich shuru karna hai ya shehar vich ji?"
+       If location (pind/city) already mentioned:
+       "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Is setup di complete itemized quotation share kar davan ji?"
+     * NEVER talk about "raw TDS" or deflect to Karan Singh! Answer the ₹3,70,000 investment transparently.
+
+   - D. Cold Room & Heat Pump Pricing:
+     * Cold room: "Cold room da rate room de size te storage temperature load te depend karda a veer ji. [[SPLIT]] Tussi kinne foot by foot da cold room plan kar rahe ho ji?"
+     * Heat pump: "Commercial heat pump da rate daily hot water volume te depend karda a ji. [[SPLIT]] Daily kinne litre garam paani di requirement hai ji?"
+
+   - E. Loan & EMI Scheme (PMEGP Government Subsidy):
+     "Sade kol government PMEGP subsidy loan scheme ch poori madad mil jandi a ji, jis ch 25% subsidy (₹2.5 Lakh tak) hundi a. [[SPLIT]] Eh loan tussi apne naam te apply karna hai ji?"
+
+   - F. Competitor Cheaper / Ludhiana / Discount:
+     "Veer ji, rate naal machine di quality te heavy-duty build zaroor check karo ji. Sade kol 100% food-grade SS tank te original Copeland compressor lagda a. [[SPLIT]] Oh company compressor kehda de rahi hai ji?"
 
 3. CAMPER & CAN FILLING:
    - "Camper" means 20L chilled drinking water cans/jars and 1000/2000 LPH commercial RO setups with SS tanks. Never RVs!
@@ -260,25 +276,14 @@ function ensureSentenceComplete(text) {
       .join(' [[SPLIT]] ');
   }
 
-  // Detect if it is an inquiry / question
-  const isQuestion = /\b(kinne|kinna|kinni|kinnia|kitne|kitna|kitni|kehde|kehda|kehdi|keda|kive|kiven|kida|kiddan|ki|kya|kyun|kado|kadon|dasso|kaun|which|how|what|when|where)\b/i.test(cleaned);
+  // Detect if it is an inquiry / question (comprehensive Punjabi & Hindi question words)
+  const isQuestion = /\b(kinne|kinna|kinni|kinnia|kitne|kitna|kitni|kehde|kehda|kehdi|kehra|kehri|keda|kede|kedi|kis|kide|kihda|kihde|kive|kiven|kida|kiddan|ki|kya|kyun|kado|kadon|dasso|kaun|which|how|what|when|where|koi)\b/i.test(cleaned);
 
   // If it ends with a complete Punjabi/Hindi verb, noun, or particle
-  const endsWithVerbOrPronoun = /\b(a|aa|hai|hain|ne|si|hoga|honge|hunda|hunde|karda|karde|sakde|sakda|chahida|chahidi|chahide|paunga|paugi|milega|milugi|jauga|jaugi|karange|karo|batao|dasso|dekhange|hove|ji|veere|bhaji|bai|ho)\s*$/i.test(cleaned);
+  const endsWithVerbOrPronoun = /\b(a|aa|hai|hain|ne|si|hoga|honge|hunda|hunde|karda|karde|sakde|sakda|chahida|chahidi|chahide|paunga|paugi|milega|milugi|jauga|jaugi|karange|karo|batao|dasso|dekhange|hove|ji|veere|bhaji|bai|ho|karna|chahunde|chahte)\s*$/i.test(cleaned);
 
-  if (endsWithVerbOrPronoun || cleaned.length < 120) {
+  if (endsWithVerbOrPronoun || cleaned.length < 150) {
     return cleaned + (isQuestion ? '?' : '.');
-  }
-
-  const lastPunctuation = Math.max(
-    cleaned.lastIndexOf('.'),
-    cleaned.lastIndexOf('?'),
-    cleaned.lastIndexOf('!')
-  );
-
-  // If the last punctuation is near the end (within 35 chars) and what follows has no complete verb, trim the fragment
-  if (lastPunctuation > 20 && (cleaned.length - lastPunctuation) < 35 && !endsWithVerbOrPronoun) {
-    return cleaned.slice(0, lastPunctuation + 1).trim();
   }
 
   return cleaned + (isQuestion ? '?' : '.');
@@ -539,7 +544,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Handle degenerate inputs (single punctuation)
   if (/^[?.!,\s]+$/.test(text)) {
-    return 'Hello!';
+    return 'Hlo';
   }
 
   // Pure standalone greeting: Fast response, natural WhatsApp "Hlo"
@@ -608,7 +613,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   }
 
   if (!rawReply || !rawReply.trim()) {
-    rawReply = `Hello ji! Batayein, kis machine ya setup baare jankari chahidi hai? Coordinator Karan Singh (+91 99157 30338) vi available han.`;
+    rawReply = `Haanji veer ji! Dasso, kis machine ya setup baare jankari chahidi a ji?`;
   }
 
   // 3. PARSE [[LEAD_UPDATE: ...]] METADATA
@@ -717,15 +722,6 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     cleanReply = "Sadiyan saariyan machines te 1 saal di full onsite warranty hundi a veer ji. [[SPLIT]] Pure 304 food-grade stainless steel tanks te original Copeland compressors lagde ne, heavy-duty build hunda a.";
   }
 
-  // Mandatory Client Rule: Ban unasked interrogation unless customer explicitly says "lagwana hai", "order", "theek hai", "site visit"
-  const hasInstallIntent = /(?:lagwana|lagwauna|order|fitment|fitting|site\s*visit|visit\s*karo|theek\s*hai|kharidna|lena\s*hai)/i.test(incomingText);
-  if (!hasInstallIntent) {
-    cleanReply = cleanReply
-      .replace(/(?:eh\s*setup\s*)?(?:tussi|tusse|aap)\s*kehde\s*(?:pind|shehar|city|jagah)\s*(?:vich|ch|mein)\s*(?:lagwana|lagwauna|shuru\s*karna)?\s*(?:chahte\s*ho|chahunde\s*ho)?\s*(?:ji)?\??/gi, '')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
-  }
-
   // Mandatory Client Rule 3A: General Chiller Query without specific tonnage
   // Do NOT dump the full rate card! Ask which tonnage or application they need first. NEVER assume milk unless specified.
   const isMilkSpecific = /(?:doodh|dudh|milk|dairy|bmc)/i.test(incomingText);
@@ -746,15 +742,43 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     }
   }
 
-  // Mandatory Client Rule 3B: Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
-  // We ONLY know fixed rates for Chillers. All other products must strictly be referred to Karan Sir (+91 99157 30338).
-  const isExplicitNonChiller = /(?:ro\b|camper|plant|filter|boring|tds|water\s*plant|heat\s*pump|cold\s*room|softener)/i.test(incomingText) ||
-    (/(?:ro\b|camper|plant|heat\s*pump|cold\s*room)/i.test(category) && !isChillerRelated);
-  const isPriceQuery = /\b(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne\s*da\b|kinne\s*di\b|kine\s*da\b|kine\s*di\b|kitne\s*ka\b|kitne\s*ki\b|kinne\s*ch\b|kitne\s*mein\b)/i.test(incomingText);
-  const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
+  // Commercial RO & Camper Plant Pricing (Charan Sir master recording rule: ₹3,70,000 standard setup)
+  const isCamperOrRo = /(?:camper|ro\b|water\s*plant)/i.test(incomingText) ||
+    (/(?:ro\b|camper)/i.test(category) && !isChillerRelated);
+  const isCamperPriceQuery = isCamperOrRo && (
+    /\b(?:price|rate|cost|kharcha|budget|rupaye|rupees|mull|bhaav|kinne\s*da\b|kinne\s*di\b|kine\s*da\b|kine\s*di\b|kitne\s*ka\b|kitne\s*ki\b|kinne\s*ch\b|kitne\s*mein\b)/i.test(incomingText) ||
+    /^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim())
+  );
 
-  if (!isChillerRelated && isExplicitNonChiller && (isPriceQuery || (mentionsPriceInReply && !hasSpecificTonnage))) {
-    cleanReply = "Commercial RO te camper plant da rate paani de raw TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) tuhade naal direct rabta karke best setup share kar denge ji.";
+  if (!isChillerRelated && isCamperPriceQuery) {
+    const alreadyMentionsLocation = /(?:pind|shehar|city|bathinda|muktsar|moga|ludhiana|amritsar|patiala|jalandhar|ferozepur|faridkot)/i.test(incomingText) || Boolean(city);
+    if (alreadyMentionsLocation) {
+      cleanReply = "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Is setup di complete itemized quotation share kar davan ji?";
+    } else {
+      cleanReply = "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Eh setup tussi pind vich shuru karna hai ya shehar vich ji?";
+    }
+  }
+
+  // Loan & EMI Query (Charan Sir master recording rule: PMEGP 25% subsidy scheme)
+  const isLoanOrEmiQuery = /\b(?:loan|emi|kist|kistan|financing|finance|scheme|subsidy|pmegp)\b/i.test(incomingText);
+  if (isLoanOrEmiQuery) {
+    cleanReply = "Sade kol government PMEGP subsidy loan scheme ch poori madad mil jandi a ji, jis ch 25% subsidy (₹2.5 Lakh tak) hundi a. [[SPLIT]] Eh loan tussi apne naam te apply karna hai ji?";
+  }
+
+  // Competitor Cheaper / Ludhiana / Discount (Charan Sir master recording rule)
+  const isCompetitorQuery = /(?:sasta|sasti|saste|discount|kam\s*rate|ludhiana|doosri\s*company|ghat\s*karo)/i.test(incomingText);
+  if (isCompetitorQuery) {
+    cleanReply = "Veer ji, rate naal machine di quality te heavy-duty build zaroor check karo ji. Sade kol 100% food-grade SS tank te original Copeland compressor lagda a. [[SPLIT]] Oh company compressor kehda de rahi hai ji?";
+  }
+
+  // Cold Room & Heat Pump
+  const isColdRoomQuery = /\b(?:cold\s*room|chilling\s*room)\b/i.test(incomingText);
+  if (isColdRoomQuery && /\b(?:price|rate|cost|kinne|kitne|kharcha)\b/i.test(incomingText)) {
+    cleanReply = "Cold room da rate room de size te storage temperature load te depend karda a veer ji. [[SPLIT]] Tussi kinne foot by foot da cold room plan kar rahe ho ji?";
+  }
+  const isHeatPumpQuery = /\b(?:heat\s*pump|hot\s*water)\b/i.test(incomingText);
+  if (isHeatPumpQuery && /\b(?:price|rate|cost|kinne|kitne|kharcha)\b/i.test(incomingText)) {
+    cleanReply = "Commercial heat pump da rate daily hot water volume te depend karda a ji. [[SPLIT]] Daily kinne litre garam paani di requirement hai ji?";
   }
 
   // Strict Media Defense & URL Stripper
@@ -792,11 +816,6 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     .replace(/\s{2,}/g, ' ')
     .trim();
 
-  // If user asked about business, ensure response is strictly concise
-  if (/(?:business|kaam|model)/i.test(incomingText) && cleanReply.length > 180) {
-    cleanReply = "Camper water business ch 1000 LPH commercial RO plant lagda a ji. [[SPLIT]] Is naal 20L camper cans pack karke shops, events te functions ch chilled water supply kita janda a.";
-  }
-
   // Strip accidental leading greeting if customer did not greet
   if (!isPureGreeting) {
     cleanReply = cleanReply.replace(/^(?:hello!?|hi!?)\s*(?:ji!?)?\s*/i, '').trim();
@@ -814,27 +833,26 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Enforce strictly ONE question per message turn (Charan Sir master sales recording rule)
   if (cleanReply.includes('?')) {
-    // If compound questions exist like "..., te kinne ton da...?" or "..., ya kinne ton da...?"
-    cleanReply = cleanReply
-      .replace(/(?:,|\.|\?)*\s*(?:te|ya|aur|and)\s*(?:kinne|kitne|kede|kehde|kis)\s*(?:ton|lph|din|rate)[^?]*\?/gi, '?')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
-
-    // If multiple question marks still remain across bubbles or thoughts, preserve only the first question
     const qMatches = cleanReply.match(/\?/g);
     if (qMatches && qMatches.length > 1) {
       const parts = cleanReply.split('[[SPLIT]]');
-      let foundQuestion = false;
-      const filteredParts = parts.map(part => {
-        if (!part.includes('?')) return part.trim();
-        if (!foundQuestion) {
-          foundQuestion = true;
-          const qIdx = part.indexOf('?');
-          return part.slice(0, qIdx + 1).trim();
+      let keptQuestion = false;
+      const processedParts = [];
+      // Keep only the final question intact; convert earlier questions into statements ending in period
+      for (let pIdx = parts.length - 1; pIdx >= 0; pIdx--) {
+        let part = parts[pIdx].trim();
+        if (part.includes('?')) {
+          if (!keptQuestion) {
+            keptQuestion = true;
+            processedParts.unshift(part);
+          } else {
+            processedParts.unshift(part.replace(/\?/g, '.'));
+          }
+        } else {
+          processedParts.unshift(part);
         }
-        return part.replace(/\?/g, '.').trim();
-      });
-      cleanReply = filteredParts.join(' [[SPLIT]] ');
+      }
+      cleanReply = processedParts.join(' [[SPLIT]] ');
     }
   }
 
@@ -857,7 +875,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     } else if (/ro|plant/i.test(incomingText) || /ro/i.test(category)) {
       cleanReply = "Haanji veer ji, 500 LPH, 1000 LPH te 2000 LPH commercial RO plants available ne.";
     } else {
-      cleanReply = "Hello ji! Batayein, kis machine ya setup baare jankari chahidi a?";
+      cleanReply = "Haanji veer ji! Dasso, kis machine ya setup baare jankari chahidi a ji?";
     }
   }
 
@@ -1110,14 +1128,36 @@ async function generateAIReply(userPhone, incomingText, userName = '', tenantId 
     displayName = 'Gurdharam';
   }
 
-  const effectiveTenant = (phoneNumberId === '1345576425313536' || tenantId === 'cpsystem') ? 'cpsystem' : (tenantId || 'default');
-  const restoredLead = await memory.syncFromSupabase(cleanPhone, effectiveTenant, db);
-  const activeLead = existingLead || restoredLead;
-
   // 1. ALL INDIA GOVT & PRIVATE JOBS CHANNEL MODE (Bal Krishan Sir / Multi-Publisher)
   const jobsTriggerRegex = /\b(jobs?\s*channel|channel\s*jobs?|all\s*india\s*govt\s*jobs?|sarkari\s*result)\b/i;
   const isJobsExitRegex = /^\s*(exit|stop|band\s*karo|quit|leave|normal|exit\s*jobs?)\s*$/i;
-  const currentMode = memory.getMode(cleanPhone, effectiveTenant);
+
+  // Resolve effective tenant strictly based on phone number ID or intent
+  let effectiveTenant = tenantId || 'default';
+  if (phoneNumberId === '1345576425313536' || tenantId === 'cpsystem') {
+    effectiveTenant = 'cpsystem';
+  } else if (phoneNumberId === '1351625371363106' || tenantId === 'edufun') {
+    effectiveTenant = 'edufun';
+  } else if (phoneNumberId === '1346591765206499' || phoneNumberId === '1310338315506407' || tenantId === 'mystery') {
+    effectiveTenant = 'mystery';
+  } else {
+    const cpKeywords = /\b(cp\s*system|cpsystem|chiller|chillar|ro\b|camper|cooling|milk|doodh|dudh|dairy|bmc|water\s*plant|cold\s*room|heat\s*pump|plant|compressor|copeland|kinne\s*da|kitne\s*ka|pind|shehar|tankan|tanki|ss\s*tank)\b/i;
+    if (cpKeywords.test(lowerText)) {
+      effectiveTenant = 'cpsystem';
+    }
+  }
+
+  // Check if currently in jobs_channel across effective tenant or explicit tenant
+  let currentMode = memory.getMode(cleanPhone, effectiveTenant);
+  if (currentMode !== 'jobs_channel' && tenantId && tenantId !== effectiveTenant) {
+    if (memory.getMode(cleanPhone, tenantId) === 'jobs_channel') {
+      currentMode = 'jobs_channel';
+      effectiveTenant = tenantId;
+    }
+  }
+
+  const restoredLead = await memory.syncFromSupabase(cleanPhone, effectiveTenant, db);
+  const activeLead = existingLead || restoredLead;
 
   // If currently in jobs_channel and user types exit or stop
   if (currentMode === 'jobs_channel' && isJobsExitRegex.test(lowerText)) {
