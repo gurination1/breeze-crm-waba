@@ -69,41 +69,26 @@ You converse natively on WhatsApp with business owners, founders, doctors, clini
 // 2. CP SYSTEM CONSULTATIVE SALES MASTER PROMPT (Human Punjabi WhatsApp Salesman)
 const CP_SYSTEM_PROMPT = `
 You are Charanpreet Singh, owner and technical head at CP SYSTEM (Cool & Pure System), Sri Muktsar Sahib, Punjab.
-You text natively on WhatsApp like a real Punjabi businessman / manufacturer chatting directly from his smartphone.
-Website: https://www.cpsystem.in | Support Coordinator: Karan Singh (+91 99157 30338) | Senior Technician: Gurjant Singh (+91 94635 83277).
+You chat natively on WhatsApp with customers like a genuine, polite, experienced Punjabi businessman / manufacturer chatting directly from his phone.
+Website: https://www.cpsystem.in | Coordinator: Karan Singh (+91 99157 30338) | Senior Tech: Gurjant Singh (+91 94635 83277).
 
-CRITICAL INDUSTRY DEFINITION:
-- "Camper" strictly means 20-Litre cold drinking water cans/jars and commercial camper RO plant setups (1000 LPH & 2000 LPH) with SS storage tanks and chilling units. Never confuse with camping or RVs!
+MALWAI PUNJABI DIALECT & NATURAL TONE:
+- Speak authentic, polished Malwai Punjabi: "veer ji", "bhaji", "bai ji", "ji", "sade kol", "dasso ji", "mil jauga", "ho jauga".
+- ALWAYS write grammatically complete, natural sentences. NEVER use broken Hindi mixes like "humare paas", "kar dege a", "delivery ho jaugi a ji", "available a ne".
+- NEVER sound like ChatGPT: no robotic bullet lists, no "shamil hai", no "hum pradan karte hain", no essays.
+- Keep WhatsApp messages short (1-2 crisp thoughts). Use [[SPLIT]] between thought 1 and thought 2 (or follow-up question).
+- NO markdown double-asterisks (no **). Plain text only.
 
-PUNJABI TEXTING STYLE & TONE (SOUND 100% HUMAN, NOT CHATGPT):
-- Speak in natural, respectful Malwai / Punjabi conversational style:
-  * Use "veer ji", "bhaji", "bai ji", "ji" (respectful, friendly).
-  * Use common Punjabi shortcuts: "a" instead of "hai" (e.g., "available a ji", "lagda a", "ready a"), "te" instead of "aur", "ch" instead of "mein", "dasso", "mil jauga", "karange".
-- NEVER sound like ChatGPT or an AI bot:
-  * NEVER use formal textbook Hindi/Punjabi like "provide karda haan", "shamil hai", "hum pradan karte hain".
-  * NEVER use robotic bullet lists.
-  * NEVER write long monolithic essays.
-- DOUBLE MESSAGE PATTERN (NATURAL TWO CHAT BUBBLES):
-  * When answering product or pricing questions, send thought 1 first, then thought 2 or follow-up question.
-  * Separate them with "[[SPLIT]]" so they deliver as two consecutive WhatsApp bubbles!
-  * Example:
-    Customer: 1 ton chiller kinne da
-    Reply: 1 Ton online chiller ₹60,000 + 18% GST a ji (Total ₹70,800). [[SPLIT]] Single phase 240V te chalda a, ready in stock a veer ji.
-  * Pure greeting ("hi", "hello"): NEVER split. Reply ONLY: "Hello ji! Dasso, kive madad kar sakde a?"
-
-CRITICAL CONVERSATIONAL RULES:
-1. GREETING & TONE:
+CRITICAL RULES:
+1. GREETING:
    - BAN ALL religious greetings ("Sat Sri Akal", "Namaste", "Ram Ram", "Radhe Radhe").
-   - Pure greeting ("hi", "hello", "hey"): Reply ONLY "Hello ji! Dasso, kive madad kar sakde a?"
+   - Pure greeting ("hi", "hello"): Reply ONLY: "Hello ji! Dasso, kive madad kar sakde a?"
+   - Well-being ("kive ho", "ki haal"): "Main theek haan veer ji! Tussi dasso, sab theek thaak? Dasso kede setup baare puchna chahunde ho?"
 
-2. NO UNASKED QUESTIONS / NO INTERROGATION:
-   - NEVER ask "kehde pind ya shehar vich lagwana hai" or location questions unless customer explicitly says "lagwana hai", "order", "site visit", or "theek hai".
-
-3. STRICT PRICING RULES:
-   - A. General Chiller Price Query (no tonnage specified, e.g. "chiller da rate dss"):
-     NEVER dump prices! Reply:
-     Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?
-   - B. Water Chillers with Specific Tonnage:
+2. PRICING RULES:
+   - A. General Chiller / Milk Cooling Query (no specific ton):
+     "Chiller da rate capacity te requirement te depend karda a veer ji. [[SPLIT]] Tussi daily kinne litre doodh cooling layi setup dekh rahe ho ya kinne ton da chahida a ji?"
+   - B. Fixed Chiller Rates (Strictly these only):
      * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
      * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
      * 2 Ton Online Chiller: ₹80,000 + 18% GST (Total ₹94,400)
@@ -111,29 +96,26 @@ CRITICAL CONVERSATIONAL RULES:
      * 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% GST (Total ₹1,59,300)
      * 5 Ton / 5.5 Ton Water Chiller: ₹2,45,000 + 18% GST (Total ₹2,89,100)
    - C. ALL OTHER PRODUCTS (RO, Camper Plants, Heat Pumps, Cold Rooms):
-     ABSOLUTE ZERO PRICE QUOTING. Prices depend on raw water TDS and custom site setup. Reply:
-     Commercial RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karange ji.
+     ZERO price quoting. Reply:
+     "Commercial RO te camper plant da rate paani de raw TDS te capacity te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) tuhade naal direct rabta karke best setup share kar denge ji."
 
-4. STRICT MEDIA & ASSET MATCHING:
-   - NEVER send links or URLs unless customer explicitly asks for photo, video, or link ("photo", "video", "dikhao", "bhejo", "link").
-   - When asked for media, send Message 1 as natural intro, and Message 2 as the exact matching link:
-     * Water Chiller:
-       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png
-       Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
-     * Commercial RO & Camper Setup:
-       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png
-       Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
-     * Heat Pump:
-       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757489195_bf3d797e1.webp
-     * Cold Room:
-       Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1758531951_ChatGPT%20Image%20Sep%2022,%202025,%2002_07_18%20PM.png
+3. CAMPER & CAN FILLING:
+   - "Camper" means 20L chilled drinking water cans/jars and 1000/2000 LPH commercial RO setups with SS tanks. Never RVs!
+   - Can capacity: "1000 LPH RO plant naal ik ghante vich lagbhag 50 camper (20 Litre de) easily fill ho jande ne ji. [[SPLIT]] Din vich tussi aaram naal 400 to 500 camper supply kar sakde ho."
 
-KEY HUMAN SCENARIOS:
-- "camper": "Haanji veer ji, 20L camper business layi commercial RO plant setup (1000 LPH te 2000 LPH) available a ji."
-- "kede kede camper aa?": "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te chilling system hunda a, 20L cans easily fill hunde ne."
-- "Business dsi" / "Eh business bare dsi mnu": "Camper water business ch 1000 LPH commercial RO plant lagda a ji. [[SPLIT]] Is naal 20L camper cans pack karke shops, events te functions ch chilled water supply kita janda a."
-- "chiller": "Haanji veer ji, CP System kol online chillers (1 to 2.5 Ton) te heavy circulation chillers (3.5 Ton aur upar) available ne."
-- "Theek hai" / "Lagwana hai": "Haanji veer ji, bilkul setup ho jauga. [[SPLIT]] Eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?"
+4. SERVICE, DELIVERY & WARRANTY:
+   - Service: "CP SYSTEM Sri Muktsar Sahib, Punjab ch based a ji. [[SPLIT]] Poore Punjab, Haryana te Rajasthan vich sade technicians direct site visit te delivery service provide karde ne ji."
+   - Delivery: "Sri Muktsar Sahib te nearby areas ch same-day delivery dispatch ho jandi a ji. [[SPLIT]] Baaki Punjab de har shehar vich 1 to 2 din de andar safe delivery pahunch jandi a."
+   - Warranty: "Sadiyan saariyan machines te 1 saal di full onsite warranty hundi a veer ji. [[SPLIT]] Heavy-gauge 304 food-grade SS tanks te original Copeland compressors lagde ne."
+
+5. MEDIA:
+   - Never send links unless customer asks ("photo", "video", "dikhao", "bhejo").
+   - Water Chiller: Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1757073586_20250905_165838_0004.png | Video: https://www.youtube.com/watch?v=NmKCLdSlzP0
+   - Commercial RO/Camper: Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png | Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
+
+6. CLOSING / INSTALLATION:
+   - Only ask location when customer says "theek hai", "lagwana hai", "order", "sai pauna":
+     "Haanji veer ji, bilkul tayar karange ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?"
 
 Append metadata tag: [[LEAD_UPDATE: {"category": "<RO|Chiller|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1000 LPH|2 Ton|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
 `;
@@ -258,32 +240,49 @@ async function dispatchLeadNotification(leadData) {
   }
 }
 
-// Ensures complete sentences without truncating URLs or query parameters
+// Ensures complete sentences without truncating URLs, questions, or split messages
 function ensureSentenceComplete(text) {
   if (!text) return '';
   let cleaned = text.trim();
-  // If ends with terminal punctuation or ends with a URL, preserve intact
   if (/[.?!]$/.test(cleaned) || /https?:\/\/[^\s]+$/i.test(cleaned)) return cleaned;
+
+  // If text contains [[SPLIT]], ensure each segment is individually completed
+  if (cleaned.includes('[[SPLIT]]')) {
+    return cleaned
+      .split('[[SPLIT]]')
+      .map(part => ensureSentenceComplete(part.trim()))
+      .filter(Boolean)
+      .join(' [[SPLIT]] ');
+  }
+
+  // Detect if it is an inquiry / question
+  const isQuestion = /\b(kinne|kinna|kinni|kinnia|kitne|kitna|kitni|kehde|kehda|kehdi|keda|kive|kiven|kida|kiddan|ki|kya|kyun|kado|kadon|dasso|kaun|which|how|what|when|where)\b/i.test(cleaned);
+
+  // If it ends with a complete Punjabi/Hindi verb, noun, or particle
+  const endsWithVerbOrPronoun = /\b(a|aa|hai|hain|ne|si|hoga|honge|hunda|hunde|karda|karde|sakde|sakda|chahida|chahidi|chahide|paunga|paugi|milega|milugi|jauga|jaugi|karange|karo|batao|dasso|dekhange|hove|ji|veere|bhaji|bai|ho)\s*$/i.test(cleaned);
+
+  if (endsWithVerbOrPronoun || cleaned.length < 120) {
+    return cleaned + (isQuestion ? '?' : '.');
+  }
+
   const lastPunctuation = Math.max(
     cleaned.lastIndexOf('.'),
     cleaned.lastIndexOf('?'),
     cleaned.lastIndexOf('!')
   );
-  if (lastPunctuation > 20) {
-    const afterPunc = cleaned.slice(lastPunctuation);
-    // If what follows is part of a URL (e.g. "?id=1", ".png", ".php", query params), do NOT truncate!
-    if (/^[?.!][a-zA-Z0-9_\-=&%/]+/.test(afterPunc)) {
-      return cleaned;
-    }
+
+  // If the last punctuation is near the end (within 35 chars) and what follows has no complete verb, trim the fragment
+  if (lastPunctuation > 20 && (cleaned.length - lastPunctuation) < 35 && !endsWithVerbOrPronoun) {
     return cleaned.slice(0, lastPunctuation + 1).trim();
   }
-  return cleaned + '.';
+
+  return cleaned + (isQuestion ? '?' : '.');
 }
 
 /**
  * Call Gemini API across rotating key pool
  */
-async function callGemini(systemPrompt, contents, maxTokens = 350) {
+async function callGemini(systemPrompt, contents, maxTokens = 450) {
   const models = ['gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
   const maxAttemptsPerModel = Math.min(config.GEMINI_API_KEYS.length, 3);
 
@@ -326,7 +325,7 @@ async function callGemini(systemPrompt, contents, maxTokens = 350) {
 /**
  * Call Groq Fallback Engine
  */
-async function callGroqFallback(systemPrompt, contents, maxTokens = 500) {
+async function callGroqFallback(systemPrompt, contents, maxTokens = 450) {
   const keys = config.GROQ_API_KEYS && config.GROQ_API_KEYS.length > 0
     ? config.GROQ_API_KEYS
     : (config.GROQ_API_KEY ? [config.GROQ_API_KEY] : []);
@@ -342,8 +341,8 @@ async function callGroqFallback(systemPrompt, contents, maxTokens = 500) {
   }
 
   if (Array.isArray(contents)) {
-    // Keep last 8 turns to ensure prompt stays under Groq 7,000 ITPM limit
-    const recent = contents.slice(-8);
+    // Keep last 4 turns (user + assistant) to keep prompt tokens ultra low (<600 tokens total)
+    const recent = contents.slice(-4);
     for (const item of recent) {
       const role = item.role === 'model' ? 'assistant' : 'user';
       const text = item.parts?.map(p => p.text).join('\n') || '';
@@ -388,7 +387,7 @@ async function callGroqFallback(systemPrompt, contents, maxTokens = 500) {
 /**
  * Call Mistral AI Fallback Engine (376 RPM Free Pool)
  */
-async function callMistralFallback(systemPrompt, contents, maxTokens = 200) {
+async function callMistralFallback(systemPrompt, contents, maxTokens = 450) {
   const keys = config.MISTRAL_API_KEYS && config.MISTRAL_API_KEYS.length > 0
     ? config.MISTRAL_API_KEYS
     : [];
@@ -538,10 +537,10 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     return 'Hello!';
   }
 
-  // Pure standalone greeting: Fast response, strictly simple & neutral, no exaggerated welcome
+  // Pure standalone greeting: Fast response, warm & polite Punjabi, strictly neutral
   const isPureGreeting = /^\s*(hi|hello|hey|hlo|helo|hy|haanji|hanji|sat\s*sri\s*akal|namaste|ssakal|ram\s*ram|radhe\s*radhe|good\s*morning|good\s*evening|good\s*afternoon|pranam|salam)\s*(ji|sir|veere|bro)?\s*[!.?]*\s*$/i.test(text);
   if (isPureGreeting) {
-    return 'Hello!';
+    return 'Hello ji! Dasso, kive madad kar sakde a?';
   }
 
   // Pleasantries / Well-being inquiry ("how are you", "kive ho", "ki haal", "kiddan", "haal chaal")
@@ -558,16 +557,15 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     const isCustomer = m.direction ? m.direction === 'INBOUND' : m.role === 'user';
     const role = isCustomer ? 'user' : 'model';
     let text = (m.content || '').trim();
-    // Sanitize past assistant messages: remove URLs, markdown links, prices to prevent context bloat and few-shot mimicry
+    // Sanitize past assistant messages: remove URLs and markdown links to prevent context bloat
     if (role === 'model') {
       text = text
         .replace(/https?:\/\/[^\s)]+/gi, '')
         .replace(/\[([^\]]+)\]\([^)]+\)/gi, '$1')
         .replace(/(?:📸|🎥|🌐|🔗)[^\n]*/gi, '')
-        .replace(/(?:₹|rs\.?|inr)\s*[\d,]+/gi, '')
         .replace(/\s{2,}/g, ' ')
         .trim();
-      if (text.length > 100) text = text.slice(0, 100) + '...';
+      if (text.length > 150) text = text.slice(0, 150) + '...';
     }
     if (text) {
       contents.push({
@@ -590,22 +588,22 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   });
 
   // 2. GENERATE RESPONSE WITH ULTRA-FAST GROQ PRIMARY (<500ms), GEMINI/MISTRAL FALLBACK
-  let rawReply = await callGroqFallback(CP_SYSTEM_PROMPT, contents, 200);
+  let rawReply = await callGroqFallback(CP_SYSTEM_PROMPT, contents, 450);
 
   // Check if valid Gemini keys exist before attempting
   const validGeminiKeys = (config.GEMINI_API_KEYS || []).filter(k => k && k.startsWith('AIzaSy'));
   if ((!rawReply || !rawReply.trim()) && validGeminiKeys.length > 0) {
     console.log(`⚡ [Groq Exhausted] Attempting Gemini fallback for ${cleanPhone}...`);
-    rawReply = await callGemini(CP_SYSTEM_PROMPT, contents, 180);
+    rawReply = await callGemini(CP_SYSTEM_PROMPT, contents, 450);
   }
 
   if (!rawReply || !rawReply.trim()) {
     console.log(`⚡ [LLM Exhausted] Attempting Mistral AI fallback for ${cleanPhone}...`);
-    rawReply = await callMistralFallback(CP_SYSTEM_PROMPT, contents, 180);
+    rawReply = await callMistralFallback(CP_SYSTEM_PROMPT, contents, 450);
   }
 
   if (!rawReply || !rawReply.trim()) {
-    rawReply = `Hello! Batayein ji, kis machine ya setup baare jankari chahidi hai? Coordinator Karan Singh (+91 99157 30338) vi available han.`;
+    rawReply = `Hello ji! Batayein, kis machine ya setup baare jankari chahidi hai? Coordinator Karan Singh (+91 99157 30338) vi available han.`;
   }
 
   // 3. PARSE [[LEAD_UPDATE: ...]] METADATA
@@ -632,9 +630,22 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     .replace(/^\[(?:CP System Bot|Assistant|Model|Staff|Bot)\]:?\s*/i, '')
     .trim();
 
+  // Convert markdown double-bold ** to WhatsApp single-bold *
+  cleanReply = cleanReply.replace(/\*\*(.*?)\*\*/g, '*$1*').replace(/\*\*/g, '');
+
+  // Normalize hybrid/broken Hindi-Punjabi phrasing into natural Punjabi
+  cleanReply = cleanReply
+    .replace(/\b(?:humare|mere|hamare)\s*paas\b/gi, 'sade kol')
+    .replace(/\bhum\s*pradan\s*karte\s*hain\b/gi, 'sade kol available a')
+    .replace(/\bkar\s*dege\s*a\b/gi, 'kar devange ji')
+    .replace(/\bho\s*jaugi\s*a\s*ji\b/gi, 'ho jaugi ji')
+    .replace(/\bavailable\s*a\s*ne\b/gi, 'available ne')
+    .replace(/\bstock\s*me\s*available\s*a\b/gi, 'stock vich available a')
+    .replace(/\bme\s*delivery\b/gi, 'ch delivery');
+
   // Strip repetitive verbal ticks like "Tussi ki sochde ho bhaji?"
   cleanReply = cleanReply
-    .replace(/(?:,|\.|\?|!)*\s*(?:tussi|tusse|aap)\s*(?:ki|kya)\s*(?:sochde|sochte|kehnde)\s*ho\s*(?:bhaji|veere|ji)?\??/gi, '.')
+    .replace(/\s*(?:tussi|tusse|aap)\s*(?:ki|kya)\s*(?:sochde|sochte|kehnde)\s*ho\s*(?:bhaji|veere|ji)?\??/gi, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
 
@@ -664,9 +675,41 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     .replace(/🙏/g, '')
     .trim();
 
+  // Ensure first character is capitalized
+  if (cleanReply) {
+    cleanReply = cleanReply.charAt(0).toUpperCase() + cleanReply.slice(1);
+  }
+
   // Camper Models Intent Guard ("kede kede camper aa?")
   if (/(?:kede|keda|kehde|kehda|kehre|which|what)\s*(?:kede|kehde)?\s*(?:camper|campers|models|types)/i.test(incomingText) || /camper\s*(?:options|models|types|list|setup)/i.test(incomingText)) {
     cleanReply = "Camper business layi mostly 1000 LPH te 2000 LPH commercial RO plants lagde ne ji. [[SPLIT]] Naal heavy SS storage tank te automatic chilling system hunda a, 20L cans easily pack hunde ne.";
+  }
+
+  // Can capacity intent ("kinnia cans bhar skde a" / "kitne can bharenge")
+  const isCanCapacityQuery = /(?:kinnia|kinne|kine|kitne|kitni)\s*(?:cans?|campers?|bottles?|dabbay?)\s*(?:bhar|fill|pack|nikal|niklenge|hunde|ho\s*jande)/i.test(incomingText) ||
+    /(?:can|camper|bottle)\s*(?:capacity|filling\s*speed|hourly)/i.test(incomingText);
+  if (isCanCapacityQuery) {
+    cleanReply = "1000 LPH RO plant naal ik ghante vich lagbhag 50 camper (20 Litre de) easily fill ho jande ne ji. [[SPLIT]] Din vich tussi aaram naal 400 to 500 camper supply kar sakde ho.";
+  }
+
+  // Delivery time intent
+  const isDeliveryQuery = /(?:delivery|dispatch|pahuch|pahunch|kine\s*din|kinne\s*din|kitne\s*din|kab\s*tak\s*aayegi|kadon\s*milugi|kado\s*tak)/i.test(incomingText);
+  if (isDeliveryQuery) {
+    cleanReply = "Sri Muktsar Sahib te laaglian districts (Bathinda, Faridkot, Ferozepur, Moga) vich same-day delivery dispatch ho jandi a ji. [[SPLIT]] Baaki poore Punjab ch 1 to 2 din de andar safe delivery pahunch jandi a, stock ready peya a ji.";
+  }
+
+  // Service area intent
+  const isServiceAreaQuery = /(?:service|installation|fitment)\s*(?:kithe|kaha|kahan|where|all\s*over|har\s*jagah)/i.test(incomingText) ||
+    /(?:kithe\s*kithe|kahan\s*kahan)\s*(?:service|dinde|provide)/i.test(incomingText);
+  if (isServiceAreaQuery) {
+    cleanReply = "CP SYSTEM Sri Muktsar Sahib, Punjab ch based a ji. [[SPLIT]] Poore Punjab, Haryana te Rajasthan vich sade technicians direct site visit, delivery te installation provide karde ne ji.";
+  }
+
+  // Warranty intent
+  const isWarrantyQuery = /(?:warranty|guarantee|gurantee|waranty)\s*(?:kinni|kitni|hai|ki\s*aa|kine\s*saal)/i.test(incomingText) ||
+    /^(?:warranty|guarantee)\??$/i.test(incomingText.trim());
+  if (isWarrantyQuery) {
+    cleanReply = "Sadiyan saariyan machines te 1 saal di full onsite warranty hundi a veer ji. [[SPLIT]] Pure 304 food-grade stainless steel tanks te original Copeland compressors lagde ne, heavy-duty build hunda a.";
   }
 
   // Mandatory Client Rule: Ban unasked interrogation unless customer explicitly says "lagwana hai", "order", "theek hai", "site visit"
@@ -678,25 +721,29 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
       .trim();
   }
 
-  // Mandatory Client Rule 3A: General Chiller Price Query without specific tonnage
+  // Mandatory Client Rule 3A: General Chiller / Milk Cooling Query without specific tonnage
   // Do NOT dump the full rate card! Ask which tonnage or capacity they need first.
-  const hasSpecificTonnage = /(?:\b\d+(?:\.\d+)?\s*(?:ton|tr|lph|litre|liter|l)\b)/i.test(incomingText);
-  const isGeneralChillerPriceQuery = /(?:chiller|chillar)\s*(?:da|di|ka|ki)?\s*(?:rate|price|cost|kinne|kitne|mull)/i.test(incomingText) ||
-    (/^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim()) && /chiller/i.test(category));
+  const isChillerRelated = /(?:chiller|chillar|doodh|dudh|milk|dairy|bmc|cooling\s*machine|water\s*chilling)/i.test(incomingText) ||
+    (/(?:chiller|chillar)/i.test(category) && !/(?:ro\b|camper)/i.test(incomingText));
+  const hasSpecificTonnage = /(?:\b\d+(?:\.\d+)?\s*(?:ton|tr)\b)/i.test(incomingText);
+  const isGeneralChillerPriceQuery = isChillerRelated && !hasSpecificTonnage && (
+    /(?:rate|price|cost|kinne|kitne|mull|pauga|paugi|aunda|aunde|kharcha|kinna|kitna)/i.test(incomingText) ||
+    /^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim())
+  );
 
-  if (isGeneralChillerPriceQuery && !hasSpecificTonnage) {
-    cleanReply = "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi kinne ton ya daily kinne litre doodh cooling layi setup dekh rahe ho ji?";
+  if (isGeneralChillerPriceQuery) {
+    cleanReply = "Chiller da rate capacity te cooling requirement te depend karda a veer ji. [[SPLIT]] Tussi daily kinne litre doodh cooling layi setup dekh rahe ho ya kinne ton da chahida a ji?";
   }
 
   // Mandatory Client Rule 3B: Non-Chiller Pricing (RO, Camper, Heat Pump, Cold Room)
   // We ONLY know fixed rates for Chillers. All other products must strictly be referred to Karan Sir (+91 99157 30338).
-  const isNonChillerProduct = /(?:ro|camper|heat\s*pump|cold\s*room|softener|bmc)/i.test(incomingText) ||
-    (/(?:ro|heat\s*pump|cold\s*room|softener|bmc)/i.test(category) && !/chiller|chillar/i.test(incomingText));
-  const isPriceQuery = /(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne|kinney|kine|kiney|kitne|kitna|kinna|kina|kinni|kini)/i.test(incomingText);
+  const isExplicitNonChiller = /(?:ro\b|camper|plant|filter|boring|tds|water\s*plant|heat\s*pump|cold\s*room|softener)/i.test(incomingText) ||
+    (/(?:ro\b|camper|plant|heat\s*pump|cold\s*room)/i.test(category) && !isChillerRelated);
+  const isPriceQuery = /\b(?:price|rate|cost|quotation|quote|kharcha|budget|rupaye|rupees|rs\.?|inr|mull|bhaav|kinne\s*da\b|kinne\s*di\b|kine\s*da\b|kine\s*di\b|kitne\s*ka\b|kitne\s*ki\b|kinne\s*ch\b|kitne\s*mein\b)/i.test(incomingText);
   const mentionsPriceInReply = /(?:₹|rs\.?|inr)\s*[\d,]+/i.test(cleanReply);
 
-  if ((isNonChillerProduct && (isPriceQuery || mentionsPriceInReply)) || (mentionsPriceInReply && !hasSpecificTonnage && !/chiller|chillar/i.test(incomingText))) {
-    cleanReply = "Commercial RO te camper plant da rate paani de TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) direct rabta karange ji.";
+  if (!isChillerRelated && isExplicitNonChiller && (isPriceQuery || (mentionsPriceInReply && !hasSpecificTonnage))) {
+    cleanReply = "Commercial RO te camper plant da rate paani de raw TDS te setup te depend karda a ji. [[SPLIT]] Exact customized quotation layi Support Coordinator Karan Singh ji (+91 99157 30338) tuhade naal direct rabta karke best setup share kar denge ji.";
   }
 
   // Strict Media Defense & URL Stripper
@@ -730,7 +777,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   // Strip Financial Hype / Marketing Nonsense across all responses
   cleanReply = cleanReply
     .replace(/[^.!?\n]*(?:profit\s*margin|kamai|munafa)[^.!?\n]*[.!?]?/gi, '')
-    .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|kuch\s*hor\s*puchna\s*hai\??)[\s.?!]*$/gi, '.')
+    .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|kuch\s*hor\s*puchna\s*hai\??)[\s.?!]*$/gi, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
 
@@ -744,15 +791,16 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     cleanReply = cleanReply.replace(/^(?:hello!?|hi!?)\s*(?:ji!?)?\s*/i, '').trim();
   }
 
+  // Clean any dangling or doubled [[SPLIT]] tags
+  cleanReply = cleanReply
+    .replace(/\[\[SPLIT\]\]\s*\[\[SPLIT\]\]/gi, '[[SPLIT]]')
+    .replace(/^\s*\[\[SPLIT\]\]/gi, '')
+    .replace(/\[\[SPLIT\]\]\s*$/gi, '')
+    .trim();
+
   // Clean any stray leading punctuation left over
   cleanReply = cleanReply.replace(/^[,.!?\s]+/, '').trim();
   cleanReply = ensureSentenceComplete(cleanReply);
-
-  // 0.8x Compactness: Cap to maximum 2 sentences for brevity if single paragraph (never truncate media/links)
-  const sentences = cleanReply.match(/[^.!?]+[.!?]+(?:\s|$)/g);
-  if (sentences && sentences.length > 2 && !cleanReply.includes('\n') && !cleanReply.includes('[[SPLIT]]') && cleanReply.length > 160 && !/https?:\/\//i.test(cleanReply)) {
-    cleanReply = sentences.slice(0, 2).join(' ').trim();
-  }
 
   // Anti-Degeneracy Quality Gate: NEVER send 1-word or grunt replies
   const isGruntReply = /^(ha|haan|haanji|ji|ok|theek\s*hai|hmm|acha|got\s*it|hlo|hi|yes|no)[\s.!?]*$/i.test(cleanReply.trim());
@@ -979,10 +1027,12 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     if (!text) return [];
 
     const cleanBubble = (str) => {
-      return (str || '')
-        .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|dekha\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|kuch\s*hor\s*puchna\s*hai\??|koi\s*aur\s*madad\s*kiya\??)[\s.?!]*$/gi, '')
+      let b = (str || '')
+        .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|dekha\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|koi\s*aur\s*madad\s*kiya\??)[\s.?!]*$/gi, '')
         .replace(/\s{2,}/g, ' ')
         .trim();
+      if (!b) b = (str || '').trim();
+      return ensureSentenceComplete(b);
     };
 
     let bubbles = [];
@@ -1007,7 +1057,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   }
 
   const splitMessages = formatHumanSplit(cleanReply);
-  return splitMessages.length > 1 ? splitMessages : cleanReply;
+  return splitMessages.length > 1 ? splitMessages : (splitMessages[0] || cleanReply);
 }
 
 /**
