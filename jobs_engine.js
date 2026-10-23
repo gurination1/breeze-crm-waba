@@ -19,7 +19,8 @@ const FEEDS = [
   { name: 'SarkariResult Latest', url: 'https://sarkariresult.com.cm/feed/', weight: 1 },
   { name: 'SarkariResult Jobs', url: 'https://sarkariresult.com.cm/category/latest-job/feed/', weight: 2 },
   { name: 'Punjab Job Alert', url: 'https://punjabjobalert.com/feed/', weight: 3 },
-  { name: 'FreeJobAlert', url: 'https://freejobalert.com/feed/', weight: 4 }
+  { name: 'FreeJobAlert', url: 'https://freejobalert.com/feed/', weight: 4 },
+  { name: 'RojgarResult', url: 'https://rojgarresult.com/feed/', weight: 5 }
 ];
 
 let cachedJobs = [];
