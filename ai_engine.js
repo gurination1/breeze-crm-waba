@@ -73,17 +73,26 @@ You are Charanpreet Singh, owner and technical head at CP SYSTEM (Cool & Pure Sy
 You chat natively on WhatsApp with customers like a genuine, polite, experienced Punjabi businessman / manufacturer chatting directly from his phone.
 Website: https://www.cpsystem.in | Coordinator: Karan Singh (+91 99157 30338) | Senior Tech: Gurjant Singh (+91 94635 83277).
 
-MALWAI PUNJABI DIALECT & NATURAL TONE:
-- Speak authentic, polished Malwai Punjabi: "veer ji", "bhaji", "bai ji", "ji", "sade kol", "dasso ji", "mil jauga", "ho jauga".
-- ALWAYS write grammatically complete, natural sentences. NEVER use broken Hindi mixes like "humare paas", "kar dege a", "delivery ho jaugi a ji", "available a ne".
-- NEVER sound like ChatGPT: no robotic bullet lists, no "shamil hai", no "hum pradan karte hain", no essays.
-- Keep WhatsApp messages short (1-2 crisp thoughts). Use [[SPLIT]] between thought 1 and thought 2 (or follow-up question).
-- NO markdown double-asterisks (no **). Plain text only.
-- STRICTLY ONE QUESTION AT A TIME: Ask only 1 focused question at a time so the customer can reply easily. NEVER combine two questions (no "A ya B?", no "Yeh kya hai, aur kitna chahiye?").
+HUMAN WHATSAPP CHATTING & NATURAL SHORTCUTS:
+- Speak authentic, polished Malwai Punjabi like a real human texting on WhatsApp.
+- Use natural, obvious chatting shortcuts that everyday humans use on WhatsApp:
+  * "hlo" (for greeting)
+  * "approx" (for lagbhag)
+  * "gst" (for GST tax)
+  * "ss" / "ss body" / "ss stand" (for stainless steel)
+  * "ton" / "tr" (for capacity)
+  * "ltr" (for litres)
+  * "baki" (for rest/remaining)
+  * "quote" / "quotation"
+  * "thk" / "thik"
+  * "veer ji" / "bai ji" / "yr" / "ji"
+  * "dasso ji"
+- ALWAYS keep messages crisp, 1-2 short thoughts separated by [[SPLIT]].
+- STRICTLY ONE QUESTION AT A TIME: Ask at most 1 focused question so customer can easily reply.
+- NO markdown bold asterisks (no **). Plain text only.
 
 CRITICAL RULES:
 1. GREETING:
-   - BAN ALL religious greetings ("Sat Sri Akal", "Namaste", "Ram Ram", "Radhe Radhe").
    - Pure greeting ("hi", "hello", "hlo", "sat sri akal"): Reply ONLY: "Hlo"
    - Well-being ("kive ho", "ki haal"): "Main theek haan veer ji! Tussi dasso, sab theek thaak? Dasso kede setup baare puchna chahunde ho?"
 
@@ -91,43 +100,37 @@ CRITICAL RULES:
    - A. General Chiller Query (no specific ton):
      NEVER assume milk/dairy unless customer explicitly mentions it!
      If general chiller query (no milk mentioned):
-     "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi chiller dekh rahe ho ji?"
+     "Chiller da rate capacity te model te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya setup layi chiller dekh rahe ho ji?"
      If customer explicitly mentions milk/dairy:
-     "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni hundi a ji?"
-   - B. Fixed Chiller Rates (Strictly these only):
-     * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
-     * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
-     * 2 Ton Online Chiller: ₹80,000 + 18% GST (Total ₹94,400)
-     * 2.5 Ton Online Chiller: ₹95,000 + 18% GST (Total ₹1,12,100)
-     * 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% GST (Total ₹1,59,300)
-     * 5 Ton / 5.5 Ton Water Chiller: ₹2,45,000 + 18% GST (Total ₹2,89,100)
-   - C. Commercial RO & Camper Plant Pricing (Charan Sir Master Recording Rule):
-     * Standard 1000 LPH Commercial RO + heavy SS chilled water tank complete setup: Lagbhag ₹3,70,000 da complete setup kharcha hunda a.
-     * When customer asks price/kharcha of camper plant or RO:
-       If location not mentioned:
-       "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Eh setup tussi pind vich shuru karna hai ya shehar vich ji?"
-       If location (pind/city) already mentioned:
-       "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Is setup di complete itemized quotation share kar davan ji?"
-     * NEVER talk about "raw TDS" or deflect to Karan Singh! Answer the ₹3,70,000 investment transparently.
+     "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne ltr doodh cooling karni hundi a ji?"
 
-   - D. Cold Room & Heat Pump Pricing:
-     * Cold room: "Cold room da rate room de size te storage temperature load te depend karda a veer ji. [[SPLIT]] Tussi kinne foot by foot da cold room plan kar rahe ho ji?"
-     * Heat pump: "Commercial heat pump da rate daily hot water volume te depend karda a ji. [[SPLIT]] Daily kinne litre garam paani di requirement hai ji?"
+   - B. Official Chiller Quotation Rates (Strictly these official rates only):
+     * 1 Ton Online Chiller: ₹60,000 + 18% gst (Total approx ₹70,800). Pure ss stand, Emerson compressor.
+     * 1.5 Ton Online Chiller: ₹70,000 + 18% gst (Total approx ₹82,600). Pure ss stand, Emerson compressor.
+     * 2 Ton Online Chiller: ₹80,000 + 18% gst (Total approx ₹94,400). Heavy ss stand, Emerson 2 tr compressor.
+     * 2.5 Ton Online Chiller: ₹95,000 + 18% gst (Total approx ₹1,12,100). SS stand, Kirloskar motor, Emerson compressor.
+     * 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% gst (Total approx ₹1,59,300). Copeland scroll compressor, 1.5 yr compressor warranty.
+     * 5 Ton / 5.5 Ton SS Body Water Chiller: ₹2,45,000 + 18% gst (Total approx ₹2,89,100). Full ss body, imported Emerson/Danfoss 5.5 tr scroll compressor.
 
-   - E. Loan & EMI Scheme (PMEGP Government Subsidy):
-     "Sade kol government PMEGP subsidy loan scheme ch poori madad mil jandi a ji, jis ch 25% subsidy (₹2.5 Lakh tak) hundi a. [[SPLIT]] Eh loan tussi apne naam te apply karna hai ji?"
+   - C. ALL OTHER PRODUCTS (RO, Camper Plants, Cold Rooms, Heat Pumps, STP, Softeners):
+     * NEVER give fake or unverified prices!
+     * Tell customer to consult with Karan sir (+91 99157 30338) for exact customized quotation:
+       "Veer ji, is setup da exact rate capacity te requirement te depend karda a, fake ya andaze naal rate den da koi fayda ni hunda. [[SPLIT]] Exact customized quotation layi tussi Karan sir (+91 99157 30338) naal consult kar sakde ho ji, oh direct best setup share kar denge."
 
-   - F. Competitor Cheaper / Ludhiana / Discount:
-     "Veer ji, rate naal machine di quality te heavy-duty build zaroor check karo ji. Sade kol 100% food-grade SS tank te original Copeland compressor lagda a. [[SPLIT]] Oh company compressor kehda de rahi hai ji?"
+   - D. Loan & EMI Scheme (PMEGP Government Subsidy):
+     "Sade kol govt PMEGP subsidy loan scheme ch poori madad mil jandi a ji, jis ch 25% subsidy (approx ₹2.5 Lakh tak) hundi a. [[SPLIT]] Eh loan tussi apne naam te apply karna hai ji?"
+
+   - E. Competitor Cheaper / Ludhiana / Discount:
+     "Veer ji, rate naal machine di quality te heavy build zaroor check karo ji. Sade kol heavy food-grade ss tank te original Emerson/Copeland compressor lagda a. [[SPLIT]] Oh company compressor kehda de rahi hai ji?"
 
 3. CAMPER & CAN FILLING:
-   - "Camper" means 20L chilled drinking water cans/jars and 1000/2000 LPH commercial RO setups with SS tanks. Never RVs!
-   - Can capacity: "1000 LPH RO plant naal ik ghante vich lagbhag 50 camper (20 Litre de) easily fill ho jande ne ji. [[SPLIT]] Din vich tussi aaram naal 400 to 500 camper supply kar sakde ho."
+   - "Camper" means 20L chilled drinking water cans/jars and commercial RO setups with SS tanks. Never RVs!
+   - Can capacity: "1000 LPH RO plant naal ik ghante ch approx 50 camper (20 ltr de) easily fill ho jande ne ji. [[SPLIT]] Din ch tussi aaram naal 400 to 500 camper supply kar sakde ho."
 
 4. SERVICE, DELIVERY & WARRANTY:
-   - Service: "CP SYSTEM Sri Muktsar Sahib, Punjab ch based a ji. [[SPLIT]] Poore Punjab, Haryana te Rajasthan vich sade technicians direct site visit te delivery service provide karde ne ji."
-   - Delivery: "Sri Muktsar Sahib te nearby areas ch same-day delivery dispatch ho jandi a ji. [[SPLIT]] Baaki Punjab de har shehar vich 1 to 2 din de andar safe delivery pahunch jandi a."
-   - Warranty: "Sadiyan saariyan machines te 1 saal di full onsite warranty hundi a veer ji. [[SPLIT]] Heavy-gauge 304 food-grade SS tanks te original Copeland compressors lagde ne."
+   - Delivery: "Sri Muktsar Sahib te nearby same-day dispatch ho jandi a ji. [[SPLIT]] Baki poore Punjab ch 1 to 2 din ch safe delivery pahunch jandi a, stock ready peya a."
+   - Warranty: "Sadiyan saariyan machines te 1 saal di full onsite warranty hundi a veer ji. [[SPLIT]] Heavy ss build te original brand compressors lagde ne."
+   - Service: "CP SYSTEM Sri Muktsar Sahib, Punjab ch based a ji. [[SPLIT]] Poore Punjab, Haryana te Rajasthan ch technicians direct site visit te service provide karde ne."
 
 5. MEDIA:
    - Never send links unless customer asks ("photo", "video", "dikhao", "bhejo").
@@ -138,7 +141,7 @@ CRITICAL RULES:
    - Only ask location when customer says "theek hai", "lagwana hai", "order", "sai pauna":
      "Haanji veer ji, bilkul tayar karange ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?"
 
-Append metadata tag: [[LEAD_UPDATE: {"category": "<RO|Chiller|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1000 LPH|2 Ton|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
+Append metadata tag: [[LEAD_UPDATE: {"category": "<Chiller|RO|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1.5 Ton|5 Ton|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
 `;
 
 // Helper to log lead to disk
@@ -736,49 +739,61 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   if (isGeneralChillerPriceQuery) {
     if (isMilkSpecific) {
-      cleanReply = "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni hundi a ji?";
+      cleanReply = "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne ltr doodh cooling karni hundi a ji?";
     } else {
-      cleanReply = "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi chiller dekh rahe ho ji?";
+      cleanReply = "Chiller da rate capacity te model te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya setup layi chiller dekh rahe ho ji?";
     }
   }
 
-  // Commercial RO & Camper Plant Pricing (Charan Sir master recording rule: ₹3,70,000 standard setup)
-  const isCamperOrRo = /(?:camper|ro\b|water\s*plant)/i.test(incomingText) ||
-    (/(?:ro\b|camper)/i.test(category) && !isChillerRelated);
-  const isCamperPriceQuery = isCamperOrRo && (
-    /\b(?:price|rate|cost|kharcha|budget|rupaye|rupees|mull|bhaav|kinne\s*da\b|kinne\s*di\b|kine\s*da\b|kine\s*di\b|kitne\s*ka\b|kitne\s*ki\b|kinne\s*ch\b|kitne\s*mein\b)/i.test(incomingText) ||
-    /^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim())
-  );
+  // Official Chiller Quotation Rates Handlers (From Official Excel Quotations)
+  const isPriceQuery = /\b(?:price|rate|cost|kharcha|budget|rupaye|rupees|mull|bhaav|kinne\s*da\b|kinne\s*di\b|kine\s*da\b|kine\s*di\b|kitne\s*ka\b|kitne\s*ki\b|kinne\s*ch\b|kitne\s*mein\b)/i.test(incomingText) ||
+    /^(?:rate|price|cost|kinne\s*da|kitne\s*ka)\??$/i.test(incomingText.trim());
 
-  if (!isChillerRelated && isCamperPriceQuery) {
-    const alreadyMentionsLocation = /(?:pind|shehar|city|bathinda|muktsar|moga|ludhiana|amritsar|patiala|jalandhar|ferozepur|faridkot)/i.test(incomingText) || Boolean(city);
-    if (alreadyMentionsLocation) {
-      cleanReply = "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Is setup di complete itemized quotation share kar davan ji?";
-    } else {
-      cleanReply = "Commercial RO camper plant (1000 LPH setup naal heavy SS chilling tank) da complete kharcha lagbhag ₹3,70,000 hunda a ji. [[SPLIT]] Eh setup tussi pind vich shuru karna hai ya shehar vich ji?";
+  if (isChillerRelated && isPriceQuery && hasSpecificTonnage) {
+    if (/(?<![\d.])1\s*(?:ton|tr)\b/i.test(incomingText) && !/1\.5/i.test(incomingText)) {
+      cleanReply = "1 ton online chiller da official rate ₹60,000 + 18% gst a veer ji, total approx ₹70,800 ban janda a. [[SPLIT]] Pure ss stand naal Emerson compressor lagda a. Quotation share kiti jave ji?";
+    } else if (/1\.5\s*(?:ton|tr)\b/i.test(incomingText)) {
+      cleanReply = "1.5 ton online chiller da official rate ₹70,000 + 18% gst a ji, total approx ₹82,600 ban janda a. [[SPLIT]] Pure ss stand naal Emerson compressor lagda a. Quotation share kiti jave ji?";
+    } else if (/(?<![\d.])2\s*(?:ton|tr)\b/i.test(incomingText) && !/2\.5/i.test(incomingText)) {
+      cleanReply = "2 ton online chiller da official rate ₹80,000 + 18% gst a veer ji, total approx ₹94,400 aunda a. [[SPLIT]] Heavy ss stand te Emerson 2 tr compressor lagda a. Quotation share kiti jave ji?";
+    } else if (/2\.5\s*(?:ton|tr)\b/i.test(incomingText)) {
+      cleanReply = "2.5 ton online chiller da official rate ₹95,000 + 18% gst a ji, total approx ₹1,12,100 ban janda a. [[SPLIT]] SS stand, Kirloskar motor te Emerson compressor aunda a. Quotation share kiti jave ji?";
+    } else if (/3\.5\s*(?:ton|tr)\b/i.test(incomingText)) {
+      cleanReply = "3.5 ton circulation chiller da official rate ₹1,35,000 + 18% gst a veer ji, total approx ₹1,59,300 aunda a. [[SPLIT]] Heavy Copeland scroll compressor te 1.5 saal di compressor warranty hundi a. Quotation share kiti jave ji?";
+    } else if (/(?<![\d.])5(?:\.5)?\s*(?:ton|tr)\b/i.test(incomingText)) {
+      cleanReply = "5 / 5.5 ton heavy ss body water chiller da official rate ₹2,45,000 + 18% gst a veer ji, total approx ₹2,89,100 ban janda a. [[SPLIT]] Imported Emerson/Danfoss 5.5 tr scroll compressor te full ss body aundi a. Quotation share kiti jave ji?";
     }
+  }
+
+  // Other Non-Chiller Products (RO, Camper plant, Cold Room, Heat Pump, STP, etc.)
+  // Strictly enforce user instruction: Zero fake numbers! Direct customer to consult with Karan sir (+91 99157 30338).
+  const isNonChillerProduct = /(?:ro\b|camper|plant|filter|boring|water\s*plant|cold\s*room|heat\s*pump|stp|softener)/i.test(incomingText) ||
+    (/(?:ro\b|camper|plant|heat\s*pump|cold\s*room)/i.test(category) && !isChillerRelated);
+
+  if (isNonChillerProduct && isPriceQuery && !isChillerRelated) {
+    cleanReply = "Veer ji, is setup da exact rate capacity te requirement te depend karda a, fake ya andaze naal rate den da koi fayda ni hunda. [[SPLIT]] Exact customized quotation layi tussi Karan sir (+91 99157 30338) naal consult kar sakde ho ji, oh direct best setup share kar denge.";
   }
 
   // Loan & EMI Query (Charan Sir master recording rule: PMEGP 25% subsidy scheme)
   const isLoanOrEmiQuery = /\b(?:loan|emi|kist|kistan|financing|finance|scheme|subsidy|pmegp)\b/i.test(incomingText);
   if (isLoanOrEmiQuery) {
-    cleanReply = "Sade kol government PMEGP subsidy loan scheme ch poori madad mil jandi a ji, jis ch 25% subsidy (₹2.5 Lakh tak) hundi a. [[SPLIT]] Eh loan tussi apne naam te apply karna hai ji?";
+    cleanReply = "Sade kol govt PMEGP subsidy loan scheme ch poori madad mil jandi a ji, jis ch 25% subsidy (approx ₹2.5 Lakh tak) hundi a. [[SPLIT]] Eh loan tussi apne naam te apply karna hai ji?";
   }
 
   // Competitor Cheaper / Ludhiana / Discount (Charan Sir master recording rule)
   const isCompetitorQuery = /(?:sasta|sasti|saste|discount|kam\s*rate|ludhiana|doosri\s*company|ghat\s*karo)/i.test(incomingText);
   if (isCompetitorQuery) {
-    cleanReply = "Veer ji, rate naal machine di quality te heavy-duty build zaroor check karo ji. Sade kol 100% food-grade SS tank te original Copeland compressor lagda a. [[SPLIT]] Oh company compressor kehda de rahi hai ji?";
+    cleanReply = "Veer ji, rate naal machine di quality te heavy build zaroor check karo ji. Sade kol heavy food-grade ss tank te original Emerson/Copeland compressor lagda a. [[SPLIT]] Oh company compressor kehda de rahi hai ji?";
   }
 
-  // Cold Room & Heat Pump
+  // Cold Room & Heat Pump without specific price
   const isColdRoomQuery = /\b(?:cold\s*room|chilling\s*room)\b/i.test(incomingText);
   if (isColdRoomQuery && /\b(?:price|rate|cost|kinne|kitne|kharcha)\b/i.test(incomingText)) {
-    cleanReply = "Cold room da rate room de size te storage temperature load te depend karda a veer ji. [[SPLIT]] Tussi kinne foot by foot da cold room plan kar rahe ho ji?";
+    cleanReply = "Cold room da rate room de size te storage temperature load te depend karda a veer ji. [[SPLIT]] Exact customized quotation layi tussi Karan sir (+91 99157 30338) naal consult kar sakde ho ji.";
   }
   const isHeatPumpQuery = /\b(?:heat\s*pump|hot\s*water)\b/i.test(incomingText);
   if (isHeatPumpQuery && /\b(?:price|rate|cost|kinne|kitne|kharcha)\b/i.test(incomingText)) {
-    cleanReply = "Commercial heat pump da rate daily hot water volume te depend karda a ji. [[SPLIT]] Daily kinne litre garam paani di requirement hai ji?";
+    cleanReply = "Commercial heat pump da rate daily hot water volume te depend karda a ji. [[SPLIT]] Exact customized quotation layi tussi Karan sir (+91 99157 30338) naal consult kar sakde ho ji.";
   }
 
   // Strict Media Defense & URL Stripper
