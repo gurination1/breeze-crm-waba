@@ -133,7 +133,7 @@ CRITICAL RULES:
 
 3. GENERAL CONSULTATIVE FLOW (Charan Sir Master Recording):
    - Customer mentions "RO / RO plant / water plant":
-     "Hlo veer ji! 20L camper cans bharan layi plant dekh rahe ho ya factory/dairy layi?"
+     "Veer ji, 20L camper cans bharan layi plant dekh rahe ho ya factory/dairy layi setup chahida a ji?"
    - Customer says "Pta ni" or confused:
      "Koi na bai ji, main poori madad kar dinda a. [[SPLIT]] Tussi pind vich shuru karna hai ya shehar vich ji?"
    - Customer says "Nhi" / "nahin":
@@ -142,6 +142,14 @@ CRITICAL RULES:
      "Haanji veer ji, commercial heat pumps available ne. [[SPLIT]] Daily approx kinne ltr garam paani di requirement aundi a ji?"
    - Customer asks about camper business capacity:
      "1000 LPH RO plant naal ik ghante ch approx 50 camper (20 ltr de) easily fill ho jande ne ji. [[SPLIT]] Din ch tussi aaram naal 400 to 500 camper supply kar sakde ho."
+
+3B. DOMESTIC / KITCHEN RO BOUNDARY (CRITICAL RULE):
+   - CP SYSTEM IS STRICTLY A COMMERCIAL & INDUSTRIAL WATER PLANT & CHILLER MANUFACTURER!
+   - WE DO NOT MAKE OR SELL 10-15 LTR DOMESTIC KITCHEN RO PURIFIERS!
+   - If customer asks for domestic/home RO ("ghar waste", "ghr wastey", "ghar layi", "gharelu", "kitchen ro", "home ro", "10l", "12l", "15l", "peen waste small"):
+     NEVER pretend to sell small 10 ltr RO units! NEVER ask where in the house to install it!
+     Politely clarify:
+     "Veer ji, sade kol heavy commercial setups (commercial RO plants 500/1000 LPH te chillers) hunde ne, gharelu 10-12 ltr wale kitchen RO nahi karde ji. [[SPLIT]] Je tussi 20L camper cans supply da business ya dairy/factory setup dekh rahe ho taan dasso ji, poori jankari de devange."
 
 4. LOAN & EMI SCHEME (PMEGP Government Subsidy):
    "Sade kol govt PMEGP subsidy loan scheme ch poori madad mil jandi a ji, jis ch 25% subsidy (approx ₹2.5 Lakh tak) hundi a. [[SPLIT]] Eh loan tussi apne naam te apply karna hai ji?"
@@ -160,8 +168,13 @@ CRITICAL RULES:
    - Commercial RO/Camper: Photo: https://www.cpsystem.in/cps/admin/public/assets/img/product/1756990530_3_20250903_175347_0002.png | Video: https://www.youtube.com/watch?v=ssW53Nbj1_c
 
 8. CLOSING / INSTALLATION:
-   - Only ask location when customer says "theek hai", "lagwana hai", "order", "sai pauna":
-     "Haanji veer ji, bilkul tayar karange ji. [[SPLIT]] Eh setup tussi kehde pind ya shehar vich lagwana chahte ho ji?"
+   - Only ask location when customer says "theek hai", "lagwana hai", "order", "sai pauna" AND location has NOT been mentioned yet!
+   - If customer ALREADY said they are in a pind, shehar, or specified their location: NEVER ask location again!
+   - NEVER ask "apne ghar vich hi install karwana hai ya koi aur jagah?"
+
+9. CONVERSATIONAL MEMORY & ANTI-LOOP:
+   - ALWAYS read conversation history before responding. If customer already answered a question (e.g. they said "pind", "bathinda", or confirmed details), NEVER ask that question again!
+   - NEVER repeat the same question you asked in the previous turn. Progress the dialogue logically.
 
 Append metadata tag: [[LEAD_UPDATE: {"category": "<Chiller|RO|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1.5 Ton|5 Ton|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
 `;
@@ -376,8 +389,8 @@ async function callGroqFallback(systemPrompt, contents, maxTokens = 450) {
   }
 
   if (Array.isArray(contents)) {
-    // Keep last 4 turns (user + assistant) to keep prompt tokens ultra low (<600 tokens total)
-    const recent = contents.slice(-4);
+    // Keep last 14 turns (user + assistant) to provide full conversation memory while staying fast
+    const recent = contents.slice(-14);
     for (const item of recent) {
       const role = item.role === 'model' ? 'assistant' : 'user';
       const text = item.parts?.map(p => p.text).join('\n') || '';
@@ -437,7 +450,7 @@ async function callMistralFallback(systemPrompt, contents, maxTokens = 450) {
   }
 
   if (Array.isArray(contents)) {
-    const recent = contents.slice(-6);
+    const recent = contents.slice(-14);
     for (const item of recent) {
       const role = item.role === 'model' ? 'assistant' : 'user';
       const text = item.parts?.map(p => p.text).join('\n') || '';
@@ -584,9 +597,9 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     return "Main theek haan veer ji! Tussi dasso kive ho, sab vadiya? Dasso kede setup baare puchna chahunde ho?";
   }
 
-  // Build clean, authentic conversation turns for LLM (sanitized & bounded to last 4 turns)
+  // Build clean, authentic conversation turns for LLM (sanitized & bounded to last 14 turns)
   const contents = [];
-  const recentMessages = priorHistory.slice(-4);
+  const recentMessages = priorHistory.slice(-14);
 
   for (const m of recentMessages) {
     const isCustomer = m.direction ? m.direction === 'INBOUND' : m.role === 'user';
@@ -600,7 +613,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
         .replace(/(?:📸|🎥|🌐|🔗)[^\n]*/gi, '')
         .replace(/\s{2,}/g, ' ')
         .trim();
-      if (text.length > 150) text = text.slice(0, 150) + '...';
+      if (text.length > 350) text = text.slice(0, 350) + '...';
     }
     if (text) {
       contents.push({
@@ -804,7 +817,27 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   } else if (/\b(?:gear\s*pump|pumps?)\b/i.test(incomingText) && !/heat\s*pump/i.test(incomingText) && !isPriceQuery) {
     cleanReply = "Haanji veer ji, heavy-duty pumps vi available ne. [[SPLIT]] Tussi kis machine ya setup layi pump dekh rahe ho ji?";
   } else if (/(?:ro\b|camper)\s*(?:baare|bare|setup|chahida)/i.test(incomingText) && !isPriceQuery) {
-    cleanReply = "Hlo veer ji! [[SPLIT]] 20L camper cans bharan layi plant dekh rahe ho ya factory/dairy layi setup chahida a ji?";
+    cleanReply = "Veer ji, 20L camper cans bharan layi plant dekh rahe ho ya factory/dairy layi setup chahida a ji?";
+  }
+
+  // Domestic Kitchen RO Boundary: CP SYSTEM only manufactures commercial setups (500/1000/2000 LPH, chillers)
+  const isDomesticQuery = (
+    /(?:ghr\s*wastey?|ghar\s*wastey?|ghar\s*layi|ghar\s*vich|gharelu|kitchen\s*ro|home\s*use|domestic\s*ro|10\s*l(?:tr)?|12\s*l(?:tr)?|15\s*l(?:tr)?)/i.test(incomingText) ||
+    (/(?:ghar|ghr)/i.test(incomingText) && priorHistory.some(m => /(?:10\s*l|ro\b|peen|filter)/i.test(m.content || ''))) ||
+    (/(?:10\s*l|12\s*l|15\s*l|peen)/i.test(incomingText) && priorHistory.some(m => /(?:ro\b|water|ghar|ghr)/i.test(m.content || '')))
+  ) && !/(?:1000|500|2000|camper|commercial|dairy|factory)/i.test(incomingText);
+
+  const alreadyExplainedDomestic = priorHistory.some(m =>
+    (m.direction === 'OUTBOUND_BOT' || m.role === 'model') &&
+    /(?:gharelu\s*10-12|commercial\s*plants\s*500|kitchen\s*ro\s*nahi)/i.test(m.content || '')
+  );
+
+  if (isDomesticQuery) {
+    if (alreadyExplainedDomestic) {
+      cleanReply = "Koi na veer ji! Je future ch tussi 20L camper cans water business ya dairy/factory setup dekh rahe hovonge taan zaroor dassna ji.";
+    } else {
+      cleanReply = "Veer ji, sade kol heavy commercial setups (commercial RO plants 500/1000 LPH te chillers) hunde ne, gharelu 10-12 ltr wale kitchen RO nahi karde ji. [[SPLIT]] Je tussi 20L camper cans supply da business ya dairy/factory setup dekh rahe ho taan dasso ji, poori jankari de devange.";
+    }
   }
 
   // 2. Non-Chiller Pricing Queries (RO, Camper plant, Cold Room, Heat Pump)
@@ -866,7 +899,7 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Strip accidental leading greeting if customer did not greet
   if (!isPureGreeting) {
-    cleanReply = cleanReply.replace(/^(?:hello!?|hi!?)\s*(?:ji!?)?\s*/i, '').trim();
+    cleanReply = cleanReply.replace(/^(?:hello!?|hi!?|hlo!?)\s*(?:veer\s*ji!?|bai\s*ji!?|ji!?)?\s*(?:\[\[SPLIT\]\])?\s*/i, '').trim();
   }
 
   // Clean any dangling or doubled [[SPLIT]] tags
@@ -901,6 +934,39 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
         }
       }
       cleanReply = processedParts.join(' [[SPLIT]] ');
+    }
+  }
+
+  // Anti-Loop / Anti-Echo Guard: NEVER repeat the question asked in the previous turn
+  if (priorHistory.length > 0) {
+    const lastBotMsgObj = [...priorHistory].reverse().find(m => m.direction === 'OUTBOUND_BOT' || m.role === 'model');
+    if (lastBotMsgObj && lastBotMsgObj.content) {
+      const lastBotText = lastBotMsgObj.content.replace(/\[\[SPLIT\]\]/g, ' ').trim();
+      const lastBotQuestions = lastBotText.match(/[^.!?\n]+\?/g) || [];
+      const currentQuestions = cleanReply.match(/[^.!?\n]+\?/g) || [];
+
+      if (lastBotQuestions.length > 0 && currentQuestions.length > 0) {
+        const lastQ = lastBotQuestions[lastBotQuestions.length - 1].toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+        const currQ = currentQuestions[currentQuestions.length - 1].toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+
+        const lastWords = new Set(lastQ.split(/\s+/).filter(w => w.length > 2));
+        const currWords = currQ.split(/\s+/).filter(w => w.length > 2);
+        const matchCount = currWords.filter(w => lastWords.has(w)).length;
+        const similarity = currWords.length > 0 ? (matchCount / currWords.length) : 0;
+
+        const isLocationLoop = /(?:install|lagwana|lagwauna|kehde\s*pind|ghar\s*vich\s*hi)/i.test(lastQ) && /(?:install|lagwana|lagwauna|kehde\s*pind|ghar\s*vich\s*hi)/i.test(currQ);
+
+        if (similarity > 0.55 || isLocationLoop) {
+          console.log(`🛡️ [Anti-Loop Intercepted]: Repeated question detected ("${currQ}" vs "${lastQ}"). Breaking loop.`);
+          cleanReply = cleanReply.replace(currentQuestions[currentQuestions.length - 1], '').trim();
+          cleanReply = cleanReply.replace(/\[\[SPLIT\]\]\s*$/, '').trim();
+          if (/ghar|pind|shehar/i.test(incomingText)) {
+            cleanReply += (cleanReply ? ' [[SPLIT]] ' : '') + "Got it veer ji. Tuhade setup di customized quotation layi Coordinator Karan sir (+91 99157 30338) direct call te guide kar denge ji.";
+          } else {
+            cleanReply += (cleanReply ? ' [[SPLIT]] ' : '') + "Hor koi technical requirement ya machine baare jankari chahidi hove taan dasso ji.";
+          }
+        }
+      }
     }
   }
 
@@ -1136,7 +1202,9 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
         .replace(/\s{2,}/g, ' ')
         .trim();
       if (!b) b = (str || '').trim();
-      return ensureSentenceComplete(b);
+      b = ensureSentenceComplete(b);
+      if (b) b = b.charAt(0).toUpperCase() + b.slice(1);
+      return b;
     };
 
     let bubbles = [];
