@@ -78,6 +78,7 @@ MALWAI PUNJABI DIALECT & NATURAL TONE:
 - NEVER sound like ChatGPT: no robotic bullet lists, no "shamil hai", no "hum pradan karte hain", no essays.
 - Keep WhatsApp messages short (1-2 crisp thoughts). Use [[SPLIT]] between thought 1 and thought 2 (or follow-up question).
 - NO markdown double-asterisks (no **). Plain text only.
+- STRICTLY ONE QUESTION AT A TIME: Ask only 1 focused question at a time so the customer can reply easily. NEVER combine two questions (no "A ya B?", no "Yeh kya hai, aur kitna chahiye?").
 
 CRITICAL RULES:
 1. GREETING:
@@ -89,9 +90,9 @@ CRITICAL RULES:
    - A. General Chiller Query (no specific ton):
      NEVER assume milk/dairy unless customer explicitly mentions it!
      If general chiller query (no milk mentioned):
-     "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi setup dekh rahe ho, te kinne ton da chiller chahida a ji?"
+     "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi chiller dekh rahe ho ji?"
      If customer explicitly mentions milk/dairy:
-     "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni a ya kinne ton da setup dekh rahe ho ji?"
+     "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni hundi a ji?"
    - B. Fixed Chiller Rates (Strictly these only):
      * 1 Ton Online Chiller: ₹60,000 + 18% GST (Total ₹70,800)
      * 1.5 Ton Online Chiller: ₹70,000 + 18% GST (Total ₹82,600)
@@ -739,9 +740,9 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   if (isGeneralChillerPriceQuery) {
     if (isMilkSpecific) {
-      cleanReply = "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni a ya kinne ton da setup dekh rahe ho ji?";
+      cleanReply = "Dairy te milk cooling layi online chillers available ne veer ji. [[SPLIT]] Daily kinne litre doodh cooling karni hundi a ji?";
     } else {
-      cleanReply = "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi setup dekh rahe ho, te kinne ton da chiller chahida a ji?";
+      cleanReply = "Chiller da rate capacity te machine setup te depend karda a veer ji. [[SPLIT]] Tussi kis machine ya kaam layi chiller dekh rahe ho ji?";
     }
   }
 
@@ -810,6 +811,33 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Clean any stray leading punctuation left over
   cleanReply = cleanReply.replace(/^[,.!?\s]+/, '').trim();
+
+  // Enforce strictly ONE question per message turn (Charan Sir master sales recording rule)
+  if (cleanReply.includes('?')) {
+    // If compound questions exist like "..., te kinne ton da...?" or "..., ya kinne ton da...?"
+    cleanReply = cleanReply
+      .replace(/(?:,|\.|\?)*\s*(?:te|ya|aur|and)\s*(?:kinne|kitne|kede|kehde|kis)\s*(?:ton|lph|din|rate)[^?]*\?/gi, '?')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+
+    // If multiple question marks still remain across bubbles or thoughts, preserve only the first question
+    const qMatches = cleanReply.match(/\?/g);
+    if (qMatches && qMatches.length > 1) {
+      const parts = cleanReply.split('[[SPLIT]]');
+      let foundQuestion = false;
+      const filteredParts = parts.map(part => {
+        if (!part.includes('?')) return part.trim();
+        if (!foundQuestion) {
+          foundQuestion = true;
+          const qIdx = part.indexOf('?');
+          return part.slice(0, qIdx + 1).trim();
+        }
+        return part.replace(/\?/g, '.').trim();
+      });
+      cleanReply = filteredParts.join(' [[SPLIT]] ');
+    }
+  }
+
   cleanReply = ensureSentenceComplete(cleanReply);
 
   // Anti-Degeneracy Quality Gate: NEVER send 1-word or grunt replies for inquiries
