@@ -2019,10 +2019,11 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
             // Attempt 0: cpsystem_flyer_v1 with Image Header (if media attached)
             if (media_type === 'image' && (media_url || media_id)) {
               try {
+                // cpsystem_flyer_v1 has static Diwali marketing body and image header (0 body variables)
                 const mediaComponents = whatsapp.buildMediaTemplateComponents(
                   'image',
                   media_url || media_id,
-                  [recipientName, message || 'Special update from CP System']
+                  []
                 );
                 sendResult = await whatsapp.sendTemplateMessage(
                   pId,
@@ -2032,7 +2033,7 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
                   mediaComponents
                 );
                 channelType = 'APPROVED_MEDIA_TEMPLATE';
-                recordedContent = `[Media Template] Hello ${recipientName}! ${message}`;
+                recordedContent = `[Media Template cpsystem_flyer_v1] Attached Image + Diwali Greeting`;
                 isSuccess = true;
                 break;
               } catch (mErr) {
