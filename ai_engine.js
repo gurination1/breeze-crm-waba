@@ -597,6 +597,22 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   let category = meta.category || '';
   let capacity = meta.capacity || '';
 
+  // Product Conflict Guard: If current message asks for a different product, reset stale category
+  if (/\b(ro\b|water\s*plant|camper|purifier|filter)\b/i.test(incomingText) && !/\b(chiller|chillar)\b/i.test(incomingText)) {
+    if (category === 'Chiller' || category === 'Heat Pump' || category === 'Cold Room') {
+      category = '';
+      meta.category = '';
+      capacity = '';
+      meta.capacity = '';
+    }
+  } else if (/\b(chiller|chillar)\b/i.test(incomingText) && !/\b(ro\b|camper)\b/i.test(incomingText)) {
+    category = 'Chiller';
+    meta.category = 'Chiller';
+  } else if (/\b(heat\s*pump)\b/i.test(incomingText)) {
+    category = 'Heat Pump';
+    meta.category = 'Heat Pump';
+  }
+
   // 0. RESET / START OVER INTENT
   if (/^(reset|restart|new inquiry|naya project|start over|naya setup)\b/i.test(lower)) {
     meta = { name: clientName, status: 'NEW' };
@@ -678,6 +694,12 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     if ((elapsedMinutes > 10 && isGreeting) || elapsedMinutes > 45) {
       console.log(`[AI Engine] Session reset for ${cleanPhone}: gap was ${Math.round(elapsedMinutes)} mins`);
       priorHistory = [];
+      meta.category = '';
+      meta.capacity = '';
+      meta.water_source = '';
+      category = '';
+      capacity = '';
+      memory.setLeadClosed(cleanPhone, false, meta, tenantId);
     }
   }
 
@@ -731,8 +753,8 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   const allInboundText = [...customerInboundMsgs, incomingText].join(' ');
 
   // Detect customer language dynamically: Hinglish by default, Punjabi or English if indicated
-  const punjabiRegex = /\b(veer\s*ji|bai\s*ji|bhaji|veere|chahida|chahidi|kinne|kine|keda|kehda|tussi|tuhanu|tuhada|dasso|sade|mil\s*jau|ho\s*jau|hunda|pind|kithon|kive|kiddan|gal|hor|ghr|sadda|saddi|vich|lai|layi|te|nu)\b/i;
-  const hindiRegex = /\b(chahiye|kitne|batao|paani|pani|kya|hai|hain|ka|ke|ki|mujhe|hum|karna|hoga|ghar|kaunsa|kitna|hota|bataiye|aap|aapka|aapko|nhi|nahi|kaise|pe)\b/i;
+  const punjabiRegex = /\b(veer\s*ji|bai\s*ji|bhaji|veere|bai|chahida|chahidi|chahide|kinne|kine|keda|kehda|kehde|kehdi|tussi|tusse|tuhanu|tuhada|tuhade|tuhadi|dasso|daso|sade|sada|sadi|sadda|saddi|mil\s*jau|mil\s*jauga|mil\s*jange|ho\s*jau|ho\s*jauga|hunda|hunde|hundi|pind|kithon|kitho|kive|kiven|kiddan|kida|gal|hor|ghr|vich|ch|lai|layi|de\s*layi|te|nu|bare|baare|puchna|c|si|aala|ala|dinde|dinda|karda|karde|kiti|kita|karo\s*ji)\b/i;
+  const hindiRegex = /\b(chahiye|kitne|kitna|kitni|batao|bataiye|paani|pani|kya|hai|hain|ka|ke|ki|mujhe|hum|karna|hoga|hogi|honge|ghar|kaunsa|kaunsi|hota|hoti|hote|aap|aapka|aapke|aapko|nhi|nahi|kaise|kaisa|kaisi|pe|kripya)\b/i;
   const englishRegex = /^[a-zA-Z0-9\s.,?!'"$@#%&*()-]+$/;
 
   let clientLang = 'hinglish'; // Default is Hinglish!
@@ -762,6 +784,25 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     }
   }
 
+  // High-Priority Direct Consultant Openers:
+  // 1. General initial RO inquiry ("Ro bare puchna c", "ro bare", "ro plant bare", "ro setup", etc.)
+  const isGeneralRoInquiry = /^\s*(?:ro\s*bare\s*puchna(?:\s+[a-z0-9]+)?|ro\s*bare|ro\s*baare|ro\s*plant(?:\s*bare)?|ro\s*setup|ro\s*chahida)\s*$/i.test(incomingText.trim()) && !/\b(?:camper|20l|domestic|ghar|kitchen|gharelu|chiller|heat\s*pump)\b/i.test(incomingText);
+  if (isGeneralRoInquiry) {
+    meta.category = 'RO Plant';
+    memory.setLeadClosed(cleanPhone, false, meta, tenantId);
+    return clientLang === 'punjabi' ? 'keda RO setup dekh rahe ho ji?' : 'kaisa RO setup dekh rahe hain ji?';
+  }
+
+  // 2. General initial Chiller inquiry ("Chiller bare dso", "chiller bare puchna", "chiller chahida")
+  const isGeneralChillerInquiry = /^\s*(?:chiller\s*bare\s*puchna(?:\s+[a-z0-9]+)?|chiller\s*bare(?:\s*dso|\s*dasso)?|chiller\s*baare|chiller\s*chahida|chiller\s*dekhna|chiller\s*setup)\s*$/i.test(incomingText.trim()) && !/\b(?:1|1\.5|2|2\.5|3\.5|5)\s*ton\b/i.test(incomingText);
+  if (isGeneralChillerInquiry) {
+    meta.category = 'Chiller';
+    memory.setLeadClosed(cleanPhone, false, meta, tenantId);
+    return clientLang === 'punjabi'
+      ? ['haanji veer ji, chillers bilkul mil jange.', 'chiller tussi kis kaam ya application layi dekh rahe si ji?']
+      : ['haanji bilkul, chillers mil jayenge.', 'chiller aap kis kaam ya application ke liye dekh rahe hain ji?'];
+  }
+
   // Track confirmed water source & category from conversation
   let confirmedSource = meta.water_source || '';
   if (!confirmedSource) {
@@ -778,6 +819,12 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   }
 
   let confirmedCategory = meta.category || '';
+  if (/\b(ro\b|water\s*plant|camper|purifier|filter)\b/i.test(incomingText) && !/\b(chiller|chillar)\b/i.test(incomingText)) {
+    if (confirmedCategory === 'Chiller' || confirmedCategory === 'Heat Pump') {
+      confirmedCategory = '';
+      meta.category = '';
+    }
+  }
   if (!confirmedCategory) {
     if (/\b(ghr|ghar|kitchen|gharelu|domestic)\b/i.test(allInboundText) && /\bro\b/i.test(allInboundText)) {
       confirmedCategory = 'Domestic / Kitchen RO';
