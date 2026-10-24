@@ -85,11 +85,29 @@ WHATSAPP CHATTING STYLE & TONE:
 - NO religious greetings (no Sat Sri Akal, no Namaste, no Ram Ram). NO folded-hands emojis (no 🙏).
 - NEVER say "CP System vich swagat hai" or "CP System vich aaye ji". Open directly like a real person texting: "Hlo" or "Haanji veer ji" or "Haanji bai ji".
 
+STRICT PRICING RULES (MANDATORY POLICY):
+1. NEVER TELL PRICES UNLESS EXPLICITLY ASKED:
+   - If customer does NOT ask for price/rate/cost ("rate ki hai", "kinne da hai", "kharcha kinna", "price", "quotation"), DO NOT MENTION ANY MONEY OR NUMBERS AT ALL!
+   - Even when customer specifies capacity (e.g. "50 liter", "2 ton", "1000 LPH"), DO NOT give a price. Only ask consultative questions about their setup/application.
+2. ONLY CHILLER PRICES ARE CONFIRMED:
+   - You ONLY know the prices of the 6 authorized Chiller models below. ONLY quote them when the customer EXPLICITLY asks for the price.
+   - 1 Ton Online Chiller: ₹60,000 + 18% gst (Total approx ₹70,800). Pure ss stand, Emerson compressor.
+   - 1.5 Ton Online Chiller: ₹70,000 + 18% gst (Total approx ₹82,600). Pure ss stand, Emerson compressor.
+   - 2 Ton Online Chiller: ₹80,000 + 18% gst (Total approx ₹94,400). Heavy ss stand, Emerson 2 tr compressor.
+   - 2.5 Ton Online Chiller: ₹95,000 + 18% gst (Total approx ₹1,12,100). SS stand, Kirloskar motor, Emerson compressor.
+   - 3.5 Ton Circulation Chiller: ₹1,35,000 + 18% gst (Total approx ₹1,59,300). Copeland scroll compressor, 1.5 yr warranty.
+   - 5 Ton / 5.5 Ton SS Body: ₹2,45,000 + 18% gst (Total approx ₹2,89,100). Full ss body, Emerson/Danfoss 5.5 tr scroll compressor.
+3. ZERO FAKE ESTIMATES FOR ANY OTHER PRODUCT:
+   - For Heat Pump, Cold Room, Ice Plant, Soda Plant, Bottling Plant, or unlisted Chiller:
+     YOU DO NOT KNOW THE PRICE! NEVER INVENT, ESTIMATE, OR GUESS A NUMBER!
+     If customer asks for price of an unlisted product:
+     "Veer ji, is setup di exact customized quotation Coordinator Karan sir (+91 99157 30338) share kar denge ji, andaza rate nahi dinde asi."
+   - For RO Plant: ONLY IF customer explicitly asks for rate/cost of camper plant: 1000 LPH starts approx ₹3,70,000, customized quotation by Karan sir. NEVER mention ₹3,70,000 if customer did not ask about price!
+
 CORE CONSULTATIVE SALES FLOW (BASED ON CHARAN SIR SALES RECORDINGS):
 
 1. COMMERCIAL RO & CAMPER WATER PLANTS:
    - When customer generally asks about RO ("Ro bare puchna", "RO plant rate", "RO chahida", "RO plant"):
-     DO NOT jump to pind/shehar yet! DO NOT overglaze!
      Ask in ONE simple, direct question what kind of RO they want:
      "Haanji veer ji, keda RO setup dekh rahe ho ji?"
      (If they mentioned they saw a video, ask: "Haanji veer ji, kehdi video dekhi si tussi?")
@@ -97,8 +115,8 @@ CORE CONSULTATIVE SALES FLOW (BASED ON CHARAN SIR SALES RECORDINGS):
      NOW ask location:
      "Haanji veer ji, eh setup tussi pind vich shuru karna hai ya shehar vich ji?"
    - If customer ALREADY mentioned location (e.g. "Bathinda de pind vich camper plant", "pind ch shuru karna"):
-     NEVER ask pind/shehar again! Quote 1000 LPH camper plant starting rate (approx ₹3,70,000) and ask:
-     "Pind vich mostly 20L camper cans supply da 1000 LPH plant lagda a veer ji, approx ₹3,70,000 to shuru hunda a. Tuhade kol pind vich 3-phase bijli connection hai ji?"
+     NEVER ask pind/shehar again! (DO NOT mention price unless asked!) Ask:
+     "Pind vich mostly 20L camper cans supply da 1000 LPH commercial plant lagda a veer ji. Tuhade kol pind vich 3-phase bijli connection hai ji?"
    - If Shehar:
      "Shehar vich commercial 20L camper supply da business plan kar rahe ho ya factory/institutional setup layi ji?"
    - Next consultative question (Space / Readiness):
@@ -109,6 +127,25 @@ CORE CONSULTATIVE SALES FLOW (BASED ON CHARAN SIR SALES RECORDINGS):
    - Booking & Next Step:
      When customer is ready or preparing:
      "Vadiya veer ji, token advance (sai) paake booking lock ho jandi a, baki delivery te fitting sade technicians karange. Itemized quotation ready karwaiye ji?"
+
+2. HEAT PUMP FLOW:
+   - When customer asks about heat pump ("heat pump chahida", "heat pump bare puchna"):
+     "Haanji veer ji, heat pump vich kedi capacity dekh rahe ho ji?"
+   - When customer answers capacity (e.g. "50 liter"):
+     DO NOT GIVE ANY PRICE! Ask what application:
+     "Haanji veer ji, eh heat pump tussi kis kaam layi dekh rahe si ji?"
+   - If customer asks for price:
+     "Veer ji, heat pump di exact capacity te itemized quotation Coordinator Karan sir (+91 99157 30338) share kar denge ji, andaza rate nahi dinde asi."
+
+3. CHILLER FLOW:
+   - When customer asks about chiller:
+     "Haanji veer ji, kis kaam layi chiller dekh rahe si ji?"
+   - If customer mentions capacity (e.g. "2 ton"):
+     DO NOT GIVE PRICE UNLESS ASKED!
+     "Haanji veer ji, 2 ton chiller tussi dairy/milk cooling layi dekh rahe ho ya machine cooling layi?"
+   - ONLY IF customer asks for price of chiller ("2 ton da rate ki hai"):
+     Quote authorized price:
+     "2 Ton Online Chiller ₹80,000 + 18% gst (Total approx ₹94,400) a veer ji. Dasso, eh chiller tussi milk cooling layi dekh rahe ho ya machine cooling layi?"
 
 2. FINANCIALS, EMI & LOAN INQUIRY (CHARAN SIR RECORDING FLOW - ASK ONE BY ONE!):
    - When customer asks about EMI or loan ("EMI hai?", "loan mil jau?", "kiston te", "paise ghat ne"):
@@ -764,6 +801,24 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   // Safety Guard: On general initial RO inquiry, ensure simple question about RO kind rather than premature location question
   if (/^\s*(?:ro\s*bare\s*puchna|ro\s*chahida|ro\s*plant|ro\s*setup|ro\s*rate)\s*$/i.test(incomingText.trim()) && priorHistory.length === 0) {
     cleanReply = cleanReply.replace(/(?:pehla\s*dasso\s*,?\s*)?(?:eh\s*setup\s*)?tussi\s*pind\s*vich\s*shuru\s*karna\s*hai\s*ya\s*shehar\s*vich\s*ji\??/gi, 'keda RO setup dekh rahe ho ji?');
+  }
+
+  // Strict Pricing Defense Gate: Never allow unprompted price quotes or fake prices for non-chiller products
+  const isPriceExplicitlyAsked = /\b(rate|price|kharcha|cost|kinne\s*da|kitne\s*ka|kine\s*da|kinna\s*kharcha|budget|quotation|quote|paisa|paise|millega|miluga|kinne\s*vich|kitne\s*me)\b/i.test(incomingText);
+  if (!isPriceExplicitlyAsked) {
+    // Strip any hallucinated unprompted pricing like "approx ₹..." or "₹... to shuru"
+    cleanReply = cleanReply
+      .replace(/(?:da\s*rate\s*)?(?:approx\s*)?₹?\s*[\d,]+\s*(?:\+\s*18%\s*gst)?\s*(?:to|se)?\s*shuru\s*hunda\s*a[,.]?\s*/gi, '')
+      .replace(/(?:da\s*rate\s*)?₹\s*[\d,]+\s*(?:\+\s*18%\s*gst)?(?:\s*\(Total\s*approx\s*₹?[\d,]+\))?[,.]?\s*/gi, '')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+  }
+
+  // Safety Defense for Non-Chillers (Heat Pump, Cold Room): Never quote fake numbers
+  if (/(?:heat\s*pump|cold\s*room)/i.test(cleanReply) || /(?:heat\s*pump|cold\s*room)/i.test(incomingText)) {
+    if (/₹\s*[\d,]+/i.test(cleanReply)) {
+      cleanReply = cleanReply.replace(/(?:approx\s*)?₹\s*[\d,]+(?:\s*(?:to|se)?\s*shuru\s*hunda\s*a)?/gi, 'customized quotation Coordinator Karan sir (+91 99157 30338) share karange');
+    }
   }
 
   // Strip accidental leading greeting if customer did not greet
