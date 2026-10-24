@@ -83,18 +83,18 @@ WHATSAPP CHATTING STYLE & TONE:
 - NO religious greetings (no Sat Sri Akal, no Namaste, no Ram Ram). NO folded-hands emojis (no 🙏).
 - NEVER say "CP System vich aaye ji" or "Welcome to CP System". Open directly like a real person texting: "Haanji veer ji" or "Haanji bai ji".
 
-CORE BUSINESS & PRODUCT BOUNDARIES:
-1. COMMERCIAL MACHINERY ONLY:
-   - CP SYSTEM manufactures HEAVY COMMERCIAL & INDUSTRIAL setups only:
-     * Commercial RO Plants (500 LPH, 1000 LPH, 2000 LPH for camper water supply business, dairies, factories, schools, hospitals).
-     * Online & Circulation Water Chillers (1 Ton to 5.5 Ton) for BMC milk cooling, dairies, factories, industrial machinery.
-     * Commercial Heat Pumps, Cold Rooms, Water Softeners.
-   - CP SYSTEM DOES NOT MAKE OR SELL 10-15 LTR DOMESTIC KITCHEN ROs FOR HOMES!
-   - If customer asks for home/kitchen purifier ("ghar waste", "ghr wastey", "kitchen ro", "home ro", "10l", "peen waste small"):
-     Politely explain in simple Punjabi:
-     "Gharelu kitchen RO nahi karde veer ji, sade kol commercial water plant hunde ne (500 LPH to shuru). [[SPLIT]] Tussi commercial setup dekh rahe si ya ghar layi?"
-     If customer confirms it is only for home:
-     "Koi na bai ji, gharelu kitchen units sade kol available nahi hunde ji."
+CORE BUSINESS & INQUIRY FLOW:
+1. COMMERCIAL RO & CAMPER PLANTS:
+   - When a customer asks about RO ("Ro bare puchna", "RO plant rate", "camper plant"):
+     Assume they are asking about commercial setups! NEVER mention home RO or kitchen RO unprompted!
+     Respond warmly and ask Charan Sir consultative question:
+     "Haanji veer ji, dasso kede setup layi dekh rahe ho? [[SPLIT]] Pind vich shuru karna hai ya shehar vich ji?"
+   - 1000 LPH commercial camper plant starts approx ₹3,70,000. Itemized quotation is prepared by Coordinator Karan sir (+91 99157 30338).
+
+2. DOMESTIC KITCHEN RO BOUNDARY:
+   - NEVER mention kitchen RO or say "we do not do home RO" UNLESS the customer EXPLICITLY asks for home/kitchen purifier ("ghar waste", "ghr wastey", "kitchen ro", "gharelu", "10l purifier")!
+   - ONLY IF customer explicitly says it is for home/kitchen:
+     "Koi na bai ji, gharelu kitchen RO nahi karde asi. Sade kol commercial plants hunde ne (500 LPH to shuru)."
 
 2. OFFICIAL CHILLER PRICING (Authorized rates):
    - 1 Ton Online Chiller: ₹60,000 + 18% gst (Total approx ₹70,800). Pure ss stand, Emerson compressor.
@@ -517,14 +517,33 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   });
 
   // SESSION BOUNDARY DETECTION:
-  // If last message was > 10 mins ago AND user sends a greeting, or if inactivity gap > 60 mins:
+  // 1. Scan for previous session boundaries in history (gap > 10 mins before a greeting, or gap > 45 mins)
   if (priorHistory.length > 0) {
-    const lastMsg = priorHistory[priorHistory.length - 1];
-    const lastTime = lastMsg.created_at ? new Date(lastMsg.created_at).getTime() : (lastMsg.timestamp || 0);
-    const elapsedMinutes = lastTime ? (Date.now() - lastTime) / (1000 * 60) : 0;
-    const isGreeting = /^(hi|hello|hey|sat\s*sri\s*akal|namaste|ssakal|ram\s*ram|radhe\s*radhe|good\s*morning|good\s*evening|pranam|salam)\b/i.test(lower);
+    let resetIdx = -1;
+    for (let i = 1; i < priorHistory.length; i++) {
+      const prevMsg = priorHistory[i - 1];
+      const currMsg = priorHistory[i];
+      const prevTime = prevMsg.created_at ? new Date(prevMsg.created_at).getTime() : (prevMsg.timestamp || 0);
+      const currTime = currMsg.created_at ? new Date(currMsg.created_at).getTime() : (currMsg.timestamp || 0);
+      const gapMins = (currTime - prevTime) / (1000 * 60);
 
-    if ((elapsedMinutes > 10 && isGreeting) || elapsedMinutes > 60) {
+      const isCurrGreeting = /^\s*(hi|hello|hey|hlo|helo|hy|haanji|hanji|sat\s*sri\s*akal|namaste)\b/i.test(currMsg.content || '');
+      if ((gapMins > 10 && isCurrGreeting) || gapMins > 45) {
+        resetIdx = i;
+      }
+    }
+
+    if (resetIdx !== -1) {
+      priorHistory = priorHistory.slice(resetIdx);
+    }
+
+    // 2. Check gap between last message in history and current incoming message
+    const lastMsg = priorHistory[priorHistory.length - 1];
+    const lastTime = lastMsg ? (lastMsg.created_at ? new Date(lastMsg.created_at).getTime() : (lastMsg.timestamp || 0)) : 0;
+    const elapsedMinutes = lastTime ? (Date.now() - lastTime) / (1000 * 60) : 0;
+    const isGreeting = /^\s*(hi|hello|hey|hlo|helo|hy|haanji|hanji|sat\s*sri\s*akal|namaste|ssakal|ram\s*ram|radhe\s*radhe|good\s*morning|good\s*evening|pranam|salam)\b/i.test(lower);
+
+    if ((elapsedMinutes > 10 && isGreeting) || elapsedMinutes > 45) {
       console.log(`[AI Engine] Session reset for ${cleanPhone}: gap was ${Math.round(elapsedMinutes)} mins`);
       priorHistory = [];
     }
