@@ -2016,6 +2016,30 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
           for (const pId of candidatePhones) {
             if (isSuccess) break;
 
+            // Attempt 0: cpsystem_flyer_v1 with Image Header (if media attached)
+            if (media_type === 'image' && (media_url || media_id)) {
+              try {
+                const mediaComponents = whatsapp.buildMediaTemplateComponents(
+                  'image',
+                  media_url || media_id,
+                  [recipientName, message || 'Special update from CP System']
+                );
+                sendResult = await whatsapp.sendTemplateMessage(
+                  pId,
+                  standardPhone,
+                  template_name || 'cpsystem_flyer_v1',
+                  'en',
+                  mediaComponents
+                );
+                channelType = 'APPROVED_MEDIA_TEMPLATE';
+                recordedContent = `[Media Template] Hello ${recipientName}! ${message}`;
+                isSuccess = true;
+                break;
+              } catch (mErr) {
+                console.warn('[Broadcast cpsystem_flyer_v1 Attempt Failed]:', mErr.response?.data?.error?.message || mErr.message);
+              }
+            }
+
             // Attempt 1: client_broadcast_notice_v1 (category MARKETING, lang: en)
             try {
               sendResult = await whatsapp.sendTemplateMessage(
