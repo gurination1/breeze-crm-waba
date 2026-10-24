@@ -9,6 +9,17 @@ const whatsapp = require('./whatsapp_api');
 const ai = require('./ai_engine');
 const fs = require('fs');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
+
+// Strict Rate Limiter for Ephemeral Media Uploads (prevents memory & bandwidth abuse)
+const mediaUploadLimiter = rateLimit({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 15, // max 15 uploads per 5 minutes per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  validate: { xForwardedForHeader: false },
+  message: { error: 'Media upload rate limit reached (max 15 files per 5 minutes). Please wait before uploading more.' }
+});
 
 // Cryptographically Secure Session Store with 24-Hour TTL
 const activeSessions = new Map();
@@ -1490,9 +1501,9 @@ router.post('/chats/send', authMiddleware, async (req, res) => {
 });
 
 /**
- * 8C. MEDIA UPLOADER (Uploads image/document from web UI, saves to /uploads/ and caches to Meta Cloud)
+ * 8C. EPHEMERAL ZERO-DISK MEDIA UPLOADER (Streams in memory directly to Meta Cloud CDN; 0 byte disk footprint)
  */
-router.post('/media/upload', authMiddleware, async (req, res) => {
+router.post('/media/upload', authMiddleware, mediaUploadLimiter, async (req, res) => {
   try {
     const { filename, file_data, mime_type } = req.body;
     if (!filename || !file_data) {
@@ -1502,51 +1513,42 @@ router.post('/media/upload', authMiddleware, async (req, res) => {
     const cleanBase64 = file_data.replace(/^data:[^;]+;base64,/, '');
     const buffer = Buffer.from(cleanBase64, 'base64');
 
-    // 15MB limit
-    if (buffer.length > 15 * 1024 * 1024) {
-      return res.status(400).json({ error: 'File size exceeds 15MB limit' });
-    }
-
-    const uploadsDir = path.join(__dirname, 'public', 'uploads');
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
-    }
-
-    const safeName = `${Date.now()}_${filename.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
-    const filePath = path.join(uploadsDir, safeName);
-    await fs.promises.writeFile(filePath, buffer);
-
+    // Strict Size Limit: Max 5MB for images, 10MB for documents
     const detectedMime = mime_type || (filename.match(/\.(png|jpg|jpeg|webp)$/i) ? 'image/png' : 'application/pdf');
     const isImage = detectedMime.startsWith('image/');
-    const mediaType = isImage ? 'image' : 'document';
+    const maxSizeBytes = isImage ? 5 * 1024 * 1024 : 10 * 1024 * 1024;
 
-    // Direct Meta Cloud API upload if phone_number_id is available
-    let mediaId = null;
-    try {
-      const tenantId = req.user.tenant_id === 'system' ? 'cpsystem' : req.user.tenant_id;
-      const tenants = await db.get('crm_tenants', `id=eq.${tenantId}`);
-      const phoneId = tenants?.[0]?.phone_number_id || config.DEFAULT_PHONE_ID;
-      mediaId = await whatsapp.uploadMedia(phoneId, buffer, detectedMime, filename);
-    } catch (metaUploadErr) {
-      console.warn('[Meta Direct Media Upload Warning]', metaUploadErr.message);
+    if (buffer.length > maxSizeBytes) {
+      return res.status(400).json({
+        error: `File exceeds size limit of ${isImage ? '5MB' : '10MB'}. Please choose a smaller file.`
+      });
     }
 
-    const host = req.get('host');
-    const protocol = req.protocol === 'https' || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
-    const publicUrl = `${protocol}://${host}/uploads/${safeName}`;
+    const tenantId = req.user.tenant_id === 'system' ? 'cpsystem' : req.user.tenant_id;
+    const tenants = await db.get('crm_tenants', `id=eq.${tenantId}`);
+    const phoneId = tenants?.[0]?.phone_number_id || config.DEFAULT_PHONE_ID;
 
+    // DIRECT IN-MEMORY STREAM TO META CLOUD API (ZERO LOCAL DISK STORAGE)
+    // Meta stores the media asset on Meta's global CDN for 30 days and serves it directly to WhatsApp clients.
+    const mediaId = await whatsapp.uploadMedia(phoneId, buffer, detectedMime, filename);
+    if (!mediaId) {
+      throw new Error('Meta Cloud API rejected media upload');
+    }
+
+    const mediaType = isImage ? 'image' : 'document';
+
+    // ZERO BYTES WRITTEN TO LOCAL DISK! Buffer is instantly garbage-collected by Node.js.
     return res.json({
       success: true,
       media_id: mediaId,
-      media_url: publicUrl,
-      relative_url: `/uploads/${safeName}`,
       filename: filename,
       media_type: mediaType,
-      size: buffer.length
+      size: buffer.length,
+      storage: 'meta_cloud_cdn_ephemeral'
     });
   } catch (err) {
-    console.error('[CRM Media Upload Error]', err);
-    return res.status(500).json({ error: err.message });
+    console.error('[CRM Ephemeral Media Upload Error]', err.response?.data || err.message);
+    return res.status(500).json({ error: err.response?.data?.error?.message || err.message });
   }
 });
 

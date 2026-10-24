@@ -1841,10 +1841,10 @@ async function processFileForUpload(file) {
 
         currentAttachedMedia = {
           type: data.media_type || type,
-          url: data.media_url,
+          url: data.media_url || null,
           media_id: data.media_id,
           filename: data.filename || file.name,
-          sizeText: `${(file.size / 1024).toFixed(1)} KB · Ready to Send`
+          sizeText: `${(file.size / 1024).toFixed(1)} KB · Cached on Meta Cloud`
         };
 
         if (sizeEl) {
