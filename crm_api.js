@@ -2007,13 +2007,10 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
           }
         }
 
-        // Outside 24h window (or direct failed): Dispatch via Meta Approved Template
+        // Outside 24h window (or direct failed): Dispatch via Meta Approved Template on tenant's official phone
         if (!isSuccess) {
-          // Candidate phone senders: primary phone first, then approved template phone (1351625371363106)
+          // Strictly lock to tenant's official phoneId. Never route through external phone numbers.
           const candidatePhones = [phoneId];
-          if (phoneId !== '1351625371363106') {
-            candidatePhones.push('1351625371363106');
-          }
 
           // Template dispatch across candidates
           for (const pId of candidatePhones) {
@@ -2084,7 +2081,7 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
           }
 
           if (!isSuccess && !failureError) {
-            failureError = '24-hour service window closed and pre-approved Meta template could not be delivered.';
+            failureError = `Recipient +${cleanPhone} is outside the 24-hour service window. Meta blocks cold outreach from CP System (+91 97792 20581) until an approved template is registered in Meta Business Suite, or the customer messages CP System first.`;
           }
         }
 
