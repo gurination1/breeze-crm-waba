@@ -1931,15 +1931,18 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
         let isSuccess = false;
         let failureError = null;
 
+        // Resolve recipient contact name (in outer scope)
+        let recipientName = 'Client';
+        try {
+          const leadRecs = await db.get('crm_leads', `phone=in.(${variants.join(',')})`);
+          if (leadRecs?.[0]?.name && !['WhatsApp Lead', 'Campaign Recipient', 'Nya', 'WhatsApp Contact'].includes(leadRecs[0].name)) {
+            recipientName = leadRecs[0].name;
+          }
+        } catch (lErr) {}
+
         // Outside 24h window or explicitly requested template:
         // Meta drops free-form text to numbers outside 24h. Use pre-approved Meta Template!
         if (!isWithin24Hours || mode === 'template') {
-          const leadRecs = await db.get('crm_leads', `phone=in.(${variants.join(',')})`);
-          let recipientName = leadRecs?.[0]?.name;
-          if (!recipientName || recipientName === 'WhatsApp Lead' || recipientName === 'Campaign Recipient' || recipientName === 'Nya' || recipientName === 'WhatsApp Contact') {
-            recipientName = 'Client';
-          }
-
           // Check if media broadcast requested outside 24h
           if (media_type && (media_url || media_id)) {
             try {
@@ -2034,12 +2037,12 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
         } else {
           // Within active 24h window: direct media or text delivers reliably
           if (media_type === 'image' && (media_url || media_id)) {
-            sendResult = await whatsapp.sendImageMessage(phoneId, standardPhone, media_url || media_id, message);
+            sendResult = await whatsapp.sendImageMessage(phoneId, standardPhone, media_id || media_url, message);
             channelType = 'DIRECT_IMAGE';
             recordedContent = message || '[Broadcast Image Attachment]';
           } else if (media_type === 'document' && (media_url || media_id)) {
             const docName = filename || 'Brochure.pdf';
-            sendResult = await whatsapp.sendDocumentMessage(phoneId, standardPhone, media_url || media_id, docName, message);
+            sendResult = await whatsapp.sendDocumentMessage(phoneId, standardPhone, media_id || media_url, docName, message);
             channelType = 'DIRECT_DOCUMENT';
             recordedContent = message || `[Broadcast Document: ${docName}]`;
           } else {
@@ -2053,34 +2056,34 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
         const wamid = sendResult?.messages?.[0]?.id || null;
         const finalDeliveryStatus = isSuccess ? 'SENT' : 'FAILED';
 
-        // Log message in CRM
-        await db.insert('crm_messages', {
-          tenant_id: tenantId,
-          lead_phone: standardPhone,
-          direction: 'OUTBOUND_BROADCAST',
-          message_type: channelType,
-          content: recordedContent,
-          wamid: wamid,
-          delivery_status: finalDeliveryStatus,
-          error_details: failureError,
-          created_at: new Date().toISOString()
-        });
-
-        // Ensure lead exists or is created
-        await db.querySql(`
-          INSERT INTO public.crm_leads (tenant_id, phone, name, requirement, status)
-          VALUES ('${tenantId}', '${cleanPhone}', 'Client', 'Broadcast Outreach: ' || '${message.slice(0, 50).replace(/'/g, "''")}', 'NEW')
-          ON CONFLICT (tenant_id, phone) DO UPDATE SET last_message_at = NOW();
-        `);
-
-        if (isSuccess) {
-          sentCount++;
-          results.push({ 
-            phone: cleanPhone, 
-            status: 'SENT', 
-            channel: channelType,
-            wamid: wamid 
+        // Non-blocking DB logging: never overrides successful WhatsApp delivery status
+        try {
+          await db.insert('crm_messages', {
+            tenant_id: tenantId,
+            lead_phone: standardPhone,
+            direction: 'OUTBOUND_BROADCAST',
+            message_type: channelType,
+            content: recordedContent,
+            wamid: wamid,
+            delivery_status: finalDeliveryStatus,
+            error_details: failureError,
+            created_at: new Date().toISOString()
           });
+
+          // Ensure lead exists or is updated via PostgREST
+          const existingLeads = await db.get('crm_leads', `tenant_id=eq.${tenantId}&phone=eq.${cleanPhone}`);
+          if (existingLeads && existingLeads.length > 0) {
+            await db.update('crm_leads', { last_message_at: new Date().toISOString() }, `id=eq.${existingLeads[0].id}`);
+          } else {
+            await db.insert('crm_leads', {
+              tenant_id: tenantId,
+              phone: cleanPhone,
+              name: recipientName || 'Client',
+              requirement: 'Broadcast Outreach: ' + String(message || '').slice(0, 50),
+              status: 'NEW',
+              last_message_at: new Date().toISOString()
+            });
+          }
 
           // Record immutable billing ledger head
           db.recordBillableEngagement({
@@ -2091,6 +2094,18 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
             engagementType: 'BROADCAST',
             messagePreview: recordedContent
           }).catch(bErr => console.error('[Billable Broadcast Record Err]:', bErr.message));
+        } catch (dbErr) {
+          console.warn('[CRM Broadcast DB Log Warning]:', dbErr.message);
+        }
+
+        if (isSuccess) {
+          sentCount++;
+          results.push({ 
+            phone: cleanPhone, 
+            status: 'SENT', 
+            channel: channelType,
+            wamid: wamid 
+          });
         } else {
           failedCount++;
           results.push({ 
