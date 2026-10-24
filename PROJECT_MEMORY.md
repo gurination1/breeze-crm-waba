@@ -125,3 +125,18 @@ If customer says competitor offers lower price:
 ### E. Anti-Premature Quitting Rule
 - NEVER say `"Got it veer ji, quotation Karan sir to call te le lo"` or `"Hor koi technical requirement hove taan dasso"` in the middle of a consultative conversation.
 - Continue qualifying smoothly as Charan Sir until the lead's requirement, capacity, space, and timeline are identified.
+
+---
+
+## 5. Production Infrastructure & Permanent Endpoints (Zero Trycloudflare)
+
+- **Dedicated Host**: Oracle Cloud Always Free VPS (`129.154.242.55`)
+- **Reverse Proxy**: Caddy (Native systemd service, auto HTTP/2, HTTP/3, Let's Encrypt TLS)
+- **Permanent Public URL**: `https://129-154-242-55.sslip.io`
+- **Webhook Endpoint**: `https://129-154-242-55.sslip.io/webhook`
+- **Verify Token**: `guri_enterprise_waba_token_2026`
+- **Port Architecture**:
+  - `443/TCP`: HTTPS public entry via Caddy with Let's Encrypt SSL
+  - `80/TCP`: HTTP automatic 308 redirect to HTTPS
+  - `5055/TCP`: Node.js Express backend / PM2 `enterprise-waba`
+- **Resource Footprint**: < 0.2% CPU, < 47% total VPS RAM. 100% within Oracle Always Free limits. Zero ephemeral tunnels.

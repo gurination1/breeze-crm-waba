@@ -1,8 +1,8 @@
 {
-  "public_url": "https://modes-terry-undertake-displayed.trycloudflare.com",
-  "webhook_callback": "https://modes-terry-undertake-displayed.trycloudflare.com/webhook",
+  "public_url": "https://129-154-242-55.sslip.io",
+  "webhook_callback": "https://129-154-242-55.sslip.io/webhook",
   "verify_token": "guri_enterprise_waba_token_2026",
-  "server_pid": 31383,
-  "tunnel_pid": 31413,
-  "started_at": "2026-10-15T10:29:50Z"
+  "server_pid": 23622,
+  "tunnel_mode": "oracle_vps_caddy_https",
+  "updated_at": "2026-10-24T10:51:00Z"
 }
