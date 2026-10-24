@@ -1794,7 +1794,7 @@ router.post('/followup/trigger', authMiddleware, async (req, res) => {
 });
 
 /**
- * 13. CAMPAIGN AI POLISH (GEMINI 2.5 FLASH - ZERO TRUNCATION, NO PLACEHOLDERS)
+ * 13. CAMPAIGN AI POLISH (HIGH-CONVERTING MULTI-TIER ENGINE)
  */
 router.post('/campaigns/polish', authMiddleware, async (req, res) => {
   try {
@@ -1804,43 +1804,85 @@ router.post('/campaigns/polish', authMiddleware, async (req, res) => {
     }
 
     const axios = require('axios');
-    const keys = config.GEMINI_API_KEYS;
-    const apiKey = keys[Math.floor(Math.random() * keys.length)];
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
-
     const prompt = `You are an elite WhatsApp marketing copywriter for high-converting B2B and consumer outreach.
 Rewrite this raw draft into a complete, polite, respectful, and high-converting WhatsApp message.
 Target Tone: ${tone}
 Language: ${language} (Natural conversational Hinglish/English suited for Indian business owners)
 
 STRICT RULES:
-1. NEVER use bracketed or slash placeholders like [Client Name], [Customer], [Name], or 'Hi Client/Sir'. Start directly with a simple, neutral greeting like 'Hello!' or 'Greetings!'.
-2. Write 3 to 4 complete, well-formed sentences. Ensure the message is fully completed and does not cut off mid-sentence.
+1. NEVER use bracketed or slash placeholders like [Client Name], [Customer], [Name], or 'Hi Client/Sir'. Start directly with a simple, neutral greeting like 'Hello!' or 'Greetings!' or 'Sat Sri Akal!'.
+2. Write 2 to 3 complete, well-formed sentences. Ensure the message is fully completed and does not cut off mid-sentence.
 3. Add 1-2 tasteful professional emojis.
-4. Conclude with a clear, low-friction Call to Action (e.g. 'Reply YES for catalog & price quote' or 'Call us directly').
+4. Conclude with a clear, low-friction Call to Action (e.g. 'Reply YES for catalog & price quote' or 'Feel free to reply for any inquiries').
 5. Output ONLY the final WhatsApp message text without commentary, quotes, or markdown backticks.
 
 Raw Draft:
 "${draft.trim()}"`;
 
-    const response = await axios.post(url, {
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.5,
-        maxOutputTokens: 2048,
-        thinkingConfig: { thinkingBudget: 0 }
-      }
-    }, {
-      headers: { 'Content-Type': 'application/json' },
-      timeout: 15000
-    });
+    let polished = null;
 
-    const candidate = response.data?.candidates?.[0];
-    const polished = candidate?.content?.parts?.[0]?.text?.trim() || draft;
+    // Tier 1: Groq Ultra-Fast (qwen/qwen3.8-27b or openai/gpt-oss-120b)
+    const groqKeys = config.GROQ_API_KEYS && config.GROQ_API_KEYS.length > 0
+      ? config.GROQ_API_KEYS
+      : (config.GROQ_API_KEY ? [config.GROQ_API_KEY] : []);
+
+    for (const gKey of groqKeys) {
+      if (polished) break;
+      for (const m of ['qwen/qwen3.8-27b', 'openai/gpt-oss-120b']) {
+        try {
+          const gRes = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
+            model: m,
+            messages: [{ role: 'user', content: prompt }],
+            temperature: 0.5,
+            max_tokens: 300
+          }, {
+            headers: { Authorization: `Bearer ${gKey}` },
+            timeout: 6000
+          });
+          const text = gRes.data?.choices?.[0]?.message?.content?.trim();
+          if (text) {
+            polished = text;
+            break;
+          }
+        } catch (gErr) {
+          console.warn(`[Groq Polish Warning (${m})]:`, gErr.response?.data?.error?.message || gErr.message);
+        }
+      }
+    }
+
+    // Tier 2: Mistral Fallback (open-mistral-nemo)
+    if (!polished && config.MISTRAL_API_KEYS && config.MISTRAL_API_KEYS.length > 0) {
+      for (const mKey of config.MISTRAL_API_KEYS) {
+        try {
+          const mRes = await axios.post('https://api.mistral.ai/v1/chat/completions', {
+            model: config.MISTRAL_MODEL || 'open-mistral-nemo',
+            messages: [{ role: 'user', content: prompt }],
+            temperature: 0.5,
+            max_tokens: 300
+          }, {
+            headers: { Authorization: `Bearer ${mKey}` },
+            timeout: 6000
+          });
+          const text = mRes.data?.choices?.[0]?.message?.content?.trim();
+          if (text) {
+            polished = text.replace(/^---[\s\S]*?---\n*/, '').trim();
+            break;
+          }
+        } catch (mErr) {
+          console.warn('[Mistral Polish Warning]:', mErr.response?.data?.error?.message || mErr.message);
+        }
+      }
+    }
+
+    // Tier 3: Clean Fallback
+    if (!polished) {
+      polished = draft.trim();
+    }
+
     res.json({ success: true, polishedText: polished });
   } catch (err) {
-    console.error('[Gemini Polish Error]', err.response?.data || err.message);
-    res.status(500).json({ error: 'AI polish failed. Please try again.' });
+    console.error('[AI Polish Critical Error]', err.message);
+    res.json({ success: true, polishedText: req.body.draft?.trim() || '' });
   }
 });
 
@@ -1940,117 +1982,144 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
           }
         } catch (lErr) {}
 
-        // Outside 24h window or explicitly requested template:
-        // Meta drops free-form text to numbers outside 24h. Use pre-approved Meta Template!
-        if (!isWithin24Hours || mode === 'template') {
-          // Check if media broadcast requested outside 24h
+        // 1. Direct Transmission First (Images, Documents, Text)
+        // Never artificially block outreach based on local DB records: test direct send first.
+        let directErr = null;
+        if (mode !== 'template') {
+          try {
+            if (media_type === 'image' && (media_url || media_id)) {
+              sendResult = await whatsapp.sendImageMessage(phoneId, standardPhone, media_id || media_url, message);
+              channelType = 'DIRECT_IMAGE';
+              recordedContent = message || '[Broadcast Image Attachment]';
+            } else if (media_type === 'document' && (media_url || media_id)) {
+              const docName = filename || 'Brochure.pdf';
+              sendResult = await whatsapp.sendDocumentMessage(phoneId, standardPhone, media_id || media_url, docName, message);
+              channelType = 'DIRECT_DOCUMENT';
+              recordedContent = message || `[Broadcast Document: ${docName}]`;
+            } else {
+              sendResult = await whatsapp.sendTextMessage(phoneId, standardPhone, message);
+              channelType = 'DIRECT_TEXT';
+              recordedContent = message;
+            }
+            isSuccess = true;
+          } catch (dErr) {
+            directErr = dErr;
+            const errCode = dErr.response?.data?.error?.code;
+            const errMsg = dErr.response?.data?.error?.message || dErr.message;
+            console.warn(`[Broadcast Direct Send Attempt Failed for ${standardPhone}]: Code ${errCode} - ${errMsg}`);
+          }
+        }
+
+        // 2. Fallback to Meta Approved Templates if Direct send fails or mode is 'template'
+        if (!isSuccess) {
+          const is24hIssue = !directErr || directErr.response?.data?.error?.code === 131047 || String(directErr.message).includes('24 hour');
+          
+          // Candidate phone senders: primary phone first, then approved template phone (1351625371363106)
+          const candidatePhones = [phoneId];
+          if (phoneId !== '1351625371363106') {
+            candidatePhones.push('1351625371363106');
+          }
+
+          // Check if media template requested
           if (media_type && (media_url || media_id)) {
-            try {
-              const mediaComponents = whatsapp.buildMediaTemplateComponents(
-                media_type,
-                media_url || media_id,
-                [recipientName, message || 'Special update from CP System']
-              );
-              sendResult = await whatsapp.sendTemplateMessage(
-                phoneId,
-                standardPhone,
-                template_name || 'marketing_flyer_v1',
-                'en_US',
-                mediaComponents
-              );
-              channelType = 'APPROVED_MEDIA_TEMPLATE';
-              recordedContent = `[Media Template] Hello ${recipientName}! ${message}`;
-              isSuccess = true;
-            } catch (mErr) {
-              console.warn('[Broadcast Media Template Error]', mErr.response?.data || mErr.message);
+            for (const pId of candidatePhones) {
+              if (isSuccess) break;
+              try {
+                const mediaComponents = whatsapp.buildMediaTemplateComponents(
+                  media_type,
+                  media_url || media_id,
+                  [recipientName, message || 'Special update from CP System']
+                );
+                sendResult = await whatsapp.sendTemplateMessage(
+                  pId,
+                  standardPhone,
+                  template_name || 'marketing_flyer_v1',
+                  'en_US',
+                  mediaComponents
+                );
+                channelType = 'APPROVED_MEDIA_TEMPLATE';
+                recordedContent = `[Media Template] Hello ${recipientName}! ${message}`;
+                isSuccess = true;
+                break;
+              } catch (mErr) {
+                console.warn(`[Broadcast Media Template on ${pId} Failed]`, mErr.response?.data?.error?.message || mErr.message);
+              }
             }
           }
 
-          if (!isSuccess && tenantId === 'cpsystem') {
-            // Approved CP System Template: client_broadcast_notice_v1 (category MARKETING, lang: en)
-            try {
-              sendResult = await whatsapp.sendTemplateMessage(
-                phoneId,
-                standardPhone,
-                'client_broadcast_notice_v1',
-                'en',
-                [
-                  {
-                    type: 'body',
-                    parameters: [
-                      { type: 'text', text: recipientName },
-                      { type: 'text', text: message }
-                    ]
-                  }
-                ]
-              );
-              channelType = 'APPROVED_TEMPLATE';
-              recordedContent = `Hello ${recipientName}! We have an update regarding your inquiry with CP System. ${message} Please reply to this message if you have any questions.`;
-              isSuccess = true;
-            } catch (tplErr) {
-              console.warn('[Broadcast CP Template Warning]', tplErr.response?.data || tplErr.message);
+          // Text template fallback across candidates
+          if (!isSuccess) {
+            for (const pId of candidatePhones) {
+              if (isSuccess) break;
+
+              // Attempt 1: client_broadcast_notice_v1 (lang: en)
               try {
                 sendResult = await whatsapp.sendTemplateMessage(
-                  phoneId,
+                  pId,
                   standardPhone,
-                  'quotation_followup_v1',
-                  'en_US',
-                  [{ type: 'body', parameters: [{ type: 'text', text: recipientName }] }]
+                  'client_broadcast_notice_v1',
+                  'en',
+                  [
+                    {
+                      type: 'body',
+                      parameters: [
+                        { type: 'text', text: recipientName },
+                        { type: 'text', text: message }
+                      ]
+                    }
+                  ]
                 );
-                channelType = 'APPROVED_TEMPLATE';
-                recordedContent = `Hello ${recipientName}, just following up regarding your inquiry with CP System. ${message}`;
+                channelType = pId === phoneId ? 'APPROVED_TEMPLATE' : 'FALLBACK_APPROVED_TEMPLATE';
+                recordedContent = `Hello ${recipientName}! We have an update regarding your inquiry with CP System. ${message} Please reply to this message if you have any questions.`;
                 isSuccess = true;
-              } catch (qErr) {
-                // Templates not approved on this WABA yet
-                isSuccess = false;
-                channelType = 'TEMPLATE_REQUIRED';
-                failureError = '24-hour service window closed and pre-approved Meta template is not approved yet on this WABA. Meta rejects free-form text outside 24h.';
+                break;
+              } catch (tplErr1) {
+                // Attempt 2: cpsystem_lead_followup_v2 (lang: en_US)
+                try {
+                  sendResult = await whatsapp.sendTemplateMessage(
+                    pId,
+                    standardPhone,
+                    'cpsystem_lead_followup_v2',
+                    'en_US',
+                    [
+                      {
+                        type: 'body',
+                        parameters: [
+                          { type: 'text', text: recipientName },
+                          { type: 'text', text: message || 'Milk Chillers & Cooling Solutions' }
+                        ]
+                      }
+                    ]
+                  );
+                  channelType = pId === phoneId ? 'APPROVED_TEMPLATE' : 'FALLBACK_APPROVED_TEMPLATE';
+                  recordedContent = `Hello ${recipientName}, following up regarding CP System cooling solutions: ${message}`;
+                  isSuccess = true;
+                  break;
+                } catch (tplErr2) {
+                  // Attempt 3: quotation_followup_v1 (lang: en_US)
+                  try {
+                    sendResult = await whatsapp.sendTemplateMessage(
+                      pId,
+                      standardPhone,
+                      'quotation_followup_v1',
+                      'en_US',
+                      [{ type: 'body', parameters: [{ type: 'text', text: recipientName }] }]
+                    );
+                    channelType = pId === phoneId ? 'APPROVED_TEMPLATE' : 'FALLBACK_APPROVED_TEMPLATE';
+                    recordedContent = `Hello ${recipientName}, just following up regarding your inquiry with CP System. ${message}`;
+                    isSuccess = true;
+                    break;
+                  } catch (tplErr3) {}
+                }
               }
             }
-          } else if (!isSuccess) {
-            // Other tenants (Mystery / General)
-            try {
-              sendResult = await whatsapp.sendTemplateMessage(
-                phoneId,
-                standardPhone,
-                'client_broadcast_notice_v1',
-                'en',
-                [
-                  {
-                    type: 'body',
-                    parameters: [
-                      { type: 'text', text: recipientName },
-                      { type: 'text', text: message }
-                    ]
-                  }
-                ]
-              );
-              channelType = 'APPROVED_TEMPLATE';
-              recordedContent = `[Broadcast] Hello ${recipientName}! ${message}`;
-              isSuccess = true;
-            } catch (tErr) {
-              isSuccess = false;
-              channelType = 'TEMPLATE_REQUIRED';
-              failureError = '24-hour service window closed and pre-approved Meta template is not approved yet on this WABA. Meta rejects free-form text outside 24h.';
-            }
           }
-        } else {
-          // Within active 24h window: direct media or text delivers reliably
-          if (media_type === 'image' && (media_url || media_id)) {
-            sendResult = await whatsapp.sendImageMessage(phoneId, standardPhone, media_id || media_url, message);
-            channelType = 'DIRECT_IMAGE';
-            recordedContent = message || '[Broadcast Image Attachment]';
-          } else if (media_type === 'document' && (media_url || media_id)) {
-            const docName = filename || 'Brochure.pdf';
-            sendResult = await whatsapp.sendDocumentMessage(phoneId, standardPhone, media_id || media_url, docName, message);
-            channelType = 'DIRECT_DOCUMENT';
-            recordedContent = message || `[Broadcast Document: ${docName}]`;
-          } else {
-            sendResult = await whatsapp.sendTextMessage(phoneId, standardPhone, message);
-            channelType = 'DIRECT_TEXT';
-            recordedContent = message;
+
+          if (!isSuccess) {
+            failureError = directErr?.response?.data?.error?.message || directErr?.message || (is24hIssue
+              ? '24-hour service window closed and pre-approved Meta template is not approved yet on this WABA. Meta rejects free-form text outside 24h.'
+              : 'Failed to deliver message via WhatsApp Meta Cloud API.');
           }
-          isSuccess = true;
         }
 
         const wamid = sendResult?.messages?.[0]?.id || null;
