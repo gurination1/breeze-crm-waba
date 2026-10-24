@@ -2158,6 +2158,132 @@ async function polishWithGemini() {
   }
 }
 
+// ==================== BROADCAST MEDIA ATTACHMENTS ====================
+let broadcastAttachedMedia = null;
+
+async function handleBroadcastFilePicked(e) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  const isImage = file.type.startsWith('image/');
+  const isPdf = file.type === 'application/pdf' || file.name.endsWith('.pdf');
+  const type = isImage ? 'image' : (isPdf ? 'document' : 'image');
+
+  const preview = document.getElementById('broadcastAttachedPreview');
+  const filenameEl = document.getElementById('broadcastAttachedFilename');
+  const statusEl = document.getElementById('broadcastAttachedStatus');
+  const thumbImg = document.getElementById('broadcastThumbImg');
+  const iconEl = document.getElementById('broadcastMediaIcon');
+
+  if (preview && filenameEl && statusEl) {
+    preview.classList.remove('hidden');
+    filenameEl.textContent = file.name;
+    statusEl.textContent = 'Uploading directly to Meta Cloud CDN...';
+
+    if (isImage && thumbImg && iconEl) {
+      thumbImg.src = URL.createObjectURL(file);
+      thumbImg.classList.remove('hidden');
+      iconEl.classList.add('hidden');
+    } else if (thumbImg && iconEl) {
+      thumbImg.classList.add('hidden');
+      iconEl.classList.remove('hidden');
+      iconEl.setAttribute('data-lucide', 'file-text');
+    }
+    lucide.createIcons();
+  }
+
+  try {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64Data = reader.result;
+        const res = await fetchWithAuth('/api/media/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filename: file.name,
+            mime_type: file.type,
+            file_data: base64Data
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Upload failed');
+
+        broadcastAttachedMedia = {
+          type: data.media_type || type,
+          media_id: data.media_id,
+          filename: data.filename || file.name,
+          url: null
+        };
+
+        if (statusEl) {
+          statusEl.textContent = `✅ ${(file.size / 1024).toFixed(1)} KB · Cached on Meta Cloud CDN`;
+        }
+      } catch (uploadErr) {
+        alert('Broadcast file upload failed: ' + uploadErr.message);
+        clearBroadcastAttachedMedia();
+      }
+    };
+    reader.readAsDataURL(file);
+  } catch (err) {
+    alert('Failed to read file: ' + err.message);
+    clearBroadcastAttachedMedia();
+  } finally {
+    e.target.value = '';
+  }
+}
+
+function promptBroadcastUrl() {
+  const url = prompt('Enter public HTTPS URL of flyer image (PNG/JPG) or PDF catalog:');
+  if (!url || !url.trim()) return;
+
+  const cleanUrl = url.trim();
+  const isImage = cleanUrl.match(/\.(png|jpg|jpeg|webp)($|\?)/i);
+  const isPdf = cleanUrl.match(/\.(pdf)($|\?)/i);
+  const type = isImage ? 'image' : (isPdf ? 'document' : 'image');
+  const filename = cleanUrl.split('/').pop().split('?')[0] || (isImage ? 'flyer.png' : 'catalog.pdf');
+
+  broadcastAttachedMedia = {
+    type,
+    url: cleanUrl,
+    media_id: null,
+    filename
+  };
+
+  const preview = document.getElementById('broadcastAttachedPreview');
+  const filenameEl = document.getElementById('broadcastAttachedFilename');
+  const statusEl = document.getElementById('broadcastAttachedStatus');
+  const thumbImg = document.getElementById('broadcastThumbImg');
+  const iconEl = document.getElementById('broadcastMediaIcon');
+
+  if (preview && filenameEl && statusEl) {
+    preview.classList.remove('hidden');
+    filenameEl.textContent = filename;
+    statusEl.textContent = '🔗 Hosted Web Link Attached';
+    if (thumbImg) thumbImg.classList.add('hidden');
+    if (iconEl) {
+      iconEl.classList.remove('hidden');
+      iconEl.setAttribute('data-lucide', type === 'image' ? 'image' : 'file-text');
+    }
+    lucide.createIcons();
+  }
+}
+
+function clearBroadcastAttachedMedia() {
+  broadcastAttachedMedia = null;
+  const preview = document.getElementById('broadcastAttachedPreview');
+  if (preview) preview.classList.add('hidden');
+  const fileInput = document.getElementById('broadcastFileInput');
+  if (fileInput) fileInput.value = '';
+  const thumbImg = document.getElementById('broadcastThumbImg');
+  if (thumbImg) {
+    thumbImg.src = '';
+    thumbImg.classList.add('hidden');
+  }
+  const iconEl = document.getElementById('broadcastMediaIcon');
+  if (iconEl) iconEl.classList.remove('hidden');
+}
+
 async function launchBroadcast() {
   const numInput = document.getElementById('broadcastNumbers');
   const msgInput = document.getElementById('broadcastMessage');
@@ -2168,7 +2294,7 @@ async function launchBroadcast() {
   const message = msgInput.value.trim();
 
   if (numbers.length === 0) return alert('Please add at least one valid recipient phone number');
-  if (!message) return alert('Please write a message to broadcast');
+  if (!message && !broadcastAttachedMedia) return alert('Please write a message or attach a flyer/e-card to broadcast');
 
   if (!confirm(`Are you sure you want to broadcast this message to ${numbers.length} recipient(s)?`)) return;
 
@@ -2180,13 +2306,16 @@ async function launchBroadcast() {
   const resultsList = document.getElementById('broadcastResultsList');
   resultsList.innerHTML = `<div class="text-slate-500">Initiating Meta Cloud API dispatch...</div>`;
 
-  const mediaType = document.getElementById('broadcastMediaType')?.value || '';
-  const mediaUrl = document.getElementById('broadcastMediaUrl')?.value.trim() || '';
-
   const broadcastPayload = { numbers, message };
-  if (mediaType && mediaUrl) {
-    broadcastPayload.media_type = mediaType;
-    broadcastPayload.media_url = mediaUrl;
+  if (broadcastAttachedMedia) {
+    broadcastPayload.media_type = broadcastAttachedMedia.type;
+    if (broadcastAttachedMedia.media_id) {
+      broadcastPayload.media_id = broadcastAttachedMedia.media_id;
+    }
+    if (broadcastAttachedMedia.url) {
+      broadcastPayload.media_url = broadcastAttachedMedia.url;
+    }
+    broadcastPayload.filename = broadcastAttachedMedia.filename;
   }
 
   try {
@@ -2244,6 +2373,7 @@ async function launchBroadcast() {
       resultsList.appendChild(row);
     });
 
+    clearBroadcastAttachedMedia();
     loadDashboardStats();
     loadLeads();
   } catch (err) {

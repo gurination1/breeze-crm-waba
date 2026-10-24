@@ -49,8 +49,21 @@ app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 // Mount CRM API Router
 app.use('/api', crmApi);
 
+// Strict No-Cache Middleware for Fresh UI Updates (prevents stale browser caching)
+app.use((req, res, next) => {
+  if (req.url === '/' || req.url.endsWith('.html') || req.url.endsWith('.js')) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  }
+  next();
+});
+
 // Serve Static Frontend UI
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  etag: false,
+  maxAge: 0
+}));
 
 // Deduplication cache to prevent handling same WhatsApp message twice
 const processedMessageIds = new Set();
