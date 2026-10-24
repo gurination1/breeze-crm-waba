@@ -521,6 +521,15 @@ app.post('/webhook', async (req, res) => {
           let messageType = 'TEXT';
           if (msg.type === 'text') {
             incomingText = msg.text?.body || '';
+          } else if (msg.type === 'image') {
+            const caption = msg.image?.caption || '';
+            incomingText = caption ? `[Customer sent an image: "${caption}"]` : '[Customer sent an image/photo]';
+            messageType = 'IMAGE';
+          } else if (msg.type === 'document') {
+            const filename = msg.document?.filename || 'Document';
+            const caption = msg.document?.caption || '';
+            incomingText = caption ? `[Customer sent document "${filename}": "${caption}"]` : `[Customer sent document "${filename}"]`;
+            messageType = 'DOCUMENT';
           } else if (msg.type === 'interactive') {
             incomingText = msg.interactive?.button_reply?.title || msg.interactive?.list_reply?.title || '';
           } else if (msg.type === 'button') {

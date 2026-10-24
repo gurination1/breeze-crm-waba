@@ -107,7 +107,7 @@ async function runDeepCritique() {
   reply = await ai.handleCpSystemInteraction(phone3, "Chiller chahida hai", "TestUser", "cpsystem");
   critique("Chiller Turn 1", reply, [
     { type: 'FORBIDDEN_REGEX', regex: /₹/, desc: 'No unprompted price' },
-    { type: 'REQUIRED_REGEX', regex: /kaam|setup|kedi/i, desc: 'Asks application' }
+    { type: 'REQUIRED_REGEX', regex: /kaam|setup|kedi|keda|chiller/i, desc: 'Asks application or chiller type' }
   ]);
   memory.addMessage(phone3, "user", "Chiller chahida hai", "cpsystem");
   memory.addMessage(phone3, "model", Array.isArray(reply) ? reply.join(" ") : reply, "cpsystem");

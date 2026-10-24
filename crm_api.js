@@ -1395,9 +1395,9 @@ router.get('/chats/:phone', authMiddleware, async (req, res) => {
 router.post('/chats/send', authMiddleware, async (req, res) => {
   try {
 
-    const { phone, text, tenant_id: requestedTenantId } = req.body;
-    if (!phone || !text || !text.trim()) {
-      return res.status(400).json({ error: 'Phone and text are required' });
+    const { phone, text, tenant_id: requestedTenantId, media_type, media_url, media_id, filename } = req.body;
+    if (!phone || ((!text || !text.trim()) && !media_url && !media_id)) {
+      return res.status(400).json({ error: 'Phone and message content or media attachment are required' });
     }
 
     const cleanPhone = String(phone).replace(/\D/g, '');
@@ -1418,8 +1418,24 @@ router.post('/chats/send', authMiddleware, async (req, res) => {
     const tenant = tenants[0] || { phone_number_id: config.DEFAULT_PHONE_ID, quota_used: 0 };
     const phoneId = tenant.phone_number_id || config.DEFAULT_PHONE_ID;
 
-    // Send via Meta Cloud API using standardized international format
-    const sendResult = await whatsapp.sendTextMessage(phoneId, standardPhone, text.trim());
+    // Send via Meta Cloud API: support Text, Image, or Document attachments
+    let sendResult = null;
+    let messageType = 'TEXT';
+    let recordedContent = (text || '').trim();
+
+    if (media_type === 'image' && (media_url || media_id)) {
+      sendResult = await whatsapp.sendImageMessage(phoneId, standardPhone, media_url || media_id, recordedContent);
+      messageType = 'IMAGE';
+      if (!recordedContent) recordedContent = '[Outbound Image Attachment]';
+    } else if (media_type === 'document' && (media_url || media_id)) {
+      const docName = filename || 'Document.pdf';
+      sendResult = await whatsapp.sendDocumentMessage(phoneId, standardPhone, media_url || media_id, docName, recordedContent);
+      messageType = 'DOCUMENT';
+      if (!recordedContent) recordedContent = `[Outbound Document: ${docName}]`;
+    } else {
+      sendResult = await whatsapp.sendTextMessage(phoneId, standardPhone, recordedContent);
+    }
+
     const wamid = sendResult?.messages?.[0]?.id || null;
 
     // Insert into crm_messages
@@ -1427,8 +1443,8 @@ router.post('/chats/send', authMiddleware, async (req, res) => {
       tenant_id: tenantId,
       lead_phone: standardPhone,
       direction: 'OUTBOUND_HUMAN',
-      message_type: 'TEXT',
-      content: text.trim(),
+      message_type: messageType,
+      content: recordedContent,
       wamid,
       delivery_status: 'SENT',
       created_at: new Date().toISOString()
@@ -1772,12 +1788,12 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
       return res.status(403).json({ error: 'Staff has read-only access' });
     }
 
-    const { numbers, message, mode = 'custom' } = req.body;
+    const { numbers, message, mode = 'custom', media_type, media_url, media_id, template_name, filename } = req.body;
     if (!numbers || !Array.isArray(numbers) || numbers.length === 0) {
       return res.status(400).json({ error: 'List of phone numbers is required' });
     }
-    if (!message || !message.trim()) {
-      return res.status(400).json({ error: 'Message body is required' });
+    if ((!message || !message.trim()) && !media_url && !media_id) {
+      return res.status(400).json({ error: 'Message body or media attachment is required' });
     }
 
     const tenantId = req.user.tenant_id === 'system' ? 'cpsystem' : req.user.tenant_id;
@@ -1859,7 +1875,30 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
             recipientName = 'Client';
           }
 
-          if (tenantId === 'cpsystem') {
+          // Check if media broadcast requested outside 24h
+          if (media_type && (media_url || media_id)) {
+            try {
+              const mediaComponents = whatsapp.buildMediaTemplateComponents(
+                media_type,
+                media_url || media_id,
+                [recipientName, message || 'Special update from CP System']
+              );
+              sendResult = await whatsapp.sendTemplateMessage(
+                phoneId,
+                standardPhone,
+                template_name || 'marketing_flyer_v1',
+                'en_US',
+                mediaComponents
+              );
+              channelType = 'APPROVED_MEDIA_TEMPLATE';
+              recordedContent = `[Media Template] Hello ${recipientName}! ${message}`;
+              isSuccess = true;
+            } catch (mErr) {
+              console.warn('[Broadcast Media Template Error]', mErr.response?.data || mErr.message);
+            }
+          }
+
+          if (!isSuccess && tenantId === 'cpsystem') {
             // Approved CP System Template: client_broadcast_notice_v1 (category MARKETING, lang: en)
             try {
               sendResult = await whatsapp.sendTemplateMessage(
@@ -1900,7 +1939,7 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
                 failureError = '24-hour service window closed and pre-approved Meta template is not approved yet on this WABA. Meta rejects free-form text outside 24h.';
               }
             }
-          } else {
+          } else if (!isSuccess) {
             // Other tenants (Mystery / General)
             try {
               sendResult = await whatsapp.sendTemplateMessage(
@@ -1928,10 +1967,21 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
             }
           }
         } else {
-          // Within active 24h window: direct text message delivers reliably
-          sendResult = await whatsapp.sendTextMessage(phoneId, standardPhone, message);
-          channelType = 'DIRECT_TEXT';
-          recordedContent = message;
+          // Within active 24h window: direct media or text delivers reliably
+          if (media_type === 'image' && (media_url || media_id)) {
+            sendResult = await whatsapp.sendImageMessage(phoneId, standardPhone, media_url || media_id, message);
+            channelType = 'DIRECT_IMAGE';
+            recordedContent = message || '[Broadcast Image Attachment]';
+          } else if (media_type === 'document' && (media_url || media_id)) {
+            const docName = filename || 'Brochure.pdf';
+            sendResult = await whatsapp.sendDocumentMessage(phoneId, standardPhone, media_url || media_id, docName, message);
+            channelType = 'DIRECT_DOCUMENT';
+            recordedContent = message || `[Broadcast Document: ${docName}]`;
+          } else {
+            sendResult = await whatsapp.sendTextMessage(phoneId, standardPhone, message);
+            channelType = 'DIRECT_TEXT';
+            recordedContent = message;
+          }
           isSuccess = true;
         }
 

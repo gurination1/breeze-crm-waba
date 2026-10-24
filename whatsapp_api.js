@@ -192,10 +192,152 @@ async function markMessageAsRead(phoneNumberId, messageId) {
   }
 }
 
+/**
+ * Send image attachment (Flyer, E-Card, Photo)
+ * @param {string} phoneNumberId - WhatsApp Business Phone Number ID
+ * @param {string} to - Recipient phone number (E.164)
+ * @param {string|object} imageInput - Hosted public URL string (https://...) or Meta media ID string or { link } / { id }
+ * @param {string} caption - Optional text caption (max 1024 chars)
+ */
+async function sendImageMessage(phoneNumberId, to, imageInput, caption = '') {
+  try {
+    const cleanTo = formatE164(to);
+    const url = `${GRAPH_API_URL}/${phoneNumberId}/messages`;
+    const imagePayload = {};
+    if (typeof imageInput === 'string') {
+      if (imageInput.startsWith('http://') || imageInput.startsWith('https://')) {
+        imagePayload.link = imageInput;
+      } else {
+        imagePayload.id = imageInput;
+      }
+    } else if (typeof imageInput === 'object' && imageInput !== null) {
+      if (imageInput.link) imagePayload.link = imageInput.link;
+      else if (imageInput.id) imagePayload.id = imageInput.id;
+    }
+    if (caption) {
+      imagePayload.caption = String(caption).substring(0, 1024);
+    }
+
+    const res = await axios.post(
+      url,
+      {
+        messaging_product: 'whatsapp',
+        recipient_type: 'individual',
+        to: cleanTo,
+        type: 'image',
+        image: imagePayload
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${config.META_ACCESS_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        httpsAgent,
+        timeout: 15000
+      }
+    );
+    return res.data;
+  } catch (err) {
+    console.error(`[WhatsApp API Error] Failed to send image to ${to}:`, err.response ? err.response.data : err.message);
+    throw err;
+  }
+}
+
+/**
+ * Send document attachment (PDF, E-Brochure, Price List)
+ * @param {string} phoneNumberId - WhatsApp Business Phone Number ID
+ * @param {string} to - Recipient phone number (E.164)
+ * @param {string|object} docInput - Hosted public URL string or Meta media ID string or { link } / { id }
+ * @param {string} filename - Display filename (e.g. 'CP_System_Quotation.pdf')
+ * @param {string} caption - Optional text caption (max 1024 chars)
+ */
+async function sendDocumentMessage(phoneNumberId, to, docInput, filename = '', caption = '') {
+  try {
+    const cleanTo = formatE164(to);
+    const url = `${GRAPH_API_URL}/${phoneNumberId}/messages`;
+    const docPayload = {};
+    if (typeof docInput === 'string') {
+      if (docInput.startsWith('http://') || docInput.startsWith('https://')) {
+        docPayload.link = docInput;
+      } else {
+        docPayload.id = docInput;
+      }
+    } else if (typeof docInput === 'object' && docInput !== null) {
+      if (docInput.link) docPayload.link = docInput.link;
+      else if (docInput.id) docPayload.id = docInput.id;
+    }
+    if (filename) {
+      docPayload.filename = filename;
+    }
+    if (caption) {
+      docPayload.caption = String(caption).substring(0, 1024);
+    }
+
+    const res = await axios.post(
+      url,
+      {
+        messaging_product: 'whatsapp',
+        recipient_type: 'individual',
+        to: cleanTo,
+        type: 'document',
+        document: docPayload
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${config.META_ACCESS_TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        httpsAgent,
+        timeout: 15000
+      }
+    );
+    return res.data;
+  } catch (err) {
+    console.error(`[WhatsApp API Error] Failed to send document to ${to}:`, err.response ? err.response.data : err.message);
+    throw err;
+  }
+}
+
+/**
+ * Build template components for Broadcast / Marketing campaigns with Media Header
+ * @param {string} mediaType - 'IMAGE' | 'DOCUMENT' | 'VIDEO'
+ * @param {string} mediaUrlOrId - Public HTTPS URL or Meta Media ID
+ * @param {Array<string>} bodyVariables - Optional array of strings for {{1}}, {{2}} in template body
+ */
+function buildMediaTemplateComponents(mediaType, mediaUrlOrId, bodyVariables = []) {
+  const components = [];
+  if (mediaType && mediaUrlOrId) {
+    const typeLower = mediaType.toLowerCase();
+    const isUrl = mediaUrlOrId.startsWith('http://') || mediaUrlOrId.startsWith('https://');
+    components.push({
+      type: 'header',
+      parameters: [
+        {
+          type: typeLower,
+          [typeLower]: isUrl ? { link: mediaUrlOrId } : { id: mediaUrlOrId }
+        }
+      ]
+    });
+  }
+  if (Array.isArray(bodyVariables) && bodyVariables.length > 0) {
+    components.push({
+      type: 'body',
+      parameters: bodyVariables.map(v => ({
+        type: 'text',
+        text: String(v)
+      }))
+    });
+  }
+  return components;
+}
+
 module.exports = {
   sendTextMessage,
   sendTemplateMessage,
   sendInteractiveButtons,
+  sendImageMessage,
+  sendDocumentMessage,
+  buildMediaTemplateComponents,
   sendTypingIndicator,
   markMessageAsRead
 };
