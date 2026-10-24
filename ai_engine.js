@@ -74,28 +74,36 @@ You chat natively on WhatsApp from your mobile phone with prospective buyers lik
 Website: https://www.cpsystem.in | Sales Coordinator: Karan Singh (+91 99157 30338).
 
 WHATSAPP CHATTING STYLE & TONE:
-- Speak authentic, natural Malwai Punjabi (Latin / English script): "veer ji", "bai ji", "bhaji", "sade kol", "dasso ji", "mil jau", "ho jau", "koi na".
-- Speak like a real human texting a buyer, NOT a corporate chatbot, lawyer, or call center agent. NEVER use parentheses like "(commercial RO plants 500 LPH)" in chat.
-- NO REPETITIVE "HAANJI VEER JI": Stop repeating "haanji veer ji" at the start of every message! Real people on WhatsApp do NOT repeat formal titles every turn. Speak directly, or occasionally use "veere", "bai ji", "thik a bai", or jump straight into the question.
-- START WITH SMALL LETTERS: Start messages with lowercase/small letters (e.g. "keda ro setup dekh rahe ho ji?"). It looks like a real human texting from mobile, not a robotic script.
+- LANGUAGE & FLUID TRANSITION:
+  * DEFAULT LANGUAGE IS HINGLISH: Speak warm, natural, consultative North Indian WhatsApp business tone by default.
+  * FLUID CLIENT MIRRORING: Fluidly transition and match the customer's language based on what they speak:
+    - If customer speaks Punjabi ("veer ji", "chahida", "keda", "kinne da", "tussi", "ghr", "pind", "sade kol", "hor"): Fluidly mirror in authentic Malwai Punjabi!
+    - If customer speaks Hindi / Hinglish ("bhaiya", "chahiye", "kitne ka", "batao", "paani", "ghar ke liye", "kaam"): Fluidly converse in crisp, natural Hinglish!
+    - If customer speaks English: Reply in clean, professional English.
+    - Never abruptly flip language within the conversation unless the customer changes their language.
+- Speak like a real human businessman texting directly from his phone, NOT a corporate chatbot, lawyer, or call center agent. NEVER use parentheses like "(commercial RO plants 500 LPH)" in chat.
+- NO REPETITIVE FORMAL OPENERS: Stop repeating formal titles every turn. Speak directly or jump straight into the message.
+- START WITH SMALL LETTERS: Start message bubbles with lowercase/small letters (e.g. "keda ro setup dekh rahe ho ji?", "kis application ke liye chahiye ji?"). Mimics real human mobile texting.
 - TWO CONSECUTIVE MESSAGES (TELLING + QUESTION DROP):
   Whenever you are telling or answering something AND asking a question in the same turn, ALWAYS use [[SPLIT]] to separate into two consecutive messages:
-  * Bubble 1 (Telling): Very short, precise statement with a natural Punjabi human touch (NO QUESTION MARKS in Bubble 1!).
+  * Bubble 1 (Telling): Very short, precise statement with a natural human touch (STRICTLY ZERO QUESTION MARKS in Bubble 1!).
   * Bubble 2 (Question drop): Exactly ONE focused consultative question drop (starts with a small letter, ends with '?').
   Real human salesman on WhatsApp texts the information/acknowledgment first, and drops the question immediately after in a second bubble.
-  Example:
+  STRICT RULE: The ENTIRE turn across both bubbles must contain EXACTLY ONE QUESTION. Never ask two questions in separate messages!
+  Example (Hinglish):
+  "2 Ton online chiller ₹80,000 + 18% GST hai (Total approx ₹94,400). [[SPLIT]] batayein, yeh chiller aap kis application ke liye dekh rahe hain ji?"
+  Example (Hinglish):
+  "haanji bilkul, domestic kitchen RO bhi mil jayega. [[SPLIT]] aapke ghar ke paani ka TDS kitna aata hai ji?"
+  Example (Punjabi):
   "2 ton online chiller ₹80,000 + 18% gst a ji. [[SPLIT]] dasso, eh chiller kis kaam ya application layi dekh rahe ho ji?"
-  Example:
+  Example (Punjabi):
   "haanji veer ji, gharelu kitchen RO vi bilkul mil jauga. [[SPLIT]] tuhade ghar de paani da TDS kinna a ji?"
-  Example:
-  "pind vich mostly 1000 LPH camper plant lagda a. [[SPLIT]] tuhade kol pind vich 3-phase bijli connection hai ji?"
 - NO GLAZING OR EXAGGERATION: Do NOT say "poori jankari de dinde a", "main guide kar dinda a", "poori madad mil jaugi". No marketing fluff. Keep it simple, humble, and direct.
 - Keep replies SHORT: 1 short sentence + 1 simple question max. WhatsApp customers hate reading essays.
-- Use obvious, natural WhatsApp shortcuts: "hlo", "approx", "gst", "ss body", "ss stand", "ton", "ltr", "quote", "thk", "sai", "mil jau", "ho jau", "veer ji", "bai ji", "dasso ji".
 - Strictly ask ONE focused question per turn. Never ask two questions in the same message.
 - Plain text only: NO markdown asterisks (no **).
 - NO religious greetings (no Sat Sri Akal, no Namaste, no Ram Ram). NO folded-hands emojis (no 🙏).
-- NEVER say "CP System vich swagat hai" or "CP System vich aaye ji". Open directly like a real person texting: "hlo", "keda ro setup dekh rahe ho ji?", "thik a bai", or direct.
+- NEVER say "CP System vich swagat hai" or "CP System me swagat hai". Open directly like a real person texting: "hlo", "batayein kaisa setup plan kar rahe hain?", or direct.
 
 STRICT PRICING RULES (MANDATORY POLICY):
 1. NEVER TELL PRICES UNLESS EXPLICITLY ASKED:
@@ -121,65 +129,87 @@ CORE CONSULTATIVE SALES FLOW (BASED ON CHARAN SIR SALES RECORDINGS):
 1. COMMERCIAL RO & CAMPER WATER PLANTS:
    - When customer generally asks about RO ("Ro bare puchna", "RO plant rate", "RO chahida", "RO plant"):
      Ask in ONE simple, direct question what kind of RO they want:
-     "keda RO setup dekh rahe ho ji?"
-     (If they mentioned they saw a video, ask: "kehdi video dekhi si tussi?")
+     Hinglish: "kaisa RO setup dekh rahe hain ji?"
+     Punjabi: "keda RO setup dekh rahe ho ji?"
    - When customer specifies the requirement/setup (e.g. "camper plant", "20L cans", "commercial plant", "business"):
      NOW ask location:
-     "eh setup tussi pind vich shuru karna hai ya shehar vich ji?"
+     Hinglish: "yeh setup aap pind/village me shuru karna chahte hain ya shehar me ji?"
+     Punjabi: "eh setup tussi pind vich shuru karna hai ya shehar vich ji?"
    - If customer ALREADY mentioned location (e.g. "Bathinda de pind vich camper plant", "pind ch shuru karna"):
      NEVER ask pind/shehar again! (DO NOT mention price unless asked!) Ask:
-     "pind vich mostly 20L camper cans supply da 1000 LPH commercial plant lagda a. tuhade kol pind vich 3-phase bijli connection hai ji?"
+     Hinglish: "village me mostly 20L camper cans supply ka 1000 LPH commercial plant lagta hai. aapke paas 3-phase bijli connection hai ji?"
+     Punjabi: "pind vich mostly 20L camper cans supply da 1000 LPH commercial plant lagda a. tuhade kol pind vich 3-phase bijli connection hai ji?"
    - If Shehar:
-     "shehar vich commercial 20L camper supply da business plan kar rahe ho ya factory/institutional setup layi ji?"
+     Hinglish: "shehar me commercial 20L camper supply ka business plan kar rahe hain ya factory setup ke liye ji?"
+     Punjabi: "shehar vich commercial 20L camper supply da business plan kar rahe ho ya factory/institutional setup layi ji?"
    - Next consultative question (Space / Readiness):
      When electricity or water is answered:
-     "thik a veer ji, setup layi jagah (room/space) tayar hai ji ya haje plan kar rahe ho?"
+     Hinglish: "theek hai ji, setup ke liye jagah (room/space) ready hai ya abhi plan kar rahe hain?"
+     Punjabi: "thik a veer ji, setup layi jagah (room/space) tayar hai ji ya haje plan kar rahe ho?"
    - Next consultative question (Timeline):
-     "eh setup tussi kadon tak shuru karan da vichar kar rahe ho ji?"
+     Hinglish: "yeh setup aap kab tak shuru karne ka plan kar rahe hain ji?"
+     Punjabi: "eh setup tussi kadon tak shuru karan da vichar kar rahe ho ji?"
    - Booking & Next Step:
      When customer is ready or preparing:
-     "vadiya veer ji, token advance (sai) paake booking lock ho jandi a, baki delivery te fitting sade technicians karange. [[SPLIT]] itemized quotation ready karwaiye ji?"
+     Hinglish: "badhiya ji, token advance (sai) daal ke booking lock ho jaati hai, baki delivery aur fitting hamare technicians karenge. [[SPLIT]] itemized quotation ready karwayein ji?"
+     Punjabi: "vadiya veer ji, token advance (sai) paake booking lock ho jandi a, baki delivery te fitting sade technicians karange. [[SPLIT]] itemized quotation ready karwaiye ji?"
 
 2. HEAT PUMP FLOW:
    - When customer asks about heat pump ("heat pump chahida", "heat pump bare puchna"):
-     "heat pump vich kedi capacity dekh rahe ho ji?"
+     Hinglish: "heat pump me kaunsi capacity dekh rahe hain ji?"
+     Punjabi: "heat pump vich kedi capacity dekh rahe ho ji?"
    - When customer answers capacity (e.g. "50 liter"):
      DO NOT GIVE ANY PRICE! Ask what application:
-     "eh heat pump tussi kis kaam layi dekh rahe si ji?"
+     Hinglish: "yeh heat pump aap kis kaam ke liye dekh rahe hain ji?"
+     Punjabi: "eh heat pump tussi kis kaam layi dekh rahe si ji?"
    - If customer asks for price:
-     "heat pump di exact capacity te itemized quotation Coordinator Karan sir (+91 99157 30338) share kar denge ji, andaza rate nahi dinde asi."
+     Hinglish: "heat pump ki exact capacity aur itemized quotation Coordinator Karan sir (+91 99157 30338) share kar denge ji, andaza rate nahi dete hum."
+     Punjabi: "heat pump di exact capacity te itemized quotation Coordinator Karan sir (+91 99157 30338) share kar denge ji, andaza rate nahi dinde asi."
 
 3. CHILLER FLOW (OPEN APPLICATION - ZERO FALSE BINARY):
    - CP System manufactures industrial & commercial chillers for ALL setups: drinking water cooling / RO plant cold water supply, milk & dairy chilling (BMC/tankers), plastic molding / CNC / laser machinery cooling, brewery, bakery, chemicals, batching plants, etc.
    - NEVER restrict customer to just "milk cooling ya machine cooling"! That creates the false illusion that CP System only makes 2 kinds of chillers!
    - When customer asks about chiller ("chiller chahida", "chiller bare puchna", "chiller dekhna"):
+     Hinglish:
+     Bubble 1: "haanji bilkul, chillers mil jayenge."
+     Bubble 2: "chiller aap kis kaam ya application ke liye dekh rahe hain ji?"
+     Punjabi:
      Bubble 1: "haanji veer ji, chillers bilkul mil jange."
      Bubble 2: "chiller tussi kis kaam ya application layi dekh rahe si ji?"
    - When customer mentions capacity (e.g. "2 ton"):
      DO NOT GIVE PRICE UNLESS ASKED!
+     Hinglish:
+     Bubble 1: "2 ton online chiller bilkul mil jayega."
+     Bubble 2: "yeh 2 ton chiller aap kis kaam ya application ke liye plan kar rahe hain ji?"
+     Punjabi:
      Bubble 1: "2 ton chiller bilkul mil jauga."
      Bubble 2: "eh 2 ton chiller tussi kis kaam ya application layi plan kar rahe ho ji?"
-   - ONLY IF customer asks for price of chiller ("2 ton da rate ki hai"):
+   - ONLY IF customer asks for price of chiller ("2 ton da rate ki hai", "2 ton chiller ka price"):
      Quote authorized price in Bubble 1, and drop question in Bubble 2:
+     Hinglish:
+     "2 Ton Online Chiller ₹80,000 + 18% GST hai (Total approx ₹94,400). [[SPLIT]] batayein, yeh chiller aap kis application ke liye dekh rahe hain ji?"
+     Punjabi:
      "2 Ton Online Chiller ₹80,000 + 18% gst (Total approx ₹94,400) a. [[SPLIT]] dasso, eh chiller kis application layi dekh rahe ho ji?"
 
-2. FINANCIALS, EMI & LOAN INQUIRY (CHARAN SIR RECORDING FLOW - ASK ONE BY ONE!):
+4. FINANCIALS, EMI & LOAN INQUIRY (CHARAN SIR RECORDING FLOW - ASK ONE BY ONE!):
    - When customer asks about EMI or loan ("EMI hai?", "loan mil jau?", "kiston te", "paise ghat ne"):
      Ask the loan criteria step-by-step, ONE BY ONE:
-     * Turn 1: "Loan tussi apne naam te apply karna hai ya family ch kise de naam te ji?"
-     * Turn 2: "Tuhadi umar (age) kinni a ji?"
-     * Turn 3: "Security/guarantee layi koi zameen ya property de sakde ho ji?"
-     * Turn 4: "Kehde bank ch account a te cibil score theek a ji?"
+     * Turn 1: "loan aap apne naam pe apply karna chahte hain ya family me kisi ke naam pe ji?" (Punjabi: "loan tussi apne naam te apply karna hai ya family ch kise de naam te ji?")
+     * Turn 2: "aapki age (umar) kitni hai ji?" (Punjabi: "tuhadi umar kinni a ji?")
+     * Turn 3: "security/guarantee ke liye koi zameen ya property de sakte hain ji?" (Punjabi: "security layi koi zameen ya property de sakde ho ji?")
+     * Turn 4: "kaunse bank me account hai aur cibil score kaisa hai ji?" (Punjabi: "kehde bank ch account a te cibil theek a ji?")
 
-3. HESITATION / SILENCE / BUDGET HOOK (2-3 LAKH SUBSIDY HOOK):
-   - If customer hesitates on budget, says "rate vadh a", "soch ke dassda", or pauses:
-     "Veer ji, ek hor vadiya scheme dass dinda a, tuhada 2-3 lakh da hor benefit ho jauga. Govt PMEGP scheme ch 25% subsidy mil jandi a (10 lakh de loan te 2.5 lakh maaf). [[SPLIT]] Is subsidy baare pata karna chahoge ji?"
+5. HESITATION / SILENCE / BUDGET HOOK (2-3 LAKH SUBSIDY HOOK):
+   - If customer hesitates on budget, says "rate vadh a", "mehnga hai", "soch ke dassda", or pauses:
+     Hinglish: "ek aur badhiya scheme bata deta hoon, aapka 2-3 lakh ka aur benefit ho jayega. Govt PMEGP scheme me 25% subsidy mil jaati hai (10 lakh ke loan pe 2.5 lakh maaf). [[SPLIT]] is subsidy ke baare me pata karna chahenge ji?"
+     Punjabi: "veer ji, ek hor vadiya scheme dass dinda a, tuhada 2-3 lakh da hor benefit ho jauga. Govt PMEGP scheme ch 25% subsidy mil jandi a (10 lakh de loan te 2.5 lakh maaf). [[SPLIT]] is subsidy baare pata karna chahoge ji?"
 
-4. COMPETITOR & QUALITY OBJECTION HANDLING:
-   - If customer says competitor is cheaper ("bahaar sasta mil reha", "dusri company ghat de rahi hai"):
-     "Veer ji, rate naal quality zaroor check karo. Sade kol original Emerson compressor te heavy food-grade ss tank hunda a. [[SPLIT]] Oh company compressor kehda de rahi hai ji?"
+6. COMPETITOR & QUALITY OBJECTION HANDLING:
+   - If customer says competitor is cheaper ("bahaar sasta mil reha", "dusri company sasti de rahi hai"):
+     Hinglish: "rate ke saath quality zaroor check karein ji. hamare paas original Emerson compressor aur heavy food-grade SS tank hota hai. [[SPLIT]] woh company compressor kaunsa de rahi hai ji?"
+     Punjabi: "veer ji, rate naal quality zaroor check karo. sade kol original Emerson compressor te heavy food-grade ss tank hunda a. [[SPLIT]] oh company compressor kehda de rahi hai ji?"
 
-5. OFFICIAL AUTHORIZED CHILLER PRICING (STRICTLY THESE 6 RATES - NO FAKE NUMBERS!):
+7. OFFICIAL AUTHORIZED CHILLER PRICING (STRICTLY THESE 6 RATES - NO FAKE NUMBERS!):
    - 1 Ton Online Chiller: ₹60,000 + 18% gst (Total approx ₹70,800). Pure ss stand, Emerson compressor.
    - 1.5 Ton Online Chiller: ₹70,000 + 18% gst (Total approx ₹82,600). Pure ss stand, Emerson compressor.
    - 2 Ton Online Chiller: ₹80,000 + 18% gst (Total approx ₹94,400). Heavy ss stand, Emerson 2 tr compressor.
@@ -188,23 +218,40 @@ CORE CONSULTATIVE SALES FLOW (BASED ON CHARAN SIR SALES RECORDINGS):
    - 5 Ton / 5.5 Ton SS Body: ₹2,45,000 + 18% gst (Total approx ₹2,89,100). Full ss body, Emerson/Danfoss 5.5 tr scroll compressor.
    - For ANY OTHER capacity or product (e.g. 10 Ton, bottling plant, soda plant, pouch packing):
      NEVER invent or guess prices! Say:
-     "Veer ji, is setup di exact capacity te itemized quotation Coordinator Karan sir (+91 99157 30338) share kar denge ji, andaza rate nahi dinde asi."
+     Hinglish: "is setup ki exact capacity aur itemized quotation Coordinator Karan sir (+91 99157 30338) share karenge ji, andaza rate nahi dete hum."
+     Punjabi: "veer ji, is setup di exact capacity te itemized quotation Coordinator Karan sir (+91 99157 30338) share kar denge ji, andaza rate nahi dinde asi."
    - In the same turn, ask consultative question:
-     "Dasso veer ji, eh chiller tussi milk/dairy cooling layi dekh rahe ho, machine cooling layi ya water plant layi?"
+     Hinglish: "batayein ji, yeh chiller aap kis application ke liye dekh rahe hain ji?"
+     Punjabi: "dasso veer ji, eh chiller tussi kis kaam ya application layi dekh rahe ho ji?"
 
-6. DOMESTIC & KITCHEN RO SYSTEMS (WE DO HAVE THEM, BUT BOT KNOWS ZERO RATES!):
+8. DOMESTIC & KITCHEN RO SYSTEMS (WE DO HAVE THEM, BUT BOT KNOWS ZERO RATES!):
    - CP SYSTEM DOES manufacture and supply Domestic RO systems (kitchen water purifiers, home RO, alkaline RO, UV/UF, water softeners).
    - NEVER say "gharelu kitchen RO nahi karde asi"! CP System provides domestic RO.
    - STRICT PRICING GOVERNANCE: Charan Sir has NOT provided the rate list for domestic RO to the AI bot. You ONLY know the rates of the 6 authorized Chiller models. You DO NOT know any Domestic RO rates!
    - You are 100% STRICTLY FORBIDDEN from guessing, inventing, or quoting any price for Domestic RO!
-   - When customer asks about Domestic RO ("ghar waste RO", "kitchen ro", "gharelu ro chahida"):
+   - When customer asks about Domestic RO ("ghar waste RO", "kitchen ro", "gharelu ro chahida", "domestic ro"):
+     Hinglish:
+     Bubble 1: "haanji bilkul, domestic kitchen RO bhi mil jayega."
+     Bubble 2: "aapke ghar ke paani ka TDS kitna aata hai ji?"
+     Punjabi:
      Bubble 1: "haanji veer ji, gharelu kitchen RO vi bilkul mil jauga."
      Bubble 2: "tuhade ghar de paani da TDS kinna a ji?"
-   - When customer asks for Domestic RO price ("kitchen RO da rate ki hai", "ghar wala ro kinne da"):
-     Bubble 1: "veer ji, kitchen RO de models te TDS hisaab naal exact quotation Coordinator Karan sir (+91 99157 30338) share karange."
+   - When customer asks for Domestic RO price ("kitchen RO da rate ki hai", "ghar wala ro kitne ka"):
+     Hinglish:
+     Bubble 1: "kitchen RO ke models aur water TDS ke hisaab se exact quotation Coordinator Karan sir (+91 99157 30338) share karenge."
+     Bubble 2: "ghar me paani borewell ka hai ya municipal supply ka ji?"
+     Punjabi:
+     Bubble 1: "veer ji, kitchen RO de models te TDS membrane hisaab naal exact quotation Coordinator Karan sir (+91 99157 30338) share karange."
      Bubble 2: "ghar bore da paani a ji ya municipal supply da?"
+   - When customer says "pata ni" / "nahi pata" / TDS unknown:
+     Hinglish:
+     Bubble 1: "koi baat nahi ji, bore aur area ke hisaab se andaza lag jata hai, baki technician sample test bhi kar lenge."
+     Bubble 2: "kitchen me RO cabinet ke andar lagwana hai ya wall pe mount karna hai ji?" (if water source confirmed) or "ghar me paani borewell ka hai ya municipal supply ka ji?"
+     Punjabi:
+     Bubble 1: "koi na bai ji, bore te ilaqe hisaab naal andaza lag jauga, baki technician sample test vi kar lau."
+     Bubble 2: "kitchen ch RO cabinet andar lagwana a ya wall te hang karna a ji?" (if water source confirmed) or "ghar bore da paani a ji ya municipal supply da?"
 
-7. NEVER PREMATURELY QUIT:
+9. NEVER PREMATURELY QUIT:
    - NEVER say "Got it, Karan sir nu call kar lo" or "Hor koi jankari chahidi taan dasso" in the middle of qualifying! Stay in conversation as Charanpreet Singh and guide them step-by-step.
 
 Append metadata tag: [[LEAD_UPDATE: {"category": "<Chiller|RO|HeatPump|ColdRoom|Other>", "capacity": "<e.g. 1.5 Ton|5 Ton|1000 LPH|null>", "intent": "SALES", "status": "IN_PROGRESS"}]]
@@ -345,17 +392,21 @@ function ensureSentenceComplete(text) {
       .join(' [[SPLIT]] ');
   }
 
-  // Detect if it is an inquiry / question (comprehensive Punjabi & Hindi question words)
-  const isQuestion = /\b(kinne|kinna|kinni|kinnia|kitne|kitna|kitni|kehde|kehda|kehdi|kehra|kehri|keda|kede|kedi|kis|kide|kihda|kihde|kive|kiven|kida|kiddan|ki|kya|kyun|kado|kadon|dasso|kaun|which|how|what|when|where|koi)\b/i.test(cleaned);
-
-  // If it ends with a complete Punjabi/Hindi verb, noun, or particle
-  const endsWithVerbOrPronoun = /\b(a|aa|hai|hain|ne|si|hoga|honge|hunda|hunde|karda|karde|sakde|sakda|chahida|chahidi|chahide|paunga|paugi|milega|milugi|jauga|jaugi|karange|karo|batao|dasso|dekhange|hove|ji|veere|bhaji|bai|ho|karna|chahunde|chahte)\s*$/i.test(cleaned);
-
-  if (endsWithVerbOrPronoun || cleaned.length < 150) {
-    return cleaned + (isQuestion ? '?' : '.');
+  // Definite statement patterns (never questions!)
+  const isDefiniteStatement = /\b(?:koi\s*baat\s*nahi|koi\s*na|bilkul|theek\s*hai|thik\s*a|shuru\s*karna|ho\s*jaati\s*hai|mil\s*jayega|mil\s*jauga|mil\s*jange|lagta\s*hai|lagda\s*a|karenge|karange|share\s*karenge|share\s*karange|kar\s*lenge|kar\s*lau)\b/i.test(cleaned);
+  if (isDefiniteStatement) {
+    return cleaned + '.';
   }
 
-  return cleaned + (isQuestion ? '?' : '.');
+  // Detect if it is an actual interrogative question (strictly interrogative keywords)
+  const isQuestion = /\b(kinne|kinna|kinni|kinnia|kitne|kitna|kitni|kehde|kehda|kehdi|kehra|kehri|keda|kede|kedi|kide|kihda|kihde|kive|kiven|kida|kiddan|kya|kyun|kado|kadon|kaun|which|how|what|when|where)\b/i.test(cleaned) ||
+    /\b(?:ki\s+(?:a|hai|hunda|rate)|dasso\b.*(?:ji|veere|bhaji)?)\s*$/i.test(cleaned);
+
+  if (isQuestion) {
+    return cleaned + '?';
+  }
+
+  return cleaned + '.';
 }
 
 /**
@@ -673,11 +724,87 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     }
   }
 
-  // Add current turn with minimal known context if client name or city exists (ONLY on first turn!)
-  let customerTurnText = incomingText;
+  // Extract strictly customer inbound messages for accurate language & requirement detection
+  const customerInboundMsgs = priorHistory
+    .filter(m => m.direction === 'INBOUND' || m.role === 'user')
+    .map(m => m.content || '');
+  const allInboundText = [...customerInboundMsgs, incomingText].join(' ');
+
+  // Detect customer language dynamically: Hinglish by default, Punjabi or English if indicated
+  const punjabiRegex = /\b(veer\s*ji|bai\s*ji|bhaji|veere|chahida|chahidi|kinne|kine|keda|kehda|tussi|tuhanu|tuhada|dasso|sade|mil\s*jau|ho\s*jau|hunda|pind|kithon|kive|kiddan|gal|hor|ghr|sadda|saddi|vich|lai|layi|te|nu)\b/i;
+  const hindiRegex = /\b(chahiye|kitne|batao|paani|pani|kya|hai|hain|ka|ke|ki|mujhe|hum|karna|hoga|ghar|kaunsa|kitna|hota|bataiye|aap|aapka|aapko|nhi|nahi|kaise|pe)\b/i;
+  const englishRegex = /^[a-zA-Z0-9\s.,?!'"$@#%&*()-]+$/;
+
+  let clientLang = 'hinglish'; // Default is Hinglish!
+
+  const incomingIsPunjabi = punjabiRegex.test(incomingText);
+  const incomingIsHindi = hindiRegex.test(incomingText);
+  const incomingIsEnglish = englishRegex.test(incomingText) && /\b(price|quotation|cost|chiller|plant|capacity|please|send|details?|need|want|quote|brochure)\b/i.test(incomingText) && !/\b(hai|ki|kya|ji|bhai|bhaiya|chahiye|chahida|ho|karo|batao|pata)\b/i.test(incomingText);
+
+  if (incomingIsEnglish) {
+    clientLang = 'english';
+  } else if (incomingIsPunjabi && !incomingIsHindi) {
+    clientLang = 'punjabi';
+  } else if (incomingIsHindi && !incomingIsPunjabi) {
+    clientLang = 'hinglish';
+  } else {
+    // Look backwards through past customer inbound messages for signal
+    for (let i = customerInboundMsgs.length - 1; i >= 0; i--) {
+      const pastMsg = customerInboundMsgs[i];
+      if (punjabiRegex.test(pastMsg) && !hindiRegex.test(pastMsg)) {
+        clientLang = 'punjabi';
+        break;
+      }
+      if (hindiRegex.test(pastMsg) && !punjabiRegex.test(pastMsg)) {
+        clientLang = 'hinglish';
+        break;
+      }
+    }
+  }
+
+  // Track confirmed water source & category from conversation
+  let confirmedSource = meta.water_source || '';
+  if (!confirmedSource) {
+    if (/\b(bore|borewell|samarsibal|submersible|ground)\b/i.test(allInboundText)) {
+      confirmedSource = 'Borewell';
+      meta.water_source = 'Borewell';
+    } else if (/\b(supply|municipal|toti)\b/i.test(allInboundText)) {
+      confirmedSource = 'Municipal Supply';
+      meta.water_source = 'Municipal Supply';
+    } else if (/\b(nehar|canal)\b/i.test(allInboundText)) {
+      confirmedSource = 'Canal Water';
+      meta.water_source = 'Canal Water';
+    }
+  }
+
+  let confirmedCategory = meta.category || '';
+  if (!confirmedCategory) {
+    if (/\b(ghr|ghar|kitchen|gharelu|domestic)\b/i.test(allInboundText) && /\bro\b/i.test(allInboundText)) {
+      confirmedCategory = 'Domestic / Kitchen RO';
+      meta.category = 'Domestic / Kitchen RO';
+    } else if (/\b(camper|20l|cans)\b/i.test(allInboundText)) {
+      confirmedCategory = 'Camper Plant';
+      meta.category = 'Camper Plant';
+    } else if (/\b(chiller|chillar)\b/i.test(allInboundText)) {
+      confirmedCategory = 'Chiller';
+      meta.category = 'Chiller';
+    }
+  }
+
+  let directives = [];
+  directives.push(`[TARGET LANGUAGE: ${clientLang.toUpperCase()}]`);
+  if (confirmedSource) {
+    directives.push(`[CONFIRMED: Water Source is ${confirmedSource} (DO NOT ASK WATER SOURCE AGAIN!)]`);
+  }
+  if (confirmedCategory) {
+    directives.push(`[CONFIRMED: Setup is ${confirmedCategory}]`);
+  }
+  directives.push(`[RULE: Send EXACTLY 2 messages separated by [[SPLIT]]. Bubble 1 = Statement only (STRICTLY NO questions). Bubble 2 = The ONLY question drop. Total questions = EXACTLY ONE.]`);
+
+  let customerTurnText = `${directives.join(' ')}\nCustomer: ${incomingText}`;
   if (priorHistory.length === 0 && (clientName || city)) {
     const contextPrefix = `[Known Customer: ${clientName || 'Bhaji'}${city ? ', City: ' + city : ''}]`;
-    customerTurnText = `${contextPrefix}\n${incomingText}`;
+    customerTurnText = `${contextPrefix}\n${customerTurnText}`;
   }
 
   contents.push({
@@ -731,29 +858,35 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   // Convert markdown double-bold ** to WhatsApp single-bold *
   cleanReply = cleanReply.replace(/\*\*(.*?)\*\*/g, '*$1*').replace(/\*\*/g, '');
 
-  // Normalize hybrid/broken Hindi-Punjabi phrasing into natural Punjabi
-  cleanReply = cleanReply
-    .replace(/\b(?:humare|mere|hamare)\s*paas\b/gi, 'sade kol')
-    .replace(/\bhum\s*pradan\s*karte\s*hain\b/gi, 'sade kol available a')
-    .replace(/\bkar\s*dege\s*a\b/gi, 'kar devange ji')
-    .replace(/\bho\s*jaugi\s*a\s*ji\b/gi, 'ho jaugi ji')
-    .replace(/\bavailable\s*a\s*ne\b/gi, 'available ne')
-    .replace(/\bstock\s*me\s*available\s*a\b/gi, 'stock vich available a')
-    .replace(/\bme\s*delivery\b/gi, 'ch delivery')
-    .replace(/\b(?:koi\s*baat\s*ni|koi\s*baat\s*nahi)\b/gi, 'koi na')
-    .replace(/\bmain\s*tussi\s*guide\s*kar\s*deya\b/gi, 'main dass dinda a')
-    .replace(/\bsorry\s*veer\s*ji\b/gi, 'koi na bai ji')
-    .replace(/\b(?:tussi\s*)?koi\s*aur\s*product\s*ya\s*setup\s*baare\s*puchna\s*(?:chaunde|chahte)\s*ho\??/gi, 'dasso kede setup baare gal karni chahunde ho ji?')
-    .replace(/\bbhi\s*available\s*a\b/gi, 'vi available a')
-    .replace(/\blagana\s*chaunde\s*ho\b/gi, 'lagwauna chahunde ho')
-    .replace(/\bfake\s*ya\s*andaze\s*naal\s*rate\s*den\s*da\s*koi\s*fayda\s*ni\s*hunda\b/gi, 'rate exact requirement te depend karda a');
+  // Normalize hybrid/broken Hindi-Punjabi phrasing into natural Punjabi ONLY IF client is speaking Punjabi
+  if (clientLang === 'punjabi') {
+    cleanReply = cleanReply
+      .replace(/\b(?:humare|mere|hamare)\s*paas\b/gi, 'sade kol')
+      .replace(/\bhum\s*pradan\s*karte\s*hain\b/gi, 'sade kol available a')
+      .replace(/\bkar\s*dege\s*a\b/gi, 'kar devange ji')
+      .replace(/\bho\s*jaugi\s*a\s*ji\b/gi, 'ho jaugi ji')
+      .replace(/\bavailable\s*a\s*ne\b/gi, 'available ne')
+      .replace(/\bstock\s*me\s*available\s*a\b/gi, 'stock vich available a')
+      .replace(/\bme\s*delivery\b/gi, 'ch delivery')
+      .replace(/\b(?:koi\s*baat\s*ni|koi\s*baat\s*nahi)\b/gi, 'koi na')
+      .replace(/\bmain\s*tussi\s*guide\s*kar\s*deya\b/gi, 'main dass dinda a')
+      .replace(/\bsorry\s*veer\s*ji\b/gi, 'koi na bai ji')
+      .replace(/\b(?:tussi\s*)?koi\s*aur\s*product\s*ya\s*setup\s*baare\s*puchna\s*(?:chaunde|chahte)\s*ho\??/gi, 'dasso kede setup baare gal karni chahunde ho ji?')
+      .replace(/\bbhi\s*available\s*a\b/gi, 'vi available a')
+      .replace(/\blagana\s*chaunde\s*ho\b/gi, 'lagwauna chahunde ho')
+      .replace(/\bfake\s*ya\s*andaze\s*naal\s*rate\s*den\s*da\s*koi\s*fayda\s*ni\s*hunda\b/gi, 'rate exact requirement te depend karda a');
+  }
 
-  // Strip repetitive verbal ticks like "Tussi ki sochde ho bhaji?" and unclosed parentheses
+  // Strip repetitive verbal ticks like "Tussi ki sochde ho bhaji?" and clean parentheses
   cleanReply = cleanReply
     .replace(/\s*(?:tussi|tusse|aap)\s*(?:ki|kya)\s*(?:sochde|sochte|kehnde)\s*ho\s*(?:bhaji|veere|ji)?\??/gi, '')
-    .replace(/(?<!\bapprox\s*₹[\d,]+)[()]/g, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
+
+  // Strip unmatched parentheses
+  if ((cleanReply.match(/\(/g) || []).length !== (cleanReply.match(/\)/g) || []).length) {
+    cleanReply = cleanReply.replace(/[()]/g, '');
+  }
 
   // If prior conversation exists and clientName is known, prevent repetitive "Name bhaji" prefix on subsequent turns
   if (priorHistory.length > 0 && clientName) {
@@ -847,19 +980,46 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
 
   // Domestic RO Interceptor & Strict Pricing Governance:
   // CP System DOES provide domestic kitchen RO, but bot knows ZERO rates!
-  if (/(?:ghar|kitchen|gharelu|domestic)\s*(?:waste|ch|layi|de\s*layi|da)?\s*(?:ro|filter|purifier)/i.test(incomingText)) {
+  const isDomesticRoInquiry = /(?:ghar|kitchen|gharelu|domestic)\s*(?:waste|ch|layi|de\s*layi|da|ke\s*liye)?\s*(?:ro|filter|purifier)/i.test(incomingText) ||
+    (/(?:ro|filter|purifier)\b/i.test(incomingText) && confirmedCategory === 'Domestic / Kitchen RO');
+
+  if (isDomesticRoInquiry) {
     // Intercept accidental negative rejection
     if (/nahi\s*karde|commercial\s*hunde\s*ne/i.test(cleanReply)) {
-      cleanReply = "haanji veer ji, gharelu kitchen RO vi bilkul mil jauga. [[SPLIT]] tuhade ghar de paani da TDS kinna a ji?";
+      cleanReply = clientLang === 'punjabi'
+        ? "haanji veer ji, gharelu kitchen RO vi bilkul mil jauga. [[SPLIT]] tuhade ghar de paani da TDS kinna a ji?"
+        : "haanji bilkul, domestic kitchen RO bhi mil jayega. [[SPLIT]] aapke ghar ke paani ka TDS kitna aata hai ji?";
     }
     // Intercept any hallucinated rate for domestic RO (bot has ZERO domestic RO rates)
     if (isPriceExplicitlyAsked || /₹|[\d,]+\s*(?:da|hazar|rupee|cost|rate)/i.test(cleanReply)) {
-      cleanReply = "veer ji, kitchen RO de models te TDS membrane hisaab naal exact quotation Coordinator Karan sir (+91 99157 30338) share karange. [[SPLIT]] ghar bore da paani a ji ya municipal supply da?";
+      cleanReply = clientLang === 'punjabi'
+        ? (confirmedSource
+            ? "veer ji, kitchen RO de models te TDS membrane hisaab naal exact quotation Coordinator Karan sir (+91 99157 30338) share karange. [[SPLIT]] kitchen ch RO cabinet andar lagwana a ya wall te hang karna a ji?"
+            : "veer ji, kitchen RO de models te TDS membrane hisaab naal exact quotation Coordinator Karan sir (+91 99157 30338) share karange. [[SPLIT]] ghar bore da paani a ji ya municipal supply da?")
+        : (confirmedSource
+            ? "kitchen RO ke models aur water TDS ke hisaab se exact quotation Coordinator Karan sir (+91 99157 30338) share karenge. [[SPLIT]] kitchen me RO cabinet ke andar lagwana hai ya wall pe mount karna hai ji?"
+            : "kitchen RO ke models aur water TDS ke hisaab se exact quotation Coordinator Karan sir (+91 99157 30338) share karenge. [[SPLIT]] ghar me paani borewell ka hai ya municipal supply ka ji?");
+    }
+  }
+
+  // Unknown TDS Guard ("pata ni" / "nahi pata"):
+  if (/\b(?:pata\s*ni|pata\s*nahi|nahi\s*pata|check\s*nahi\s*kiya|check\s*ni\s*kita|idea\s*ni|maloom\s*nahi)\b/i.test(incomingText)) {
+    if (confirmedSource) {
+      cleanReply = clientLang === 'punjabi'
+        ? "koi na bai ji, bore te ilaqe hisaab naal andaza lag jauga, baki technician sample test vi kar lau. [[SPLIT]] kitchen ch RO cabinet andar lagwana a ya wall te hang karna a ji?"
+        : "koi baat nahi ji, bore aur area ke hisaab se andaza lag jata hai, baki technician sample test bhi kar lenge. [[SPLIT]] kitchen me RO cabinet ke andar lagwana hai ya wall pe mount karna hai ji?";
+    } else {
+      cleanReply = clientLang === 'punjabi'
+        ? "koi na bai ji, TDS sample test karwa lavange ya technician check kar lau. [[SPLIT]] ghar bore da paani a ji ya municipal supply da?"
+        : "koi baat nahi ji, TDS sample test karwa lenge ya technician check kar lenge. [[SPLIT]] ghar me paani borewell ka hai ya municipal supply ka ji?";
     }
   }
 
   // Chiller False-Binary Interceptor: Never box customer into only milk or machine cooling
-  cleanReply = cleanReply.replace(/milk\s*cooling\s*layi\s*ya\s*machine\s*cooling\s*layi\??/gi, 'kis kaam ya application layi dekh rahe si ji?');
+  cleanReply = cleanReply
+    .replace(/milk\s*cooling\s*layi\s*ya\s*machine\s*cooling\s*layi\??/gi, clientLang === 'punjabi' ? 'kis kaam ya application layi dekh rahe si ji?' : 'kis application ke liye dekh rahe hain ji?')
+    .replace(/milk\s*cooling\s*(?:ke\s*liye)?\s*ya\s*machine\s*cooling\??/gi, 'kis application ke liye dekh rahe hain ji?')
+    .replace(/milk\s*cooling\s*ya\s*machine\s*cooling/gi, 'water cooling, milk chilling, ya machine cooling');
 
   // Strip repetitive "haanji veer ji" / "haanji bai ji" to avoid robotic formality
   cleanReply = cleanReply.replace(/^(?:haanji\s+)?(?:veer\s*ji|bai\s*ji|bhaji)[,.]?\s*/i, '').trim();
@@ -903,29 +1063,38 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   // Enforce strictly ONE question per message turn (Clean multi-question garbage like 'a,?,dasso ji')
   if (cleanReply.includes('[[SPLIT]]')) {
     let parts = cleanReply.split('[[SPLIT]]').map(p => p.trim()).filter(Boolean);
-    // If Part 1 (Telling) contains both a statement and a question, extract question to Part 2!
+    // If Part 0 (Telling) contains both a statement and a question, extract question to Part 1 if Part 1 is missing, or discard question from Part 0!
     if (parts[0] && parts[0].includes('?')) {
       const qMatchInPart0 = parts[0].match(/^(.*?[.!])\s*(.*?\?)$/s);
       if (qMatchInPart0 && qMatchInPart0[1] && qMatchInPart0[2]) {
         parts[0] = qMatchInPart0[1].trim();
-        parts[1] = qMatchInPart0[2].trim();
+        if (!parts[1]) parts[1] = qMatchInPart0[2].trim();
       } else {
         parts[0] = parts[0].replace(/\?.*$/, '').trim();
       }
     }
 
-    // Part 1 (Telling): strictly NO question mark allowed
+    // Part 1 (Telling): strictly NO question marks and NO interrogative clauses
     if (parts[0]) {
       parts[0] = parts[0].replace(/\?/g, '.').replace(/\s*[,.]+\s*$/, '').trim();
+      if (/\b(?:kya\s*hai|ki\s*a|keda\s*ro|kis\s*kaam|ka\s*source|da\s*source|kaisa\s*setup)\b/i.test(parts[0])) {
+        parts[0] = clientLang === 'punjabi' ? 'theek a bai ji.' : 'theek hai ji.';
+      }
+    }
+    if (!parts[0] || parts[0].length < 3) {
+      parts[0] = clientLang === 'punjabi' ? 'theek a bai ji.' : 'theek hai ji.';
     }
 
     // Part 2 (Question drop): strictly ONE question mark at the end
     if (parts[1]) {
-      parts[1] = parts[1].replace(/\?,/g, ',').replace(/,\?/g, '?').replace(/\?+/g, '?');
-      const qIndex = parts[1].lastIndexOf('?');
-      if (qIndex !== -1) {
-        const qBefore = parts[1].slice(0, qIndex).replace(/\?/g, ',');
-        parts[1] = (qBefore + '?').replace(/\s{2,}/g, ' ').trim();
+      // If Part 1 contains multiple question sentences, keep only the primary question sentence!
+      const questionClauses = parts[1].split(/(?<=\?)\s+/).filter(Boolean);
+      if (questionClauses.length > 1) {
+        parts[1] = questionClauses[questionClauses.length - 1]; // Keep the final focused question
+      }
+      parts[1] = parts[1].replace(/\?,/g, ',').replace(/,\?/g, '?').replace(/\?+/g, '?').trim();
+      if (!parts[1].endsWith('?')) {
+        parts[1] = parts[1].replace(/[.,!]+$/, '') + '?';
       }
     }
     cleanReply = [parts[0], parts[1]].filter(Boolean).join(' [[SPLIT]] ');
@@ -1199,20 +1368,6 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
   function formatHumanSplit(text) {
     if (!text) return [];
 
-    const cleanBubble = (str) => {
-      let b = (str || '')
-        .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|dekha\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|koi\s*aur\s*madad\s*kiya\??)[\s.?!]*$/gi, '')
-        .replace(/\s{2,}/g, ' ')
-        .trim();
-      if (!b) b = (str || '').trim();
-      b = ensureSentenceComplete(b);
-      // Mobile casual texting style: start with small letter unless acronym
-      if (b && !/^(?:RO|SS|CP|GST|TDS|LPH|HP)\b/.test(b)) {
-        b = b.charAt(0).toLowerCase() + b.slice(1);
-      }
-      return b;
-    };
-
     let bubbles = [];
     if (text.includes('[[SPLIT]]')) {
       bubbles = text.split('[[SPLIT]]').map(s => s.trim()).filter(Boolean);
@@ -1226,7 +1381,33 @@ async function handleCpSystemInteraction(cleanPhone, incomingText, userName = ''
     }
 
     if (bubbles.length === 0) bubbles = [text.trim()];
-    return bubbles.map(cleanBubble).filter(Boolean);
+
+    return bubbles.map((str, idx) => {
+      let b = (str || '')
+        .replace(/(?:,|\.|\?|!)*\s*(?:dekh\s*liya\s*(?:ji)?|dekha\s*(?:ji)?|aur\s*dikhane\s*chahte\s*ho\??|tussi\s*ki\s*sochde\s*ho\??|koi\s*aur\s*madad\s*kiya\??)[\s.?!]*$/gi, '')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+      if (!b) b = (str || '').trim();
+
+      // Multi-message consecutive bubbles:
+      // Bubble 1 (idx === 0): Telling statement only! STRICTLY ZERO QUESTION MARKS!
+      if (bubbles.length > 1 && idx === 0) {
+        b = b.replace(/\?/g, '.').replace(/\s*[,.]+\s*$/, '').trim();
+        if (!/[.!]$/.test(b)) b = b + '.';
+      } else if (bubbles.length > 1 && idx === 1) {
+        // Bubble 2 (idx === 1): The focused question drop!
+        b = b.replace(/\?+/g, '?').trim();
+        if (!b.endsWith('?')) b = b.replace(/[.,!]+$/, '') + '?';
+      } else {
+        b = ensureSentenceComplete(b);
+      }
+
+      // Mobile casual texting style: start with small letter unless acronym
+      if (b && !/^(?:RO|SS|CP|GST|TDS|LPH|HP)\b/.test(b)) {
+        b = b.charAt(0).toLowerCase() + b.slice(1);
+      }
+      return b;
+    }).filter(Boolean);
   }
 
   const splitMessages = formatHumanSplit(cleanReply);

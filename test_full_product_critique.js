@@ -72,10 +72,11 @@ async function runAllTests() {
     'Rohit Kumar'
   ]);
 
-  // 6. Domestic / Home RO (Should decline politely)
-  await simulateChat('Domestic / Home RO (Negative Test)', '919811111006', [
+  // 6. Domestic / Home RO (Offered, but bot knows zero rates & delegates to Karan sir)
+  await simulateChat('Domestic / Kitchen RO (Zero Rates Knowledge)', '919811111006', [
     'ghar layi kitchen ch chhota RO lagwana, kinne da miluga?',
-    'tussi domestic nahi karde?'
+    'bore da paani a',
+    'pata ni'
   ]);
 
   // 7. Vague Rate List inquiry
