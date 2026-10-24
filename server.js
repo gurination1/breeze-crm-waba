@@ -938,6 +938,21 @@ function startAutomatedFollowUpWorker() {
 
       for (const lead of candidates) {
         try {
+          const cleanLeadPhone = String(lead.phone || '').replace(/\D/g, '');
+
+          // Suppress Admin Phone & Owner testing
+          if (cleanLeadPhone === '919041172159' || cleanLeadPhone === '9041172159' || cleanLeadPhone === String(config.ADMIN_PHONE || '').replace(/\D/g, '')) {
+            await db.update('crm_leads', { followup_enabled: false, followup_due_at: null }, `id=eq.${lead.id}`);
+            continue;
+          }
+
+          // Strict Business Hours Guard: Only send between 10:00 AM and 7:00 PM IST (UTC 04:30 to 13:30)
+          const now = new Date();
+          const istHour = (now.getUTCHours() + 5.5 + (now.getUTCMinutes() >= 30 ? 0.5 : 0)) % 24;
+          if (istHour < 10 || istHour >= 19) {
+            continue;
+          }
+
           const st = String(lead.status || '').toUpperCase();
           const isSuppressed = suppressedStatuses.includes(st) || lead.is_saved_contact || lead.was_qualified;
 
