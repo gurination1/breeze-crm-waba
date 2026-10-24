@@ -140,3 +140,16 @@ If customer says competitor offers lower price:
   - `80/TCP`: HTTP automatic 308 redirect to HTTPS
   - `5055/TCP`: Node.js Express backend / PM2 `enterprise-waba`
 - **Resource Footprint**: < 0.2% CPU, < 47% total VPS RAM. 100% within Oracle Always Free limits. Zero ephemeral tunnels.
+
+---
+
+## 6. Outreach, Broadcast & AI Polish Architecture
+
+- **Multi-Tier AI Polish Engine**:
+  - Primary: Groq ultra-fast `qwen/qwen3.8-27b` and `openai/gpt-oss-120b` (sub-second latency, zero placeholders, complete sentences, tasteful emojis).
+  - Secondary Fallback: Mistral AI (`open-mistral-nemo`).
+  - Terminal Safeguard: Clean draft fallback (zero 500 error risk).
+- **Direct-First Outreach Dispatch**:
+  - Never prematurely block outreach based on local DB records: always attempt direct transmission (image, document, text) first.
+  - If recipient is outside 24-hour service window, Meta Cloud API returns error `131047`.
+  - On `131047`, automatically fall back to approved Meta templates across available authorized WABA channels (`client_broadcast_notice_v1`, `cpsystem_lead_followup_v2`, etc.).
