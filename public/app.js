@@ -1785,56 +1785,14 @@ function escapeHtml(text) {
 // ==================== MEDIA ATTACHMENTS (E-CARDS, FLYERS, PDFS) ====================
 let currentAttachedMedia = null;
 
-function toggleMediaMenu(e) {
-  if (e) e.stopPropagation();
-  const menu = document.getElementById('mediaAttachmentMenu');
-  if (menu) menu.classList.toggle('hidden');
-  lucide.createIcons();
-}
-
-// Close attachment menu if clicked outside
-document.addEventListener('click', (e) => {
-  const menu = document.getElementById('mediaAttachmentMenu');
-  const btn = document.getElementById('btnAttachMedia');
-  if (menu && !menu.classList.contains('hidden')) {
-    if (!menu.contains(e.target) && e.target !== btn && !btn?.contains(e.target)) {
-      menu.classList.add('hidden');
-    }
-  }
-});
-
-function triggerFileInput(accept) {
-  const fileInput = document.getElementById('mediaFileInput');
-  if (!fileInput) return;
-  fileInput.accept = accept;
-  fileInput.click();
-  const menu = document.getElementById('mediaAttachmentMenu');
-  if (menu) menu.classList.add('hidden');
-}
-
-function promptMediaUrl() {
-  const menu = document.getElementById('mediaAttachmentMenu');
-  if (menu) menu.classList.add('hidden');
-  const url = prompt('Enter public HTTPS URL of image (PNG/JPG) or PDF document:');
-  if (!url || !url.trim()) return;
-
-  const cleanUrl = url.trim();
-  const isImage = cleanUrl.match(/\.(png|jpg|jpeg|webp)($|\?)/i);
-  const isPdf = cleanUrl.match(/\.(pdf)($|\?)/i);
-  const type = isImage ? 'image' : (isPdf ? 'document' : 'image');
-  const filename = cleanUrl.split('/').pop().split('?')[0] || (isImage ? 'image.png' : 'document.pdf');
-
-  setAttachedMedia({
-    type,
-    url: cleanUrl,
-    media_id: null,
-    filename,
-    sizeText: 'Hosted Web Link'
-  });
-}
-
 async function handleFilePicked(e) {
   const file = e.target.files?.[0];
+  if (!file) return;
+  await processFileForUpload(file);
+  e.target.value = '';
+}
+
+async function processFileForUpload(file) {
   if (!file) return;
 
   const isImage = file.type.startsWith('image/');
@@ -1844,11 +1802,24 @@ async function handleFilePicked(e) {
   const preview = document.getElementById('attachedMediaPreview');
   const textEl = document.getElementById('attachedMediaText');
   const sizeEl = document.getElementById('attachedMediaSize');
+  const thumbImg = document.getElementById('attachedThumbImg');
+  const iconEl = document.getElementById('attachedMediaIcon');
 
   if (preview && textEl && sizeEl) {
     preview.classList.remove('hidden');
-    textEl.textContent = `Uploading ${file.name}...`;
-    sizeEl.textContent = 'Preparing Meta Cloud upload...';
+    textEl.textContent = file.name;
+    sizeEl.textContent = 'Uploading directly to WhatsApp Cloud...';
+
+    if (isImage && thumbImg && iconEl) {
+      thumbImg.src = URL.createObjectURL(file);
+      thumbImg.classList.remove('hidden');
+      iconEl.classList.add('hidden');
+    } else if (thumbImg && iconEl) {
+      thumbImg.classList.add('hidden');
+      iconEl.classList.remove('hidden');
+      iconEl.setAttribute('data-lucide', 'file-text');
+    }
+    lucide.createIcons();
   }
 
   try {
@@ -1868,13 +1839,17 @@ async function handleFilePicked(e) {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Upload failed');
 
-        setAttachedMedia({
+        currentAttachedMedia = {
           type: data.media_type || type,
           url: data.media_url,
           media_id: data.media_id,
           filename: data.filename || file.name,
           sizeText: `${(file.size / 1024).toFixed(1)} KB · Ready to Send`
-        });
+        };
+
+        if (sizeEl) {
+          sizeEl.textContent = `${(file.size / 1024).toFixed(1)} KB · Ready to dispatch via WhatsApp`;
+        }
       } catch (uploadErr) {
         alert('File upload failed: ' + uploadErr.message);
         clearAttachedMedia();
@@ -1884,29 +1859,64 @@ async function handleFilePicked(e) {
   } catch (err) {
     alert('Failed to read file: ' + err.message);
     clearAttachedMedia();
-  } finally {
-    e.target.value = '';
   }
 }
 
-function setAttachedMedia(mediaObj) {
-  currentAttachedMedia = mediaObj;
+function clearAttachedMedia() {
+  currentAttachedMedia = null;
   const preview = document.getElementById('attachedMediaPreview');
-  const textEl = document.getElementById('attachedMediaText');
-  const sizeEl = document.getElementById('attachedMediaSize');
-  const iconEl = document.getElementById('attachedMediaIcon');
-
-  if (preview && textEl && sizeEl) {
-    preview.classList.remove('hidden');
-    textEl.textContent = `${mediaObj.type === 'image' ? '🖼️ Image/Card:' : '📄 Document:'} ${mediaObj.filename}`;
-    sizeEl.textContent = mediaObj.sizeText || 'Attached';
-    if (iconEl) {
-      iconEl.setAttribute('data-lucide', mediaObj.type === 'image' ? 'image' : 'file-text');
-    }
-    lucide.createIcons();
+  if (preview) preview.classList.add('hidden');
+  const fileInput = document.getElementById('mediaFileInput');
+  if (fileInput) fileInput.value = '';
+  const thumbImg = document.getElementById('attachedThumbImg');
+  if (thumbImg) {
+    thumbImg.src = '';
+    thumbImg.classList.add('hidden');
   }
-  document.getElementById('chatMessageInput')?.focus();
+  const iconEl = document.getElementById('attachedMediaIcon');
+  if (iconEl) iconEl.classList.remove('hidden');
 }
+
+// Clipboard Paste & Drag-and-Drop Listeners for Seamless Media Dispatch
+document.addEventListener('DOMContentLoaded', () => {
+  const chatInput = document.getElementById('chatMessageInput');
+  const chatBar = document.getElementById('chatInputBar');
+
+  if (chatInput) {
+    chatInput.addEventListener('paste', (e) => {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].kind === 'file') {
+          const file = items[i].getAsFile();
+          if (file) {
+            e.preventDefault();
+            processFileForUpload(file);
+            break;
+          }
+        }
+      }
+    });
+  }
+
+  if (chatBar) {
+    chatBar.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      chatBar.classList.add('ring-2', 'ring-emerald-500/50');
+    });
+    chatBar.addEventListener('dragleave', () => {
+      chatBar.classList.remove('ring-2', 'ring-emerald-500/50');
+    });
+    chatBar.addEventListener('drop', (e) => {
+      e.preventDefault();
+      chatBar.classList.remove('ring-2', 'ring-emerald-500/50');
+      const files = e.dataTransfer?.files;
+      if (files && files.length > 0) {
+        processFileForUpload(files[0]);
+      }
+    });
+  }
+});
 
 function clearAttachedMedia() {
   currentAttachedMedia = null;
