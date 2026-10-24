@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   PORT: process.env.PORT || 5055,
-  META_ACCESS_TOKEN: process.env.META_ACCESS_TOKEN || "EAATgzC3mrI4BSvrpMZAFVarOAKvsRq1eZCPj0QDVxHLVV7tqaLmGOXp9wiWm59KoSNkMmnI8DXQ4ukeyVUZANZCpsu5idiOz9Pr8lt64YBZBbCnoP2KhU3J1zfmUp1wjpBVGOismustbA2oVcoLwWUHbBX66LUsLWnLy5YcZCMCTcClK5F7QVEFya3mV9Ej4ZAQiSyNUf4DF0v79JZCZCQdyHuMxTHu2kmqYZANDC1OiQFDsLxELsZBIEZAWzzwpvGg1gKOs1GcZD",
+  META_ACCESS_TOKEN: process.env.META_ACCESS_TOKEN || "EAATgzC3mrI4BS6Jjdpb50VR3I7mvpUzymsZBy1upegdTCEgYYk7mnCAJLvSQlz292ZCEe6UUbr4YlGJ2vTpxZCZBlfWZAhOWdv1pPYLqS8OvXKk6oRQKrnft2UY25t8dO8GkvX536OWZByDf7viHtZA07joJboknkExtgsfjynWkdZB4yJwJydeIbAqkEGZClHLPKvO99ZBIUyfvxm1h5pUIcXRpd6TdxWg1e7JfazJSpzX9Kw78pBmohP58w0tYezZC0QM98IZD",
   WEBHOOK_VERIFY_TOKEN: process.env.WEBHOOK_VERIFY_TOKEN || "guri_enterprise_waba_token_2026",
   
   // Phone numbers configuration

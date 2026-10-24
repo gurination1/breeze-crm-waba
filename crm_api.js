@@ -2025,15 +2025,16 @@ router.post('/campaigns/send', authMiddleware, async (req, res) => {
                   media_url || media_id,
                   []
                 );
+                const targetMediaTpl = template_name || (pId === '1351625371363106' ? 'multipublisher_diwali_v1' : 'cpsystem_flyer_v1');
                 sendResult = await whatsapp.sendTemplateMessage(
                   pId,
                   standardPhone,
-                  template_name || 'cpsystem_flyer_v1',
+                  targetMediaTpl,
                   'en',
                   mediaComponents
                 );
                 channelType = 'APPROVED_MEDIA_TEMPLATE';
-                recordedContent = `[Media Template cpsystem_flyer_v1] Attached Image + Diwali Greeting`;
+                recordedContent = `[Media Template ${targetMediaTpl}] Attached Image + Diwali Greeting`;
                 isSuccess = true;
                 break;
               } catch (mErr) {
