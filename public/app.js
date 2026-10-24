@@ -1746,6 +1746,18 @@ function renderChatMessages(messages, lead) {
             <span class="font-bold">Voice Note</span>
           </div>
         ` : ''}
+        ${m.message_type === 'IMAGE' || m.message_type === 'DIRECT_IMAGE' ? `
+          <div class="mb-2 p-2 bg-emerald-50 rounded-lg border border-emerald-200 text-emerald-800 text-xs font-mono flex items-center gap-2">
+            <i data-lucide="image" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <span class="font-bold">Image / E-Card Attachment</span>
+          </div>
+        ` : ''}
+        ${m.message_type === 'DOCUMENT' || m.message_type === 'DIRECT_DOCUMENT' ? `
+          <div class="mb-2 p-2 bg-sky-50 rounded-lg border border-sky-200 text-sky-800 text-xs font-mono flex items-center gap-2">
+            <i data-lucide="file-text" class="w-3.5 h-3.5 text-sky-600"></i>
+            <span class="font-bold">Document / PDF Attachment</span>
+          </div>
+        ` : ''}
         <div class="text-xs sm:text-[13px] leading-relaxed font-medium whitespace-pre-wrap">${escapeHtml(m.content)}</div>
         ${isFailed ? `
           <div class="mt-2 p-2 bg-rose-100/90 rounded-lg border border-rose-300 text-rose-800 text-[11px] font-mono flex items-start gap-1.5">
@@ -1770,6 +1782,140 @@ function escapeHtml(text) {
   return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+// ==================== MEDIA ATTACHMENTS (E-CARDS, FLYERS, PDFS) ====================
+let currentAttachedMedia = null;
+
+function toggleMediaMenu(e) {
+  if (e) e.stopPropagation();
+  const menu = document.getElementById('mediaAttachmentMenu');
+  if (menu) menu.classList.toggle('hidden');
+  lucide.createIcons();
+}
+
+// Close attachment menu if clicked outside
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('mediaAttachmentMenu');
+  const btn = document.getElementById('btnAttachMedia');
+  if (menu && !menu.classList.contains('hidden')) {
+    if (!menu.contains(e.target) && e.target !== btn && !btn?.contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  }
+});
+
+function triggerFileInput(accept) {
+  const fileInput = document.getElementById('mediaFileInput');
+  if (!fileInput) return;
+  fileInput.accept = accept;
+  fileInput.click();
+  const menu = document.getElementById('mediaAttachmentMenu');
+  if (menu) menu.classList.add('hidden');
+}
+
+function promptMediaUrl() {
+  const menu = document.getElementById('mediaAttachmentMenu');
+  if (menu) menu.classList.add('hidden');
+  const url = prompt('Enter public HTTPS URL of image (PNG/JPG) or PDF document:');
+  if (!url || !url.trim()) return;
+
+  const cleanUrl = url.trim();
+  const isImage = cleanUrl.match(/\.(png|jpg|jpeg|webp)($|\?)/i);
+  const isPdf = cleanUrl.match(/\.(pdf)($|\?)/i);
+  const type = isImage ? 'image' : (isPdf ? 'document' : 'image');
+  const filename = cleanUrl.split('/').pop().split('?')[0] || (isImage ? 'image.png' : 'document.pdf');
+
+  setAttachedMedia({
+    type,
+    url: cleanUrl,
+    media_id: null,
+    filename,
+    sizeText: 'Hosted Web Link'
+  });
+}
+
+async function handleFilePicked(e) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  const isImage = file.type.startsWith('image/');
+  const isPdf = file.type === 'application/pdf' || file.name.endsWith('.pdf');
+  const type = isImage ? 'image' : (isPdf ? 'document' : 'image');
+
+  const preview = document.getElementById('attachedMediaPreview');
+  const textEl = document.getElementById('attachedMediaText');
+  const sizeEl = document.getElementById('attachedMediaSize');
+
+  if (preview && textEl && sizeEl) {
+    preview.classList.remove('hidden');
+    textEl.textContent = `Uploading ${file.name}...`;
+    sizeEl.textContent = 'Preparing Meta Cloud upload...';
+  }
+
+  try {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const base64Data = reader.result;
+        const res = await fetchWithAuth('/api/media/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filename: file.name,
+            mime_type: file.type,
+            file_data: base64Data
+          })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Upload failed');
+
+        setAttachedMedia({
+          type: data.media_type || type,
+          url: data.media_url,
+          media_id: data.media_id,
+          filename: data.filename || file.name,
+          sizeText: `${(file.size / 1024).toFixed(1)} KB · Ready to Send`
+        });
+      } catch (uploadErr) {
+        alert('File upload failed: ' + uploadErr.message);
+        clearAttachedMedia();
+      }
+    };
+    reader.readAsDataURL(file);
+  } catch (err) {
+    alert('Failed to read file: ' + err.message);
+    clearAttachedMedia();
+  } finally {
+    e.target.value = '';
+  }
+}
+
+function setAttachedMedia(mediaObj) {
+  currentAttachedMedia = mediaObj;
+  const preview = document.getElementById('attachedMediaPreview');
+  const textEl = document.getElementById('attachedMediaText');
+  const sizeEl = document.getElementById('attachedMediaSize');
+  const iconEl = document.getElementById('attachedMediaIcon');
+
+  if (preview && textEl && sizeEl) {
+    preview.classList.remove('hidden');
+    textEl.textContent = `${mediaObj.type === 'image' ? '🖼️ Image/Card:' : '📄 Document:'} ${mediaObj.filename}`;
+    sizeEl.textContent = mediaObj.sizeText || 'Attached';
+    if (iconEl) {
+      iconEl.setAttribute('data-lucide', mediaObj.type === 'image' ? 'image' : 'file-text');
+    }
+    lucide.createIcons();
+  }
+  document.getElementById('chatMessageInput')?.focus();
+}
+
+function clearAttachedMedia() {
+  currentAttachedMedia = null;
+  const preview = document.getElementById('attachedMediaPreview');
+  if (preview) preview.classList.add('hidden');
+  const fileInput = document.getElementById('mediaFileInput');
+  if (fileInput) fileInput.value = '';
+}
+
 // Direct Manual Message Sender (Dispatches via Meta Cloud API)
 async function handleSendManualMessage(e) {
   e.preventDefault();
@@ -1777,10 +1923,22 @@ async function handleSendManualMessage(e) {
 
   const input = document.getElementById('chatMessageInput');
   const text = input.value.trim();
-  if (!text) return;
+  if (!text && !currentAttachedMedia) return;
 
   const sendBtn = document.getElementById('btnSendManual');
   const lead = state.leads.find(l => l.phone === state.activeLeadPhone);
+
+  const payload = {
+    phone: state.activeLeadPhone,
+    text: text
+  };
+
+  if (currentAttachedMedia) {
+    payload.media_type = currentAttachedMedia.type;
+    payload.media_url = currentAttachedMedia.url;
+    payload.media_id = currentAttachedMedia.media_id;
+    payload.filename = currentAttachedMedia.filename;
+  }
 
   input.value = '';
   sendBtn.disabled = true;
@@ -1788,13 +1946,12 @@ async function handleSendManualMessage(e) {
   try {
     const res = await fetchWithAuth('/api/chats/send', {
       method: 'POST',
-      body: JSON.stringify({
-        phone: state.activeLeadPhone,
-        text: text
-      })
+      body: JSON.stringify(payload)
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error);
+
+    clearAttachedMedia();
 
     // Update lead local state to takeover mode
     if (lead) {
@@ -2013,10 +2170,19 @@ async function launchBroadcast() {
   const resultsList = document.getElementById('broadcastResultsList');
   resultsList.innerHTML = `<div class="text-slate-500">Initiating Meta Cloud API dispatch...</div>`;
 
+  const mediaType = document.getElementById('broadcastMediaType')?.value || '';
+  const mediaUrl = document.getElementById('broadcastMediaUrl')?.value.trim() || '';
+
+  const broadcastPayload = { numbers, message };
+  if (mediaType && mediaUrl) {
+    broadcastPayload.media_type = mediaType;
+    broadcastPayload.media_url = mediaUrl;
+  }
+
   try {
     const res = await fetchWithAuth('/api/campaigns/send', {
       method: 'POST',
-      body: JSON.stringify({ numbers, message })
+      body: JSON.stringify(broadcastPayload)
     });
     const data = await res.json();
     if (!res.ok) {
@@ -2040,6 +2206,12 @@ async function launchBroadcast() {
       let channelBadge = '<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">Direct Chat</span>';
       if (r.channel === 'APPROVED_TEMPLATE') {
         channelBadge = '<span class="text-[10px] px-2 py-0.5 rounded-full bg-violet-100 text-violet-800 font-bold border border-violet-200">Meta Template</span>';
+      } else if (r.channel === 'APPROVED_MEDIA_TEMPLATE') {
+        channelBadge = '<span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 font-bold border border-purple-200">Media Template (E-Card)</span>';
+      } else if (r.channel === 'DIRECT_IMAGE') {
+        channelBadge = '<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">Direct Image</span>';
+      } else if (r.channel === 'DIRECT_DOCUMENT') {
+        channelBadge = '<span class="text-[10px] px-2 py-0.5 rounded-full bg-sky-100 text-sky-800 font-bold border border-sky-200">Direct PDF</span>';
       } else if (r.channel === 'TEMPLATE_REQUIRED') {
         channelBadge = '<span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 font-bold border border-amber-200">24h Expired (Template Needed)</span>';
       }

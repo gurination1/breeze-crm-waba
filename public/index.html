@@ -612,7 +612,7 @@
           </div>
 
           <!-- Sticky Bottom Message Input Bar (Direct Manual WhatsApp Dispatch) -->
-          <div id="chatInputBar" class="p-2.5 sm:p-3 bg-white border-t border-slate-200 shadow-sm shrink-0">
+          <div id="chatInputBar" class="p-2.5 sm:p-3 bg-white border-t border-slate-200 shadow-sm shrink-0 relative">
             <!-- 24-Hour WhatsApp Service Window Banner -->
             <div id="window24hBanner" class="hidden mb-2 px-3 py-1.5 rounded-xl text-[11px] font-mono flex items-center justify-between gap-2 border transition">
               <div class="flex items-center gap-1.5" id="window24hText">
@@ -621,8 +621,44 @@
               </div>
               <span id="window24hBadge" class="text-[10px] px-2 py-0.5 rounded-full font-bold shrink-0"></span>
             </div>
+
+            <!-- Attached Media Chip Preview -->
+            <div id="attachedMediaPreview" class="hidden mb-2 px-3 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-xs flex items-center justify-between text-emerald-800">
+              <div class="flex items-center gap-2 truncate">
+                <div class="w-7 h-7 rounded-lg bg-emerald-100 flex items-center justify-center shrink-0">
+                  <i id="attachedMediaIcon" data-lucide="image" class="w-4 h-4 text-emerald-700"></i>
+                </div>
+                <div class="truncate">
+                  <div id="attachedMediaText" class="font-bold truncate text-[11px] text-slate-900">No file attached</div>
+                  <div id="attachedMediaSize" class="text-[10px] text-emerald-700 font-mono">Ready to dispatch via WhatsApp</div>
+                </div>
+              </div>
+              <button type="button" onclick="clearAttachedMedia()" class="text-slate-400 hover:text-rose-600 text-sm font-bold ml-2 p-1.5 rounded-lg hover:bg-rose-50 transition shrink-0" title="Remove attachment">✕</button>
+            </div>
+
+            <!-- Attachment Quick Menu Popover -->
+            <div id="mediaAttachmentMenu" class="hidden absolute bottom-16 left-3 bg-white border border-slate-200 shadow-2xl rounded-2xl p-2 z-50 w-60 space-y-1">
+              <div class="text-[10px] font-mono uppercase tracking-wider text-slate-400 px-2 py-1 font-bold">Attach WhatsApp Media</div>
+              <button type="button" onclick="triggerFileInput('image/*')" class="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-xl transition text-left">
+                <i data-lucide="image" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+                <span>Image / E-Card / Flyer</span>
+              </button>
+              <button type="button" onclick="triggerFileInput('.pdf,application/pdf')" class="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-sky-50 hover:text-sky-700 rounded-xl transition text-left">
+                <i data-lucide="file-text" class="w-4 h-4 text-sky-600 shrink-0"></i>
+                <span>PDF / Brochure / Spec</span>
+              </button>
+              <button type="button" onclick="promptMediaUrl()" class="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-purple-50 hover:text-purple-700 rounded-xl transition text-left">
+                <i data-lucide="link" class="w-4 h-4 text-purple-600 shrink-0"></i>
+                <span>Paste Public URL</span>
+              </button>
+            </div>
+
             <form id="chatSendForm" onsubmit="handleSendManualMessage(event)" class="flex items-center gap-2">
-              <input type="text" id="chatMessageInput" placeholder="Type a WhatsApp message to client..." autocomplete="off" class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-wa-green focus:ring-2 focus:ring-wa-green/20 transition">
+              <input type="file" id="mediaFileInput" class="hidden" onchange="handleFilePicked(event)">
+              <button type="button" id="btnAttachMedia" onclick="toggleMediaMenu(event)" title="Attach E-Card, Flyer, Image or PDF" class="p-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-emerald-600 rounded-xl transition flex items-center justify-center shrink-0 border border-slate-200">
+                <i data-lucide="paperclip" class="w-4 h-4"></i>
+              </button>
+              <input type="text" id="chatMessageInput" placeholder="Type a WhatsApp message or caption..." autocomplete="off" class="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-wa-green focus:ring-2 focus:ring-wa-green/20 transition">
               <button type="submit" id="btnSendManual" class="px-3.5 sm:px-4 py-2 sm:py-2.5 bg-[#25D366] hover:bg-emerald-600 text-white font-bold rounded-xl text-xs sm:text-sm transition flex items-center gap-1.5 shadow shrink-0">
                 <span>Send</span>
                 <i data-lucide="send" class="w-3.5 h-3.5"></i>
@@ -742,6 +778,25 @@
                   <span>Polish with Gemini AI ✨</span>
                 </button>
                 <span id="polishStatusText" class="text-xs text-softblue-700 font-mono"></span>
+              </div>
+
+              <!-- Optional Media Attachment for Broadcast -->
+              <div class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                <div class="flex items-center justify-between">
+                  <label class="text-[11px] font-bold text-slate-700 flex items-center gap-1.5">
+                    <i data-lucide="paperclip" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Broadcast Attachment (E-Card / Flyer / PDF):</span>
+                  </label>
+                  <span class="text-[10px] text-slate-400 font-mono">Optional</span>
+                </div>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <select id="broadcastMediaType" class="bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 font-medium">
+                    <option value="">Text Only (No Media)</option>
+                    <option value="image">Image / E-Card (PNG/JPG)</option>
+                    <option value="document">Document / Catalog (PDF)</option>
+                  </select>
+                  <input type="text" id="broadcastMediaUrl" placeholder="Paste public HTTPS image/PDF link or Meta Media ID..." class="flex-1 bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-wa-tealLight">
+                </div>
               </div>
             </div>
 

@@ -299,6 +299,37 @@ async function sendDocumentMessage(phoneNumberId, to, docInput, filename = '', c
 }
 
 /**
+ * Upload media directly to Meta Graph API
+ * @param {string} phoneNumberId
+ * @param {Buffer} fileBuffer
+ * @param {string} mimeType
+ * @param {string} filename
+ * @returns {Promise<string>} mediaId
+ */
+async function uploadMedia(phoneNumberId, fileBuffer, mimeType, filename) {
+  try {
+    const url = `${GRAPH_API_URL}/${phoneNumberId}/media`;
+    const formData = new FormData();
+    const blob = new Blob([fileBuffer], { type: mimeType });
+    formData.append('file', blob, filename);
+    formData.append('messaging_product', 'whatsapp');
+    formData.append('type', mimeType);
+
+    const res = await axios.post(url, formData, {
+      headers: {
+        Authorization: `Bearer ${config.META_ACCESS_TOKEN}`
+      },
+      httpsAgent,
+      timeout: 30000
+    });
+    return res.data?.id;
+  } catch (err) {
+    console.error(`[WhatsApp API Error] Failed to upload media:`, err.response ? err.response.data : err.message);
+    throw err;
+  }
+}
+
+/**
  * Build template components for Broadcast / Marketing campaigns with Media Header
  * @param {string} mediaType - 'IMAGE' | 'DOCUMENT' | 'VIDEO'
  * @param {string} mediaUrlOrId - Public HTTPS URL or Meta Media ID
@@ -337,6 +368,7 @@ module.exports = {
   sendInteractiveButtons,
   sendImageMessage,
   sendDocumentMessage,
+  uploadMedia,
   buildMediaTemplateComponents,
   sendTypingIndicator,
   markMessageAsRead

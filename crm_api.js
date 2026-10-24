@@ -7,6 +7,8 @@ const db = require('./db');
 const config = require('./config');
 const whatsapp = require('./whatsapp_api');
 const ai = require('./ai_engine');
+const fs = require('fs');
+const path = require('path');
 
 // Cryptographically Secure Session Store with 24-Hour TTL
 const activeSessions = new Map();
@@ -1484,6 +1486,67 @@ router.post('/chats/send', authMiddleware, async (req, res) => {
   } catch (err) {
     console.error('Manual chat send error:', err.response?.data || err.message);
     res.status(500).json({ error: err.response?.data?.error?.message || err.message });
+  }
+});
+
+/**
+ * 8C. MEDIA UPLOADER (Uploads image/document from web UI, saves to /uploads/ and caches to Meta Cloud)
+ */
+router.post('/media/upload', authMiddleware, async (req, res) => {
+  try {
+    const { filename, file_data, mime_type } = req.body;
+    if (!filename || !file_data) {
+      return res.status(400).json({ error: 'filename and file_data (base64) are required' });
+    }
+
+    const cleanBase64 = file_data.replace(/^data:[^;]+;base64,/, '');
+    const buffer = Buffer.from(cleanBase64, 'base64');
+
+    // 15MB limit
+    if (buffer.length > 15 * 1024 * 1024) {
+      return res.status(400).json({ error: 'File size exceeds 15MB limit' });
+    }
+
+    const uploadsDir = path.join(__dirname, 'public', 'uploads');
+    if (!fs.existsSync(uploadsDir)) {
+      fs.mkdirSync(uploadsDir, { recursive: true });
+    }
+
+    const safeName = `${Date.now()}_${filename.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+    const filePath = path.join(uploadsDir, safeName);
+    await fs.promises.writeFile(filePath, buffer);
+
+    const detectedMime = mime_type || (filename.match(/\.(png|jpg|jpeg|webp)$/i) ? 'image/png' : 'application/pdf');
+    const isImage = detectedMime.startsWith('image/');
+    const mediaType = isImage ? 'image' : 'document';
+
+    // Direct Meta Cloud API upload if phone_number_id is available
+    let mediaId = null;
+    try {
+      const tenantId = req.user.tenant_id === 'system' ? 'cpsystem' : req.user.tenant_id;
+      const tenants = await db.get('crm_tenants', `id=eq.${tenantId}`);
+      const phoneId = tenants?.[0]?.phone_number_id || config.DEFAULT_PHONE_ID;
+      mediaId = await whatsapp.uploadMedia(phoneId, buffer, detectedMime, filename);
+    } catch (metaUploadErr) {
+      console.warn('[Meta Direct Media Upload Warning]', metaUploadErr.message);
+    }
+
+    const host = req.get('host');
+    const protocol = req.protocol === 'https' || req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+    const publicUrl = `${protocol}://${host}/uploads/${safeName}`;
+
+    return res.json({
+      success: true,
+      media_id: mediaId,
+      media_url: publicUrl,
+      relative_url: `/uploads/${safeName}`,
+      filename: filename,
+      media_type: mediaType,
+      size: buffer.length
+    });
+  } catch (err) {
+    console.error('[CRM Media Upload Error]', err);
+    return res.status(500).json({ error: err.message });
   }
 });
 
